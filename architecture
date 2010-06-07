@@ -1,0 +1,156 @@
+class hierarchy for IDLE
+superclasses at the top, subclasses at the bottom, spaces in between
+
+Toplevel
+AboutDialog, ConfigDialog, GetHelpSourceDialog, GetCfgSectionNameDialog, GetKeysDialog, TextViewer, ListedToplevel`
+
+AutoComplete
+
+AutoCompleteWindow
+
+AutoExpand
+
+CallTips
+
+CallTip, #actually  different  WTF?
+
+ClassBrowser
+PathBrowser #PathBrowser's main has a bug in it
+
+TreeItem
+ModuleBrowserTreeItem, ClassBrowserTreeItem, MethodBrowserTreeItem, PathBrowserTreeItem, DirBrowserTreeItem, StackTreeItem, FrameTreeItem, FileTreeItem #example
+
+TreeItem
+ObjectTreeItem
+ClassTreeItem, InstanceTreeItem, AtomicObjectTreeItem, SequenceTreeItem, VariablesTreeItem
+                                                         DictTreeItem
+
+CodeContext
+
+Delagator #takes commands and processes them
+ColorDelagator,         UndoDelagator
+ModifiedColorDelagator
+
+Exception
+InvalidConfigType, InvalidConfigSet, InvalidFgBg, InvalidTheme, InvalidNameError, AlreadyExistsError
+
+ConfigParser
+IdleConfParser
+IdleUserConfParser
+
+IdleConf
+
+bdb.Bdb
+Idb
+
+Debugger
+
+ScrolledList
+StackViewer
+
+NamespaceViewer
+
+OptionMenu
+DynOptionMenu
+
+object
+EditorWindow                      IndentSearcher, PseudoFile, SocketIO, RemoteObject, RemoteProxy, RPCProxy, MethodProxy, Executive, Page
+OutputWindow, PyShellEditorWindow                                                                                                    PageRemove, PageLift, PagePackForget, 
+PyShell
+
+FileList
+PyShellFileList
+
+FormatParagrapho
+
+SearchDialogBase
+GrepDialog
+
+HyperParser
+
+History
+
+SimpleDialog
+EncodingMessage
+
+IOBinding
+
+Frame
+MultiStatusBar, TabSet, TabButton, TabbedPageSet, 
+
+OnDemandOutputWindow, #not used
+
+ParenMatch
+
+Percolator, 
+
+Parser
+
+RPCClient
+MyRPCClient
+
+InteractiveInterpreter
+ModifiedInterpreter
+
+GUIProxy
+
+IdbAdapter
+
+rpchandler, gui_adap_oid
+start_debugger
+
+FrameProxy
+
+CodeProxy
+
+DictProxy
+
+GUIAdapter
+
+IdbProxy
+
+WrappedObjectTreeItem
+
+StubOjectTreeItem
+
+text
+replace
+
+SearchDialogBase
+ReplaceDialog SearchDialog
+
+SocketServer.TCPServer
+RPCServer
+MyRPCServer
+
+
+SocketServer.BaseRequestHandler, SocketIO
+RPCHandler
+MyHandler
+
+ScriptBinding
+
+ScrolledList
+
+SearchEngine
+
+ToolTipBase
+ToolTip ListboxToolTip
+
+TreeNode
+
+ScrolledCanvas #in TreeWidget.py (TreeWidget's test() has a bug in it)
+
+Command
+InsertCommand DeleteCommand CommandSequence
+
+WidgetRedirector
+
+OriginalCommand
+
+WindowList
+
+ZoomHeight
+
+#self.text is defined in EditorWindow.py 
+    it is a MultiCallObject, I don't really know what this means

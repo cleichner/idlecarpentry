@@ -268,7 +268,7 @@ class PyShellFileList(FileList):
 
     # override FileList's class variable, instances return PyShellEditorWindow
     # instead of EditorWindow when new edit windows are created.
-    EditorWindow = PyShellEditorWindow
+  #  EditorWindow = PyShellEditorWindow
 
     pyshell = None
 
