@@ -1,8 +1,4 @@
-try:
-    from Tkinter import *
-except ImportError:
-    print>>sys.__stderr__, "** IDLE can't import Tkinter.  " \
-                           "Your Python may not be configured for Tk. **"
+from Tkinter import *
 import tkMessageBox
 from PyShell import PyShellEditorWindow, PyShellFileList
 from EditorWindow import fixwordbreaks
@@ -11,25 +7,24 @@ class PySplitShellEditorWindow(PyShellEditorWindow):
     "Split IDLE text edit window"
     pass 
 
-class FileAnnotationList(PyShellFileList):
+class PySplitShellFileList(PyShellFileList):
     "Opens files and deals with partitioning the annotations and the source" 
+    EditorWindow = PySplitShellEditorWindow
     pass
 
 def test():
-    global flist, root, use_subprocess
-
-    use_subprocess = True
-    enable_shell = False
-    enable_edit = False
-
     root = Tk(className="Idle")
 
     fixwordbreaks(root)
     root.withdraw()
-    flist = FileAnnotationList(root)
-    flist.open_shell()
 
-    shell = flist.pyshell
+    shell_frame=Frame(root)
+
+    flist = PySplitShellFileList(shell_frame)
+    flist2 = PySplitShellFileList(shell_frame)
+
+    flist.open('IOBinding.py')
+    flist2.open('MultiCall.py')
 
     root.mainloop()
     root.destroy()

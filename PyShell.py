@@ -38,7 +38,7 @@ import RemoteDebugger
 
 IDENTCHARS = string.ascii_letters + string.digits + "_"
 LOCALHOST = '127.0.0.1'
-use_subprocess = True #so it runs for testing with test() in PySplitShell.py
+use_subprocess = False #so it runs for testing with test() in PySplitShell.py
 
 try:
     from signal import SIGTERM
