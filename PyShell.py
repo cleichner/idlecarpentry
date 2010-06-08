@@ -38,6 +38,7 @@ import RemoteDebugger
 
 IDENTCHARS = string.ascii_letters + string.digits + "_"
 LOCALHOST = '127.0.0.1'
+use_subprocess = True #so it runs for testing with test() in PySplitShell.py
 
 try:
     from signal import SIGTERM
@@ -240,6 +241,7 @@ class PyShellEditorWindow(EditorWindow):
         linenumber_list = self.ranges_to_linenumbers(ranges)
         self.breakpoints = linenumber_list
 
+#BROKEN this raises an exception when it is run
     def ranges_to_linenumbers(self, ranges):
         lines = []
         for index in range(0, len(ranges), 2):
@@ -806,6 +808,7 @@ class PyShell(OutputWindow):
     from IdleHistory import History
 
     def __init__(self, flist=None):
+        
         if use_subprocess:
             ms = self.menu_specs
             if ms[2][0] != "shell":

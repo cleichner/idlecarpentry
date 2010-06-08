@@ -2,7 +2,6 @@ import os
 from Tkinter import *
 import tkMessageBox
 
-
 class FileList:
 
     from EditorWindow import EditorWindow  # class variable, may be overridden
