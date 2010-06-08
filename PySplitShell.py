@@ -4,17 +4,14 @@ except ImportError:
     print>>sys.__stderr__, "** IDLE can't import Tkinter.  " \
                            "Your Python may not be configured for Tk. **"
 import tkMessageBox
+from PyShell import PyShellEditorWindow, PyShellFileList
+from EditorWindow import fixwordbreaks
 
-from EditorWindow import EditorWindow, fixwordbreaks
-from FileList import FileList
-
-import PyShell
-
-class PySplitShellEditorWindow(PyShell.EditorWindow):
+class PySplitShellEditorWindow(PyShellEditorWindow):
     "Split IDLE text edit window"
     pass 
 
-class FileAnnotationList(PyShell.PyShellFileList):
+class FileAnnotationList(PyShellFileList):
     "Opens files and deals with partitioning the annotations and the source" 
     pass
 
