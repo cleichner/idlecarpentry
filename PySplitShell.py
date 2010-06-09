@@ -18,10 +18,8 @@ def test():
     fixwordbreaks(root)
     root.withdraw()
 
-    shell_frame=Frame(root)
-
-    flist = PySplitShellFileList(shell_frame)
-    flist2 = PySplitShellFileList(shell_frame)
+    flist = PySplitShellFileList(root)
+    flist2 = PySplitShellFileList(root)
 
     flist.open('IOBinding.py')
     flist2.open('MultiCall.py')
