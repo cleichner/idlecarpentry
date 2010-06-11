@@ -11,7 +11,9 @@ to subclass Tkinter.Text() I need to:
         tag_add()
         tag_remove() #these will just be redirected to the source Text widget
         tag_ranges()
+        tag_nextrange()
         tag_prevrange()
+        tag_names()
         mark_set()
         mark_gravity()
         see()
@@ -22,8 +24,10 @@ to subclass Tkinter.Text() I need to:
         event_generate()
         event_delete()
         after_idle()
+        after_cancel()
         config()
         focus_set()
+        pack()
         update()
         update_idletasks()
         undo_block_start() #Check PyShell for precise usage before doing these two
