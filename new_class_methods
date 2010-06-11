@@ -1,0 +1,46 @@
+to subclass Tkinter.Text() I need to:
+    override 
+        index() [figure out what this does]
+        bell() 
+        delete()
+        insert()
+        get() to get text from the annotations and source portion of the file which is opened
+        after()
+        after_cancel()
+        compare()
+        tag_add()
+        tag_remove() #these will just be redirected to the source Text widget
+        tag_ranges()
+        tag_prevrange()
+        mark_set()
+        mark_gravity()
+        see()
+        bind()
+        unbind()
+        set_label()
+        event_add()
+        event_generate()
+        event_delete()
+        after_idle()
+        config()
+        focus_set()
+        update()
+        update_idletasks()
+        undo_block_start() #Check PyShell for precise usage before doing these two
+        undo_block_stop() 
+        respond to vartype(self.text)
+        respond to being used in CallTip()
+        make work with Menu(self.text, tearoff=0)
+            and ReplaceDialog.replace()
+            and MultiCallCreator()
+   
+   see what this does from CodeContext:
+       newtextfont = self.text["font"]
+       self.text['yscrollcommand'] = vbar.set
+
+This could give some insight into tagging:
+    def select_all(self, event=None):
+        self.text.tag_add("sel", "1.0", "end-1c")
+        self.text.mark_set("insert", "1.0")
+        self.text.see("insert")
+        return "break"
