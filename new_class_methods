@@ -41,6 +41,8 @@ to subclass Tkinter.Text() I need to:
    see what this does from CodeContext:
        newtextfont = self.text["font"]
        self.text['yscrollcommand'] = vbar.set
+       Explaination: These access the aspect of the widget and set the configuration of that aspect.
+            In short, it accesses the widget's dictionary.
 
 This could give some insight into tagging:
     def select_all(self, event=None):

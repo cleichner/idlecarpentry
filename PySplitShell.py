@@ -11,8 +11,6 @@ class SplitTextFrame(Frame):
     the methods of the Text widget which EditorWindow and its subclasses use in
     for self.text ''' 
 
-#UNKNOWN identifies non-Tkinter methods which this class will be expected to respond to
-
     def __init__(self, master=None, **options)
         self.source_text = MultiCallCreator(Text)(text_frame, **text_options)
         self.annotation_text = MultiCallCreator(Text)(text_frame, **text_options)
@@ -129,36 +127,33 @@ class SplitTextFrame(Frame):
     position is visible.'''
         pass
 
-    def bind(self, triplet, func):
-        #UNKNOWN
-    '''Comes from MultiCall, defined in SimpleBinder and ComplexBinder'''
+    def bind(self, triplet, func, string=None):
+    '''If string is '+', this binds func to self in response to triplet.'''
         pass
 
     def unbind(self, triplet, func):
-        #UNKNOWN
-    '''Comes from MultiCall, defined in SimpleBinder and ComplexBinder'''
+    '''Remove the binding from self.'''
         pass
 
-    def set_label(self):
-    '''most likely not from Tkinter'''
-        #UNKNOWN
+    def event_add(self, virtual, *sequences):
+    '''Adds a virtual event any number of sequences, describing physical
+    events.'''
         pass
 
-    def event_add(self):
-    '''most likely not from Tkinter'''
-        #UNKNOWN
+    def event_generate(self, sequence, **keywords):
+    ''' This method causes an event to trigger without any external stimulus.
+    The handling of the event is the same as if it had been triggered by an
+    external stimulus. The sequence argument describes the event to be
+    triggered. You can set values for selected fields in the Event object by
+    providing keyword=value arguments, where the keyword specifies the name of
+    a field in the Event  object. '''
         pass
 
-    def event_generate(self):
-    '''most likely not from Tkinter'''
-        #UNKNOWN
+    def event_delete(self, virtual, *sequences):
+    '''Deletes physical events from the virtual event whose name is given by
+    the string virtual. If all the physical events are removed from a given
+    virtual event, that virtual event won't happen anymore. '''
         pass
-
-    def event_delete(self):
-    '''most likely not from Tkinter'''
-        #UNKNOWN
-        pass
-
 
     def config(self, **options):
     '''Modifies one or more widget options. If no options are give, the method
@@ -180,15 +175,18 @@ class SplitTextFrame(Frame):
         pass
     
     def update_idletasks(self):
-    '''Call all  pending idle tasks, without processing any other events.''' 
+    '''Call all pending idle tasks, without processing any other events.''' 
         pass
 
-    def undo_block_start(self): #Check PyShell for precise usage before doing these two
-        #UNKNOWN
+    def undo_block_start(self): 
+    '''Start of an undo block, from UndoDelagator. If these are nested the
+    inner commands will act like nops.'''
+    #Look into how these will interact across the annotations and source
         pass
 
     def undo_block_stop(self):
-        #UNKNOWN
+    '''Stop of an undo block, from UndoDelagator. If these are nested the
+    inner commands will act like nops.''' 
         pass
 
 class PySplitShellEditorWindow(PyShellEditorWindow):
@@ -197,7 +195,7 @@ class PySplitShellEditorWindow(PyShellEditorWindow):
     pass 
 
 class PySplitShellFileList(PyShellFileList):
-    "Opens files and deals with partitioning the annotations and the source" 
+    "Opens files and deals with partitioning the annotations and the source"
     EditorWindow = PySplitShellEditorWindow
     pass
 
