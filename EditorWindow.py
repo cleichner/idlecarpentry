@@ -457,6 +457,7 @@ class EditorWindow(object):
         if not self.text.tag_ranges("sel"):
             # There is no selection, so do nothing and maybe interrupt.
             return
+        print 'this did something?', event
         self.text.event_generate("<<Copy>>")
         return "break"
 
