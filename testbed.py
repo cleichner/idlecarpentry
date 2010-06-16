@@ -9,12 +9,12 @@ from UndoDelegator import UndoDelegator
 
 root=Tk()
 
-text=Text(root)
+#text=Text(root)
+text=PySplitShell.SplitText(root)
+
 undo=UndoDelegator()
 text.undo_block_start=undo.undo_block_start
 text.undo_block_stop=undo.undo_block_stop
-#text=PySplitShell.SplitTextFrame(root)
-
 
 text.pack()
 
@@ -70,10 +70,10 @@ if not ranges_2:
 text.tag_add('to remove', 2.2, END)
 
 text.mark_set(INSERT, 1.0)
-print 'next range', text.tag_nextrange('to remove', INSERT)
+print 'next_range', text.tag_nextrange('to remove', INSERT)
 
 text.mark_set(INSERT, END)
-print 'prev range', text.tag_prevrange('to remove', INSERT)
+print 'prev_range', text.tag_prevrange('to remove', INSERT)
 
 text.tag_add('to remove', 1.1)
 text.tag_add('asdf', 2.2, END)
@@ -100,10 +100,10 @@ text.see(1.0)
 def callback(event):
     print 'events work, see:', event
 
-text.bind('<<virtual>>', callback)
+funcID=text.bind('<<virtual>>', callback)
 text.event_generate('<<virtual>>')
 
-text.unbind('<<virtual>>')
+text.unbind('<<virtual>>', funcID)
 text.event_generate('<<virtual>>')
 print 'the events callback should only be printed once before this'
 
