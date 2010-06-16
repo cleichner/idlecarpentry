@@ -7,20 +7,36 @@ from MultiCall import MultiCallCreator
 DEBUG = True
 
 #one of these classes needs to take care of folding through virtual event bindings
-class SplitTextFrame(Frame):
+class SplitText(object):
+#need to handle one INSERT
     '''This contains two Text widgets, split by an identifier tag. It mimics
     the methods of the Text widget which EditorWindow and its subclasses use in
     for self.text ''' 
 
-    def __init__(self, master=None, **options):
-        self.source_text = MultiCallCreator(Text)(text_frame, **text_options)
-        self.annotation_text = MultiCallCreator(Text)(text_frame, **text_options)
+    def __init__(self, master=None, **text_options):
+        self.current='source_text'
+
+        self.source_text = MultiCallCreator(Text)(master, **text_options)
+        self.annotation_text = MultiCallCreator(Text)(master, **text_options)
+
+        self.source_text.tk_focusFollowsMouse()
+
+        self.source_text.bind('<FocusIn>', source_entry)
+        self.annotation_text.bind('<FocusIn>', annotation_entry)
+    
+    def source_entry(self, event):
+        self.current='source_text'
+
+    def annotation_entry(self, event):
+        self.current='annotation_text'
 
     def index(self, index):
         '''Returns the line.column index corresponding to the given index.
         index - index specifier (this can be a mark)
         return the corresponding row/column, given as a 'line.column' string.'''
-        pass
+#source line numbers control all line numbers
+#annotation lines numbers match the source lines they are annotating (WAIT 'TIL folding works to implement this)
+        self.source_text.index(index)
 
     def bell(self):
         '''It's just a beep.'''
@@ -32,7 +48,7 @@ class SplitTextFrame(Frame):
         '''Deletes the character (or embedded object) at the given position, or all
         text in the given range. Any marks within the range are moved to the
         beginning of the range.'''
-        pass
+        self.source_text.delete(start, stop)
 
     def insert(self, index, text, *tags):
         '''Inserts text at the given position. The index is typically INSERT or
@@ -53,15 +69,18 @@ class SplitTextFrame(Frame):
     def after(self, delay_ms, callback, *args):
         '''Register an alarm callback that is called after the given number of
         milliseconds.'''
+        self.source_text.after(delay_ms, callback, *args)
         pass
 
     def after_cancel(self, id):
         '''Cancels the given alarm callback.'''
+        self.source_text.after_cancel(id)
         pass
 
     def after_idle(self, callback, *args):
         '''Register an idle callback which is called when the system is idle. (When
         there are no more events to process after the main loop)'''
+        self.source_text.after_idle(callback, *args)
         pass
 
     def compare(self, index1, op, index2):
