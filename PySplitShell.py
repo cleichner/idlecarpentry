@@ -7,8 +7,12 @@ from MultiCall import MultiCallCreator
 DEBUG = True
 
 #one of these classes needs to take care of folding through virtual event bindings
+#once folding works, all of these need to reference line numbers and index off
+#of the source_text
+
 class SplitText(object):
 #need to handle one INSERT
+
     '''This contains two Text widgets, split by an identifier tag. It mimics
     the methods of the Text widget which EditorWindow and its subclasses use in
     for self.text ''' 
@@ -34,9 +38,14 @@ class SplitText(object):
         '''Returns the line.column index corresponding to the given index.
         index - index specifier (this can be a mark)
         return the corresponding row/column, given as a 'line.column' string.'''
+
 #source line numbers control all line numbers
 #annotation lines numbers match the source lines they are annotating (WAIT 'TIL folding works to implement this)
-        self.source_text.index(index)
+
+        if self.current == 'source_text'
+            self.source_text.index(index)
+        else:
+            self.annotation_text.index(index)
 
     def bell(self):
         '''It's just a beep.'''
@@ -48,14 +57,22 @@ class SplitText(object):
         '''Deletes the character (or embedded object) at the given position, or all
         text in the given range. Any marks within the range are moved to the
         beginning of the range.'''
-        self.source_text.delete(start, stop)
+
+        if self.current == 'source_text':
+            self.source_text.delete(start, stop)
+        else:
+            self.annotation_text.delete(start, stop)
 
     def insert(self, index, text, *tags):
         '''Inserts text at the given position. The index is typically INSERT or
         END. If you provide one or more tags, they are attached to the new text.
         If you insert text on a mark, the mark is moved according to its gravity setting.
         '''
-        pass
+
+        if self.current == 'source_text':
+            self.source_text.insert(index, text, *tags)
+        else:
+            self.annotation_text.insert(index, text, *tags)
 
     def get(self, start, end=None):
         '''Returns the character at the given position, or all text in the given
@@ -64,62 +81,92 @@ class SplitText(object):
         start - start position
         end - end position. If omitted, only one character is returned.
         '''
-        pass
+
+        if self.current == 'source_text':
+            self.source_text.get(start, stop)
+        else:
+            self.annotation_text.get(start, stop)
 
     def after(self, delay_ms, callback, *args):
         '''Register an alarm callback that is called after the given number of
         milliseconds.'''
+
         self.source_text.after(delay_ms, callback, *args)
-        pass
 
     def after_cancel(self, id):
         '''Cancels the given alarm callback.'''
+
         self.source_text.after_cancel(id)
-        pass
 
     def after_idle(self, callback, *args):
         '''Register an idle callback which is called when the system is idle. (When
         there are no more events to process after the main loop)'''
+
         self.source_text.after_idle(callback, *args)
-        pass
 
     def compare(self, index1, op, index2):
         '''Compares two indexes. The op argument is one of '<', '<=', '==', '>=',
         '>', '!='''
-        pass
+
+        if self.current == 'source_text':
+            self.source_text.compare(index1, op, index2)
+        else:
+            self.annotation_text.compare(index1, op, index2)
+
 
     def tag_add(self, tag, start, stop=None):
         '''add tag to the character at the given position, or to the given
         range.'''
-        pass
+
+        if self.current == 'source_text':
+            self.source_text.tag_add(tag, start, stop)
+        else:
+            self.annotation_text.tag_add(tag, start, stop)
 
     def tag_remove(self, tag, start, stop=None):
         '''If stop is None, remove the tag from the character at the start
         position, otherwise it acts on the given range. The information
         associated with the tag is not removed.''' 
-        pass
+
+        if self.current == 'source_text':
+            self.source_text.tag_remove(tag, start, stop)
+        else:
+            self.annotation_text.tag_remove(tag, start, stop)
 
     def tag_ranges(self, tag):
         '''Returns a tuple with the start- and stop-indexes for each
         occurrence of the given tag. If the tag doesn't exist, this method
         returns an empty tuple. Note that the tuple contains two items for
         each range.''' 
-        pass
+
+        if self.current == 'source_text':
+            self.source_text.tag_ranges(tag)
+        else:
+            self.annotation_text.tag_ranges(tag)
 
     def tag_nextrange(self, tag, start, stop=None):
         '''Find the next occurrence of the given tag, from start to stop, or to the
         end if stop is None. '''
-        pass
+
+        if self.current == 'source_text':
+            self.source_text.tag_nextrange(tag, start, stop)
+        else:
+            self.annotation_text.tag_nextrange(tag, start, stop)
 
     def tag_prevrange(self, tag, start, stop=None):
         '''Find the next occurrence of the given tag, starting at the given index
         and searching towards the beginning of the text if stop is None.'''
-        pass
+
+        if self.current == 'source_text':
+            self.source_text.tag_prevrange(tag, start, stop)
+        else:
+            self.annotation_text.tag_prevrange(tag, start, stop)
 
     def tag_names(self, index=None):
         '''If index is None, Return a tuple containing all tags used in the widget.
         This includes the SEL selection tag. Otherwise, it returns a tuple
         containing all tags used by the character at the given position.'''
+#STARTHERE
         pass
 
     def tag_bind(self, sequence, func, string=None):
