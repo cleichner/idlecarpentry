@@ -99,6 +99,7 @@ class EditorWindow(object):
             sys.ps1 = '>>> '
         self.menubar = Menu(root)
         self.top = top = WindowList.ListedToplevel(root, menu=self.menubar)
+#makes new window
         if flist:
             self.tkinter_vars = flist.vars
             #self.top.instance_dict makes flist.inversedict avalable to
@@ -113,7 +114,7 @@ class EditorWindow(object):
         self.text_frame = text_frame = Frame(top)
         self.vbar = vbar = Scrollbar(text_frame, name='vbar')
         self.width = idleConf.GetOption('main','EditorWindow','width')
-        text_options = {
+        self.text_options = text_options = {
                 'name': 'text',
                 'padx': 5,
                 'wrap': 'none',

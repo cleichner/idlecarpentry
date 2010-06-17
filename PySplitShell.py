@@ -12,6 +12,7 @@ DEBUG = True
 
 class SplitText(object):
 #need to handle one INSERT
+#make this work with dictionary access meaning .config
 
     '''This contains two Text widgets, split by an identifier tag. It mimics
     the methods of the Text widget which EditorWindow and its subclasses use in
@@ -31,6 +32,11 @@ class SplitText(object):
         self.annotation_text.bind('<FocusIn>', self.annotation_entry)
 #OR     self.annotation_text.bind('<Enter>', annotation_entry)
 #I don't know which one works better at this point
+        
+    def get_line(self, index):
+        line_column=self.index(index)
+        line=line_column.split('.')[0]
+        return line
     
     def source_entry(self, event):
         self.current='source_text'
@@ -257,7 +263,7 @@ class SplitText(object):
         self.annotation_text.event_add(virtual, *sequences)
 
     def config(self, **options):
-        '''Modifies one or more widget options. If no options are give, the method
+        '''Modifies one or more widget options. If no options are given, the method
         returns a dictionary containing all current option values.'''
 #I might need to implement a frame around the current widget to make this one work
 
@@ -304,8 +310,9 @@ class SplitText(object):
 
 class PySplitShellEditorWindow(PyShellEditorWindow):
     "Split IDLE text edit window"
-    text=None
-    pass 
+    def __init__(self, *args):
+        super(PySplitShellEditorWindow, self).__init__(*args)
+        self.text=text=SplitText(self.text_frame, **self.text_options)
 
 class PySplitShellFileList(PyShellFileList):
     "Opens files and deals with partitioning the annotations and the source"
@@ -320,7 +327,7 @@ def test():
 
     flist = PySplitShellFileList(root)
 
-    flist.open('test')
+    flist.new()
 
     root.mainloop()
     root.destroy()
