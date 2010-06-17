@@ -29,27 +29,21 @@ for line in lorem.split('\n'):
 for full_line in folded_lines:
     text.insert(INSERT, full_line)
 
-def fold():
-    current=text.get('insert linestart', 'insert lineend')
-    text.delete('insert linestart', 'insert lineend+1c')
-    try:
-        text.insert(INSERT, folded_lines[current+'\n'])
-    except KeyError:
-        print current
-        text.insert(INSERT, current) 
+def manipulator(dictionary):
+    def dictionary_replace():
+#the +1c is to get the newline
+        current=text.get('insert linestart', 'insert lineend+1c')
+        text.delete('insert linestart', 'insert lineend+1c')
+        try:
+            text.insert(INSERT, dictionary[current])
+        except KeyError:
+            text.insert(INSERT, current) 
 
-def unfold():
-    current=text.get('insert linestart', 'insert lineend')
-    text.delete('insert linestart', 'insert lineend+1c')
-    try:
-        text.insert(INSERT, unfolded_lines[current+'\n'])
-    except KeyError:
-        print current
-        text.insert(INSERT, current) 
+    return dictionary_replace
 
 button_frame=Frame(root)
-fold_button=Button(button_frame, command=fold, text='Fold')
-unfold_button=Button(button_frame, command=unfold, text='Unfold')
+fold_button=Button(button_frame, command=manipulator(folded_lines), text='Fold')
+unfold_button=Button(button_frame, command=manipulator(unfolded_lines), text='Unfold')
 
 button_frame.pack(side=TOP)
 fold_button.pack(side=LEFT)
