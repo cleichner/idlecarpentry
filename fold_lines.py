@@ -20,34 +20,41 @@ class FoldManager(object):
         self.unfolded_lines=OrderedDict.OrderedDict()
 
         button_frame=Frame(root)
-        fold_button=Button(button_frame, command=self.folding_generator(self.folded_lines), text='Fold')
-        unfold_button=Button(button_frame, command=self.folding_generator(self.unfolded_lines), text='Unfold')
+        fold_button=Button(button_frame, command=self.folder, text='Fold/Unfold')
+        '''
+        fold_button=Button(button_frame, command=self.folder, text='Fold')
+        unfold_button=Button(button_frame, command=self.folder, text='Unfold')
+        '''
 
         button_frame.pack(side=TOP)
         fold_button.pack(side=LEFT)
-        unfold_button.pack(side=LEFT)
+        #unfold_button.pack(side=LEFT)
 
         for line in self.lorem.split('\n'):
             folded_line=line[:self.fold_length]+'...\n'
             unfolded_line=line+'\n'
+
+            self.text.insert(INSERT, unfolded_line)
             
             self.folded_lines[unfolded_line]=folded_line
-            self.unfolded_lines[folded_line]=unfolded_line
+            self.folded_lines[folded_line]=unfolded_line
 
-        for full_line in self.folded_lines:
-            self.text.insert(INSERT, full_line)
+    def folder(self):
+        #the +1c is to get the newline
+        current=self.text.get('insert linestart', 'insert lineend+1c')
+        self.text.delete('insert linestart', 'insert lineend+1c')
+        try:
+            self.text.insert(INSERT, self.folded_lines[current])
+        except KeyError:
+            self.text.insert(INSERT, current) 
 
-    def folding_generator(self, dictionary):
-        def folder():
-            #the +1c is to get the newline
-            current=self.text.get('insert linestart', 'insert lineend+1c')
-            self.text.delete('insert linestart', 'insert lineend+1c')
-            try:
-                self.text.insert(INSERT, dictionary[current])
-            except KeyError:
-                self.text.insert(INSERT, current) 
-
-        return folder
+    
+    def update(self, new_line):
+        folded_line=new_line[:self.fold_length]+'...\n'
+        unfolded_line=new_line+'\n'
+            
+        self.folded_lines[unfolded_line]=folded_line
+        self.unfolded_lines[folded_line]=unfolded_line
 
 def main():
     text='''    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pulvinar mattis purus, quis rutrum lectus rhoncus ut. Nulla dolor lectus, dapibus sed ullamcorper nec, vestibulum adipiscing purus. Sed consectetur, lacus ut placerat tempus, sapien quam viverra enim, vel venenatis ante lectus ut tortor.  Mauris laoreet sem id magna volutpat mattis. Aliquam eleifend tempor elit, ut pharetra nibh pellentesque nec. Pellentesque ac libero a justo scelerisque iaculis. Morbi dapibus enim id turpis facilisis tempor. Sed laoreet, neque at scelerisque lobortis, quam est aliquet urna, sed commodo ante sem eu odio. Nunc facilisis ipsum sed quam tincidunt viverra. Quisque eu augue dui, in pretium odio. Suspendisse potenti. Donec mattis ornare suscipit. Etiam a magna sapien.  Morbi vitae ligula lacus, vel iaculis enim. Curabitur sem lacus, viverra non bibendum nec, auctor sit amet nulla. Cras venenatis lectus aliquam nibh placerat pharetra. Vivamus dolor metus, sodales nec sollicitudin sit amet, varius sit amet libero.
