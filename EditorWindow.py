@@ -98,8 +98,10 @@ class EditorWindow(object):
         except AttributeError:
             sys.ps1 = '>>> '
         self.menubar = Menu(root)
+
+        #makes new window
         self.top = top = WindowList.ListedToplevel(root, menu=self.menubar)
-#makes new window
+
         if flist:
             self.tkinter_vars = flist.vars
             #self.top.instance_dict makes flist.inversedict avalable to
@@ -458,7 +460,6 @@ class EditorWindow(object):
         if not self.text.tag_ranges("sel"):
             # There is no selection, so do nothing and maybe interrupt.
             return
-        print 'this did something?', event
         self.text.event_generate("<<Copy>>")
         return "break"
 
