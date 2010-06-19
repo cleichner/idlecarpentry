@@ -1,13 +1,16 @@
 from Tkinter import *
+from OrderedDict import OrderedDict
 
-#config variables
 raw_source='example_annotated_code.py'
-fold_length=77
 
 def parse_source(raw_source):
+    '''This takes a source file with annotations in it and returns two ordered
+    dictionaries: the first maps line numbers to the source lines, the second
+    maps line numbers to annotation lines. By changing this function, you can
+    change the file format.'''
 
-    source={}
-    annotations={}
+    source=OrderedDict()
+    annotations=OrderedDict()
     in_annotations=False
     i=1
 
@@ -21,27 +24,25 @@ def parse_source(raw_source):
                 parsed_anno=line.split(':')
                 annotations[parsed_anno[0]]=parsed_anno[1]
         else:
-            source[str(i)]=line #I love you so much
+            source[str(i)]=line
             i += 1
     return source, annotations
  
-source={}
-annotations={}
+source=OrderedDict()
+annotations=OrderedDict()
 source, annotations = parse_source(raw_source)
 
 #make annotation dict
-annotation_dict={}
-#import pdb; pdb.set_trace()
-#debuggers are useful, I confused ints and strings
-for line in source:
-    if line in annotations:
-       #This branch never executes
-        annotation_dict[line]=annotations[line]
+annotation_dict=OrderedDict()
+for lineno in source:
+    if lineno in annotations:
+        annotation_dict[lineno]=annotations[lineno]
     else:
-        annotation_dict[line]='\n'
+        annotation_dict[lineno]='\n'
 
 #GUI definitions
 root=Tk()
+root.wm_title("Annotation Parsing Demo")
 
 frame=Frame(root)
 frame.pack()
@@ -52,11 +53,10 @@ annotation_text=Text(frame)
 source_text.pack(side=LEFT)
 annotation_text.pack(side=LEFT)
 
-for line in source:
-    source_text.insert(INSERT, source[line])
-    if line in annotation_dict:
-        annotation_text.insert(INSERT, annotation_dict[line])
-    else:
-        annotation_text.insert(INSERT, '\n')
+#import pdb; pdb.set_trace()
+
+for lineno in source:
+    source_text.insert(INSERT, source[lineno])
+    annotation_text.insert(INSERT, annotation_dict[lineno])
         
 root.mainloop()
