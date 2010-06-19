@@ -9,6 +9,7 @@ DEBUG = True
 #one of these classes needs to take care of folding through virtual event bindings
 #once folding works, all of these need to reference line numbers and index off
 #of the source_text
+        for line in 
 
 class SplitText(object):
 #need to handle one INSERT
@@ -32,6 +33,8 @@ class SplitText(object):
         self.annotation_text.bind('<FocusIn>', self.annotation_entry)
 #OR     self.annotation_text.bind('<Enter>', annotation_entry)
 #I don't know which one works better at this point
+
+        self.annotation_text.config(state=DISABLED)
         
     def get_line(self, index):
         line_column=self.index(index)
@@ -43,6 +46,8 @@ class SplitText(object):
 
     def annotation_entry(self, event):
         self.current='annotation_text'
+
+    def annotate(self):
 
     def index(self, index):
         '''Returns the line.column index corresponding to the given index.
@@ -94,6 +99,11 @@ class SplitText(object):
 
         if self.current == 'source_text':
             return self.source_text.get(start, stop)
+        else:
+            return self.annotation_text.get(start, stop)
+
+    def after(self, delay_ms, callback, *args):
+        '''Register an alarm callback that is called after the given number of
         else:
             return self.annotation_text.get(start, stop)
 
@@ -329,8 +339,3 @@ def test():
 
     flist.new()
 
-    root.mainloop()
-    root.destroy()
-
-if __name__ == "__main__":
-    test()
