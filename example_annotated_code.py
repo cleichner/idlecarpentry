@@ -21,14 +21,13 @@ class FoldManager(object):
 
         self.source, self.annotations=self.parse_source(raw_source)
 
-        self.fold_length=40
+        self.fold_length=77
         self.folded_lines=OrderedDict()
 
         for line in self.annotations.values():
+            #folded_line=line[:self.fold_length]+'...\n'
+            #unfolded_line=line+'\n'
             folded_line=line[:self.fold_length]
-            if folded_line[-1:] != '\n':
-                folded_line+='\n'
-
             unfolded_line=line
             
             self.folded_lines[unfolded_line]=folded_line
@@ -47,13 +46,13 @@ class FoldManager(object):
 
     def parse_source(self, raw_source):
         '''This takes a source file with annotations in it and returns two
-        ordered dictionaries: the first maps (int) line numbers to the source
-        lines, the second maps line numbers to annotation lines. If there is no
+        ordered dictionaries: the first maps line numbers to the source lines,
+        the second maps line numbers to annotation lines. If there is no
         annotation for a line, it is mapped as 'lineno':'\n'. By changing this
         function, you can change the file format.'''
 
         source=OrderedDict()
-        unsorted_annotations=OrderedDict()
+        annotations=OrderedDict()
         in_annotations=False
         i=1
 
@@ -65,19 +64,14 @@ class FoldManager(object):
                     pass
                 else:
                     parsed_anno=line.split(':')
-                    unsorted_annotations[int(parsed_anno[0])]=parsed_anno[1]
+                    annotations[parsed_anno[0]]=parsed_anno[1]
             else:
-                source[i]=line
+                source[str(i)]=line
                 i += 1
 
         for lineno in source:
-            if lineno not in unsorted_annotations:
-               unsorted_annotations[lineno]='\n'
-
-        #annotations needs to be sorted by key (line number)
-        annotations=OrderedDict()
-        for lineno in sorted(unsorted_annotations.keys()):
-            annotations[lineno]=unsorted_annotations[lineno]
+            if lineno not in annotations:
+               annotations[lineno]='\n'
 
         return source, annotations
 
@@ -86,10 +80,17 @@ class FoldManager(object):
         current=self.annotation_text.get('current linestart', 'current lineend+1c')
         self.annotation_text.delete('current linestart', 'current lineend+1c')
         try:
-            self.annotation_text.insert('current', self.folded_lines[current])
+            self.annotation_text.insert('current', self.folded_lines[current][:-1])
         except KeyError:
-            print current
             self.annotation_text.insert('current', current) 
+
+# Doesn't do anything yet. 
+#   def update(self, new_line):
+#       folded_line=new_line[:self.fold_length]+'...\n'
+#       unfolded_line=new_line+'\n'
+            
+#       self.folded_lines[unfolded_line]=folded_line
+#       self.unfolded_lines[folded_line]=unfolded_line
 
     def popup(self, event):
         try:
@@ -99,3 +100,16 @@ class FoldManager(object):
 
 if __name__=='__main__':
     FoldManager('example_annotated_code.py')
+
+'''ANNOTATIONS
+1:These import the required packages to access previously written code
+5:This class defines this program, containing both logic and gui definitions
+7:This is the start of the gui definitions
+20:This is the end of the gui definitions
+22:This uses a common Python technique to return multiple values as a tuple
+27:This generates the folding dictionary
+47:This opens the source file and seperates out the source code and annotations
+48:This is a docstring, widely used to aid in reuse and interpreter usage
+78:This is where folding is actually handled
+87:These are comments which don't do anything.  This is a function for future use which is not being maintained right now.
+101:This is a useful and common Python idiom making the class run when the file is executed alone
