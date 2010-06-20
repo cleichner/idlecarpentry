@@ -53,7 +53,7 @@ class FoldManager(object):
         function, you can change the file format.'''
 
         source=OrderedDict()
-        unsorted_annotations=OrderedDict()
+        annotations=OrderedDict()
         in_annotations=False
         i=1
 
@@ -65,19 +65,14 @@ class FoldManager(object):
                     pass
                 else:
                     parsed_anno=line.split(':')
-                    unsorted_annotations[int(parsed_anno[0])]=parsed_anno[1]
+                    annotations[int(parsed_anno[0])]=parsed_anno[1]
             else:
                 source[i]=line
                 i += 1
 
         for lineno in source:
-            if lineno not in unsorted_annotations:
-               unsorted_annotations[lineno]='\n'
-
-        #annotations needs to be sorted by key (line number)
-        annotations=OrderedDict()
-        for lineno in sorted(unsorted_annotations.keys()):
-            annotations[lineno]=unsorted_annotations[lineno]
+            if lineno not in annotations:
+               annotations[lineno]='\n'
 
         return source, annotations
 
