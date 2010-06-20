@@ -26,8 +26,12 @@ class FoldManager(object):
 
         for line in self.annotations.values():
             folded_line=line[:self.fold_length]
+
             if folded_line[-1:] != '\n':
-                folded_line+='\n'
+                folded_line=folded_line[:-1]+'...\n'
+
+            elif len(folded_line) != 1 and len(folded_line) >= self.fold_length:
+                folded_line+='...\n'
 
             unfolded_line=line
             
