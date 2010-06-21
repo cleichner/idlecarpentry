@@ -48,6 +48,7 @@ class SplitText(object):
         self.current='annotation_text'
 
     def annotate(self):
+        pass
 
     def index(self, index):
         '''Returns the line.column index corresponding to the given index.
@@ -280,7 +281,7 @@ class SplitText(object):
         self.source_text.config(**options)
         self.annotation_text.config(**options)
 
-    def focus_set(self):
+    def kocus_set(self):
         '''Move keyboard focus to self.'''
 
         self.source_text.focus_set()
