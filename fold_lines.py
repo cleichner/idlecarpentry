@@ -1,6 +1,8 @@
 from Tkinter import *
 from OrderedDict import OrderedDict
 
+#Still having issues with source lines longer than the width of the program
+
 class AnnotationEditor(Toplevel):
     def __init__(self, master, current_text, annotation_callback):
         Toplevel.__init__(self, master)
@@ -43,7 +45,6 @@ class FoldManager(object):
         '''Defines the GUI, source text, annotation text and the folding
         dictionary.  It then inserts the source text and annotation text into
         their appropriate places in the GUI.'''
-        self.debug=True
 
         self.root=Tk()
         self.root.wm_title('Folding and Annotation Parsing Demo')
@@ -56,7 +57,7 @@ class FoldManager(object):
         self.source_text=Text(frame, wrap=WORD)
         self.annotation_text=Text(frame, wrap=WORD, yscrollcommand=scrollbar.set)
 
-        self.width=50
+        self.width=80
         self.source_text.config(width=self.width)
         self.annotation_text.config(width=self.width)
 
@@ -91,17 +92,19 @@ class FoldManager(object):
         for lineno in self.source:
             self.source_text.insert(INSERT, self.source[lineno])
             self.annotation_text.insert(INSERT, self.folded_lines[self.annotations[lineno]])
+            
+            #to properly line up the annotations
             if len(self.source[lineno]) > self.width:
                 self.annotation_text.insert(INSERT, '\n')
 
-        self.annotation_text.config(state=DISABLED)
-
         self.current='source_text'
+        self.annotation_text.config(state=DISABLED)
 
         self.root.mainloop()
 
 
     def annotate(self):
+#NEEDS TO CHECK if  the current line is folded!!!
         if self.current == 'source_text':
             self.annotation_text.config(state=NORMAL)
 
@@ -109,17 +112,24 @@ class FoldManager(object):
             self.annotation_text.mark_set(INSERT, source_index)
             self.annotation_text.focus_set()
 
-            current_text=self.annotation_text.get('insert linestart', 'insert lineend')
+            current_text=self.annotation_text.get('insert linestart', 'insert lineend+1c')
 
             if current_text == '\n':
                 current_text=''
+
+            if current_text in self.folded_lines and current_text[-4:] == '...\n':
+                current_text=self.folded_lines[current_text]
 
             AnnotationEditor(self.root, current_text, self.annotation_helper)
 
             self.annotation_text.config(state=DISABLED)
 
-
     def annotation_helper(self, text):
+        '''Calback for the AnnotationEditor dialog box.  Deletes the current
+        line and removes the reference to it in the folding dict if there is
+        one. Then it creates the new folding dict entries out of the edited
+        text and inserts them into the annotation text.'''
+
         #the +1c is to get the newline
         current_line=self.annotation_text.get('insert linestart', 'insert lineend+1c')
 
@@ -128,23 +138,31 @@ class FoldManager(object):
 
         self.annotation_text.delete('insert linestart', 'insert lineend+1c')
 
-        if self.debug:
-            print 'text =', repr(text), 'current_line =', repr(current_line)
+        folded_line, unfolded_line = self.fold_line(text)
 
-        folded_line=text[:self.fold_length]
+        self.folded_lines[unfolded_line]=folded_line
+        self.folded_lines[folded_line]=unfolded_line
+
+        self.annotation_text.insert('insert', folded_line)
+
+    def fold_line(self, line):
+        '''Takes a line and returns a tuple containing the folded and the
+        unfolded version of the line.'''
+
+        folded_line=line[:self.fold_length]
 
         if folded_line[-1:] != '\n':
             folded_line=folded_line[:-1]+'...\n'
 
         elif len(folded_line) != 1 and len(folded_line) >= self.fold_length:
             folded_line+='...\n'
-
-        unfolded_line=text+'\n'
         
-        self.folded_lines[unfolded_line]=folded_line
-        self.folded_lines[folded_line]=unfolded_line
-
-        self.annotation_text.insert('insert', folded_line)
+        if line[-1:] != '\n':
+            unfolded_line=line+'\n'
+        else:
+            unfolded_line=line
+        
+        return folded_line, unfolded_line
         
     def fold_annotations(self):
         '''Takes self.annotations and creates an dictionary mapping folded
@@ -153,16 +171,9 @@ class FoldManager(object):
 
         folded_lines={}
         for line in self.annotations.values():
-            folded_line=line[:self.fold_length]
 
-            if folded_line[-1:] != '\n':
-                folded_line=folded_line[:-1]+'...\n'
+            folded_line, unfolded_line = self.fold_line(line)
 
-            elif len(folded_line) != 1 and len(folded_line) >= self.fold_length:
-                folded_line+='...\n'
-
-            unfolded_line=line
-            
             folded_lines[unfolded_line]=folded_line
             folded_lines[folded_line]=unfolded_line
 
@@ -201,21 +212,18 @@ class FoldManager(object):
 
 #BUG this doesn't adjust the source text properly when annotations are multiple lines
     def folder(self):
+        '''Replaces the current line with the contents of the folding dict if
+        there is an entry for it; otherwise, it does nothing.'''
+        
         self.annotation_text.config(state=NORMAL)
         if self.current == 'annotation_text' :
             #the +1c is to get the newline
             current_line=self.annotation_text.get('current linestart', 'current lineend+1c')
             self.annotation_text.delete('current linestart', 'current lineend+1c')
-            try:
-                if self.debug: 
-                    print 'Key hit in folder with value', repr(current_line)
 
+            try:
                 self.annotation_text.insert('current', self.folded_lines[current_line])
             except KeyError:
-                if self.debug: 
-                    print 'Key miss in folder with value', repr(current_line)
-                    print self.folded_lines
-
                 self.annotation_text.insert('current', current_line) 
 
         self.annotation_text.config(state=DISABLED)
