@@ -12,8 +12,8 @@ class MultiListbox(Frame):
             frame = Frame(self) 
             frame.pack(side=LEFT, expand=YES, fill=BOTH)
             Label(frame, text=l, borderwidth=1, relief=RAISED).pack(fill=X)
-           # lb = Listbox(frame, width=w, borderwidth=0, selectborderwidth=0, relief=FLAT, exportselection=FALSE)
-            lb = Text(frame, width=w, borderwidth=0, selectborderwidth=0, relief=FLAT, exportselection=FALSE)
+            lb = Listbox(frame, width=w, borderwidth=0, selectborderwidth=0, relief=FLAT, exportselection=FALSE)
+#           lb = Text(frame, width=w, borderwidth=0, selectborderwidth=0, relief=FLAT, exportselection=FALSE)
             lb.pack(expand=YES, fill=BOTH)
             self.lists.append(lb)
             lb.bind('<B1-Motion>', lambda e, s=self: s._select(e.y))
@@ -47,7 +47,6 @@ class MultiListbox(Frame):
         return 'break'
 
     def _scroll(self, *args):
-        print 'scroll'
         for l in self.lists:
             apply(l.yview, args)
         return 'break'

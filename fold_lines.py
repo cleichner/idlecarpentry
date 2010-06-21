@@ -1,6 +1,8 @@
 from Tkinter import *
 from OrderedDict import OrderedDict
 import re
+#BUGS:
+#wordwrapping messes up the syncronization between the objects
 
 class FoldManager(object):
     '''This takes a source file and splits it into the source and annotations
@@ -17,12 +19,17 @@ class FoldManager(object):
 
         frame=Frame(root)
         frame.pack(side=TOP, fill=BOTH, expand=1)
+        scrollbar = Scrollbar(frame)
+        scrollbar.pack(side=RIGHT, fill=Y)
 
-        self.source_text=Text(frame)
-        self.annotation_text=Text(frame)
+        self.source_text=Text(frame, wrap=WORD)
+        self.annotation_text=Text(frame, wrap=WORD, yscrollcommand=scrollbar.set)
 
-        self.source_text.config(width=80)
-        self.annotation_text.config(width=80)
+        self.width=80
+        self.source_text.config(width=self.width)
+        self.annotation_text.config(width=self.width)
+
+        scrollbar.config(command=self.scroll)
 
         self.source_text.pack(side=LEFT, fill=BOTH, expand=1)
         self.annotation_text.pack(side=LEFT, fill=BOTH, expand=1)
@@ -31,24 +38,35 @@ class FoldManager(object):
         self.popup_menu.add_command(label="Fold/Unfold", command=self.folder)
 
         root.bind('<Button-3>', self.popup)
-        self.annotation_text.bind('<Button-4>', lambda e, s=self: s.scroll(SCROLL, -1, UNITS))
-        self.source_text.bind('<Button-4>', lambda e, s=self: s.scroll(SCROLL, -1, UNITS))
-        self.annotation_text.bind('<Button-5>', lambda e, s=self: s.scroll(SCROLL, 1, UNITS))
-        self.source_text.bind('<Button-5>', lambda e, s=self: s.scroll(SCROLL, 1, UNITS))
+
+        for text in (self.annotation_text, self.source_text):
+            text.bind('<Button-5>', lambda e, s=self: s.scroll(SCROLL, 1, UNITS))
+            text.bind('<Up>', lambda e, s=self: s.scroll(SCROLL, -1, UNITS))
+            text.bind('<Button-4>', lambda e, s=self: s.scroll(SCROLL, -1, UNITS))
+            text.bind('<Down>', lambda e, s=self: s.scroll(SCROLL, 1, UNITS))
+#           text.bind('<B1-Motion>', lambda e, s=self: s.select(e.y))
+#           text.bind('<Button-1>', lambda e, s=self: s.select(e.y))
 
         self.source, self.annotations=self.parse_source(raw_source)
 
         self.fold_length=40
+        assert(self.fold_length<self.width)
         self.folded_lines=self.fold_annotations()
 
         for lineno in self.source:
                 self.source_text.insert(INSERT, self.source[lineno])
                 self.annotation_text.insert(INSERT, self.folded_lines[self.annotations[lineno]])
+                if len(self.source[lineno]) > self.width:
+                    self.annotation_text.insert(INSERT, '\n')
 
         root.mainloop()
 
     def fold_annotations(self):
-        folded_lines=OrderedDict()
+        '''Takes self.annotations and creates an dictionary mapping folded
+        lines to unfolded lines and vice versa, where a folded line is a line
+        truncated to the folding length with "..." appended to the end.'''
+
+        folded_lines={}
         for line in self.annotations.values():
             folded_line=line[:self.fold_length]
 
@@ -115,6 +133,14 @@ class FoldManager(object):
         apply(self.annotation_text.yview, args)
         apply(self.source_text.yview, args)
         return 'break'
+    
+#   def select(self, y):
+#BROKEN FOR TEXT
+#should use current instead of nearest
+#       row = self.lists[0].nearest(y)
+#       self.selection_clear(0, END)
+#       self.selection_set(row)
+#       return 'break'
         
 if __name__=='__main__':
     FoldManager('example_annotated_code.py')
