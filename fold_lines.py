@@ -3,15 +3,23 @@ from OrderedDict import OrderedDict
 import re
 
 class FoldManager(object):
+    '''This takes a source file and splits it into the source and annotations
+    as defined by the parse_source method and displays them in a split window
+    which features folding.'''
+
     def __init__(self, raw_source):
-        self.root=Tk()
-        self.root.wm_title('Folding and Annotation Parsing Demo')
+        '''Defines the GUI, source text, annotation text and the folding
+        dictionary.  It then inserts the source text and annotation text into
+        their appropriate places in the GUI.'''
 
-        self.frame=Frame(self.root)
-        self.frame.pack(side=TOP, fill=BOTH, expand=1)
+        root=Tk()
+        root.wm_title('Folding and Annotation Parsing Demo')
 
-        self.source_text=Text(self.frame)
-        self.annotation_text=Text(self.frame)
+        frame=Frame(root)
+        frame.pack(side=TOP, fill=BOTH, expand=1)
+
+        self.source_text=Text(frame)
+        self.annotation_text=Text(frame)
 
         self.source_text.config(width=80)
         self.annotation_text.config(width=80)
@@ -19,11 +27,24 @@ class FoldManager(object):
         self.source_text.pack(side=LEFT, fill=BOTH, expand=1)
         self.annotation_text.pack(side=LEFT, fill=BOTH, expand=1)
 
+        self.popup_menu=Menu(root, tearoff=0)
+        self.popup_menu.add_command(label="Fold/Unfold", command=self.folder)
+
+        root.bind('<Button-3>', self.popup)
+
         self.source, self.annotations=self.parse_source(raw_source)
 
         self.fold_length=40
-        self.folded_lines=OrderedDict()
+        self.folded_lines=self.fold_annotations()
 
+        for lineno in self.source:
+                self.source_text.insert(INSERT, self.source[lineno])
+                self.annotation_text.insert(INSERT, self.folded_lines[self.annotations[lineno]])
+
+        root.mainloop()
+
+    def fold_annotations(self):
+        folded_lines=OrderedDict()
         for line in self.annotations.values():
             folded_line=line[:self.fold_length]
 
@@ -35,19 +56,10 @@ class FoldManager(object):
 
             unfolded_line=line
             
-            self.folded_lines[unfolded_line]=folded_line
-            self.folded_lines[folded_line]=unfolded_line
+            folded_lines[unfolded_line]=folded_line
+            folded_lines[folded_line]=unfolded_line
 
-        for lineno in self.source:
-                self.source_text.insert(INSERT, self.source[lineno])
-                self.annotation_text.insert(INSERT, self.folded_lines[self.annotations[lineno]])
-
-        self.popup_menu=Menu(self.root, tearoff=0)
-        self.popup_menu.add_command(label="Fold/Unfold", command=self.folder)
-
-        self.root.bind('<Button-3>', self.popup)
-
-        self.root.mainloop()
+        return folded_lines 
 
     def parse_source(self, raw_source):
         '''This takes a source file with annotations in it and returns two
@@ -87,7 +99,6 @@ class FoldManager(object):
         try:
             self.annotation_text.insert('current', self.folded_lines[current])
         except KeyError:
-            print current
             self.annotation_text.insert('current', current) 
 
     def popup(self, event):
