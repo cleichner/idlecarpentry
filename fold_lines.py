@@ -31,6 +31,10 @@ class FoldManager(object):
         self.popup_menu.add_command(label="Fold/Unfold", command=self.folder)
 
         root.bind('<Button-3>', self.popup)
+        self.annotation_text.bind('<Button-4>', lambda e, s=self: s.scroll(SCROLL, -1, UNITS))
+        self.source_text.bind('<Button-4>', lambda e, s=self: s.scroll(SCROLL, -1, UNITS))
+        self.annotation_text.bind('<Button-5>', lambda e, s=self: s.scroll(SCROLL, 1, UNITS))
+        self.source_text.bind('<Button-5>', lambda e, s=self: s.scroll(SCROLL, 1, UNITS))
 
         self.source, self.annotations=self.parse_source(raw_source)
 
@@ -107,5 +111,10 @@ class FoldManager(object):
         finally:
            self.popup_menu.grab_release()
 
+    def scroll(self, *args):
+        apply(self.annotation_text.yview, args)
+        apply(self.source_text.yview, args)
+        return 'break'
+        
 if __name__=='__main__':
     FoldManager('example_annotated_code.py')

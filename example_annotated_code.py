@@ -113,3 +113,4 @@ if __name__=='__main__':
 78:This is where folding is actually handled
 87:These are comments which don't do anything.  This is a function for future use which is not being maintained right now.
 101:This is a useful and common Python idiom making the class run when the file is executed alone
+'''

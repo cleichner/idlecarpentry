@@ -4,13 +4,16 @@ from Tkinter import *
 class MultiListbox(Frame):
     def __init__(self, master, lists):
         Frame.__init__(self, master)
+#list of widgets (ListBoxes) which make up the MLB
         self.lists = []
+
+        #(label, width) tuple
         for l,w in lists:
             frame = Frame(self) 
             frame.pack(side=LEFT, expand=YES, fill=BOTH)
             Label(frame, text=l, borderwidth=1, relief=RAISED).pack(fill=X)
-            lb = Listbox(frame, width=w, borderwidth=0, selectborderwidth=0,
-                 relief=FLAT, exportselection=FALSE)
+           # lb = Listbox(frame, width=w, borderwidth=0, selectborderwidth=0, relief=FLAT, exportselection=FALSE)
+            lb = Text(frame, width=w, borderwidth=0, selectborderwidth=0, relief=FLAT, exportselection=FALSE)
             lb.pack(expand=YES, fill=BOTH)
             self.lists.append(lb)
             lb.bind('<B1-Motion>', lambda e, s=self: s._select(e.y))
@@ -18,7 +21,6 @@ class MultiListbox(Frame):
             lb.bind('<Leave>', lambda e: 'break')
             lb.bind('<B2-Motion>', lambda e, s=self: s._b2motion(e.x, e.y))
             lb.bind('<Button-2>', lambda e, s=self: s._button2(e.x, e.y))
-#These two might need to return break
             lb.bind('<Button-4>', lambda e, s=self: s._scroll(SCROLL, -1, UNITS))
             lb.bind('<Button-5>', lambda e, s=self: s._scroll(SCROLL, 1, UNITS))
         frame = Frame(self); frame.pack(side=LEFT, fill=Y)
@@ -28,22 +30,27 @@ class MultiListbox(Frame):
         self.lists[0]['yscrollcommand']=sb.set
 
     def _select(self, y):
+#BROKEN FOR TEXT
         row = self.lists[0].nearest(y)
         self.selection_clear(0, END)
         self.selection_set(row)
         return 'break'
 
     def _button2(self, x, y):
-        for l in self.lists: l.scan_mark(x, y)
+        for l in self.lists: 
+            l.scan_mark(x, y)
         return 'break'
 
     def _b2motion(self, x, y):
-        for l in self.lists: l.scan_dragto(x, y)
+        for l in self.lists: 
+            l.scan_dragto(x, y)
         return 'break'
 
     def _scroll(self, *args):
+        print 'scroll'
         for l in self.lists:
             apply(l.yview, args)
+        return 'break'
 
     def curselection(self):
         return self.lists[0].curselection()
@@ -97,6 +104,6 @@ if __name__ == '__main__':
     Label(tk, text='MultiListbox').pack()
     mlb = MultiListbox(tk, (('Subject', 40), ('Sender', 20), ('Date', 10)))
     for i in range(1000):
-        mlb.insert(END, ('Important Message: %d' % i, 'John Doe', '10/10/%04d' % (1900+i)))
+        mlb.insert(END, ('Important Message: %d\n' % i, 'John Doe\n', '10/10/%04d\n' % (1900+i)))
         mlb.pack(expand=YES,fill=BOTH)
     tk.mainloop()
