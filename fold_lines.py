@@ -3,11 +3,8 @@ from Tkinter import *
 from OrderedDict import OrderedDict
 
 #ISSUES
-#source lines longer than the width of the program mess up the spacing
-#Doesn't append a newline to last entry in the saved file
-#unsorted saving
-#truncates any edited annotations in a really strange way
 #deal with expanding the source code when the annotations are unfolded
+#source lines longer than the width of the program mess up the spacing
 
 class AnnotationEditor(Toplevel):
     def __init__(self, master, current_text, annotation_callback):
@@ -112,7 +109,6 @@ class FoldManager(object):
 
 
     def annotate(self):
-#NEEDS TO CHECK if  the current line is folded!!!
         if self.current == 'source_text':
             self.annotation_text.config(state=NORMAL)
 
@@ -243,16 +239,20 @@ class FoldManager(object):
 
     def save(self):
        f=open(self.raw_source, 'w') 
-       for lineno in self.source:
-           print(self.source[lineno], end='', file=f)
 
-       print("\n'''ANNOTATIONS", file=f)
+       source=self.source_text.get('1.0', END)
+       for line in source.split('\n'):
+           print(line, file=f)
+
+       print("'''ANNOTATIONS", file=f)
        
-#This should really sort them before it prints, but this works for now
-       for lineno in self.annotations: 
-           if self.annotations[lineno] != '\n':
-               print("%d:%s" % (lineno, self.annotations[lineno]), end='', file=f)
-               print("%d:%s" % (lineno, self.annotations[lineno]), end='')
+       i=1
+       annotations=self.annotation_text.get('1.0', END)
+       for line in annotations.split('\n'): 
+           if line:
+               print("%d:%s" % (i, self.folded_lines[line+'\n']), end='', file=f)
+               print("%d:%s" % (i, self.folded_lines[line+'\n']), end='')
+           i+=1
 
        print("'''", file=f)
 
