@@ -2,7 +2,11 @@ from __future__ import print_function
 from Tkinter import *
 from OrderedDict import OrderedDict
 
-#Still having issues with source lines longer than the width of the program
+#ISSUES
+#source lines longer than the width of the program mess up the spacing
+#Doesn't append a newline to last entry in the saved file
+#unsorted saving
+#truncates any edited annotations in a really strange way
 
 class AnnotationEditor(Toplevel):
     def __init__(self, master, current_text, annotation_callback):
