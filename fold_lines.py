@@ -1,3 +1,4 @@
+from __future__ import print_function
 from Tkinter import *
 from OrderedDict import OrderedDict
 
@@ -45,6 +46,8 @@ class FoldManager(object):
         '''Defines the GUI, source text, annotation text and the folding
         dictionary.  It then inserts the source text and annotation text into
         their appropriate places in the GUI.'''
+        
+        self.raw_source=raw_source
 
         self.root=Tk()
         self.root.wm_title('Folding and Annotation Parsing Demo')
@@ -83,7 +86,7 @@ class FoldManager(object):
         self.source_text.bind('<Enter>', self.source_entry)
         self.annotation_text.bind('<Enter>', self.annotation_entry)
 
-        self.source, self.annotations=self.parse_source(raw_source)
+        self.source, self.annotations=self.parse_source()
 
         self.fold_length=40
         assert self.fold_length<self.width, "Folding width must be less than window width"
@@ -132,9 +135,11 @@ class FoldManager(object):
 
         #the +1c is to get the newline
         current_line=self.annotation_text.get('insert linestart', 'insert lineend+1c')
+        current_lineno=int(float(self.annotation_text.index('insert linestart')))
 
         if current_line != '' and current_line != '\n':
             del self.folded_lines[current_line]
+            del self.annotations[current_lineno]
 
         self.annotation_text.delete('insert linestart', 'insert lineend+1c')
 
@@ -144,6 +149,9 @@ class FoldManager(object):
         self.folded_lines[folded_line]=unfolded_line
 
         self.annotation_text.insert('insert', folded_line)
+        self.annotations[current_lineno]=text
+
+        self.save()
 
     def fold_line(self, line):
         '''Takes a line and returns a tuple containing the folded and the
@@ -179,7 +187,7 @@ class FoldManager(object):
 
         return folded_lines 
 
-    def parse_source(self, raw_source):
+    def parse_source(self):
         '''This takes a source file with annotations in it and returns two
         ordered dictionaries: the first maps (int) line numbers to the source
         lines, the second maps line numbers to annotation lines. If there is no
@@ -191,7 +199,7 @@ class FoldManager(object):
         in_annotations=False
         i=1
 
-        for line in open(raw_source):
+        for line in open(self.raw_source):
             if line == "'''ANNOTATIONS\n":
                 in_annotations=True
             elif in_annotations:
@@ -228,6 +236,22 @@ class FoldManager(object):
 
         self.annotation_text.config(state=DISABLED)
 
+    def save(self):
+       f=open(self.raw_source, 'w') 
+       for lineno in self.source:
+           print(self.source[lineno], end='', file=f)
+
+       print("\n'''ANNOTATIONS", file=f)
+       
+#This should really sort them before it prints, but this works for now
+       for lineno in self.annotations: 
+           if self.annotations[lineno] != '\n':
+               print("%d:%s" % (lineno, self.annotations[lineno]), end='', file=f)
+               print("%d:%s" % (lineno, self.annotations[lineno]), end='')
+
+       print("'''", file=f)
+
+       f.close()
 
     def popup(self, event):
         try:
