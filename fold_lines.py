@@ -7,6 +7,7 @@ from OrderedDict import OrderedDict
 #Doesn't append a newline to last entry in the saved file
 #unsorted saving
 #truncates any edited annotations in a really strange way
+#deal with expanding the source code when the annotations are unfolded
 
 class AnnotationEditor(Toplevel):
     def __init__(self, master, current_text, annotation_callback):
