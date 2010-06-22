@@ -8,10 +8,11 @@ from OrderedDict import OrderedDict
 
 class AnnotationEditor(Toplevel):
     def __init__(self, master, current_text, annotation_callback):
+        '''NEEDS DOCUMENTATION'''
         Toplevel.__init__(self, master)
         self.transient(master)
 
-        #this should take a string as it's argument
+        #this should take a string as its argument
         self.annotation_callback=annotation_callback
 
         self.title('Edit')
@@ -21,6 +22,7 @@ class AnnotationEditor(Toplevel):
         Label(self, text="Insert Your Annotation").pack()
 
         self.annotation = Entry(self)
+        
         self.annotation.insert(INSERT, current_text)
         self.annotation.pack(padx=5)
 
@@ -59,12 +61,9 @@ class FoldManager(object):
         scrollbar = Scrollbar(frame)
         scrollbar.pack(side=RIGHT, fill=Y)
 
-        self.source_text=Text(frame, wrap=WORD)
-        self.annotation_text=Text(frame, wrap=WORD, yscrollcommand=scrollbar.set)
-
         self.width=80
-        self.source_text.config(width=self.width)
-        self.annotation_text.config(width=self.width)
+        self.source_text=Text(frame, wrap=NONE, width=self.width)
+        self.annotation_text=Text(frame, wrap=NONE, yscrollcommand=scrollbar.set, width=self.width)
 
         scrollbar.config(command=self.scroll)
 
@@ -99,8 +98,9 @@ class FoldManager(object):
             self.annotation_text.insert(INSERT, self.folded_lines[self.annotations[lineno]])
             
             #to properly line up the annotations
-            if len(self.source[lineno]) > self.width:
-                self.annotation_text.insert(INSERT, '\n')
+            #if len(self.source[lineno]) > self.width:
+            #    self.annotation_text.insert(INSERT, '\n')
+            #This needs to do something, but not this
 
         self.current='source_text'
         self.annotation_text.config(state=DISABLED)
@@ -109,6 +109,7 @@ class FoldManager(object):
 
 
     def annotate(self):
+        '''NEEDS DOCUMENTATION'''
         if self.current == 'source_text':
             self.annotation_text.config(state=NORMAL)
 
@@ -238,12 +239,16 @@ class FoldManager(object):
         self.annotation_text.config(state=DISABLED)
 
     def save(self):
+       '''NEEDS DOCUMENTATION'''
+#source saving
        f=open(self.raw_source, 'w') 
 
        source=self.source_text.get('1.0', END)
+        
        for line in source.split('\n'):
            print(line, file=f)
-
+           
+#annotation saving
        print("'''ANNOTATIONS", file=f)
        
        i=1
@@ -256,6 +261,7 @@ class FoldManager(object):
 
        print("'''", file=f)
 
+#potential trace saving
        f.close()
 
     def popup(self, event):
@@ -265,8 +271,8 @@ class FoldManager(object):
            self.popup_menu.grab_release()
 
     def scroll(self, *args):
-        apply(self.annotation_text.yview, args)
-        apply(self.source_text.yview, args)
+        self.annotation_text.yview(*args)
+        self.source_text.yview(*args)
         return 'break'
 
     def source_entry(self, event):
