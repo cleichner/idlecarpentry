@@ -355,7 +355,7 @@ class EditorWindow(object):
         if flist:
             self.tkinter_vars = flist.vars
             #self.top.instance_dict makes flist.inversedict avalable to
-            #configDialog.py so it can access all EditorWindow instaces
+#configDialog.py so it can access all EditorWindow instaces
             self.top.instance_dict = flist.inversedict
         else:
             self.tkinter_vars = {}  # keys: Tkinter event names
@@ -449,10 +449,11 @@ class EditorWindow(object):
         self.set_status_bar()
         vbar['command'] = self.y_scroll
         text['yscrollcommand'] = vbar.set
-        text_frame.pack()
-        text.pack(side=LEFT)
-        annotation_text.pack(side=LEFT)
+        text_frame.pack(side=LEFT, fill=BOTH, expand=1)
+        text.pack(side=LEFT, fill=BOTH, expand=1)
+        annotation_text.pack(side=LEFT, fill=BOTH, expand=1)
         vbar.pack(side=RIGHT, fill=Y)
+        text.focus_set()
 
         fontWeight = 'normal'
         # configuration of tabs v. spaces is not supported in the configuration

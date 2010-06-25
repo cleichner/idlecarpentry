@@ -5,6 +5,7 @@
 #     end-of-line conventions, instead of relying on the standard library,
 #     which will only understand the local convention.
 
+from __future__  import print_function
 import os
 import types
 import sys
