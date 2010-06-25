@@ -430,6 +430,12 @@ class EditorWindow(object):
             t.bind("<<del-word-left>>", self.del_word_left)
             t.bind("<<del-word-right>>", self.del_word_right)
             t.bind("<<beginning-of-line>>", self.home_callback)
+            t.bind('<Button-5>', lambda e, s=self: s.y_scroll(SCROLL, 1, UNITS))
+            t.bind('<Up>', lambda e, s=self: s.y_scroll(SCROLL, -1, UNITS))
+            t.bind('<Button-4>', lambda e, s=self: s.y_scroll(SCROLL, -1, UNITS))
+            t.bind('<Down>', lambda e, s=self: s.y_scroll(SCROLL, 1, UNITS))
+            t.bind('<B1-Motion>', lambda e, s=self: s.select())
+            t.bind('<Button-1>', lambda e, s=self: s.select())
 
             if flist:
                 flist.inversedict[self] = key
