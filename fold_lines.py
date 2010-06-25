@@ -97,9 +97,7 @@ class FoldManager(object):
             self.source_text.insert(INSERT, self.source[lineno])
             self.annotation_text.insert(INSERT, self.folded_lines[self.annotations[lineno]])
             
-            #to properly line up the annotations
-            #if len(self.source[lineno]) > self.width:
-            #    self.annotation_text.insert(INSERT, '\n')
+            #to properly line up the annotations #if len(self.source[lineno]) > self.width: #    self.annotation_text.insert(INSERT, '\n')
             #This needs to do something, but not this
 
         self.current='source_text'

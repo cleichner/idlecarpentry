@@ -1,3 +1,4 @@
+from __future__ import print_function
 import sys
 import os
 import re
@@ -7,6 +8,7 @@ from Tkinter import *
 import tkSimpleDialog
 import tkMessageBox
 from MultiCall import MultiCallCreator
+from OrderedDict import OrderedDict
 
 import webbrowser
 import idlever
@@ -49,6 +51,290 @@ def _find_module(fullname, path=None):
             raise ImportError, 'No source for module ' + module.__name__
     return file, filename, descr
 
+class AnnotationEditor(Toplevel):
+    def __init__(self, master, current_text, annotation_callback):
+        '''NEEDS DOCUMENTATION'''
+        Toplevel.__init__(self, master)
+        self.transient(master)
+
+        #this should take a string as its argument
+        self.annotation_callback=annotation_callback
+
+        self.title('Edit')
+
+        self.master = master
+
+        Label(self, text="Insert Your Annotation").pack()
+
+        self.annotation = Entry(self)
+        
+        self.annotation.insert(INSERT, current_text)
+        self.annotation.pack(padx=5)
+
+        done_button = Button(self, text="Done", command=self.done)
+        done_button.pack(pady=5)
+
+        self.grab_set()
+
+        self.protocol("WM_DELETE_WINDOW", self.done)
+
+        self.annotation.focus_set()
+
+        self.wait_window(self)
+
+    def done(self):
+        self.annotation_callback(self.annotation.get())
+        self.destroy()
+       
+class FoldManager(object):
+    '''This takes a source file and splits it into the source and annotations
+    as defined by the parse_source method and displays them in a split window
+    which features folding.'''
+
+    def __init__(self, raw_source):
+        '''Defines the GUI, source text, annotation text and the folding
+        dictionary.  It then inserts the source text and annotation text into
+        their appropriate places in the GUI.'''
+        
+        self.raw_source=raw_source
+
+        self.root=Tk()
+        self.root.wm_title('Folding and Annotation Parsing Demo')
+
+        frame=Frame(self.root)
+        frame.pack(side=TOP, fill=BOTH, expand=1)
+        scrollbar = Scrollbar(frame)
+        scrollbar.pack(side=RIGHT, fill=Y)
+
+        self.width=80
+        self.source_text=Text(frame, wrap=NONE, width=self.width)
+        self.annotation_text=Text(frame, wrap=NONE, yscrollcommand=scrollbar.set, width=self.width)
+
+        scrollbar.config(command=self.scroll)
+
+        self.source_text.pack(side=LEFT, fill=BOTH, expand=1)
+        self.annotation_text.pack(side=LEFT, fill=BOTH, expand=1)
+
+        self.popup_menu=Menu(self.root, tearoff=0)
+        self.popup_menu.add_command(label="Edit Annotations", command=self.annotate)
+        self.popup_menu.add_command(label="Fold/Unfold", command=self.folder)
+
+        self.root.bind('<Button-3>', self.popup)
+
+        for text in (self.annotation_text, self.source_text):
+            text.bind('<Button-5>', lambda e, s=self: s.scroll(SCROLL, 1, UNITS))
+            text.bind('<Up>', lambda e, s=self: s.scroll(SCROLL, -1, UNITS))
+            text.bind('<Button-4>', lambda e, s=self: s.scroll(SCROLL, -1, UNITS))
+            text.bind('<Down>', lambda e, s=self: s.scroll(SCROLL, 1, UNITS))
+#           text.bind('<B1-Motion>', lambda e, s=self: s.select(e.y))
+#           text.bind('<Button-1>', lambda e, s=self: s.select(e.y))
+
+        self.source_text.bind('<Enter>', self.source_entry)
+        self.annotation_text.bind('<Enter>', self.annotation_entry)
+
+        self.source, self.annotations=self.parse_source()
+
+        self.fold_length=40
+        assert self.fold_length<self.width, "Folding width must be less than window width"
+        self.folded_lines=self.fold_annotations()
+
+        for lineno in self.source:
+            self.source_text.insert(INSERT, self.source[lineno])
+            self.annotation_text.insert(INSERT, self.folded_lines[self.annotations[lineno]])
+            
+            #to properly line up the annotations #if len(self.source[lineno]) > self.width: #    self.annotation_text.insert(INSERT, '\n')
+            #This needs to do something, but not this
+
+        self.current='source_text'
+        self.annotation_text.config(state=DISABLED)
+
+        self.root.mainloop()
+
+
+    def annotate(self):
+        '''NEEDS DOCUMENTATION'''
+        if self.current == 'source_text':
+            self.annotation_text.config(state=NORMAL)
+
+            source_index=self.source_text.index('current')
+            self.annotation_text.mark_set(INSERT, source_index)
+            self.annotation_text.focus_set()
+
+            current_text=self.annotation_text.get('insert linestart', 'insert lineend+1c')
+
+            if current_text == '\n':
+                current_text=''
+
+            if current_text in self.folded_lines and current_text[-4:] == '...\n':
+                current_text=self.folded_lines[current_text]
+
+            AnnotationEditor(self.root, current_text, self.annotation_helper)
+
+            self.annotation_text.config(state=DISABLED)
+
+    def annotation_helper(self, text):
+        '''Calback for the AnnotationEditor dialog box.  Deletes the current
+        line and removes the reference to it in the folding dict if there is
+        one. Then it creates the new folding dict entries out of the edited
+        text and inserts them into the annotation text.'''
+
+        #the +1c is to get the newline
+        current_line=self.annotation_text.get('insert linestart', 'insert lineend+1c')
+        current_lineno=int(float(self.annotation_text.index('insert linestart')))
+
+        if current_line != '' and current_line != '\n':
+            del self.folded_lines[current_line]
+            del self.annotations[current_lineno]
+
+        self.annotation_text.delete('insert linestart', 'insert lineend+1c')
+
+        folded_line, unfolded_line = self.fold_line(text)
+
+        self.folded_lines[unfolded_line]=folded_line
+        self.folded_lines[folded_line]=unfolded_line
+
+        self.annotation_text.insert('insert', folded_line)
+        self.annotations[current_lineno]=text
+
+        self.save()
+
+    def fold_line(self, line):
+        '''Takes a line and returns a tuple containing the folded and the
+        unfolded version of the line.'''
+
+        folded_line=line[:self.fold_length]
+
+        if folded_line[-1:] != '\n':
+            folded_line=folded_line[:-1]+'...\n'
+
+        elif len(folded_line) != 1 and len(folded_line) >= self.fold_length:
+            folded_line+='...\n'
+        
+        if line[-1:] != '\n':
+            unfolded_line=line+'\n'
+        else:
+            unfolded_line=line
+        
+        return folded_line, unfolded_line
+        
+    def fold_annotations(self):
+        '''Takes self.annotations and creates an dictionary mapping folded
+        lines to unfolded lines and vice versa, where a folded line is a line
+        truncated to the folding length with "..." appended to the end.'''
+
+        folded_lines={}
+        for line in self.annotations.values():
+
+            folded_line, unfolded_line = self.fold_line(line)
+
+            folded_lines[unfolded_line]=folded_line
+            folded_lines[folded_line]=unfolded_line
+
+        return folded_lines 
+
+    def parse_source(self):
+        '''This takes a source file with annotations in it and returns two
+        ordered dictionaries: the first maps (int) line numbers to the source
+        lines, the second maps line numbers to annotation lines. If there is no
+        annotation for a line, it is mapped as 'lineno':'\n'. By changing this
+        function, you can change the file format.'''
+
+        source=OrderedDict()
+        annotations=OrderedDict()
+        in_annotations=False
+        i=1
+
+        for line in open(self.raw_source):
+            if line == "'''ANNOTATIONS\n":
+                in_annotations=True
+            elif in_annotations:
+                if line == "'''\n":
+                    pass
+                else:
+                    parsed_anno=line.split(':')
+                    annotations[int(parsed_anno[0])]=parsed_anno[1]
+            else:
+                source[i]=line
+                i += 1
+
+        for lineno in source:
+            if lineno not in annotations:
+               annotations[lineno]='\n'
+
+        return source, annotations
+
+#BUG this doesn't adjust the source text properly when annotations are multiple lines
+    def folder(self):
+        '''Replaces the current line with the contents of the folding dict if
+        there is an entry for it; otherwise, it does nothing.'''
+        
+        self.annotation_text.config(state=NORMAL)
+        if self.current == 'annotation_text' :
+            #the +1c is to get the newline
+            current_line=self.annotation_text.get('current linestart', 'current lineend+1c')
+            self.annotation_text.delete('current linestart', 'current lineend+1c')
+
+            try:
+                self.annotation_text.insert('current', self.folded_lines[current_line])
+            except KeyError:
+                self.annotation_text.insert('current', current_line) 
+
+        self.annotation_text.config(state=DISABLED)
+
+    def save(self):
+       '''NEEDS DOCUMENTATION'''
+#source saving
+       f=open(self.raw_source, 'w') 
+
+       source=self.source_text.get('1.0', END)
+        
+       for line in source.split('\n'):
+           print(line, file=f)
+           
+#annotation saving
+       print("'''ANNOTATIONS", file=f)
+       
+       i=1
+       annotations=self.annotation_text.get('1.0', END)
+       for line in annotations.split('\n'): 
+           if line:
+               print("%d:%s" % (i, self.folded_lines[line+'\n']), end='', file=f)
+               print("%d:%s" % (i, self.folded_lines[line+'\n']), end='')
+           i+=1
+
+       print("'''", file=f)
+
+#potential trace saving
+       f.close()
+
+    def popup(self, event):
+        try:
+            self.popup_menu.tk_popup(event.x_root, event.y_root)
+        finally:
+           self.popup_menu.grab_release()
+
+    def scroll(self, *args):
+        self.annotation_text.yview(*args)
+        self.source_text.yview(*args)
+        return 'break'
+
+    def source_entry(self, event):
+        self.current='source_text'
+
+    def annotation_entry(self, event):
+        self.current='annotation_text'
+    
+#   def select(self, y):
+#BROKEN FOR TEXT
+#should use current instead of nearest
+#       row = self.lists[0].nearest(y)
+#       self.selection_clear(0, END)
+#       self.selection_set(row)
+#       return 'break'
+        
+#if __name__=='__main__':
+#    FoldManager('example_annotated_code.py')
+
 class EditorWindow(object):
     from Percolator import Percolator
     from ColorDelegator import ColorDelegator
@@ -61,42 +347,11 @@ class EditorWindow(object):
     help_url = None
 
     def __init__(self, flist=None, filename=None, key=None, root=None):
-        if EditorWindow.help_url is None:
-            dochome =  os.path.join(sys.prefix, 'Doc', 'index.html')
-            if sys.platform.count('linux'):
-                # look for html docs in a couple of standard places
-                pyver = 'python-docs-' + '%s.%s.%s' % sys.version_info[:3]
-                if os.path.isdir('/var/www/html/python/'):  # "python2" rpm
-                    dochome = '/var/www/html/python/index.html'
-                else:
-                    basepath = '/usr/share/doc/'  # standard location
-                    dochome = os.path.join(basepath, pyver,
-                                           'Doc', 'index.html')
-            elif sys.platform[:3] == 'win':
-                chmfile = os.path.join(sys.prefix, 'Doc',
-                                       'Python%s.chm' % _sphinx_version())
-                if os.path.isfile(chmfile):
-                    dochome = chmfile
-            elif macosxSupport.runningAsOSXApp():
-                # documentation is stored inside the python framework
-                dochome = os.path.join(sys.prefix,
-                        'Resources/English.lproj/Documentation/index.html')
-            dochome = os.path.normpath(dochome)
-            if os.path.isfile(dochome):
-                EditorWindow.help_url = dochome
-                if sys.platform == 'darwin':
-                    # Safari requires real file:-URLs
-                    EditorWindow.help_url = 'file://' + EditorWindow.help_url
-            else:
-                EditorWindow.help_url = "http://docs.python.org/%d.%d" % sys.version_info[:2]
         currentTheme=idleConf.CurrentTheme()
         self.flist = flist
         root = root or flist.root
         self.root = root
-        try:
-            sys.ps1
-        except AttributeError:
-            sys.ps1 = '>>> '
+        sys.ps1 = '>>> '
         self.menubar = Menu(root)
 
         #makes new window
@@ -114,20 +369,28 @@ class EditorWindow(object):
         self.recent_files_path = os.path.join(idleConf.GetUserCfgDir(),
                 'recent-files.lst')
         self.text_frame = text_frame = Frame(top)
-        self.vbar = vbar = Scrollbar(text_frame, name='vbar')
+        self.vbar = vbar = Scrollbar(top, name='vbar')
         self.width = idleConf.GetOption('main','EditorWindow','width')
+        
+        #self.text_options = text_options = {}
         self.text_options = text_options = {
                 'name': 'text',
                 'padx': 5,
                 'wrap': 'none',
                 'width': self.width,
-                'height': idleConf.GetOption('main', 'EditorWindow', 'height')}
-        if TkVersion >= 8.5:
-            # Starting with tk 8.5 we have to set the new tabstyle option
-            # to 'wordprocessor' to achieve the same display of tabs as in
-            # older tk versions.
-            text_options['tabstyle'] = 'wordprocessor'
+                'height': idleConf.GetOption('main', 'EditorWindow', 'height'),
+                'tabstyle': 'wordprocessor'}
+
+        self.text2_options = text2_options = {
+                'name': 'text2',
+                'padx': 5,
+                'wrap': 'none',
+                'width': self.width,
+                'height': idleConf.GetOption('main', 'EditorWindow', 'height'),
+                'tabstyle': 'wordprocessor'}
+
         self.text = text = MultiCallCreator(Text)(text_frame, **text_options)
+        self.text2 = text2 = MultiCallCreator(Text)(text_frame, **text2_options)
         self.top.focused_widget = self.text
 
         self.createmenubar()
@@ -135,57 +398,55 @@ class EditorWindow(object):
 
         self.top.protocol("WM_DELETE_WINDOW", self.close)
         self.top.bind("<<close-window>>", self.close_event)
-        if macosxSupport.runningAsOSXApp():
-            # Command-W on editorwindows doesn't work without this.
-            text.bind('<<close-window>>', self.close_event)
-        text.bind("<<cut>>", self.cut)
-        text.bind("<<copy>>", self.copy)
-        text.bind("<<paste>>", self.paste)
-        text.bind("<<center-insert>>", self.center_insert_event)
-        text.bind("<<help>>", self.help_dialog)
-        text.bind("<<python-docs>>", self.python_docs)
-        text.bind("<<about-idle>>", self.about_dialog)
-        text.bind("<<open-config-dialog>>", self.config_dialog)
-        text.bind("<<open-module>>", self.open_module)
-        text.bind("<<do-nothing>>", lambda event: "break")
-        text.bind("<<select-all>>", self.select_all)
-        text.bind("<<remove-selection>>", self.remove_selection)
-        text.bind("<<find>>", self.find_event)
-        text.bind("<<find-again>>", self.find_again_event)
-        text.bind("<<find-in-files>>", self.find_in_files_event)
-        text.bind("<<find-selection>>", self.find_selection_event)
-        text.bind("<<replace>>", self.replace_event)
-        text.bind("<<goto-line>>", self.goto_line_event)
-        text.bind("<3>", self.right_menu_event)
-        text.bind("<<smart-backspace>>",self.smart_backspace_event)
-        text.bind("<<newline-and-indent>>",self.newline_and_indent_event)
-        text.bind("<<smart-indent>>",self.smart_indent_event)
-        text.bind("<<indent-region>>",self.indent_region_event)
-        text.bind("<<dedent-region>>",self.dedent_region_event)
-        text.bind("<<comment-region>>",self.comment_region_event)
-        text.bind("<<uncomment-region>>",self.uncomment_region_event)
-        text.bind("<<tabify-region>>",self.tabify_region_event)
-        text.bind("<<untabify-region>>",self.untabify_region_event)
-        text.bind("<<toggle-tabs>>",self.toggle_tabs_event)
-        text.bind("<<change-indentwidth>>",self.change_indentwidth_event)
-        text.bind("<Left>", self.move_at_edge_if_selection(0))
-        text.bind("<Right>", self.move_at_edge_if_selection(1))
-        text.bind("<<del-word-left>>", self.del_word_left)
-        text.bind("<<del-word-right>>", self.del_word_right)
-        text.bind("<<beginning-of-line>>", self.home_callback)
 
-        if flist:
-            flist.inversedict[self] = key
-            if key:
-                flist.dict[key] = self
-            text.bind("<<open-new-window>>", self.new_callback)
-            text.bind("<<close-all-windows>>", self.flist.close_all_callback)
-            text.bind("<<open-class-browser>>", self.open_class_browser)
-            text.bind("<<open-path-browser>>", self.open_path_browser)
+        for t in (text, text2):
+            t.bind("<<cut>>", self.cut)
+            t.bind("<<copy>>", self.copy)
+            t.bind("<<paste>>", self.paste)
+            t.bind("<<center-insert>>", self.center_insert_event)
+            t.bind("<<help>>", self.help_dialog)
+            t.bind("<<python-docs>>", self.python_docs)
+            t.bind("<<about-idle>>", self.about_dialog)
+            t.bind("<<open-config-dialog>>", self.config_dialog)
+            t.bind("<<open-module>>", self.open_module)
+            t.bind("<<do-nothing>>", lambda event: "break")
+            t.bind("<<select-all>>", self.select_all)
+            t.bind("<<remove-selection>>", self.remove_selection)
+            t.bind("<<find>>", self.find_event)
+            t.bind("<<find-again>>", self.find_again_event)
+            t.bind("<<find-in-files>>", self.find_in_files_event)
+            t.bind("<<find-selection>>", self.find_selection_event)
+            t.bind("<<replace>>", self.replace_event)
+            t.bind("<<goto-line>>", self.goto_line_event)
+            t.bind("<3>", self.right_menu_event)
+            t.bind("<<smart-backspace>>",self.smart_backspace_event)
+            t.bind("<<newline-and-indent>>",self.newline_and_indent_event)
+            t.bind("<<smart-indent>>",self.smart_indent_event)
+            t.bind("<<indent-region>>",self.indent_region_event)
+            t.bind("<<dedent-region>>",self.dedent_region_event)
+            t.bind("<<comment-region>>",self.comment_region_event)
+            t.bind("<<uncomment-region>>",self.uncomment_region_event)
+            t.bind("<<tabify-region>>",self.tabify_region_event)
+            t.bind("<<untabify-region>>",self.untabify_region_event)
+            t.bind("<<toggle-tabs>>",self.toggle_tabs_event)
+            t.bind("<<change-indentwidth>>",self.change_indentwidth_event)
+            t.bind("<Left>", self.move_at_edge_if_selection(0))
+            t.bind("<Right>", self.move_at_edge_if_selection(1))
+            t.bind("<<del-word-left>>", self.del_word_left)
+            t.bind("<<del-word-right>>", self.del_word_right)
+            t.bind("<<beginning-of-line>>", self.home_callback)
+
+            if flist:
+                flist.inversedict[self] = key
+                if key:
+                    flist.dict[key] = self
+                t.bind("<<open-new-window>>", self.new_callback)
+                t.bind("<<close-all-windows>>", self.flist.close_all_callback)
+                t.bind("<<open-class-browser>>", self.open_class_browser)
+                t.bind("<<open-path-browser>>", self.open_path_browser)
 
         self.set_status_bar()
-        vbar['command'] = text.yview
-        vbar.pack(side=RIGHT, fill=Y)
+        vbar['command'] = self.y_scroll
         text['yscrollcommand'] = vbar.set
         fontWeight = 'normal'
         if idleConf.GetOption('main', 'EditorWindow', 'font-bold', type='bool'):
@@ -194,7 +455,9 @@ class EditorWindow(object):
                           idleConf.GetOption('main', 'EditorWindow', 'font-size'),
                           fontWeight))
         text_frame.pack(side=LEFT, fill=BOTH, expand=1)
-        text.pack(side=TOP, fill=BOTH, expand=1)
+        text.pack(side=LEFT, fill=BOTH, expand=1)
+        text2.pack(side=LEFT, fill=BOTH, expand=1)
+        vbar.pack(side=RIGHT, fill=Y)
         text.focus_set()
 
         # usetabs true  -> literal tab characters are used by indent and
@@ -280,6 +543,11 @@ class EditorWindow(object):
         self.askyesno = tkMessageBox.askyesno
         self.askinteger = tkSimpleDialog.askinteger
         self.showerror = tkMessageBox.showerror
+
+    def y_scroll(self, *args):
+        self.text.yview(*args)
+        self.text2.yview(*args)
+        return 'break'
 
     def _filename_to_unicode(self, filename):
         """convert filename to unicode in order to display it in Tk"""
@@ -917,7 +1185,7 @@ class EditorWindow(object):
             try:
                 self.load_extension(name)
             except:
-                print "Failed to load extension", repr(name)
+                print("Failed to load extension", repr(name))
                 import traceback
                 traceback.print_exc()
 
@@ -928,7 +1196,7 @@ class EditorWindow(object):
         try:
             mod = __import__(name, globals(), locals(), [])
         except ImportError:
-            print "\nFailed to import extension: ", name
+            print("\nFailed to import extension: ", name)
             return
         cls = getattr(mod, name)
         keydefs = idleConf.GetExtensionBindings(name)

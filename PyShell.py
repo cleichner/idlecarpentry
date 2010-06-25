@@ -1320,55 +1320,18 @@ def main():
     cmd = None
     script = None
     startup = False
+
     try:
         opts, args = getopt.getopt(sys.argv[1:], "c:deihnr:st:")
     except getopt.error, msg:
         sys.stderr.write("Error: %s\n" % str(msg))
         sys.stderr.write(usage_msg)
         sys.exit(2)
-    for o, a in opts:
-        if o == '-c':
-            cmd = a
-            enable_shell = True
-        if o == '-d':
-            debug = True
-            enable_shell = True
-        if o == '-e':
-            enable_edit = True
-        if o == '-h':
-            sys.stdout.write(usage_msg)
-            sys.exit()
-        if o == '-i':
-            enable_shell = True
-        if o == '-n':
-            use_subprocess = False
-        if o == '-r':
-            script = a
-            if os.path.isfile(script):
-                pass
-            else:
-                print "No script file: ", script
-                sys.exit()
-            enable_shell = True
-        if o == '-s':
-            startup = True
-            enable_shell = True
-        if o == '-t':
-            PyShell.shell_title = a
-            enable_shell = True
-    if args and args[0] == '-':
-        cmd = sys.stdin.read()
-        enable_shell = True
-    # process sys.argv and sys.path:
+
     for i in range(len(sys.path)):
         sys.path[i] = os.path.abspath(sys.path[i])
-    if args and args[0] == '-':
-        sys.argv = [''] + args[1:]
-    elif cmd:
-        sys.argv = ['-c'] + args
-    elif script:
-        sys.argv = [script] + args
-    elif args:
+
+    if args:
         enable_edit = True
         pathx = []
         for filename in args:
@@ -1392,46 +1355,12 @@ def main():
     fixwordbreaks(root)
     root.withdraw()
     flist = PyShellFileList(root)
-    macosxSupport.setupApp(root, flist)
 
-    if enable_edit:
-        if not (cmd or script):
-            for filename in args:
-                flist.open(filename)
-            if not args:
-                flist.new()
-    if enable_shell:
-        shell = flist.open_shell()
-        if not shell:
-            return # couldn't open shell
-
-        if macosxSupport.runningAsOSXApp() and flist.dict:
-            # On OSX: when the user has double-clicked on a file that causes
-            # IDLE to be launched the shell window will open just in front of
-            # the file she wants to see. Lower the interpreter window when
-            # there are open files.
-            shell.top.lower()
-
-    shell = flist.pyshell
-    # handle remaining options:
-    if debug:
-        shell.open_debugger()
-    if startup:
-        filename = os.environ.get("IDLESTARTUP") or \
-                   os.environ.get("PYTHONSTARTUP")
-        if filename and os.path.isfile(filename):
-            shell.interp.execfile(filename)
-    if shell and cmd or script:
-        shell.interp.runcommand("""if 1:
-            import sys as _sys
-            _sys.argv = %r
-            del _sys
-            \n""" % (sys.argv,))
-        if cmd:
-            shell.interp.execsource(cmd)
-        elif script:
-            shell.interp.prepend_syspath(script)
-            shell.interp.execfile(script)
+    if not (cmd or script):
+        for filename in args:
+            flist.open(filename)
+        if not args:
+            flist.new()
 
     root.mainloop()
     root.destroy()
