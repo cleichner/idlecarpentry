@@ -86,29 +86,24 @@ class AnnotationEditor(Toplevel):
         self.annotation_callback(self.annotation.get())
         self.destroy()
        
-class FoldManager(object):
+class SplitText(object):
     '''This takes a source file and splits it into the source and annotations
     as defined by the parse_source method and displays them in a split window
     which features folding.'''
 
-    def __init__(self, raw_source):
+    def __init__(self, master=None, **text_options):
         '''Defines the GUI, source text, annotation text and the folding
         dictionary.  It then inserts the source text and annotation text into
         their appropriate places in the GUI.'''
         
         self.raw_source=raw_source
 
-        self.root=Tk()
-        self.root.wm_title('Folding and Annotation Parsing Demo')
+        self.root=master
 
         frame=Frame(self.root)
-        frame.pack(side=TOP, fill=BOTH, expand=1)
-        scrollbar = Scrollbar(frame)
-        scrollbar.pack(side=RIGHT, fill=Y)
 
-        self.width=80
-        self.source_text=Text(frame, wrap=NONE, width=self.width)
-        self.annotation_text=Text(frame, wrap=NONE, yscrollcommand=scrollbar.set, width=self.width)
+        self.source_text = MultiCallCreator(Text)(master, **text_options)
+        self.annotation_text = MultiCallCreator(Text)(master, **text_options)
 
         scrollbar.config(command=self.scroll)
 
@@ -369,7 +364,7 @@ class EditorWindow(object):
         self.recent_files_path = os.path.join(idleConf.GetUserCfgDir(),
                 'recent-files.lst')
         self.text_frame = text_frame = Frame(top)
-        self.vbar = vbar = Scrollbar(top, name='vbar')
+        self.vbar = vbar = Scrollbar(text_frame, name='vbar')
         self.width = idleConf.GetOption('main','EditorWindow','width')
         
         #self.text_options = text_options = {}
@@ -381,8 +376,8 @@ class EditorWindow(object):
                 'height': idleConf.GetOption('main', 'EditorWindow', 'height'),
                 'tabstyle': 'wordprocessor'}
 
-        self.text2_options = text2_options = {
-                'name': 'text2',
+        self.annotation_text_options = annotation_text_options= {
+                'name': 'annotation_text',
                 'padx': 5,
                 'wrap': 'none',
                 'width': self.width,
@@ -390,7 +385,7 @@ class EditorWindow(object):
                 'tabstyle': 'wordprocessor'}
 
         self.text = text = MultiCallCreator(Text)(text_frame, **text_options)
-        self.text2 = text2 = MultiCallCreator(Text)(text_frame, **text2_options)
+        self.annotation_text = annotation_text = MultiCallCreator(Text)(text_frame, **annotation_text_options)
         self.top.focused_widget = self.text
 
         self.createmenubar()
@@ -399,7 +394,7 @@ class EditorWindow(object):
         self.top.protocol("WM_DELETE_WINDOW", self.close)
         self.top.bind("<<close-window>>", self.close_event)
 
-        for t in (text, text2):
+        for t in (text, annotation_text):
             t.bind("<<cut>>", self.cut)
             t.bind("<<copy>>", self.copy)
             t.bind("<<paste>>", self.paste)
@@ -448,25 +443,12 @@ class EditorWindow(object):
         self.set_status_bar()
         vbar['command'] = self.y_scroll
         text['yscrollcommand'] = vbar.set
-        fontWeight = 'normal'
-        if idleConf.GetOption('main', 'EditorWindow', 'font-bold', type='bool'):
-            fontWeight='bold'
-        text.config(font=(idleConf.GetOption('main', 'EditorWindow', 'font'),
-                          idleConf.GetOption('main', 'EditorWindow', 'font-size'),
-                          fontWeight))
-        text_frame.pack(side=LEFT, fill=BOTH, expand=1)
-        text.pack(side=LEFT, fill=BOTH, expand=1)
-        text2.pack(side=LEFT, fill=BOTH, expand=1)
+        text_frame.pack()
+        text.pack(side=LEFT)
+        annotation_text.pack(side=LEFT)
         vbar.pack(side=RIGHT, fill=Y)
-        text.focus_set()
 
-        # usetabs true  -> literal tab characters are used by indent and
-        #                  dedent cmds, possibly mixed with spaces if
-        #                  indentwidth is not a multiple of tabwidth,
-        #                  which will cause Tabnanny to nag!
-        #         false -> tab characters are converted to spaces by indent
-        #                  and dedent cmds, and ditto TAB keystrokes
-        # Although use-spaces=0 can be configured manually in config-main.def,
+        fontWeight = 'normal'
         # configuration of tabs v. spaces is not supported in the configuration
         # dialog.  IDLE promotes the preferred Python indentation: use spaces!
         usespaces = idleConf.GetOption('main', 'Indent', 'use-spaces', type='bool')
@@ -546,7 +528,7 @@ class EditorWindow(object):
 
     def y_scroll(self, *args):
         self.text.yview(*args)
-        self.text2.yview(*args)
+        self.annotation_text.yview(*args)
         return 'break'
 
     def _filename_to_unicode(self, filename):

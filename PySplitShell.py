@@ -4,13 +4,6 @@ from PyShell import PyShellEditorWindow, PyShellFileList
 from EditorWindow import fixwordbreaks
 from MultiCall import MultiCallCreator
 
-DEBUG = True
-
-#one of these classes needs to take care of folding through virtual event bindings
-#once folding works, all of these need to reference line numbers and index off
-#of the source_text
-        for line in 
-
 class SplitText(object):
 #need to handle one INSERT
 #make this work with dictionary access meaning .config
@@ -281,7 +274,7 @@ class SplitText(object):
         self.source_text.config(**options)
         self.annotation_text.config(**options)
 
-    def kocus_set(self):
+    def focus_set(self):
         '''Move keyboard focus to self.'''
 
         self.source_text.focus_set()
