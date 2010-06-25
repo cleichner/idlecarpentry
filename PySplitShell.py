@@ -333,3 +333,9 @@ def test():
 
     flist.new()
 
+def test_SplitText():
+    root = Tk(className='Test')  
+    SplitText(root, 'example_annotated_code.py')
+    
+if __name__=='__main__':
+    test_SplitText()

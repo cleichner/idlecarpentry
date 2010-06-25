@@ -830,7 +830,7 @@ class PyShell(OutputWindow):
         self.context_use_ps1 = True
         #
         text = self.text
-        text.configure(wrap="char")
+        text.configure(wrap="none")
         text.bind("<<newline-and-indent>>", self.enter_callback)
         text.bind("<<plain-newline-and-indent>>", self.linefeed_callback)
         text.bind("<<interrupt-execution>>", self.cancel_callback)
@@ -1314,8 +1314,8 @@ def main():
     global flist, root, use_subprocess
 
     use_subprocess = True
-    enable_shell = False
-    enable_edit = False
+    enable_shell = False 
+    enable_edit = True 
     debug = False
     cmd = None
     script = None

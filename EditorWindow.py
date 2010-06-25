@@ -434,8 +434,8 @@ class EditorWindow(object):
             t.bind('<Up>', lambda e, s=self: s.y_scroll(SCROLL, -1, UNITS))
             t.bind('<Button-4>', lambda e, s=self: s.y_scroll(SCROLL, -1, UNITS))
             t.bind('<Down>', lambda e, s=self: s.y_scroll(SCROLL, 1, UNITS))
-            t.bind('<B1-Motion>', lambda e, s=self: s.select())
-            t.bind('<Button-1>', lambda e, s=self: s.select())
+            #t.bind('<B1-Motion>', lambda e, s=self: s.select())
+            #t.bind('<Button-1>', lambda e, s=self: s.select())
 
             if flist:
                 flist.inversedict[self] = key

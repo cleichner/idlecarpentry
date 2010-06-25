@@ -101,12 +101,16 @@ class FoldManager(object):
 if __name__=='__main__':
     FoldManager('example_annotated_code.py')
 
+
+
 '''ANNOTATIONS
-1:These import the required packages to access previously written code
-5:This class defines this program, containing both logic and gui definitions
-7:This is the start of the gui definitions
+1:These import the required packages to a...
+5:This class defines this program, contai...
+7:This is the start of the gui definition...
+14:
+17:This is a sample
 20:This is the end of the gui definitions
-22:This uses a common Python technique to return multiple values as a tuple
+22:This uses a common Python technique to ...
 27:This generates the folding dictionary
 47:This opens the source file and seperates out the source code and annotations
 48:This is a docstring, widely used to aid in reuse and interpreter usage

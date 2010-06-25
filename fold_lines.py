@@ -3,12 +3,13 @@ from Tkinter import *
 from OrderedDict import OrderedDict
 
 #ISSUES
-#deal with expanding the source code when the annotations are unfolded
-#source lines longer than the width of the program mess up the spacing
+#selecting doesn't work across the entire widget
 
 class AnnotationEditor(Toplevel):
     def __init__(self, master, current_text, annotation_callback):
-        '''NEEDS DOCUMENTATION'''
+        '''This takes the current text being annotated and uses the callback to
+        pass any changes back to the Text widget.'''
+
         Toplevel.__init__(self, master)
         self.transient(master)
 
@@ -58,14 +59,12 @@ class FoldManager(object):
 
         frame=Frame(self.root)
         frame.pack(side=TOP, fill=BOTH, expand=1)
-        scrollbar = Scrollbar(frame)
-        scrollbar.pack(side=RIGHT, fill=Y)
+        yscrollbar = Scrollbar(frame, command=self.y_scroll)
+        yscrollbar.pack(side=RIGHT, fill=Y)
 
         self.width=80
         self.source_text=Text(frame, wrap=NONE, width=self.width)
-        self.annotation_text=Text(frame, wrap=NONE, yscrollcommand=scrollbar.set, width=self.width)
-
-        scrollbar.config(command=self.scroll)
+        self.annotation_text=Text(frame, wrap=NONE, yscrollcommand=yscrollbar.set, width=self.width)
 
         self.source_text.pack(side=LEFT, fill=BOTH, expand=1)
         self.annotation_text.pack(side=LEFT, fill=BOTH, expand=1)
@@ -77,12 +76,12 @@ class FoldManager(object):
         self.root.bind('<Button-3>', self.popup)
 
         for text in (self.annotation_text, self.source_text):
-            text.bind('<Button-5>', lambda e, s=self: s.scroll(SCROLL, 1, UNITS))
-            text.bind('<Up>', lambda e, s=self: s.scroll(SCROLL, -1, UNITS))
-            text.bind('<Button-4>', lambda e, s=self: s.scroll(SCROLL, -1, UNITS))
-            text.bind('<Down>', lambda e, s=self: s.scroll(SCROLL, 1, UNITS))
-#           text.bind('<B1-Motion>', lambda e, s=self: s.select(e.y))
-#           text.bind('<Button-1>', lambda e, s=self: s.select(e.y))
+            text.bind('<Button-5>', lambda e, s=self: s.y_scroll(SCROLL, 1, UNITS))
+            text.bind('<Up>', lambda e, s=self: s.y_scroll(SCROLL, -1, UNITS))
+            text.bind('<Button-4>', lambda e, s=self: s.y_scroll(SCROLL, -1, UNITS))
+            text.bind('<Down>', lambda e, s=self: s.y_scroll(SCROLL, 1, UNITS))
+#            text.bind('<B1-Motion>', lambda e, s=self: s.select())
+#            text.bind('<Button-1>', lambda e, s=self: s.select())
 
         self.source_text.bind('<Enter>', self.source_entry)
         self.annotation_text.bind('<Enter>', self.annotation_entry)
@@ -107,7 +106,10 @@ class FoldManager(object):
 
 
     def annotate(self):
-        '''NEEDS DOCUMENTATION'''
+        '''This takes the annotation corresponding to the current line, unfolds
+        it (if necessary), and passes it to the AnnotationEditor dialog box for
+        editing'''
+
         if self.current == 'source_text':
             self.annotation_text.config(state=NORMAL)
 
@@ -128,7 +130,7 @@ class FoldManager(object):
             self.annotation_text.config(state=DISABLED)
 
     def annotation_helper(self, text):
-        '''Calback for the AnnotationEditor dialog box.  Deletes the current
+        '''Callback for the AnnotationEditor dialog box.  Deletes the current
         line and removes the reference to it in the folding dict if there is
         one. Then it creates the new folding dict entries out of the edited
         text and inserts them into the annotation text.'''
@@ -237,30 +239,30 @@ class FoldManager(object):
         self.annotation_text.config(state=DISABLED)
 
     def save(self):
-       '''NEEDS DOCUMENTATION'''
-#source saving
-       f=open(self.raw_source, 'w') 
-
-       source=self.source_text.get('1.0', END)
+        '''This takes the contents of the source pane and writes them to file,
+        followed by the annoations from the annotation pane (enclosed in an
+        special block comment.'''
+ 
+        #source saving
+        f=open(self.raw_source, 'w') 
+ 
+        source=self.source_text.get('1.0', END)
+         
+        for line in source.split('\n'):
+            print(line, file=f)
+            
+        #annotation saving
+        print("'''ANNOTATIONS", file=f)
         
-       for line in source.split('\n'):
-           print(line, file=f)
-           
-#annotation saving
-       print("'''ANNOTATIONS", file=f)
-       
-       i=1
-       annotations=self.annotation_text.get('1.0', END)
-       for line in annotations.split('\n'): 
-           if line:
-               print("%d:%s" % (i, self.folded_lines[line+'\n']), end='', file=f)
-               print("%d:%s" % (i, self.folded_lines[line+'\n']), end='')
-           i+=1
-
-       print("'''", file=f)
-
-#potential trace saving
-       f.close()
+        i=1
+        annotations=self.annotation_text.get('1.0', END)
+        for line in annotations.split('\n'): 
+            if line:
+                print("%d:%s" % (i, self.folded_lines[line+'\n']), end='', file=f)
+            i+=1
+ 
+        print("'''", file=f)
+        f.close()
 
     def popup(self, event):
         try:
@@ -268,7 +270,7 @@ class FoldManager(object):
         finally:
            self.popup_menu.grab_release()
 
-    def scroll(self, *args):
+    def y_scroll(self, *args):
         self.annotation_text.yview(*args)
         self.source_text.yview(*args)
         return 'break'
@@ -279,13 +281,15 @@ class FoldManager(object):
     def annotation_entry(self, event):
         self.current='annotation_text'
     
-#   def select(self, y):
-#BROKEN FOR TEXT
-#should use current instead of nearest
-#       row = self.lists[0].nearest(y)
-#       self.selection_clear(0, END)
-#       self.selection_set(row)
-#       return 'break'
+    def select(self):
+#BROKEN
+        if self.current == 'annotation_text':
+            row = int(float(self.annotation_text.index('current')))
+        else:
+            row = int(float(self.source_text.index('current')))
+        self.source_text.tag_add('sel', '%d.0' % row, '%d.end' % row)
+        self.annotation_text.tag_add('sel', '%d.0' % row, '%d.end' % row)
+        return 'break'
         
 if __name__=='__main__':
     FoldManager('example_annotated_code.py')
