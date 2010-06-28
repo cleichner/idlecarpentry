@@ -404,10 +404,9 @@ class IOBinding:
             type=tkMessageBox.YESNOCANCEL,
             master=self.text)
         reply = m.show()
-        if reply == "yes":
+        if str(reply) == "yes":
             self.save(None)
-            if not self.get_saved():
-                reply = "cancel"
+            reply = "cancel"
         self.text.focus_set()
         return reply
 
@@ -447,6 +446,9 @@ class IOBinding:
         return "break"
 
     def writefile(self, filename):
+        '''This takes the contents of the source pane and writes them to file,
+        followed by the annoations from the annotation pane (enclosed in an
+        special block comment.'''
         self.fixlastline()
         chars = self.encode(self.text.get("1.0", "end-1c"))
         if self.eol_convention != "\n":
@@ -455,38 +457,26 @@ class IOBinding:
             f = open(filename, "wb")
             f.write(chars)
             f.flush()
+
+            print("'''ANNOTATIONS", file=f)
+            i=1
+            annotations=self.editwin.annotation_text.get('1.0', END)
+            for line in annotations.split('\n'): 
+                if line:
+                    if line[:-4] == '...\n':
+                        print("%d:%s" % (i, self.folded_lines[line+'\n']), end='', file=f)
+                    else:
+                        print("%d:%s" % (i, line+'\n'), end='', file=f)
+                i+=1
+ 
+            print("'''", file=f)
             f.close()
             return True
+
         except IOError, msg:
             tkMessageBox.showerror("I/O Error", str(msg),
                                    master=self.text)
             return False
-
-    def save(self):
-        '''This takes the contents of the source pane and writes them to file,
-        followed by the annoations from the annotation pane (enclosed in an
-        special block comment.'''
- 
-        #source saving
-        f=open(self.raw_source, 'w') 
- 
-        source=self.source_text.get('1.0', END)
-         
-        for line in source.split('\n'):
-            print(line, file=f)
-            
-        #annotation saving
-        print("'''ANNOTATIONS", file=f)
-        
-        i=1
-        annotations=self.annotation_text.get('1.0', END)
-        for line in annotations.split('\n'): 
-            if line:
-                print("%d:%s" % (i, self.folded_lines[line+'\n']), end='', file=f)
-            i+=1
- 
-        print("'''", file=f)
-        f.close()
 
     def encode(self, chars):
         if isinstance(chars, types.StringType):

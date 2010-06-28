@@ -18,7 +18,7 @@ class FoldManager(object):
 
         self.source_text.pack(side=LEFT, fill=BOTH, expand=1)
         self.annotation_text.pack(side=LEFT, fill=BOTH, expand=1)
-
+        asdf
         self.source, self.annotations=self.parse_source(raw_source)
 
         self.fold_length=77
@@ -107,14 +107,14 @@ if __name__=='__main__':
 1:These import the required packages to a...
 5:This class defines this program, contai...
 7:This is the start of the gui definition...
-14:
 17:This is a sample
 20:This is the end of the gui definitions
 22:This uses a common Python technique to ...
+24:different stuff
 27:This generates the folding dictionary
-47:This opens the source file and seperates out the source code and annotations
-48:This is a docstring, widely used to aid in reuse and interpreter usage
-78:This is where folding is actually handled
-87:These are comments which don't do anything.  This is a function for future use which is not being maintained right now.
-101:This is a useful and common Python idiom making the class run when the file is executed alone
+47:This opens the source file and seperate...
+48:This is a docstring, widely used to aid...
+78:This is where folding is actually handl...
+87:These are comments which don't do anyth...
+101:This is a useful and common Python idio...
 '''
