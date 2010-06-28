@@ -103,18 +103,20 @@ if __name__=='__main__':
 
 
 
+
+
+
 '''ANNOTATIONS
-1:These import the required packages to a...
-5:This class defines this program, contai...
-7:This is the start of the gui definition...
-17:This is a sample
+1:These import the required packages to the current namespace, providing access to their contents
+5:This class defines this program, containing both gui and logic elements
+7:This is the start of the gui definitions
+15:I can do this much more intuitively now and it works without fail
 20:This is the end of the gui definitions
-22:This uses a common Python technique to ...
-24:different stuff
+22:This uses a common Python technique, used to return multiple values through a tuple
 27:This generates the folding dictionary
-47:This opens the source file and seperate...
-48:This is a docstring, widely used to aid...
-78:This is where folding is actually handl...
-87:These are comments which don't do anyth...
-101:This is a useful and common Python idio...
+47:This opens the source file and seperates out the annotations and the source code
+48:This is a docstring, widely used to aid in understanding while maintaining programs, and using them in interactive sessions
+78:This is where folding is actually handled
+87:These are comments which don't do anything
+101:This is a useful and common Python idiom used to have files execute only when run on their own
 '''

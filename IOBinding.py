@@ -276,8 +276,9 @@ class IOBinding:
 
         self.reset_undo()
         self.set_filename(filename)
-        self.text.mark_set("insert", "1.0")
-        self.text.see("insert")
+#these make weird things happen
+        #self.text.mark_set("insert", "1.0")
+        #self.text.see("insert")
         self.updaterecentfileslist(filename)
         return True
 
@@ -345,7 +346,6 @@ class IOBinding:
             if lineno not in annotations:
                annotations[lineno]='\n'
 
-        print(source)
         return source, annotations
         
     def decode(self, chars):
@@ -448,7 +448,7 @@ class IOBinding:
 
     def writefile(self, filename):
         '''This takes the contents of the source pane and writes them to file,
-        followed by the annoations from the annotation pane (enclosed in an
+        followed by the annotations from the annotation pane (enclosed in an
         special block comment.'''
         self.fixlastline()
         chars = self.encode(self.text.get("1.0", "end-1c"))
@@ -464,8 +464,8 @@ class IOBinding:
             annotations=self.editwin.annotation_text.get('1.0', END)
             for line in annotations.split('\n'): 
                 if line:
-                    if line[:-4] == '...\n':
-                        print("%d:%s" % (i, self.folded_lines[line+'\n']), end='', file=f)
+                    if line[-3:] == '...':
+                        print("%d:%s" % (i, self.editwin.folded_lines[line+'\n']), end='', file=f)
                     else:
                         print("%d:%s" % (i, line+'\n'), end='', file=f)
                 i+=1

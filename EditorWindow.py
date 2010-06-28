@@ -50,41 +50,6 @@ def _find_module(fullname, path=None):
         except AttributeError:
             raise ImportError, 'No source for module ' + module.__name__
     return file, filename, descr
-
-class AnnotationEditor(Toplevel):
-    def __init__(self, master, current_text, annotation_callback):
-        '''NEEDS DOCUMENTATION'''
-        Toplevel.__init__(self, master)
-        self.transient(master)
-
-        #this should take a string as its argument
-        self.annotation_callback=annotation_callback
-
-        self.title('Edit')
-
-        self.master = master
-
-        Label(self, text="Insert Your Annotation").pack()
-
-        self.annotation = Entry(self)
-        
-        self.annotation.insert(INSERT, current_text)
-        self.annotation.pack(padx=5)
-
-        done_button = Button(self, text="Done", command=self.done)
-        done_button.pack(pady=5)
-
-        self.grab_set()
-
-        self.protocol("WM_DELETE_WINDOW", self.done)
-
-        self.annotation.focus_set()
-
-        self.wait_window(self)
-
-    def done(self):
-        self.annotation_callback(self.annotation.get())
-        self.destroy()
        
 class SplitText(object):
     '''This takes a source file and splits it into the source and annotations
@@ -193,142 +158,8 @@ class SplitText(object):
 
         self.save()
 
-    def fold_line(self, line):
-        '''Takes a line and returns a tuple containing the folded and the
-        unfolded version of the line.'''
-
-        folded_line=line[:self.fold_length]
-
-        if folded_line[-1:] != '\n':
-            folded_line=folded_line[:-1]+'...\n'
-
-        elif len(folded_line) != 1 and len(folded_line) >= self.fold_length:
-            folded_line+='...\n'
         
-        if line[-1:] != '\n':
-            unfolded_line=line+'\n'
-        else:
-            unfolded_line=line
-        
-        return folded_line, unfolded_line
-        
-    def fold_annotations(self):
-        '''Takes self.annotations and creates an dictionary mapping folded
-        lines to unfolded lines and vice versa, where a folded line is a line
-        truncated to the folding length with "..." appended to the end.'''
 
-        folded_lines={}
-        for line in self.annotations.values():
-
-            folded_line, unfolded_line = self.fold_line(line)
-
-            folded_lines[unfolded_line]=folded_line
-            folded_lines[folded_line]=unfolded_line
-
-        return folded_lines 
-
-    def parse_source(self):
-        '''This takes a source file with annotations in it and returns two
-        ordered dictionaries: the first maps (int) line numbers to the source
-        lines, the second maps line numbers to annotation lines. If there is no
-        annotation for a line, it is mapped as 'lineno':'\n'. By changing this
-        function, you can change the file format.'''
-
-        source=OrderedDict()
-        annotations=OrderedDict()
-        in_annotations=False
-        i=1
-
-        for line in open(self.raw_source):
-            if line == "'''ANNOTATIONS\n":
-                in_annotations=True
-            elif in_annotations:
-                if line == "'''\n":
-                    pass
-                else:
-                    parsed_anno=line.split(':')
-                    annotations[int(parsed_anno[0])]=parsed_anno[1]
-            else:
-                source[i]=line
-                i += 1
-
-        for lineno in source:
-            if lineno not in annotations:
-               annotations[lineno]='\n'
-
-        return source, annotations
-
-#BUG this doesn't adjust the source text properly when annotations are multiple lines
-    def folder(self):
-        '''Replaces the current line with the contents of the folding dict if
-        there is an entry for it; otherwise, it does nothing.'''
-        
-        self.annotation_text.config(state=NORMAL)
-        if self.current == 'annotation_text' :
-            #the +1c is to get the newline
-            current_line=self.annotation_text.get('current linestart', 'current lineend+1c')
-            self.annotation_text.delete('current linestart', 'current lineend+1c')
-
-            try:
-                self.annotation_text.insert('current', self.folded_lines[current_line])
-            except KeyError:
-                self.annotation_text.insert('current', current_line) 
-
-        self.annotation_text.config(state=DISABLED)
-
-    def save(self):
-       '''NEEDS DOCUMENTATION'''
-#source saving
-       f=open(self.raw_source, 'w') 
-
-       source=self.source_text.get('1.0', END)
-        
-       for line in source.split('\n'):
-           print(line, file=f)
-           
-#annotation saving
-       print("'''ANNOTATIONS", file=f)
-       
-       i=1
-       annotations=self.annotation_text.get('1.0', END)
-       for line in annotations.split('\n'): 
-           if line:
-               print("%d:%s" % (i, self.folded_lines[line+'\n']), end='', file=f)
-               print("%d:%s" % (i, self.folded_lines[line+'\n']), end='')
-           i+=1
-
-       print("'''", file=f)
-
-#potential trace saving
-       f.close()
-
-    def popup(self, event):
-        try:
-            self.popup_menu.tk_popup(event.x_root, event.y_root)
-        finally:
-           self.popup_menu.grab_release()
-
-    def scroll(self, *args):
-        self.annotation_text.yview(*args)
-        self.source_text.yview(*args)
-        return 'break'
-
-    def source_entry(self, event):
-        self.current='source_text'
-
-    def annotation_entry(self, event):
-        self.current='annotation_text'
-    
-#   def select(self, y):
-#BROKEN FOR TEXT
-#should use current instead of nearest
-#       row = self.lists[0].nearest(y)
-#       self.selection_clear(0, END)
-#       self.selection_set(row)
-#       return 'break'
-        
-#if __name__=='__main__':
-#    FoldManager('example_annotated_code.py')
 
 class EditorWindow(object):
     from Percolator import Percolator
@@ -342,11 +173,42 @@ class EditorWindow(object):
     help_url = None
 
     def __init__(self, flist=None, filename=None, key=None, root=None):
+        if EditorWindow.help_url is None:
+            dochome =  os.path.join(sys.prefix, 'Doc', 'index.html')
+            if sys.platform.count('linux'):
+                # look for html docs in a couple of standard places
+                pyver = 'python-docs-' + '%s.%s.%s' % sys.version_info[:3]
+                if os.path.isdir('/var/www/html/python/'):  # "python2" rpm
+                    dochome = '/var/www/html/python/index.html'
+                else:
+                    basepath = '/usr/share/doc/'  # standard location
+                    dochome = os.path.join(basepath, pyver,
+                                           'Doc', 'index.html')
+            elif sys.platform[:3] == 'win':
+                chmfile = os.path.join(sys.prefix, 'Doc',
+                                       'Python%s.chm' % _sphinx_version())
+                if os.path.isfile(chmfile):
+                    dochome = chmfile
+            elif macosxSupport.runningAsOSXApp():
+                # documentation is stored inside the python framework
+                dochome = os.path.join(sys.prefix,
+                        'Resources/English.lproj/Documentation/index.html')
+            dochome = os.path.normpath(dochome)
+            if os.path.isfile(dochome):
+                EditorWindow.help_url = dochome
+                if sys.platform == 'darwin':
+                    # Safari requires real file:-URLs
+                    EditorWindow.help_url = 'file://' + EditorWindow.help_url
+            else:
+                EditorWindow.help_url = "http://docs.python.org/%d.%d" % sys.version_info[:2]
         currentTheme=idleConf.CurrentTheme()
         self.flist = flist
         root = root or flist.root
         self.root = root
-        sys.ps1 = '>>> '
+        try:
+            sys.ps1
+        except AttributeError:
+            sys.ps1 = '>>> '
         self.menubar = Menu(root)
 
         #makes new window
@@ -383,7 +245,12 @@ class EditorWindow(object):
                 'width': self.width,
                 'height': idleConf.GetOption('main', 'EditorWindow', 'height'),
                 'tabstyle': 'wordprocessor'}
-
+        if TkVersion >= 8.5:
+            # Starting with tk 8.5 we have to set the new tabstyle option
+            # to 'wordprocessor' to achieve the same display of tabs as in
+            # older tk versions.
+            text_options['tabstyle'] = 'wordprocessor'
+        
         self.text = text = MultiCallCreator(Text)(text_frame, **text_options)
         self.annotation_text = annotation_text = MultiCallCreator(Text)(text_frame, **annotation_text_options)
         self.top.focused_widget = self.text
@@ -395,6 +262,9 @@ class EditorWindow(object):
         self.top.bind("<<close-window>>", self.close_event)
 
         for t in (text, annotation_text):
+            if macosxSupport.runningAsOSXApp():
+                # Command-W on editorwindows doesn't work without this.
+                t.bind('<<close-window>>', self.close_event)
             t.bind("<<cut>>", self.cut)
             t.bind("<<copy>>", self.copy)
             t.bind("<<paste>>", self.paste)
@@ -446,6 +316,9 @@ class EditorWindow(object):
                 t.bind("<<open-class-browser>>", self.open_class_browser)
                 t.bind("<<open-path-browser>>", self.open_path_browser)
 
+        self.text.bind('<Enter>', self.source_entry)
+        self.annotation_text.bind('<Enter>', self.annotation_entry)
+
         self.set_status_bar()
         vbar['command'] = self.y_scroll
         text['yscrollcommand'] = vbar.set
@@ -454,6 +327,7 @@ class EditorWindow(object):
         annotation_text.pack(side=LEFT, fill=BOTH, expand=1)
         vbar.pack(side=RIGHT, fill=Y)
         text.focus_set()
+        self.current='source_text'
 
         fontWeight = 'normal'
         # configuration of tabs v. spaces is not supported in the configuration
@@ -532,6 +406,12 @@ class EditorWindow(object):
         self.askyesno = tkMessageBox.askyesno
         self.askinteger = tkSimpleDialog.askinteger
         self.showerror = tkMessageBox.showerror
+
+    def source_entry(self, event):
+        self.current='source_text'
+
+    def annotation_entry(self, event):
+        self.current='annotation_text'
 
     def y_scroll(self, *args):
         self.text.yview(*args)
@@ -666,18 +546,26 @@ class EditorWindow(object):
     rmenu = None
 
     def right_menu_event(self, event):
-        self.text.tag_remove("sel", "1.0", "end")
-        self.text.mark_set("insert", "@%d,%d" % (event.x, event.y))
+        if self.current == 'annotation_text':
+            text=self.annotation_text
+        else: 
+            text=self.text
+
+        text.tag_remove("sel", "1.0", "end")
+        text.mark_set("insert", "@%d,%d" % (event.x, event.y))
         if not self.rmenu:
             self.make_rmenu()
         rmenu = self.rmenu
         self.event = event
         iswin = sys.platform[:3] == 'win'
         if iswin:
-            self.text.config(cursor="arrow")
-        rmenu.tk_popup(event.x_root, event.y_root)
-        if iswin:
-            self.text.config(cursor="ibeam")
+            text.config(cursor="arrow")
+        try:
+            rmenu.tk_popup(event.x_root, event.y_root)
+            if iswin:
+                text.config(cursor="ibeam")
+        finally:
+            rmenu.grab_release()
 
     rmenu_specs = [
         # ("Label", "<<virtual-event>>"), ...
@@ -686,8 +574,14 @@ class EditorWindow(object):
 
     def make_rmenu(self):
         rmenu = Menu(self.text, tearoff=0)
+
+        if self.current == 'annotation_text':
+            text=self.annotation_text
+        else: 
+            text=self.text
+
         for label, eventname in self.rmenu_specs:
-            def command(text=self.text, eventname=eventname):
+            def command(text=text, eventname=eventname):
                 text.event_generate(eventname)
             rmenu.add_command(label=label, command=command)
         self.rmenu = rmenu

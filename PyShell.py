@@ -112,6 +112,7 @@ class PyShellEditorWindow(EditorWindow):
         self.text.bind("<<set-breakpoint-here>>", self.set_breakpoint_here)
         self.text.bind("<<clear-breakpoint-here>>", self.clear_breakpoint_here)
         self.text.bind("<<open-python-shell>>", self.flist.open_shell)
+        self.annotation_text.bind("<<fold-unfold>>", self.folder)
 
         self.breakpointPath = os.path.join(idleConf.GetUserCfgDir(),
                                            'breakpoints.lst')
@@ -123,8 +124,29 @@ class PyShellEditorWindow(EditorWindow):
             old_hook()
         self.io.set_filename_change_hook(filename_changed_hook)
 
-    rmenu_specs = [("Set Breakpoint", "<<set-breakpoint-here>>"),
+    rmenu_specs = [("Fold/Unfold", "<<fold-unfold>>"),
+                   ("Set Breakpoint", "<<set-breakpoint-here>>"),
                    ("Clear Breakpoint", "<<clear-breakpoint-here>>")]
+
+    def folder(self, event=None):
+        '''Replaces the current line with the contents of the folding dict if
+        there is an entry for it; otherwise, it does nothing.'''
+        
+        #self.annotation_text.config(state=NORMAL)
+        if self.current == 'annotation_text' :
+            #the +1c is to get the newline
+            current_line=self.annotation_text.get('current linestart', 'current lineend+1c')
+            self.annotation_text.delete('current linestart', 'current lineend+1c')
+
+            try:
+                self.annotation_text.insert('current', self.folded_lines[current_line])
+            except KeyError:
+                folded_line, unfolded_line= self.io.fold_line(current_line)
+                self.folded_lines[folded_line] = unfolded_line
+                self.folded_lines[unfolded_line] = folded_line
+                self.annotation_text.insert('current', self.folded_lines[current_line])
+
+        #self.annotation_text.config(state=DISABLED)
 
     def set_breakpoint(self, lineno):
         text = self.text
