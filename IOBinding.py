@@ -345,6 +345,7 @@ class IOBinding:
             if lineno not in annotations:
                annotations[lineno]='\n'
 
+        print(source)
         return source, annotations
         
     def decode(self, chars):
