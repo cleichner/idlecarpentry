@@ -10,12 +10,11 @@ class TraceApp(object):
         root.title("Trace Reader")
 
         button_frame = Frame(root) 
-        play = Button( button_frame, text='Play', command=self.play_cb)
-        pause = Button( button_frame, text='Pause', command=self.pause_cb)
-        rewind = Button( button_frame, text='Rewind', command=self.rewind_cb)
-        step_back = Button( button_frame, text='Step Forward', command=self.step_forward_cb)
-        step_forward = Button( button_frame, text='Step Back', command=self.step_back_cb)
-        fast = Button( button_frame, text='Fast', command=self.fast_cb)
+        play_button = Button( button_frame, text='Play', command=self.play)
+        pause_button = Button( button_frame, text='Pause', command=self.pause)
+        rewind_button = Button( button_frame, text='Rewind', command=self.rewind)
+        back_button = Button( button_frame, text='Step Forward', command=self.step_forward)
+        forward_button = Button( button_frame, text='Step Back', command=self.step_back)
 
         self.source = Text(root)
 
@@ -26,7 +25,7 @@ class TraceApp(object):
         for widget in (button_frame, self.source, out_label, self.stdout):
             widget.pack(side=TOP, expand=1, fill=BOTH)
 
-        for button in (play, pause, rewind, step_back, step_forward, fast):
+        for button in (play_button, pause_button, rewind_button, back_button, forward_button):
             button.pack(side=LEFT)
 
         with open(filename, 'r') as f:
@@ -42,12 +41,9 @@ class TraceApp(object):
         self.finished=False
 
         #in seconds
-        self.step_rate=0.55
+        self.step_rate=0.6
         
         root.mainloop()
-
-    def fast_cb(self):
-        self.step_rate=0.001
 
     def stdout_insert(self, text):
         self.stdout.config(state=NORMAL)
@@ -65,6 +61,7 @@ class TraceApp(object):
         self.clear_highlighting()
         self.source.tag_add('highlight', '%s.0' % lineno, '%s.end' % lineno)
         self.source.tag_configure('highlight', background='yellow')
+        self.source.see('highlight.first')
         self.source.config(state=DISABLED)
 
     def clear_highlighting(self):
@@ -72,24 +69,23 @@ class TraceApp(object):
         self.source.tag_remove('highlight', '1.0', 'end')
         self.source.config(state=DISABLED)
 
-    def play_cb(self):
+    def play(self):
         if not self.paused and not self.finished:
-            self.step_forward_cb()
-            self.source.after(int(self.step_rate * 1000), self.play_cb)
+            self.step_forward()
+            self.source.after(int(self.step_rate * 1000), self.play)
 
-    def pause_cb(self):
+    def pause(self):
         self.paused=not self.paused 
         if not self.paused:
-            self.play_cb()
+            self.play()
 
-    def step_forward_cb(self):
+    def step_forward(self):
         '''Moves to the next trace dictionary and inserts the data it contains,
         advancing the highlighting as appropriate.'''
 
         if not self.finished:
             step = self.trace[self.current_line]
             self.highlight_line(step['line']+1)
-            self.source.see('%d.0' % (step['line']+1))
             if 'stdout' in step:
                 self.stdout_insert(step['stdout'])
             self.current_line+=1
@@ -98,29 +94,35 @@ class TraceApp(object):
             self.clear_highlighting()
             self.finished=True
 
-#NEEDS WORK
-    def step_back_cb(self):
+    def step_back(self):
         if self.current_line <= 0:
-            self.rewind_cb()
+            self.rewind()
 
         else:
-            step= self.trace[self.current_line]
+            step = self.trace[self.current_line]
+
+            #remove the last thing printed to stdout
             if 'stdout' in step:
                 self.stdout.config(state=NORMAL)
-                current_text=self.stdout.get('1.0', 'end+1c')
                 self.stdout.delete('1.0', 'end+1c')
-#replace may need to be rewritten so it starts at the end
-                self.stdout.insert('1.0', current_text.replace(step['stdout'], '', 1))
+                for previous in range(self.current_line):
+                    prev_step=self.trace[previous]
+                    if 'stdout' in prev_step:
+                        self.stdout.insert('insert', prev_step['stdout'])
+
                 self.stdout.config(state=DISABLED)
 
-            self.current_line -= 1
-            step = self.trace[self.current_line]
             if self.finished:
                 self.finished = False
+                
+            self.current_line -= 1
+            step = self.trace[self.current_line]
             self.highlight_line(step['line']+1)
 
-    def rewind_cb(self):
-        '''Sets all parameters back to their original states (including unpausing)'''
+    def rewind(self):
+        '''Sets all parameters back to their original states (including
+        unpausing)'''
+
         self.clear_highlighting()
         self.stdout_clear()
         self.current_line=0
