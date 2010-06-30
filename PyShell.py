@@ -132,7 +132,6 @@ class PyShellEditorWindow(EditorWindow):
         '''Replaces the current line with the contents of the folding dict if
         there is an entry for it; otherwise, it does nothing.'''
         
-        #self.annotation_text.config(state=NORMAL)
         if self.current == 'annotation_text' :
             #the +1c is to get the newline
             current_line=self.annotation_text.get('current linestart', 'current lineend+1c')
@@ -145,8 +144,6 @@ class PyShellEditorWindow(EditorWindow):
                 self.folded_lines[folded_line] = unfolded_line
                 self.folded_lines[unfolded_line] = folded_line
                 self.annotation_text.insert('current', self.folded_lines[current_line])
-
-        #self.annotation_text.config(state=DISABLED)
 
     def set_breakpoint(self, lineno):
         text = self.text

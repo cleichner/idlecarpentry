@@ -4,43 +4,6 @@ from OrderedDict import OrderedDict
 
 #ISSUES
 #selecting doesn't work across the entire widget
-
-class AnnotationEditor(Toplevel):
-    def __init__(self, master, current_text, annotation_callback):
-        '''This takes the current text being annotated and uses the callback to
-        pass any changes back to the Text widget.'''
-
-        Toplevel.__init__(self, master)
-        self.transient(master)
-
-        #this should take a string as its argument
-        self.annotation_callback=annotation_callback
-
-        self.title('Edit')
-
-        self.master = master
-
-        Label(self, text="Insert Your Annotation").pack()
-
-        self.annotation = Entry(self)
-        
-        self.annotation.insert(INSERT, current_text)
-        self.annotation.pack(padx=5)
-
-        done_button = Button(self, text="Done", command=self.done)
-        done_button.pack(pady=5)
-
-        self.grab_set()
-
-        self.protocol("WM_DELETE_WINDOW", self.done)
-
-        self.annotation.focus_set()
-
-        self.wait_window(self)
-
-    def done(self):
-        self.annotation_callback(self.annotation.get())
-        self.destroy()
        
 class FoldManager(object):
     '''This takes a source file and splits it into the source and annotations
@@ -70,7 +33,6 @@ class FoldManager(object):
         self.annotation_text.pack(side=LEFT, fill=BOTH, expand=1)
 
         self.popup_menu=Menu(self.root, tearoff=0)
-        self.popup_menu.add_command(label="Edit Annotations", command=self.annotate)
         self.popup_menu.add_command(label="Fold/Unfold", command=self.folder)
 
         self.root.bind('<Button-3>', self.popup)
@@ -100,34 +62,8 @@ class FoldManager(object):
             #This needs to do something, but not this
 
         self.current='source_text'
-        self.annotation_text.config(state=DISABLED)
 
         self.root.mainloop()
-
-
-    def annotate(self):
-        '''This takes the annotation corresponding to the current line, unfolds
-        it (if necessary), and passes it to the AnnotationEditor dialog box for
-        editing'''
-
-        if self.current == 'source_text':
-            self.annotation_text.config(state=NORMAL)
-
-            source_index=self.source_text.index('current')
-            self.annotation_text.mark_set(INSERT, source_index)
-            self.annotation_text.focus_set()
-
-            current_text=self.annotation_text.get('insert linestart', 'insert lineend+1c')
-
-            if current_text == '\n':
-                current_text=''
-
-            if current_text in self.folded_lines and current_text[-4:] == '...\n':
-                current_text=self.folded_lines[current_text]
-
-            AnnotationEditor(self.root, current_text, self.annotation_helper)
-
-            self.annotation_text.config(state=DISABLED)
 
     def annotation_helper(self, text):
         '''Callback for the AnnotationEditor dialog box.  Deletes the current
@@ -221,11 +157,10 @@ class FoldManager(object):
         return source, annotations
 
 #BUG this doesn't adjust the source text properly when annotations are multiple lines
-    def folder(self):
+    def folder(self, event=None):
         '''Replaces the current line with the contents of the folding dict if
         there is an entry for it; otherwise, it does nothing.'''
         
-        self.annotation_text.config(state=NORMAL)
         if self.current == 'annotation_text' :
             #the +1c is to get the newline
             current_line=self.annotation_text.get('current linestart', 'current lineend+1c')
@@ -234,9 +169,11 @@ class FoldManager(object):
             try:
                 self.annotation_text.insert('current', self.folded_lines[current_line])
             except KeyError:
-                self.annotation_text.insert('current', current_line) 
-
-        self.annotation_text.config(state=DISABLED)
+                folded_line, unfolded_line= self.fold_line(current_line)
+                self.folded_lines[folded_line] = unfolded_line
+                self.folded_lines[unfolded_line] = folded_line
+                self.annotation_text.insert('current', self.folded_lines[current_line])
+        self.save()
 
     def save(self):
         '''This takes the contents of the source pane and writes them to file,

@@ -104,13 +104,12 @@ if __name__=='__main__':
 
 
 
-
-
 '''ANNOTATIONS
 1:These import the required packages to the current namespace, providing access to their contents
 5:This class defines this program, containing both gui and logic elements
 7:This is the start of the gui definitions
-15:I can do this much more intuitively now and it works without fail
+13:Hi Jeff! Whatsdf U al;hsdlfkhaskldjfhaklsdhflkasdl;kfjasdlf
+15:This is another line in the annotations this makes it folding
 20:This is the end of the gui definitions
 22:This uses a common Python technique, used to return multiple values through a tuple
 27:This generates the folding dictionary
