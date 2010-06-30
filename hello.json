@@ -1,0 +1,129 @@
+{
+  "source":"print \"Hello, World!\"\n\nfor y in range(4):\n    print 2*y,\n\nprint '\\n'\n\nz=[1, 2, 3, 4, 5]\nfor i in z:\n    print i\n\nfor z in range(5):\n    print 4,\n",
+  "trace":[
+    {
+      "line":0
+    },
+    {
+      "line":0,
+      "stdout":"Hello, World!\n"
+    },
+    {
+      "line":2
+    },
+    {
+      "line":3,
+      "stdout":"0"
+    },
+    {
+      "line":2
+    },
+    {
+      "line":3,
+      "stdout":" 2"
+    },
+    {
+      "line":2
+    },
+    {
+      "line":3,
+      "stdout":" 4"
+    },
+    {
+      "line":2
+    },
+    {
+      "line":3,
+      "stdout":" 6"
+    },
+    {
+      "line":2
+    },
+    {
+      "line":5,
+      "stdout":" \n\n"
+    },
+    {
+      "line":7
+    },
+    {
+      "line":8
+    },
+    {
+      "line":9,
+      "stdout":"1\n"
+    },
+    {
+      "line":8
+    },
+    {
+      "line":9,
+      "stdout":"2\n"
+    },
+    {
+      "line":8
+    },
+    {
+      "line":9,
+      "stdout":"3\n"
+    },
+    {
+      "line":8
+    },
+    {
+      "line":9,
+      "stdout":"4\n"
+    },
+    {
+      "line":8
+    },
+    {
+      "line":9,
+      "stdout":"5\n"
+    },
+    {
+      "line":8
+    },
+    {
+      "line":11
+    },
+    {
+      "line":12,
+      "stdout":"4"
+    },
+    {
+      "line":11
+    },
+    {
+      "line":12,
+      "stdout":" 4"
+    },
+    {
+      "line":11
+    },
+    {
+      "line":12,
+      "stdout":" 4"
+    },
+    {
+      "line":11
+    },
+    {
+      "line":12,
+      "stdout":" 4"
+    },
+    {
+      "line":11
+    },
+    {
+      "line":12,
+      "stdout":" 4"
+    },
+    {
+      "line":11
+    },
+    {
+      "line":11
+    }
+  ]
+}
