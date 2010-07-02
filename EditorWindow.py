@@ -50,116 +50,6 @@ def _find_module(fullname, path=None):
         except AttributeError:
             raise ImportError, 'No source for module ' + module.__name__
     return file, filename, descr
-       
-class SplitText(object):
-    '''This takes a source file and splits it into the source and annotations
-    as defined by the parse_source method and displays them in a split window
-    which features folding.'''
-
-    def __init__(self, master=None, **text_options):
-        '''Defines the GUI, source text, annotation text and the folding
-        dictionary.  It then inserts the source text and annotation text into
-        their appropriate places in the GUI.'''
-        
-        self.raw_source=raw_source
-
-        self.root=master
-
-        frame=Frame(self.root)
-
-        self.source_text = MultiCallCreator(Text)(master, **text_options)
-        self.annotation_text = MultiCallCreator(Text)(master, **text_options)
-
-        scrollbar.config(command=self.scroll)
-
-        self.source_text.pack(side=LEFT, fill=BOTH, expand=1)
-        self.annotation_text.pack(side=LEFT, fill=BOTH, expand=1)
-
-        self.popup_menu=Menu(self.root, tearoff=0)
-        self.popup_menu.add_command(label="Edit Annotations", command=self.annotate)
-        self.popup_menu.add_command(label="Fold/Unfold", command=self.folder)
-
-        self.root.bind('<Button-3>', self.popup)
-
-        for text in (self.annotation_text, self.source_text):
-            text.bind('<Button-5>', lambda e, s=self: s.scroll(SCROLL, 1, UNITS))
-            text.bind('<Up>', lambda e, s=self: s.scroll(SCROLL, -1, UNITS))
-            text.bind('<Button-4>', lambda e, s=self: s.scroll(SCROLL, -1, UNITS))
-            text.bind('<Down>', lambda e, s=self: s.scroll(SCROLL, 1, UNITS))
-#           text.bind('<B1-Motion>', lambda e, s=self: s.select(e.y))
-#           text.bind('<Button-1>', lambda e, s=self: s.select(e.y))
-
-        self.source_text.bind('<Enter>', self.source_entry)
-        self.annotation_text.bind('<Enter>', self.annotation_entry)
-
-        self.source, self.annotations=self.parse_source()
-
-        self.fold_length=40
-        assert self.fold_length<self.width, "Folding width must be less than window width"
-        self.folded_lines=self.fold_annotations()
-
-        for lineno in self.source:
-            self.source_text.insert(INSERT, self.source[lineno])
-            self.annotation_text.insert(INSERT, self.folded_lines[self.annotations[lineno]])
-            
-            #to properly line up the annotations #if len(self.source[lineno]) > self.width: #    self.annotation_text.insert(INSERT, '\n')
-            #This needs to do something, but not this
-
-        self.current='source_text'
-        self.annotation_text.config(state=DISABLED)
-
-        self.root.mainloop()
-
-
-    def annotate(self):
-        '''NEEDS DOCUMENTATION'''
-        if self.current == 'source_text':
-            self.annotation_text.config(state=NORMAL)
-
-            source_index=self.source_text.index('current')
-            self.annotation_text.mark_set(INSERT, source_index)
-            self.annotation_text.focus_set()
-
-            current_text=self.annotation_text.get('insert linestart', 'insert lineend+1c')
-
-            if current_text == '\n':
-                current_text=''
-
-            if current_text in self.folded_lines and current_text[-4:] == '...\n':
-                current_text=self.folded_lines[current_text]
-
-            AnnotationEditor(self.root, current_text, self.annotation_helper)
-
-            self.annotation_text.config(state=DISABLED)
-
-    def annotation_helper(self, text):
-        '''Calback for the AnnotationEditor dialog box.  Deletes the current
-        line and removes the reference to it in the folding dict if there is
-        one. Then it creates the new folding dict entries out of the edited
-        text and inserts them into the annotation text.'''
-
-        #the +1c is to get the newline
-        current_line=self.annotation_text.get('insert linestart', 'insert lineend+1c')
-        current_lineno=int(float(self.annotation_text.index('insert linestart')))
-
-        if current_line != '' and current_line != '\n':
-            del self.folded_lines[current_line]
-            del self.annotations[current_lineno]
-
-        self.annotation_text.delete('insert linestart', 'insert lineend+1c')
-
-        folded_line, unfolded_line = self.fold_line(text)
-
-        self.folded_lines[unfolded_line]=folded_line
-        self.folded_lines[folded_line]=unfolded_line
-
-        self.annotation_text.insert('insert', folded_line)
-        self.annotations[current_lineno]=text
-
-        self.save()
-
-        
-
 
 class EditorWindow(object):
     from Percolator import Percolator
@@ -225,6 +115,15 @@ class EditorWindow(object):
             self.top.instance_dict = {}
         self.recent_files_path = os.path.join(idleConf.GetUserCfgDir(),
                 'recent-files.lst')
+
+        button_frame = Frame(top) 
+        play_button = Button( button_frame, text='Play', command=self.play)
+        pause_button = Button( button_frame, text='Pause', command=self.pause)
+        rewind_button = Button( button_frame, text='Rewind', command=self.rewind)
+        back_button = Button( button_frame, text='Step Forward', command=self.step_forward)
+        forward_button = Button( button_frame, text='Step Back', command=self.step_back)
+        out_label = Label(top, text='stdout:', font=('sans', 12))
+
         self.text_frame = text_frame = Frame(top)
         self.vbar = vbar = Scrollbar(text_frame, name='vbar')
         self.width = idleConf.GetOption('main','EditorWindow','width')
@@ -235,7 +134,7 @@ class EditorWindow(object):
                 'padx': 5,
                 'wrap': 'none',
                 'width': self.width,
-                'height': idleConf.GetOption('main', 'EditorWindow', 'height'),
+               # 'height': idleConf.GetOption('main', 'EditorWindow', 'height'),
                 'tabstyle': 'wordprocessor'}
 
         self.annotation_text_options = annotation_text_options= {
@@ -243,7 +142,7 @@ class EditorWindow(object):
                 'padx': 5,
                 'wrap': 'none',
                 'width': self.width,
-                'height': idleConf.GetOption('main', 'EditorWindow', 'height'),
+               # 'height': idleConf.GetOption('main', 'EditorWindow', 'height'),
                 'tabstyle': 'wordprocessor'}
         if TkVersion >= 8.5:
             # Starting with tk 8.5 we have to set the new tabstyle option
@@ -251,8 +150,10 @@ class EditorWindow(object):
             # older tk versions.
             text_options['tabstyle'] = 'wordprocessor'
         
+
         self.text = text = MultiCallCreator(Text)(text_frame, **text_options)
         self.annotation_text = annotation_text = MultiCallCreator(Text)(text_frame, **annotation_text_options)
+        self.stdout = Text(top, height=7)
         self.top.focused_widget = self.text
 
         self.createmenubar()
@@ -322,12 +223,28 @@ class EditorWindow(object):
         self.set_status_bar()
         vbar['command'] = self.y_scroll
         text['yscrollcommand'] = vbar.set
-        text_frame.pack(side=LEFT, fill=BOTH, expand=1)
-        text.pack(side=LEFT, fill=BOTH, expand=1)
-        annotation_text.pack(side=LEFT, fill=BOTH, expand=1)
+
+        for widget in (button_frame, text_frame, out_label, self.stdout):
+            widget.pack(side=TOP, expand=1, fill=BOTH)
+
+        self.text.pack(side=LEFT, expand=1, fill=BOTH)
+        self.annotation_text.pack(side=LEFT, expand=1, fill=BOTH)
+
+        for button in (play_button, pause_button, rewind_button, back_button, forward_button):
+            button.pack(side=LEFT)
+
         vbar.pack(side=RIGHT, fill=Y)
         text.focus_set()
         self.current='source_text'
+
+        self.stdout.config(state=DISABLED)
+
+        self.current_line=0
+        self.paused=False
+        self.finished=False
+
+        #in seconds
+        self.step_rate=1
 
         fontWeight = 'normal'
         # configuration of tabs v. spaces is not supported in the configuration
@@ -406,6 +323,91 @@ class EditorWindow(object):
         self.askyesno = tkMessageBox.askyesno
         self.askinteger = tkSimpleDialog.askinteger
         self.showerror = tkMessageBox.showerror
+
+    def stdout_insert(self, text):
+        self.stdout.config(state=NORMAL)
+        self.stdout.insert(END, text)
+        self.stdout.see(END)
+        self.stdout.config(state=DISABLED)
+
+    def stdout_clear(self):
+        self.stdout.config(state=NORMAL)
+        self.stdout.delete('1.0', 'end')
+        self.stdout.config(state=DISABLED)
+
+    def highlight_line(self, lineno):
+        self.text.config(state=NORMAL)
+        self.clear_highlighting()
+        self.text.tag_add('highlight', '%s.0' % lineno, '%s.end' % lineno)
+        self.text.tag_configure('highlight', background='yellow')
+        self.text.see('highlight.first')
+        self.text.config(state=DISABLED)
+
+    def clear_highlighting(self):
+        self.text.config(state=NORMAL)
+        self.text.tag_remove('highlight', '1.0', 'end')
+        self.text.config(state=DISABLED)
+
+    def play(self):
+        if not self.paused and not self.finished:
+            self.step_forward()
+            self.text.after(int(self.step_rate * 1000), self.play)
+
+    def pause(self):
+        self.paused=not self.paused 
+        if not self.paused:
+            self.play()
+
+    def step_forward(self):
+        '''Moves to the next trace dictionary and inserts the data it contains,
+        advancing the highlighting as appropriate.'''
+
+        if not self.finished:
+            step = self.trace[self.current_line]
+            self.highlight_line(step['line']+1)
+            if 'stdout' in step:
+                self.stdout_insert(step['stdout'])
+            self.current_line+=1
+
+        if self.current_line == len(self.trace) - 1:
+            self.clear_highlighting()
+            self.finished=True
+
+    def step_back(self):
+        if self.current_line <= 0:
+            self.rewind()
+
+        else:
+            step = self.trace[self.current_line]
+
+            #remove the last thing printed to stdout
+            if 'stdout' in step:
+                self.stdout.config(state=NORMAL)
+                self.stdout.delete('1.0', 'end+1c')
+                for previous in range(self.current_line):
+                    prev_step=self.trace[previous]
+                    if 'stdout' in prev_step:
+                        self.stdout.insert('insert', prev_step['stdout'])
+
+                self.stdout.config(state=DISABLED)
+
+            if self.finished:
+                self.finished = False
+                
+            self.current_line -= 1
+            step = self.trace[self.current_line]
+            self.highlight_line(step['line']+1)
+
+    def rewind(self):
+        '''Sets all parameters back to their original states (including
+        unpausing)'''
+
+        self.clear_highlighting()
+        self.stdout_clear()
+        self.current_line=0
+        self.finished=False
+        self.paused=False
+        self.text.see('1.0')
 
     def source_entry(self, event):
         self.current='source_text'

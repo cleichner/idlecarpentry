@@ -14,6 +14,7 @@ import tempfile
 import tkFileDialog
 import tkMessageBox
 import re
+import json
 from Tkinter import *
 from SimpleDialog import SimpleDialog
 from OrderedDict import OrderedDict
@@ -273,6 +274,11 @@ class IOBinding:
         for lineno in self.editwin.source:
             self.editwin.text.insert(INSERT, self.editwin.source[lineno])
             self.editwin.annotation_text.insert(INSERT, self.editwin.folded_lines[self.editwin.annotations[lineno]])
+            
+        name=filename.split('.')[0]
+        with open(name+'.json', 'r') as f:
+            raw_trace=json.load(f)
+        self.editwin.trace=raw_trace['trace']
 
         self.reset_undo()
         self.set_filename(filename)
