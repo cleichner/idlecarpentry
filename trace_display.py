@@ -1,6 +1,5 @@
 from Tkinter import *
 import json
-import time
 import sys
 
 class TraceApp(object):
@@ -41,7 +40,7 @@ class TraceApp(object):
         self.finished=False
 
         #in seconds
-        self.step_rate=0.6
+        self.step_rate=1
         
         root.mainloop()
 
