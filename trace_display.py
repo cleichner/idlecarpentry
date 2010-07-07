@@ -63,7 +63,7 @@ class TraceApp(object):
         self.finished=False
 
         #in seconds
-        self.step_rate=1
+        self.step_rate=1.5
         
         root.mainloop()
 
@@ -128,12 +128,18 @@ class TraceApp(object):
             self.clear('annotation')
             if 'annotation' in step:
                 self.insert('annotation', step['annotation'])
+
             if 'globals' in step:
                 self.clear('globals')
-                self.insert('globals', step['globals'])
+                glbs=step['globals'] 
+                for entry in glbs:
+                    self.insert('globals', "%s = %s\n" % (str(entry), str(glbs[entry])))
+
             if 'locals' in step:
                 self.clear('locals')
-                self.insert('locals', step['locals'])
+                lcls=step['locals'] 
+                for entry in lcls:
+                    self.insert('locals', "%s = %s\n" % (str(entry), str(lcls[entry])))
 
             self.current_line+=1
 
@@ -146,7 +152,11 @@ class TraceApp(object):
             self.rewind()
 
         else:
-            step = self.trace[self.current_line]
+            try:
+                step = self.trace[self.current_line]
+            except IndexError:
+                step = self.trace[len(self.trace)-1]
+                
             prev_step = self.trace[self.current_line-1]
 
             #remove the last thing printed to stdout
@@ -179,9 +189,14 @@ class TraceApp(object):
             if 'annotation' in prev_step:
                 self.insert('annotation', prev_step['annotation'])
             if 'globals' in prev_step:
-                self.insert('globals', prev_step['globals'])
+                glbs=prev_step['globals'] 
+                for entry in glbs:
+                    self.insert('globals', "%s = %s\n" % (str(entry), str(glbs[entry])))
             if 'locals' in prev_step:
-                self.insert('locals', prev_step['locals'])
+                self.clear('locals')
+                lcls=prev_step['locals'] 
+                for entry in lcls:
+                    self.insert('locals', "%s = %s\n" % (str(entry), str(lcls[entry])))
 
             if self.finished:
                 self.finished = False
