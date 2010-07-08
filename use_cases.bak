@@ -1,0 +1,18 @@
+You are making online tutorials to teach software concepts, and would like a
+way for you students to get the same experience as they would sitting down with
+a teacher.  Open the file "example1.py" and annotate it with explanatory
+comments for your students.
+
+You are a student who is learning to program from online tutorials and have
+downloaded the file "example2.jtr" as a suppliment to one of the tutorials.
+Using this program, open the file and as it executes, describe what the program
+is doing.
+
+You have a previously existing file, which has been annotated for use in
+teaching and you wish to change it to correct an error. Edit the program and
+its annotations to correct your error. Then, generate a new trace file which
+you can distribute to your students. Run the trace to verify its correctness.
+
+You are a teacher who has received a trace file from one of your collegues.
+When you run it, you notice a spelling error in an annotation.  Open the trace
+in your favorite text editor and correct the error in the trace.

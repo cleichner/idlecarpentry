@@ -73,8 +73,7 @@ class TraceApp(object):
     def insert(self, target, text):
         getattr(self, target).config(state=NORMAL)
         getattr(self, target).insert(END, text)
-        if target not in ('globals', 'locals'):
-            getattr(self, target).see(END)
+        getattr(self, target).see(END)
         getattr(self, target).config(state=DISABLED)
 
     def clear(self, target):
@@ -198,6 +197,7 @@ class TraceApp(object):
                 lcls=prev_step['locals'] 
                 for entry in lcls:
                     self.insert('locals', "%s = %s\n" % (str(entry), str(lcls[entry])))
+
             if self.finished:
                 self.finished = False
                 

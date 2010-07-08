@@ -1,0 +1,13 @@
+"annotation":"This prints all global variables.\n",
+"annotation":"This defines a function, a section of code which can be run with by calling its name with arguments\n"
+"annotation":"This is a common python idiom used to have a module start running when executed alone\n",
+"annotation":"This is in preparation for errors raised by func\n",
+"annotation":"This defines a function, a section of code which can be run with by calling its name with arguments\n",
+"annotation":"This is an exception, it helps separate errors from standard execution\n"
+"annotation":"This handles the errors\n"
+"annotation":"This handles the exception raised in func(x)",
+"annotation":"This constructs an empty list\n"
+"annotation":"Adding 5 to the end of the list\n"
+"annotation":"Adding 1 to the end of the list\n"
+"annotation":"Adding 2 to the end of the list\n"
+"annotation":"Printing the list\n"

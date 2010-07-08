@@ -1,0 +1,154 @@
+{
+  "source":"print 'globals:', dir() \nprint '__name__:', __name__\n\ndef func(y):\n    def inner(z): \n       return z+2 \n    print 'inner returned', inner(3) \n \n    raise NameError('asdf')\n    return y+10\n\nif __name__ == '__main__':\n\n    x = 2\n    print 'x is', x\n    x += 3\n    print 'x is now', x\n    try:\n        x = func(x)\n    except NameError as e:\n        print e\n        print 'x is now now', x\n\n    a = []\n    a.append(5)\n    a.append(1)\n    a.append(2)\n    print a\n",
+  "trace":[
+    {
+      "line":0,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}"
+    },
+    {
+      "line":0,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "stdout":"['globals:', ' ', \"['__builtins__', '__name__']\", '\\n']"
+    },
+    {
+      "line":1,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "stdout":"['__name__:', ' ', '__main__', '\\n']"
+    },
+    {
+      "line":3,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}"
+    },
+    {
+      "line":11,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}"
+    },
+    {
+      "line":13,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}"
+    },
+    {
+      "line":14,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "stdout":"['x is', ' ', '2', '\\n']"
+    },
+    {
+      "line":15,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}"
+    },
+    {
+      "line":16,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "stdout":"['x is now', ' ', '5', '\\n']"
+    },
+    {
+      "line":17,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}"
+    },
+    {
+      "line":18,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}"
+    },
+    {
+      "line":3,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}"
+    },
+    {
+      "line":4,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}"
+    },
+    {
+      "line":6,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "stdout":"['inner returned']"
+    },
+    {
+      "line":4,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}"
+    },
+    {
+      "line":5,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}"
+    },
+    {
+      "line":5,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "stdout":"[' ', '5', '\\n']"
+    },
+    {
+      "line":8,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}"
+    },
+    {
+      "line":8,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}"
+    },
+    {
+      "line":19,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}"
+    },
+    {
+      "line":20,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "stdout":"['asdf', '\\n']"
+    },
+    {
+      "line":21,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "stdout":"['x is now now', ' ', '5', '\\n']"
+    },
+    {
+      "line":23,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}"
+    },
+    {
+      "line":24,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}"
+    },
+    {
+      "line":25,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}"
+    },
+    {
+      "line":26,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}"
+    },
+    {
+      "line":27,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "stdout":"['[5, 1, 2]', '\\n']"
+    },
+    {
+      "line":27,
+      "globals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}",
+      "locals":"{'a': [5, 1, 2], 'e': NameError('asdf',), '__builtins__': \"<module '__builtin__' (built-in)>\", 'func': <function func at 0xe7c410>, 'x': 5, '__name__': '__main__'}"
+    }
+  ]
+}
