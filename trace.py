@@ -53,8 +53,9 @@ import inspect
 import token, tokenize
 
 out=sys.stderr
-def dprint(string):
-    print >>out, string
+def dprint(*args):
+    for arg in args:
+        print >>out, arg, 
 
 def logevent(frame, event, arg):
     lines, lineno = inspect.findsource(frame.f_code)
@@ -193,8 +194,8 @@ class Tracer(object):
         sys.stdout.flushLog()
         sys.stderr.flushLog()
 
-        frame_globals=frame.f_globals
-        frame_locals=frame.f_globals
+        frame_globals=dict(frame.f_globals)
+        frame_locals=dict(frame.f_globals)
 
         #this module likes to display the contents of '__builtins__', this fixes that
         if '__builtins__' in frame_globals:
@@ -202,6 +203,15 @@ class Tracer(object):
 
         if '__builtins__' in frame_locals:
             frame_locals['__builtins__'] = "<module '__builtin__' (built-in)>"
+
+        for var in frame_globals:
+            if not isinstance(var, dict):
+                frame_globals[var]=repr(frame_globals[var])
+
+        for var in frame_locals:
+            if not isinstance(var, dict):
+                frame_locals[var]=repr(frame_locals[var])
+
 
         record = dict(
             event = event,
@@ -401,8 +411,11 @@ def process_events(events):
         if evt['event'] == 'exception':
             r['exception'] =  evt['exception']['type']
             
-        for entry in ('stdout', 'stderr', 'globals', 'locals'):
-####START HERE, make anything that isn't a list, dict, or tuple a string
+        for entry in ('stdout', 'stderr'):
+            if entry in evt:
+                r[entry] = ''.join(evt[entry])
+
+        for entry in ('globals', 'locals'):
             if entry in evt:
                 r[entry] = evt[entry]
             
