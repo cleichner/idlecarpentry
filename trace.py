@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 #TODO
 #fix multiple insertions in the trace
-#have variable values be referenced
-#show globals and locals
+#add annotation parsing
 
 """
 This module traces the execution of a python script or function. The
@@ -31,26 +30,12 @@ You can also trace a particular function call instead of an entire python file
    trace = trace.process_events_json(events)
 
 """
-'''
-It's JSON and there's a string of the entire source and an array of maps, one
-for each step in the execution. The most important thing in each map is a line
-number. Some maps also have a "stdout" or a "stderr" string of the captured
-output at that step.
-
-There's no way to currently annotate the recordings. I'd like to
-modify the tracer to pull annotations from specially formatted
-comments which annotate the next line, and then strip those comments
-from the source string in the recording. Any suggestions for what
-those comments should look like? To be useful for annotating the first
-line in a loop, ie. "for item in all_items:", i think the special
-comments should at least be able to specify whether the annotation
-appears every time the line is executed or only the first time.
-'''
 
 import sys, os, optparse, time, json, pprint
 
 import inspect
 import token, tokenize
+import tempfile
 
 out=sys.stderr
 def dprint(*args):
@@ -105,6 +90,14 @@ class FrameHandler(object):
         record['g'] = dict(frame.f_globals)
         return self.on_event
 
+def clean_file(filename, marker='#>'):
+    '''Removes all annotations from a file, returning the file as a string.'''
+    clean=[]
+    for line in file(filename):
+        if not line.strip().startswith(marker):
+            clean.append(line)
+
+    return ''.join(clean)
 
 class Tracer(object):
     def __init__(self, runme):
@@ -120,8 +113,13 @@ class Tracer(object):
 
         if isinstance(runme, str):
             # runme is a python file to execute
+            clean_text = clean_file(runme)
+            clean_run = tempfile.NamedTemporaryFile(mode='wt', delete=False)
+            clean_run.write(clean_text)
+            clean_run.close()
+            
             def go():
-                execfile(runme, { '__name__' : '__main__' })
+                execfile(clean_run.name, { '__name__' : '__main__' })
             self.runme = go
             self.silent_codes.add(go.func_code)
         elif hasattr(runme, '__call__'):
@@ -205,13 +203,10 @@ class Tracer(object):
             frame_locals['__builtins__'] = "<module '__builtin__' (built-in)>"
 
         for var in frame_globals:
-            if not isinstance(var, dict):
-                frame_globals[var]=repr(frame_globals[var])
+            frame_globals[var]=repr(frame_globals[var])
 
         for var in frame_locals:
-            if not isinstance(var, dict):
-                frame_locals[var]=repr(frame_locals[var])
-
+            frame_locals[var]=repr(frame_locals[var])
 
         record = dict(
             event = event,
@@ -419,7 +414,7 @@ def process_events(events):
             if entry in evt:
                 r[entry] = evt[entry]
             
-        #take care of the call/return multiple trace entry problem here
+        #TODO take care of the call/return multiple trace entry problem here
         result_events.append(r)
 
     return dict(source=''.join(all_lines), trace=result_events)
@@ -439,6 +434,41 @@ def foo():
     roo()
     print 'splash',x
 
+def parse_annotations(filename, marker='#>'):
+    '''This takes a file with annotations, marked at the start of the line by a
+    marker, and creates dictionary mapping line numbers to annotations, as if
+    the file had no annotations.'''
+    
+    f=open(filename, 'r')
+    annotations = {} #maps line numbers to annotations
+    lineno = -1 #the traces are indexed from 0, I would like this to change
+
+    #This is a DIY for loop so I can advance as I please through the input file
+    try:
+        while True:
+            current_line=f.next()
+            lineno+=1
+
+            if current_line.strip().startswith(marker):
+                try:
+                    next_line=f.next() 
+                except StopIteration:
+                    #Annotation is at the end of a file, maybe should just print a warning and ignore the line
+                    raise SyntaxError, "LINE %d: Annotations must be before at least one source line." % (len(silent_file)+len(annotations)+1) 
+
+                #comments and blank lines
+                while next_line.strip().startswith('#') or not next_line.strip():
+                    #needs to handle multiple consecutive annotations? right now the last one overwrites any before it
+                    next_line=f.next()
+                    lineno+=1
+
+                annotations[lineno]=current_line.strip()[2:].strip()
+
+    except StopIteration:
+        f.close()
+
+    return annotations
+
 def main():
     #print 'ismod', inspect.ismodule(inspect)
     #print inspect.getsource(inspect)
@@ -456,7 +486,16 @@ def main():
     runner = Tracer(options.filename)
 #    runner = Tracer(foo)
     result, events = runner.trace()
-    print process_events_json(events)
+    trace=process_events(events)
+    annotations=parse_annotations(options.filename)
+
+    for entry in trace['trace']:
+        lineno=entry['line']
+        if lineno in annotations:
+            entry['annotation']=annotations[lineno]
+
+    print json.dumps(trace, separators=(',',':'), indent=2)
+    return json.dumps(trace, separators=(',',':'), indent=2)
 
 if __name__ == '__main__':
     main()

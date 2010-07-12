@@ -1,32 +1,28 @@
+#>This line is the canonical first program in any language
+#I just had to do it
 print "Hello, World!"
 
+#>This is the first line of a loop
 for y in range(4):
     print 2*y,
 
+#> This is just a linebreak
 print '\n'
 
+#> Annotating a function
+def un():
+#> Annotating a block quote
+    '''This is a lisp tribute '''
+    return lambda x: 2*x
+
+#>Lists are easier than arrays
+#this is a list, I like lists
 z=[1, 2, 3, 4, 5]
+#FOR LOOP!
 for i in z:
     print i
 
+#This tests the bugs in my first step back functions
 for j in range(5):
+#>Bugs suck
     print 4,
-
-
-
-
-
-
-
-
-
-
-'''ANNOTATIONS
-1:This prints "Hello, World!"
-3:This loops through the range of values from 0 to 4 and prints twice the current value
-4:The comma at the end of the print statement suppresses newlines
-6:This prints and "newline" or line break to separate the previous printing.
-8:This defines a list which is referenced by the name z
-9:This iterate through all values in list z
-12:This tests my step back implementation by triggering a bug that was in it
-'''
