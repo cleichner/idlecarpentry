@@ -38,8 +38,6 @@ import RemoteDebugger
 
 IDENTCHARS = string.ascii_letters + string.digits + "_"
 LOCALHOST = '127.0.0.1'
-use_subprocess = False #so it runs for testing with test() in PySplitShell.py
-#False now because I was running into issues with multiple processes I didn't want to focus on
 
 try:
     from signal import SIGTERM
@@ -112,7 +110,6 @@ class PyShellEditorWindow(EditorWindow):
         self.text.bind("<<set-breakpoint-here>>", self.set_breakpoint_here)
         self.text.bind("<<clear-breakpoint-here>>", self.clear_breakpoint_here)
         self.text.bind("<<open-python-shell>>", self.flist.open_shell)
-        self.annotation_text.bind("<<fold-unfold>>", self.folder)
 
         self.breakpointPath = os.path.join(idleConf.GetUserCfgDir(),
                                            'breakpoints.lst')
@@ -124,26 +121,8 @@ class PyShellEditorWindow(EditorWindow):
             old_hook()
         self.io.set_filename_change_hook(filename_changed_hook)
 
-    rmenu_specs = [("Fold/Unfold", "<<fold-unfold>>"),
-                   ("Set Breakpoint", "<<set-breakpoint-here>>"),
+    rmenu_specs = [("Set Breakpoint", "<<set-breakpoint-here>>"),
                    ("Clear Breakpoint", "<<clear-breakpoint-here>>")]
-
-    def folder(self, event=None):
-        '''Replaces the current line with the contents of the folding dict if
-        there is an entry for it; otherwise, it does nothing.'''
-        
-        if self.current == 'annotation_text' :
-            #the +1c is to get the newline
-            current_line=self.annotation_text.get('current linestart', 'current lineend+1c')
-            self.annotation_text.delete('current linestart', 'current lineend+1c')
-
-            try:
-                self.annotation_text.insert('current', self.folded_lines[current_line])
-            except KeyError:
-                folded_line, unfolded_line= self.io.fold_line(current_line)
-                self.folded_lines[folded_line] = unfolded_line
-                self.folded_lines[unfolded_line] = folded_line
-                self.annotation_text.insert('current', self.folded_lines[current_line])
 
     def set_breakpoint(self, lineno):
         text = self.text
@@ -261,7 +240,6 @@ class PyShellEditorWindow(EditorWindow):
         linenumber_list = self.ranges_to_linenumbers(ranges)
         self.breakpoints = linenumber_list
 
-#BROKEN this raises an exception when it is run
     def ranges_to_linenumbers(self, ranges):
         lines = []
         for index in range(0, len(ranges), 2):
@@ -828,7 +806,6 @@ class PyShell(OutputWindow):
     from IdleHistory import History
 
     def __init__(self, flist=None):
-        
         if use_subprocess:
             ms = self.menu_specs
             if ms[2][0] != "shell":
@@ -849,7 +826,7 @@ class PyShell(OutputWindow):
         self.context_use_ps1 = True
         #
         text = self.text
-        text.configure(wrap="none")
+        text.configure(wrap="char")
         text.bind("<<newline-and-indent>>", self.enter_callback)
         text.bind("<<plain-newline-and-indent>>", self.linefeed_callback)
         text.bind("<<interrupt-execution>>", self.cancel_callback)
@@ -1333,24 +1310,61 @@ def main():
     global flist, root, use_subprocess
 
     use_subprocess = True
-    enable_shell = False 
-    enable_edit = True 
+    enable_shell = False
+    enable_edit = False
     debug = False
     cmd = None
     script = None
     startup = False
-
     try:
         opts, args = getopt.getopt(sys.argv[1:], "c:deihnr:st:")
     except getopt.error, msg:
         sys.stderr.write("Error: %s\n" % str(msg))
         sys.stderr.write(usage_msg)
         sys.exit(2)
-
+    for o, a in opts:
+        if o == '-c':
+            cmd = a
+            enable_shell = True
+        if o == '-d':
+            debug = True
+            enable_shell = True
+        if o == '-e':
+            enable_edit = True
+        if o == '-h':
+            sys.stdout.write(usage_msg)
+            sys.exit()
+        if o == '-i':
+            enable_shell = True
+        if o == '-n':
+            use_subprocess = False
+        if o == '-r':
+            script = a
+            if os.path.isfile(script):
+                pass
+            else:
+                print "No script file: ", script
+                sys.exit()
+            enable_shell = True
+        if o == '-s':
+            startup = True
+            enable_shell = True
+        if o == '-t':
+            PyShell.shell_title = a
+            enable_shell = True
+    if args and args[0] == '-':
+        cmd = sys.stdin.read()
+        enable_shell = True
+    # process sys.argv and sys.path:
     for i in range(len(sys.path)):
         sys.path[i] = os.path.abspath(sys.path[i])
-
-    if args:
+    if args and args[0] == '-':
+        sys.argv = [''] + args[1:]
+    elif cmd:
+        sys.argv = ['-c'] + args
+    elif script:
+        sys.argv = [script] + args
+    elif args:
         enable_edit = True
         pathx = []
         for filename in args:
@@ -1374,12 +1388,46 @@ def main():
     fixwordbreaks(root)
     root.withdraw()
     flist = PyShellFileList(root)
+    macosxSupport.setupApp(root, flist)
 
-    if not (cmd or script):
-        for filename in args:
-            flist.open(filename)
-        if not args:
-            flist.new()
+    if enable_edit:
+        if not (cmd or script):
+            for filename in args:
+                flist.open(filename)
+            if not args:
+                flist.new()
+    if enable_shell:
+        shell = flist.open_shell()
+        if not shell:
+            return # couldn't open shell
+
+        if macosxSupport.runningAsOSXApp() and flist.dict:
+            # On OSX: when the user has double-clicked on a file that causes
+            # IDLE to be launched the shell window will open just in front of
+            # the file she wants to see. Lower the interpreter window when
+            # there are open files.
+            shell.top.lower()
+
+    shell = flist.pyshell
+    # handle remaining options:
+    if debug:
+        shell.open_debugger()
+    if startup:
+        filename = os.environ.get("IDLESTARTUP") or \
+                   os.environ.get("PYTHONSTARTUP")
+        if filename and os.path.isfile(filename):
+            shell.interp.execfile(filename)
+    if shell and cmd or script:
+        shell.interp.runcommand("""if 1:
+            import sys as _sys
+            _sys.argv = %r
+            del _sys
+            \n""" % (sys.argv,))
+        if cmd:
+            shell.interp.execsource(cmd)
+        elif script:
+            shell.interp.prepend_syspath(script)
+            shell.interp.execfile(script)
 
     root.mainloop()
     root.destroy()

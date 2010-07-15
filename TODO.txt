@@ -14,11 +14,10 @@ TO DO:
     - suppress tracing through IDLE internals (e.g. print) DONE
     - add a button to suppress through a specific module or class or method
     - more object inspection to stack viewer, e.g. to view all array items
-- insert the initial current directory into sys.path DONE
+
 - default directory attribute for each window instead of only for windows
   that have an associated filename
 - command expansion from keywords, module contents, other buffers, etc.
-- "Recent documents" menu item DONE
 - Filter region command
 - Optional horizontal scroll bar
 - more Emacsisms:
@@ -37,7 +36,6 @@ TO DO:
 - Need to define a standard way whereby one can determine one is running
   inside IDLE (needed for Tk mainloop, also handy for $PYTHONSTARTUP)
 - Add more utility methods for use by extensions (a la get_selection)
-- Way to run command in totally separate interpreter (fork+os.system?) DONE
 - Way to find definition of fully-qualified name:
   In other words, select "UserDict.UserDict", hit some magic key and
   it loads up UserDict.py and finds the first def or class for UserDict.
@@ -57,7 +55,6 @@ Details:
 - Sometimes for no apparent reason a selection from the cursor to the
   end of the command buffer appears, which is hard to get rid of
   because it stays when you are typing!
-- The Line/Col in the status bar can be wrong initially in PyShell DONE
 
 Structural problems:
 
@@ -126,10 +123,8 @@ Robin Friedrich's items:
 Things I'd like to see:
     - I'd like support for shift-click extending the selection. There's a
       bug now that it doesn't work the first time you try it.
-    - Printing is needed. How hard can that be on Windows? FIRST CUT DONE
     - The python-mode trick of autoindenting a line with <tab> is neat and
       very handy.
-    - (someday) a spellchecker for docstrings and comments.
     - a pagedown/up command key which moves to next class/def statement (top
       level)
     - split window capability
@@ -181,11 +176,6 @@ escape from the command area.  (Albert Brandl)
 - Set X11 class to "idle/Idle", set icon and title to something
 beginning with "idle" -- for window manangers.  (Randall Hopper)
 
-- Config files editable through a preferences dialog.  (me) DONE
-
-- Config files still editable outside the preferences dialog.
-(Randall Hopper) DONE
-
 - When you're editing a command in PyShell, and there are only blank
 lines below the cursor, hitting Return should ignore or delete those
 blank lines rather than deciding you're not on the last line.  (me)
@@ -194,17 +184,5 @@ blank lines rather than deciding you're not on the last line.  (me)
 dialog with options to give command line arguments, run the debugger,
 etc.  (me)
 
-- Shouldn't be able to delete part of the prompt (or any text before
-it) in the PyShell.  (Martijn Faassen)   DONE
-
 - Emacs style auto-fill (also smart about comments and strings).
 (Jeremy Hylton)
-
-- Output of Run Script should go to a separate output window, not to
-the shell window.  Output of separate runs should all go to the same
-window but clearly delimited.  (David Scherer) REJECT FIRST, LATTER DONE
-
-- GUI form designer to kick VB's butt.  (Robert Geiger) THAT'S NOT IDLE
-
-- Printing!  Possibly via generation of PDF files which the user must
-then send to the printer separately.  (Dinu Gherman)  FIRST CUT

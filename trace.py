@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 #TODO
 #fix multiple insertions in the trace
 #add annotation parsing
@@ -14,9 +15,7 @@ To trace a python script, either run this program from the command line
 or run trace programatically like this
 
    import trace
-   runner = trace.Tracer("trace_me.py")
-   result, events = runner.trace()
-   trace = trace.process_events_json(events)
+   trace = trace.trace("trace_me.py")
 
 You can also trace a particular function call instead of an entire python file
 
@@ -31,20 +30,26 @@ You can also trace a particular function call instead of an entire python file
 
 """
 
-import sys, os, optparse, time, json, pprint
-
+import sys
+import optparse
+import json
 import inspect
-import token, tokenize
+import token
+import tokenize
 import tempfile
+
+DEBUG = False
 
 out=sys.stderr
 def dprint(*args):
-    for arg in args:
-        print >>out, arg, 
+    if DEBUG:
+        for arg in args:
+            print >>out, arg, 
 
 def logevent(frame, event, arg):
-    lines, lineno = inspect.findsource(frame.f_code)
-    print >>sys.__stderr__, 'EVENT:', event, frame.f_lineno, lines[frame.f_lineno-1].strip()
+    if DEBUG:
+        lines, lineno = inspect.findsource(frame.f_code)
+        print >>sys.__stderr__, 'EVENT:', event, frame.f_lineno, lines[frame.f_lineno-1].strip()
 
 class Logger(object):
     """Proxies stdout or stderr to capture the output of traced
@@ -70,10 +75,7 @@ class FrameHandler(object):
         self.depth = depth
         
         # log initial call event
-        record = tracer.log_event('call', frame, None, depth)
-        self.locals = dict(frame.f_locals)
-        record['d'] = self.locals
-        record['g'] = dict(frame.f_globals)
+        tracer.log_event('call', frame, None, depth)
 
     def on_event(self, frame, event, arg):
         """Trace function"""
@@ -82,22 +84,9 @@ class FrameHandler(object):
         if event == 'return':
             self.tracer.current_depth -= 1
 
-        record = self.tracer.log_event(event, frame, arg, self.depth)
+        self.tracer.log_event(event, frame, arg, self.depth)
         
-        newlocals = dict(frame.f_locals)
-        self.locals = newlocals
-        record['d'] = newlocals
-        record['g'] = dict(frame.f_globals)
         return self.on_event
-
-def clean_file(filename, marker='#>'):
-    '''Removes all annotations from a file, returning the file as a string.'''
-    clean=[]
-    for line in file(filename):
-        if not line.strip().startswith(marker):
-            clean.append(line)
-
-    return ''.join(clean)
 
 class Tracer(object):
     def __init__(self, runme):
@@ -113,20 +102,14 @@ class Tracer(object):
 
         if isinstance(runme, str):
             # runme is a python file to execute
-            clean_text = clean_file(runme)
-            clean_run = tempfile.NamedTemporaryFile(mode='wt', delete=False)
-            clean_run.write(clean_text)
-            clean_run.close()
-            
             def go():
-                execfile(clean_run.name, { '__name__' : '__main__' })
+                execfile(runme, { '__name__' : '__main__' })
             self.runme = go
             self.silent_codes.add(go.func_code)
         elif hasattr(runme, '__call__'):
             self.runme = runme
         else:
             raise TypeError, 'Object to trace must be callable or be the name of a python file to execute.'
-
 
     def trace(self, *args, **keywords):
         """Execute and trace the runme object passed to the
@@ -182,8 +165,6 @@ class Tracer(object):
             handler = FrameHandler(self, frame, self.current_depth)
             self.current_depth += 1
             return handler.on_event
-
-
 
     def log_event(self, event, frame, arg, depth):
         """Record a trace event"""
@@ -371,19 +352,18 @@ def assemble_source(events):
 
 
     #remove whitespace lines from start and end
-    first = 0
-    while first < len(all_lines) and all_lines[first].isspace():
-        first += 1
+    removed=0
+    while all_lines[0].isspace():
+        del all_lines[0]
+        removed += 1
 
-    last = len(all_lines) - 1
-    while last >= 0 and all_lines[last].isspace():
-        last -= 1
-
-    all_lines = all_lines[first:last+1]
+    while all_lines[-1].isspace():
+        del all_lines[-1]
+    
     # adjust offsets for removed lines
-    if first:
+    if removed:
         for code in line_offsets:
-            line_offsets[code] -= first
+            line_offsets[code] -= removed
 
     return all_lines, line_offsets
 
@@ -425,14 +405,14 @@ def process_events_json(events):
     trace=process_events(events)
     return json.dumps(trace, separators=(',',':'), indent=2)
 
-def roo():
-    return 2
+def clean_file(filename, marker='#>'):
+    '''Removes all annotations from a file, returning the file as a string.'''
+    clean=[]
+    for line in file(filename):
+        if not line.strip().startswith(marker):
+            clean.append(line)
 
-def foo():
-    x = 3
-    x += 2
-    roo()
-    print 'splash',x
+    return ''.join(clean)
 
 def parse_annotations(filename, marker='#>'):
     '''This takes a file with annotations, marked at the start of the line by a
@@ -453,12 +433,17 @@ def parse_annotations(filename, marker='#>'):
                 try:
                     next_line=f.next() 
                 except StopIteration:
-                    #Annotation is at the end of a file, maybe should just print a warning and ignore the line
-                    raise SyntaxError, "LINE %d: Annotations must be before at least one source line." % (len(silent_file)+len(annotations)+1) 
+                    #Annotation is at the end of a file, 
+                    #maybe should just print a warning and ignore the line
+                    raise SyntaxError, \
+                          "LINE %d: Annotations must be before at least one source line." \
+                          % (len(silent_file)+len(annotations)+1) 
 
                 #comments and blank lines
-                while next_line.strip().startswith('#') or not next_line.strip():
-                    #needs to handle multiple consecutive annotations? right now the last one overwrites any before it
+                while next_line.strip().startswith('#') \
+                      or not next_line.strip():
+                    #needs to handle multiple consecutive annotations? 
+                    #right now the last one overwrites any before it
                     next_line=f.next()
                     lineno+=1
 
@@ -469,6 +454,43 @@ def parse_annotations(filename, marker='#>'):
 
     return annotations
 
+def trace(filename, pprint=False):
+    '''Takes a filename and returns a complete trace, if pprint is True, the
+    returned trace will be pretty printed.'''
+
+    #This function works as a series of filters, each one modifying the text
+    #and passing it on to the next stage
+
+    #strips annoations from the file
+    clean_text = clean_file(filename)
+    runme_clean = tempfile.NamedTemporaryFile(mode='wt', delete=False)
+    runme_clean.write(clean_text)
+    runme_clean.close()
+
+    #traces file execution 
+    runner = Tracer(runme_clean.name)
+    result, events = runner.trace()
+    trace = process_events(events)
+    
+    #attaches annotations to the trace
+    annotations = parse_annotations(filename)
+
+    for entry in trace['trace']:
+        lineno=entry['line']
+        if lineno in annotations:
+            entry['annotation']=annotations[lineno]
+
+    if pprint:
+        return json.dumps(trace, indent=2)
+    else:
+        return json.dumps(trace, separators=(',',':'))
+
+def foo():
+    x = 3
+    x += 2
+    roo()
+    print 'splash',x
+
 def main():
     #print 'ismod', inspect.ismodule(inspect)
     #print inspect.getsource(inspect)
@@ -477,25 +499,20 @@ def main():
     parser.add_option('-f', '--filename', dest='filename', metavar='FILE',
                       help = 'Python file to run',
                       )
+
+    parser.add_option('-p', '--pprint', action='store_true',
+                      help = 'Pretty prints the JSON ouput',
+                      )
+
     options,args = parser.parse_args()
 
-    if options.filename is None:
+    if not options.filename:
         parser.print_help()
         sys.exit(2)
 
-    runner = Tracer(options.filename)
 #    runner = Tracer(foo)
-    result, events = runner.trace()
-    trace=process_events(events)
-    annotations=parse_annotations(options.filename)
-
-    for entry in trace['trace']:
-        lineno=entry['line']
-        if lineno in annotations:
-            entry['annotation']=annotations[lineno]
-
-    print json.dumps(trace, separators=(',',':'), indent=2)
-    return json.dumps(trace, separators=(',',':'), indent=2)
+#can't handle callable objects right now
+    print trace(options.filename, pprint=options.pprint)
 
 if __name__ == '__main__':
     main()

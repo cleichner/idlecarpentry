@@ -1,6 +1,8 @@
 import os
 from Tkinter import *
 import tkMessageBox
+import TraceDisplayWindow
+
 
 class FileList:
 

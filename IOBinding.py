@@ -5,19 +5,17 @@
 #     end-of-line conventions, instead of relying on the standard library,
 #     which will only understand the local convention.
 
-from __future__  import print_function
+import re
 import os
-import types
 import sys
+import json
+import types
 import codecs
 import tempfile
 import tkFileDialog
 import tkMessageBox
-import re
-import json
 from Tkinter import *
 from SimpleDialog import SimpleDialog
-from OrderedDict import OrderedDict
 
 from configHandler import idleConf
 
@@ -263,97 +261,32 @@ class IOBinding:
                 self.eol_convention = self.eol_convention.encode("ascii")
             chars = self.eol_re.sub(r"\n", chars)
 
-        ##Make a note of these additions in EditorWindow
-        self.editwin.source, self.editwin.annotations=self.parse_source(filename)
-        self.editwin.fold_length=40
-        self.editwin.folded_lines=self.fold_annotations()
+        if os.path.splitext(filename)[1] == '.py':
+            self.text.delete("1.0", "end")
+            self.set_filename(None)
+            self.text.insert("1.0", chars)
+            self.set_filename(filename)
+            self.text.mark_set("insert", "1.0")
+            self.text.see("insert")
+            self.updaterecentfileslist(filename)
+            return True
 
-        self.text.delete("1.0", "end")
-        self.set_filename(None)
+        elif os.path.splitext(filename)[1] == '.json':
+            raw_trace=json.loads(chars)
+            self.editwin.trace=raw_trace['trace']
 
-        for lineno in self.editwin.source:
-            self.editwin.text.insert(INSERT, self.editwin.source[lineno])
-            self.editwin.annotation_text.insert(INSERT, self.editwin.folded_lines[self.editwin.annotations[lineno]])
-            
-        name=filename.split('.')[0]
-        with open(name+'.json', 'r') as f:
-            raw_trace=json.load(f)
-        self.editwin.trace=raw_trace['trace']
+            self.text.config(state=NORMAL)
+            self.text.delete("1.0", "end")
+            self.set_filename(None)
+            self.text.insert("1.0", raw_trace['source'])
 
-        self.reset_undo()
-        self.set_filename(filename)
-#these make weird things happen
-        #self.text.mark_set("insert", "1.0")
-        #self.text.see("insert")
-        self.updaterecentfileslist(filename)
-        return True
+            self.set_filename(filename)
+            self.text.mark_set("insert", "1.0")
+            self.text.see("insert")
+            self.updaterecentfileslist(filename)
+            self.text.config(state=DISABLED)
+            return True
 
-    def fold_annotations(self):
-        '''Takes self.annotations and creates an dictionary mapping folded
-        lines to unfolded lines and vice versa, where a folded line is a line
-        truncated to the folding length with "..." appended to the end.'''
-
-        folded_lines={}
-        for line in self.editwin.annotations.values():
-
-            folded_line, unfolded_line = self.fold_line(line)
-
-            folded_lines[unfolded_line]=folded_line
-            folded_lines[folded_line]=unfolded_line
-
-        return folded_lines 
-
-    def fold_line(self, line):
-        '''Takes a line and returns a tuple containing the folded and the
-        unfolded version of the line.'''
-        fold_length=self.editwin.fold_length
-
-        folded_line=line[:fold_length]
-
-        if folded_line[-1:] != '\n':
-            folded_line=folded_line[:-1]+'...\n'
-
-        elif len(folded_line) != 1 and len(folded_line) >= fold_length:
-            folded_line+='...\n'
-        
-        if line[-1:] != '\n':
-            unfolded_line=line+'\n'
-        else:
-            unfolded_line=line
-        
-        return folded_line, unfolded_line
-
-    def parse_source(self, filename):
-        '''This takes a source file with annotations in it and returns two
-        ordered dictionaries: the first maps (int) line numbers to the source
-        lines, the second maps line numbers to annotation lines. If there is no
-        annotation for a line, it is mapped as 'lineno':'\n'. By changing this
-        function, you can change the file format.'''
-
-        source=OrderedDict()
-        annotations=OrderedDict()
-        in_annotations=False
-        i=1
-
-        for line in open(filename):
-            if line == "'''ANNOTATIONS\n":
-                in_annotations=True
-            elif in_annotations:
-                if line == "'''\n":
-                    pass
-                else:
-                    parsed_anno=line.split(':')
-                    annotations[int(parsed_anno[0])]=parsed_anno[1]
-            else:
-                source[i]=line
-                i += 1
-
-        for lineno in source:
-            if lineno not in annotations:
-               annotations[lineno]='\n'
-
-        return source, annotations
-        
     def decode(self, chars):
         """Create a Unicode string
 
@@ -411,9 +344,10 @@ class IOBinding:
             type=tkMessageBox.YESNOCANCEL,
             master=self.text)
         reply = m.show()
-        if str(reply) == "yes":
+        if reply == "yes":
             self.save(None)
-            reply = "cancel"
+            if not self.get_saved():
+                reply = "cancel"
         self.text.focus_set()
         return reply
 
@@ -453,9 +387,6 @@ class IOBinding:
         return "break"
 
     def writefile(self, filename):
-        '''This takes the contents of the source pane and writes them to file,
-        followed by the annotations from the annotation pane (enclosed in an
-        special block comment.'''
         self.fixlastline()
         chars = self.encode(self.text.get("1.0", "end-1c"))
         if self.eol_convention != "\n":
@@ -464,22 +395,8 @@ class IOBinding:
             f = open(filename, "wb")
             f.write(chars)
             f.flush()
-
-            print("'''ANNOTATIONS", file=f)
-            i=1
-            annotations=self.editwin.annotation_text.get('1.0', END)
-            for line in annotations.split('\n'): 
-                if line:
-                    if line[-3:] == '...':
-                        print("%d:%s" % (i, self.editwin.folded_lines[line+'\n']), end='', file=f)
-                    else:
-                        print("%d:%s" % (i, line+'\n'), end='', file=f)
-                i+=1
- 
-            print("'''", file=f)
             f.close()
             return True
-
         except IOError, msg:
             tkMessageBox.showerror("I/O Error", str(msg),
                                    master=self.text)
@@ -665,19 +582,13 @@ class IOBinding:
 def test():
     root = Tk()
     class MyEditWin:
-        def __init__(self, root):
-            self.text = Text(root)
-            self.annotation_text = Text(root)
-            self.text.pack(side=LEFT)
-            self.annotation_text.pack(side=LEFT)
-            self.text.focus_set()
+        def __init__(self, text):
+            self.text = text
             self.flist = None
             self.text.bind("<Control-o>", self.open)
             self.text.bind("<Control-s>", self.save)
             self.text.bind("<Alt-s>", self.save_as)
             self.text.bind("<Alt-z>", self.save_a_copy)
-
-        def update_recent_files_list(self, filename): pass
         def get_saved(self): return 0
         def set_saved(self, flag): pass
         def reset_undo(self): pass
@@ -689,8 +600,10 @@ def test():
             self.text.event_generate("<<save-window-as-file>>")
         def save_a_copy(self, event):
             self.text.event_generate("<<save-copy-of-window-as-file>>")
-
-    editwin = MyEditWin(root)
+    text = Text(root)
+    text.pack()
+    text.focus_set()
+    editwin = MyEditWin(text)
     io = IOBinding(editwin)
     root.mainloop()
 

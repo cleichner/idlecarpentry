@@ -1,4 +1,3 @@
-from __future__ import print_function
 import sys
 import os
 import re
@@ -8,7 +7,7 @@ from Tkinter import *
 import tkSimpleDialog
 import tkMessageBox
 from MultiCall import MultiCallCreator
-from OrderedDict import OrderedDict
+from TraceDisplayWindow import TraceDisplayWindow
 
 import webbrowser
 import idlever
@@ -20,6 +19,7 @@ import PyParse
 from configHandler import idleConf
 import aboutDialog, textView, configDialog
 import macosxSupport
+import trace
 
 # The default tab setting for a Text widget, in average-width characters.
 TK_TABWIDTH_DEFAULT = 8
@@ -100,14 +100,11 @@ class EditorWindow(object):
         except AttributeError:
             sys.ps1 = '>>> '
         self.menubar = Menu(root)
-
-        #makes new window
         self.top = top = WindowList.ListedToplevel(root, menu=self.menubar)
-
         if flist:
             self.tkinter_vars = flist.vars
             #self.top.instance_dict makes flist.inversedict avalable to
-#configDialog.py so it can access all EditorWindow instaces
+            #configDialog.py so it can access all EditorWindow instaces
             self.top.instance_dict = flist.inversedict
         else:
             self.tkinter_vars = {}  # keys: Tkinter event names
@@ -115,45 +112,21 @@ class EditorWindow(object):
             self.top.instance_dict = {}
         self.recent_files_path = os.path.join(idleConf.GetUserCfgDir(),
                 'recent-files.lst')
-
-        button_frame = Frame(top) 
-        play_button = Button( button_frame, text='Play', command=self.play)
-        pause_button = Button( button_frame, text='Pause', command=self.pause)
-        rewind_button = Button( button_frame, text='Rewind', command=self.rewind)
-        back_button = Button( button_frame, text='Step Forward', command=self.step_forward)
-        forward_button = Button( button_frame, text='Step Back', command=self.step_back)
-        out_label = Label(top, text='stdout:', font=('sans', 12))
-
         self.text_frame = text_frame = Frame(top)
         self.vbar = vbar = Scrollbar(text_frame, name='vbar')
         self.width = idleConf.GetOption('main','EditorWindow','width')
-        
-        #self.text_options = text_options = {}
-        self.text_options = text_options = {
+        text_options = {
                 'name': 'text',
                 'padx': 5,
                 'wrap': 'none',
                 'width': self.width,
-               # 'height': idleConf.GetOption('main', 'EditorWindow', 'height'),
-                'tabstyle': 'wordprocessor'}
-
-        self.annotation_text_options = annotation_text_options= {
-                'name': 'annotation_text',
-                'padx': 5,
-                'wrap': 'none',
-                'width': self.width,
-               # 'height': idleConf.GetOption('main', 'EditorWindow', 'height'),
-                'tabstyle': 'wordprocessor'}
+                'height': idleConf.GetOption('main', 'EditorWindow', 'height')}
         if TkVersion >= 8.5:
             # Starting with tk 8.5 we have to set the new tabstyle option
             # to 'wordprocessor' to achieve the same display of tabs as in
             # older tk versions.
             text_options['tabstyle'] = 'wordprocessor'
-        
-
         self.text = text = MultiCallCreator(Text)(text_frame, **text_options)
-        self.annotation_text = annotation_text = MultiCallCreator(Text)(text_frame, **annotation_text_options)
-        self.stdout = Text(top, height=7)
         self.top.focused_widget = self.text
 
         self.createmenubar()
@@ -161,92 +134,75 @@ class EditorWindow(object):
 
         self.top.protocol("WM_DELETE_WINDOW", self.close)
         self.top.bind("<<close-window>>", self.close_event)
+        if macosxSupport.runningAsOSXApp():
+            # Command-W on editorwindows doesn't work without this.
+            text.bind('<<close-window>>', self.close_event)
+        text.bind("<<cut>>", self.cut)
+        text.bind("<<copy>>", self.copy)
+        text.bind("<<paste>>", self.paste)
+        text.bind("<<center-insert>>", self.center_insert_event)
+        text.bind("<<help>>", self.help_dialog)
+        text.bind("<<python-docs>>", self.python_docs)
+        text.bind("<<about-idle>>", self.about_dialog)
+        text.bind("<<open-config-dialog>>", self.config_dialog)
+        text.bind("<<open-module>>", self.open_module)
+        text.bind("<<do-nothing>>", lambda event: "break")
+        text.bind("<<select-all>>", self.select_all)
+        text.bind("<<remove-selection>>", self.remove_selection)
+        text.bind("<<find>>", self.find_event)
+        text.bind("<<find-again>>", self.find_again_event)
+        text.bind("<<find-in-files>>", self.find_in_files_event)
+        text.bind("<<find-selection>>", self.find_selection_event)
+        text.bind("<<replace>>", self.replace_event)
+        text.bind("<<goto-line>>", self.goto_line_event)
+        text.bind("<3>", self.right_menu_event)
+        text.bind("<<smart-backspace>>",self.smart_backspace_event)
+        text.bind("<<newline-and-indent>>",self.newline_and_indent_event)
+        text.bind("<<smart-indent>>",self.smart_indent_event)
+        text.bind("<<indent-region>>",self.indent_region_event)
+        text.bind("<<dedent-region>>",self.dedent_region_event)
+        text.bind("<<comment-region>>",self.comment_region_event)
+        text.bind("<<uncomment-region>>",self.uncomment_region_event)
+        text.bind("<<tabify-region>>",self.tabify_region_event)
+        text.bind("<<untabify-region>>",self.untabify_region_event)
+        text.bind("<<toggle-tabs>>",self.toggle_tabs_event)
+        text.bind("<<change-indentwidth>>",self.change_indentwidth_event)
+        text.bind("<Right>", self.move_at_edge_if_selection(1))
+        text.bind("<Left>", self.move_at_edge_if_selection(0))
+        text.bind("<<del-word-left>>", self.del_word_left)
+        text.bind("<<del-word-right>>", self.del_word_right)
+        text.bind("<<beginning-of-line>>", self.home_callback)
 
-        for t in (text, annotation_text):
-            if macosxSupport.runningAsOSXApp():
-                # Command-W on editorwindows doesn't work without this.
-                t.bind('<<close-window>>', self.close_event)
-            t.bind("<<cut>>", self.cut)
-            t.bind("<<copy>>", self.copy)
-            t.bind("<<paste>>", self.paste)
-            t.bind("<<center-insert>>", self.center_insert_event)
-            t.bind("<<help>>", self.help_dialog)
-            t.bind("<<python-docs>>", self.python_docs)
-            t.bind("<<about-idle>>", self.about_dialog)
-            t.bind("<<open-config-dialog>>", self.config_dialog)
-            t.bind("<<open-module>>", self.open_module)
-            t.bind("<<do-nothing>>", lambda event: "break")
-            t.bind("<<select-all>>", self.select_all)
-            t.bind("<<remove-selection>>", self.remove_selection)
-            t.bind("<<find>>", self.find_event)
-            t.bind("<<find-again>>", self.find_again_event)
-            t.bind("<<find-in-files>>", self.find_in_files_event)
-            t.bind("<<find-selection>>", self.find_selection_event)
-            t.bind("<<replace>>", self.replace_event)
-            t.bind("<<goto-line>>", self.goto_line_event)
-            t.bind("<3>", self.right_menu_event)
-            t.bind("<<smart-backspace>>",self.smart_backspace_event)
-            t.bind("<<newline-and-indent>>",self.newline_and_indent_event)
-            t.bind("<<smart-indent>>",self.smart_indent_event)
-            t.bind("<<indent-region>>",self.indent_region_event)
-            t.bind("<<dedent-region>>",self.dedent_region_event)
-            t.bind("<<comment-region>>",self.comment_region_event)
-            t.bind("<<uncomment-region>>",self.uncomment_region_event)
-            t.bind("<<tabify-region>>",self.tabify_region_event)
-            t.bind("<<untabify-region>>",self.untabify_region_event)
-            t.bind("<<toggle-tabs>>",self.toggle_tabs_event)
-            t.bind("<<change-indentwidth>>",self.change_indentwidth_event)
-            t.bind("<Left>", self.move_at_edge_if_selection(0))
-            t.bind("<Right>", self.move_at_edge_if_selection(1))
-            t.bind("<<del-word-left>>", self.del_word_left)
-            t.bind("<<del-word-right>>", self.del_word_right)
-            t.bind("<<beginning-of-line>>", self.home_callback)
-            t.bind('<Button-5>', lambda e, s=self: s.y_scroll(SCROLL, 1, UNITS))
-            t.bind('<Up>', lambda e, s=self: s.y_scroll(SCROLL, -1, UNITS))
-            t.bind('<Button-4>', lambda e, s=self: s.y_scroll(SCROLL, -1, UNITS))
-            t.bind('<Down>', lambda e, s=self: s.y_scroll(SCROLL, 1, UNITS))
-            #t.bind('<B1-Motion>', lambda e, s=self: s.select())
-            #t.bind('<Button-1>', lambda e, s=self: s.select())
-
-            if flist:
-                flist.inversedict[self] = key
-                if key:
-                    flist.dict[key] = self
-                t.bind("<<open-new-window>>", self.new_callback)
-                t.bind("<<close-all-windows>>", self.flist.close_all_callback)
-                t.bind("<<open-class-browser>>", self.open_class_browser)
-                t.bind("<<open-path-browser>>", self.open_path_browser)
-
-        self.text.bind('<Enter>', self.source_entry)
-        self.annotation_text.bind('<Enter>', self.annotation_entry)
+        if flist:
+            flist.inversedict[self] = key
+            if key:
+                flist.dict[key] = self
+            text.bind("<<open-new-window>>", self.new_callback)
+            text.bind("<<close-all-windows>>", self.flist.close_all_callback)
+            text.bind("<<open-class-browser>>", self.open_class_browser)
+            text.bind("<<open-path-browser>>", self.open_path_browser)
 
         self.set_status_bar()
-        vbar['command'] = self.y_scroll
-        text['yscrollcommand'] = vbar.set
-
-        for widget in (button_frame, text_frame, out_label, self.stdout):
-            widget.pack(side=TOP, expand=1, fill=BOTH)
-
-        self.text.pack(side=LEFT, expand=1, fill=BOTH)
-        self.annotation_text.pack(side=LEFT, expand=1, fill=BOTH)
-
-        for button in (play_button, pause_button, rewind_button, back_button, forward_button):
-            button.pack(side=LEFT)
-
+        vbar['command'] = text.yview
         vbar.pack(side=RIGHT, fill=Y)
-        text.focus_set()
-        self.current='source_text'
-
-        self.stdout.config(state=DISABLED)
-
-        self.current_line=0
-        self.paused=False
-        self.finished=False
-
-        #in seconds
-        self.step_rate=1
-
+        text['yscrollcommand'] = vbar.set
         fontWeight = 'normal'
+        if idleConf.GetOption('main', 'EditorWindow', 'font-bold', type='bool'):
+            fontWeight='bold'
+        text.config(font=(idleConf.GetOption('main', 'EditorWindow', 'font'),
+                          idleConf.GetOption('main', 'EditorWindow', 'font-size'),
+                          fontWeight))
+        text_frame.pack(side=LEFT, fill=BOTH, expand=1)
+        text.pack(side=TOP, fill=BOTH, expand=1)
+        text.focus_set()
+
+        # usetabs true  -> literal tab characters are used by indent and
+        #                  dedent cmds, possibly mixed with spaces if
+        #                  indentwidth is not a multiple of tabwidth,
+        #                  which will cause Tabnanny to nag!
+        #         false -> tab characters are converted to spaces by indent
+        #                  and dedent cmds, and ditto TAB keystrokes
+        # Although use-spaces=0 can be configured manually in config-main.def,
         # configuration of tabs v. spaces is not supported in the configuration
         # dialog.  IDLE promotes the preferred Python indentation: use spaces!
         usespaces = idleConf.GetOption('main', 'Indent', 'use-spaces', type='bool')
@@ -295,6 +251,8 @@ class EditorWindow(object):
                                              menu=self.recent_files_menu)
         self.update_recent_files_list()
 
+        self.menudict['run'].add_command(label='Create Trace', command=self.create_trace)
+
         self.color = None # initialized below in self.ResetColorizer
         if filename:
             if os.path.exists(filename) and not os.path.isdir(filename):
@@ -324,101 +282,16 @@ class EditorWindow(object):
         self.askinteger = tkSimpleDialog.askinteger
         self.showerror = tkMessageBox.showerror
 
-    def stdout_insert(self, text):
-        self.stdout.config(state=NORMAL)
-        self.stdout.insert(END, text)
-        self.stdout.see(END)
-        self.stdout.config(state=DISABLED)
-
-    def stdout_clear(self):
-        self.stdout.config(state=NORMAL)
-        self.stdout.delete('1.0', 'end')
-        self.stdout.config(state=DISABLED)
-
-    def highlight_line(self, lineno):
-        self.text.config(state=NORMAL)
-        self.clear_highlighting()
-        self.text.tag_add('highlight', '%s.0' % lineno, '%s.end' % lineno)
-        self.text.tag_configure('highlight', background='yellow')
-        self.text.see('highlight.first')
-        self.text.config(state=DISABLED)
-
-    def clear_highlighting(self):
-        self.text.config(state=NORMAL)
-        self.text.tag_remove('highlight', '1.0', 'end')
-        self.text.config(state=DISABLED)
-
-    def play(self):
-        if not self.paused and not self.finished:
-            self.step_forward()
-            self.text.after(int(self.step_rate * 1000), self.play)
-
-    def pause(self):
-        self.paused=not self.paused 
-        if not self.paused:
-            self.play()
-
-    def step_forward(self):
-        '''Moves to the next trace dictionary and inserts the data it contains,
-        advancing the highlighting as appropriate.'''
-
-        if not self.finished:
-            step = self.trace[self.current_line]
-            self.highlight_line(step['line']+1)
-            if 'stdout' in step:
-                self.stdout_insert(step['stdout'])
-            self.current_line+=1
-
-        if self.current_line == len(self.trace) - 1:
-            self.clear_highlighting()
-            self.finished=True
-
-    def step_back(self):
-        if self.current_line <= 0:
-            self.rewind()
-
-        else:
-            step = self.trace[self.current_line]
-
-            #remove the last thing printed to stdout
-            if 'stdout' in step:
-                self.stdout.config(state=NORMAL)
-                self.stdout.delete('1.0', 'end+1c')
-                for previous in range(self.current_line):
-                    prev_step=self.trace[previous]
-                    if 'stdout' in prev_step:
-                        self.stdout.insert('insert', prev_step['stdout'])
-
-                self.stdout.config(state=DISABLED)
-
-            if self.finished:
-                self.finished = False
-                
-            self.current_line -= 1
-            step = self.trace[self.current_line]
-            self.highlight_line(step['line']+1)
-
-    def rewind(self):
-        '''Sets all parameters back to their original states (including
-        unpausing)'''
-
-        self.clear_highlighting()
-        self.stdout_clear()
-        self.current_line=0
-        self.finished=False
-        self.paused=False
-        self.text.see('1.0')
-
-    def source_entry(self, event):
-        self.current='source_text'
-
-    def annotation_entry(self, event):
-        self.current='annotation_text'
-
-    def y_scroll(self, *args):
-        self.text.yview(*args)
-        self.annotation_text.yview(*args)
-        return 'break'
+    def create_trace(self, event=None):
+        filename = self.io.filename
+        self.io.save(event)
+        trace_string = trace.trace(filename)
+        trace_filename = '%s.json' % filename.split('.')[0]
+        f=open(trace_filename, 'w')
+        f.write(trace_string)
+        f.close()
+        print filename
+        TraceDisplayWindow(flist=self.flist, filename=trace_filename, root=self.root)
 
     def _filename_to_unicode(self, filename):
         """convert filename to unicode in order to display it in Tk"""
@@ -548,26 +421,18 @@ class EditorWindow(object):
     rmenu = None
 
     def right_menu_event(self, event):
-        if self.current == 'annotation_text':
-            text=self.annotation_text
-        else: 
-            text=self.text
-
-        text.tag_remove("sel", "1.0", "end")
-        text.mark_set("insert", "@%d,%d" % (event.x, event.y))
+        self.text.tag_remove("sel", "1.0", "end")
+        self.text.mark_set("insert", "@%d,%d" % (event.x, event.y))
         if not self.rmenu:
             self.make_rmenu()
         rmenu = self.rmenu
         self.event = event
         iswin = sys.platform[:3] == 'win'
         if iswin:
-            text.config(cursor="arrow")
-        try:
-            rmenu.tk_popup(event.x_root, event.y_root)
-            if iswin:
-                text.config(cursor="ibeam")
-        finally:
-            rmenu.grab_release()
+            self.text.config(cursor="arrow")
+        rmenu.tk_popup(event.x_root, event.y_root)
+        if iswin:
+            self.text.config(cursor="ibeam")
 
     rmenu_specs = [
         # ("Label", "<<virtual-event>>"), ...
@@ -576,14 +441,8 @@ class EditorWindow(object):
 
     def make_rmenu(self):
         rmenu = Menu(self.text, tearoff=0)
-
-        if self.current == 'annotation_text':
-            text=self.annotation_text
-        else: 
-            text=self.text
-
         for label, eventname in self.rmenu_specs:
-            def command(text=text, eventname=eventname):
+            def command(text=self.text, eventname=eventname):
                 text.event_generate(eventname)
             rmenu.add_command(label=label, command=command)
         self.rmenu = rmenu
@@ -1070,7 +929,7 @@ class EditorWindow(object):
             try:
                 self.load_extension(name)
             except:
-                print("Failed to load extension", repr(name))
+                print "Failed to load extension", repr(name)
                 import traceback
                 traceback.print_exc()
 
@@ -1081,7 +940,7 @@ class EditorWindow(object):
         try:
             mod = __import__(name, globals(), locals(), [])
         except ImportError:
-            print("\nFailed to import extension: ", name)
+            print "\nFailed to import extension: ", name
             return
         cls = getattr(mod, name)
         keydefs = idleConf.GetExtensionBindings(name)

@@ -9,9 +9,9 @@ ActivateConfigChanges	configDialog.py	/^    def ActivateConfigChanges(self):$/;"
 AddChangedItem	configDialog.py	/^    def AddChangedItem(self,type,section,item,value):$/;"	m	class:ConfigDialog
 AddSection	configHandler.py	/^    def AddSection(self,section):$/;"	m	class:IdleUserConfParser
 AlreadyExistsError	tabbedpages.py	/^class AlreadyExistsError(Exception): pass$/;"	c
-AnnotationEditor	fold_lines.py	/^class AnnotationEditor(Toplevel):$/;"	c
 Apply	configDialog.py	/^    def Apply(self):$/;"	m	class:ConfigDialog
 ApplyKeybindings	EditorWindow.py	/^    def ApplyKeybindings(self):$/;"	m	class:EditorWindow
+ApplyKeybindings	TraceDisplayWindow.py	/^    def ApplyKeybindings(self):$/;"	m	class:TraceDisplayWindow
 AtomicObjectTreeItem	ObjectBrowser.py	/^class AtomicObjectTreeItem(ObjectTreeItem):$/;"	c
 AttachVarCallbacks	configDialog.py	/^    def AttachVarCallbacks(self):$/;"	m	class:ConfigDialog
 AutoComplete	AutoComplete.py	/^class AutoComplete:$/;"	c
@@ -26,6 +26,7 @@ BOM_UTF8	IOBinding.py	/^    BOM_UTF8 = '\\xef\\xbb\\xbf'$/;"	v
 BOM_UTF8	IOBinding.py	/^    from codecs import BOM_UTF8$/;"	i
 BUFSIZE	rpc.py	/^BUFSIZE = 8*1024$/;"	v
 Bindings	EditorWindow.py	/^    import Bindings$/;"	i
+Bindings	TraceDisplayWindow.py	/^    import Bindings$/;"	i
 Bindings	macosxSupport.py	/^    import Bindings$/;"	i
 BuildKeyString	keybindingDialog.py	/^    def BuildKeyString(self):$/;"	m	class:GetKeysDialog
 CHECKHIDE_SEQUENCES	CallTipWindow.py	/^CHECKHIDE_SEQUENCES = ("<KeyRelease>", "<ButtonRelease>")$/;"	v
@@ -53,6 +54,7 @@ ColorDelegator	ColorDelegator.py	/^class ColorDelegator(Delegator):$/;"	c
 ColorDelegator	EditorWindow.py	/^    from ColorDelegator import ColorDelegator$/;"	i
 ColorDelegator	PyShell.py	/^    ColorDelegator = ModifiedColorDelegator$/;"	v	class:PyShell
 ColorDelegator	PyShell.py	/^from ColorDelegator import ColorDelegator$/;"	i
+ColorDelegator	TraceDisplayWindow.py	/^    from ColorDelegator import ColorDelegator$/;"	i
 Command	UndoDelegator.py	/^class Command:$/;"	c
 CommandSequence	UndoDelegator.py	/^class CommandSequence(Command):$/;"	c
 ConfigDialog	configDialog.py	/^class ConfigDialog(Toplevel):$/;"	c
@@ -73,7 +75,7 @@ CreateWidgets	textView.py	/^    def CreateWidgets(self):$/;"	m	class:TextViewer
 CurrentKeys	configHandler.py	/^    def CurrentKeys(self):$/;"	m	class:IdleConf
 CurrentTheme	configHandler.py	/^    def CurrentTheme(self):$/;"	m	class:IdleConf
 DEBUG	ColorDelegator.py	/^DEBUG = False$/;"	v
-DEBUG	PySplitShell.py	/^DEBUG = True$/;"	v
+DEBUG	trace.py	/^DEBUG = False$/;"	v
 DOUBLECLICK_SEQUENCE	AutoCompleteWindow.py	/^DOUBLECLICK_SEQUENCE = "<B1-Double-ButtonRelease>"$/;"	v
 DeactivateCurrentConfig	configDialog.py	/^    def DeactivateCurrentConfig(self):$/;"	m	class:ConfigDialog
 Debugger	Debugger.py	/^class Debugger:$/;"	c
@@ -86,7 +88,6 @@ Delegator	UndoDelegator.py	/^from Delegator import Delegator$/;"	i
 DeleteCommand	UndoDelegator.py	/^class DeleteCommand(Command):$/;"	c
 DeleteCustomKeys	configDialog.py	/^    def DeleteCustomKeys(self):$/;"	m	class:ConfigDialog
 DeleteCustomTheme	configDialog.py	/^    def DeleteCustomTheme(self):$/;"	m	class:ConfigDialog
-DictMixin	OrderedDict.py	/^from UserDict import DictMixin$/;"	i
 DictProxy	RemoteDebugger.py	/^class DictProxy:$/;"	c
 DictTreeItem	ObjectBrowser.py	/^class DictTreeItem(SequenceTreeItem):$/;"	c
 DirBrowserTreeItem	PathBrowser.py	/^class DirBrowserTreeItem(TreeItem):$/;"	c
@@ -99,7 +100,6 @@ EditorWindow	FileList.py	/^    from EditorWindow import EditorWindow  # class va
 EditorWindow	OutputWindow.py	/^from EditorWindow import EditorWindow$/;"	i
 EditorWindow	PyShell.py	/^    EditorWindow = PyShellEditorWindow$/;"	v	class:PyShellFileList
 EditorWindow	PyShell.py	/^from EditorWindow import EditorWindow, fixwordbreaks$/;"	i
-EditorWindow	PySplitShell.py	/^    EditorWindow = PySplitShellEditorWindow$/;"	v	class:PySplitShellFileList
 EncodingMessage	IOBinding.py	/^class EncodingMessage(SimpleDialog):$/;"	c
 Executive	run.py	/^class Executive(object):$/;"	c
 FILENAME_CHARS	AutoComplete.py	/^FILENAME_CHARS = string.ascii_letters + string.digits + os.curdir + "._~#$:-"$/;"	v
@@ -109,9 +109,8 @@ FileList	FileList.py	/^class FileList:$/;"	c
 FileList	PyShell.py	/^from FileList import FileList$/;"	i
 FileTreeItem	TreeWidget.py	/^class FileTreeItem(TreeItem):$/;"	c
 FinalKeySelected	keybindingDialog.py	/^    def FinalKeySelected(self,event):$/;"	m	class:GetKeysDialog
-FoldManager	example_annotated_code.py	/^class FoldManager(object):$/;"	c
-FoldManager	fold_lines.py	/^class FoldManager(object):$/;"	c
 FormatParagraph	FormatParagraph.py	/^class FormatParagraph:$/;"	c
+FrameHandler	trace.py	/^class FrameHandler(object):$/;"	c
 FrameProxy	RemoteDebugger.py	/^class FrameProxy:$/;"	c
 FrameTreeItem	StackViewer.py	/^class FrameTreeItem(TreeItem):$/;"	c
 GUIAdapter	RemoteDebugger.py	/^class GUIAdapter:$/;"	c
@@ -181,12 +180,12 @@ GetThemeDict	configHandler.py	/^    def GetThemeDict(self,type,themeName):$/;"	m
 GetUserCfgDir	configHandler.py	/^    def GetUserCfgDir(self):$/;"	m	class:IdleConf
 GrepDialog	EditorWindow.py	/^import GrepDialog$/;"	i
 GrepDialog	GrepDialog.py	/^class GrepDialog(SearchDialogBase):$/;"	c
+GrepDialog	TraceDisplayWindow.py	/^import GrepDialog$/;"	i
 HIDE_SEQUENCES	AutoCompleteWindow.py	/^HIDE_SEQUENCES = ("<FocusOut>", "<ButtonPress>")$/;"	v
 HIDE_SEQUENCES	CallTipWindow.py	/^HIDE_SEQUENCES = ("<Key-Escape>", "<FocusOut>")$/;"	v
 HIDE_VIRTUAL_EVENT_NAME	AutoCompleteWindow.py	/^HIDE_VIRTUAL_EVENT_NAME = "<<autocompletewindow-hide>>"$/;"	v
 HIDE_VIRTUAL_EVENT_NAME	CallTipWindow.py	/^HIDE_VIRTUAL_EVENT_NAME = "<<calltipwindow-hide>>"$/;"	v
 HILITE_CONFIG	ParenMatch.py	/^    HILITE_CONFIG = idleConf.GetHighlight(idleConf.CurrentTheme(),'hilite')$/;"	v	class:ParenMatch
-Hack	hack.py	/^class Hack:$/;"	c
 Help	configDialog.py	/^    def Help(self):$/;"	m	class:ConfigDialog
 HelpListItemAdd	configDialog.py	/^    def HelpListItemAdd(self):$/;"	m	class:ConfigDialog
 HelpListItemEdit	configDialog.py	/^    def HelpListItemEdit(self):$/;"	m	class:ConfigDialog
@@ -210,6 +209,7 @@ IOBinding	IOBinding.py	/^class IOBinding:$/;"	c
 IOBinding	OutputWindow.py	/^import IOBinding$/;"	i
 IOBinding	PyShell.py	/^            import IOBinding$/;"	i
 IOBinding	PyShell.py	/^        import IOBinding$/;"	i
+IOBinding	TraceDisplayWindow.py	/^    from IOBinding import IOBinding, filesystemencoding, encoding$/;"	i
 IOBinding	run.py	/^        import IOBinding$/;"	i
 Idb	Debugger.py	/^class Idb(bdb.Bdb):$/;"	c
 IdbAdapter	RemoteDebugger.py	/^class IdbAdapter:$/;"	c
@@ -253,6 +253,7 @@ LISTUPDATE_SEQUENCE	AutoCompleteWindow.py	/^LISTUPDATE_SEQUENCE = "<B1-ButtonRel
 LOCALHOST	PyShell.py	/^LOCALHOST = '127.0.0.1'$/;"	v
 LOCALHOST	rpc.py	/^LOCALHOST = '127.0.0.1'$/;"	v
 LOCALHOST	run.py	/^LOCALHOST = '127.0.0.1'$/;"	v
+LinesIter	trace.py	/^class LinesIter(object):$/;"	c
 ListboxToolTip	ToolTip.py	/^class ListboxToolTip(ToolTipBase):$/;"	c
 ListedToplevel	ClassBrowser.py	/^from WindowList import ListedToplevel$/;"	i
 ListedToplevel	Debugger.py	/^from WindowList import ListedToplevel$/;"	i
@@ -269,6 +270,7 @@ LoadTabCfg	configDialog.py	/^    def LoadTabCfg(self):$/;"	m	class:ConfigDialog
 LoadTagDefs	ColorDelegator.py	/^    def LoadTagDefs(self):$/;"	m	class:ColorDelegator
 LoadTagDefs	PyShell.py	/^    def LoadTagDefs(self):$/;"	m	class:ModifiedColorDelegator
 LoadThemeCfg	configDialog.py	/^    def LoadThemeCfg(self):$/;"	m	class:ConfigDialog
+Logger	trace.py	/^class Logger(object):$/;"	c
 MARK_RIGHT	CallTipWindow.py	/^MARK_RIGHT = "calltipwindowregion_right"$/;"	v
 MC_SHIFT	AutoCompleteWindow.py	/^from MultiCall import MC_SHIFT$/;"	i
 Menu	macosxSupport.py	/^    from Tkinter import Menu, Text, Text$/;"	i
@@ -283,9 +285,8 @@ ModuleBrowserTreeItem	PathBrowser.py	/^from ClassBrowser import ClassBrowser, Mo
 MultiCall	MultiCall.py	/^    class MultiCall (widget):$/;"	c	function:MultiCallCreator
 MultiCallCreator	EditorWindow.py	/^from MultiCall import MultiCallCreator$/;"	i
 MultiCallCreator	MultiCall.py	/^def MultiCallCreator(widget):$/;"	f
-MultiCallCreator	PySplitShell.py	/^from MultiCall import MultiCallCreator$/;"	i
+MultiCallCreator	TraceDisplayWindow.py	/^from MultiCall import MultiCallCreator$/;"	i
 MultiCallCreator	macosxSupport.py	/^    from MultiCall import MultiCallCreator$/;"	i
-MultiListbox	MultiListBox.py	/^class MultiListbox(Frame):$/;"	c
 MultiStatusBar	EditorWindow.py	/^    from MultiStatusBar import MultiStatusBar$/;"	i
 MultiStatusBar	MultiStatusBar.py	/^class MultiStatusBar(Frame):$/;"	c
 MyEditWin	IOBinding.py	/^    class MyEditWin:$/;"	c	function:test
@@ -314,10 +315,6 @@ OnDoubleClick	TreeWidget.py	/^    def OnDoubleClick(self):$/;"	m	class:TreeItem
 OnListFontButtonRelease	configDialog.py	/^    def OnListFontButtonRelease(self,event):$/;"	m	class:ConfigDialog
 OnNewColourSet	configDialog.py	/^    def OnNewColourSet(self):$/;"	m	class:ConfigDialog
 OptionMenu	dynOptionMenuWidget.py	/^from Tkinter import OptionMenu$/;"	i
-OrderedDict	OrderedDict.py	/^class OrderedDict(dict, DictMixin):$/;"	c
-OrderedDict	example_annotated_code.py	/^from OrderedDict import OrderedDict$/;"	i
-OrderedDict	fold_lines.py	/^from OrderedDict import OrderedDict$/;"	i
-OrderedDict	parse_source.py	/^from OrderedDict import OrderedDict$/;"	i
 OriginalCommand	WidgetRedirector.py	/^class OriginalCommand:$/;"	c
 OutputWindow	GrepDialog.py	/^        from OutputWindow import OutputWindow$/;"	i
 OutputWindow	OutputWindow.py	/^class OutputWindow(EditorWindow):$/;"	c
@@ -336,6 +333,7 @@ PathOk	configHelpSourceEdit.py	/^    def PathOk(self):$/;"	m	class:GetHelpSource
 Percolator	ColorDelegator.py	/^    from Percolator import Percolator$/;"	i
 Percolator	EditorWindow.py	/^    from Percolator import Percolator$/;"	i
 Percolator	Percolator.py	/^class Percolator:$/;"	c
+Percolator	TraceDisplayWindow.py	/^    from Percolator import Percolator$/;"	i
 Percolator	UndoDelegator.py	/^    from Percolator import Percolator$/;"	i
 PseudoFile	PyShell.py	/^class PseudoFile(object):$/;"	c
 PyParse	EditorWindow.py	/^import PyParse$/;"	i
@@ -348,12 +346,7 @@ PyShell	TreeWidget.py	/^    import PyShell$/;"	i
 PyShell	idle.py	/^        import PyShell$/;"	i
 PyShell	idle.py	/^    import idlelib.PyShell$/;"	i
 PyShellEditorWindow	PyShell.py	/^class PyShellEditorWindow(EditorWindow):$/;"	c
-PyShellEditorWindow	PySplitShell.py	/^from PyShell import PyShellEditorWindow, PyShellFileList$/;"	i
 PyShellFileList	PyShell.py	/^class PyShellFileList(FileList):$/;"	c
-PyShellFileList	PySplitShell.py	/^from PyShell import PyShellEditorWindow, PyShellFileList$/;"	i
-PySplitShell	testbed.py	/^import PySplitShell$/;"	i
-PySplitShellEditorWindow	PySplitShell.py	/^class PySplitShellEditorWindow(PyShellEditorWindow):$/;"	c
-PySplitShellFileList	PySplitShell.py	/^class PySplitShellFileList(PyShellFileList):$/;"	c
 Python	PyShell.py	/^                           "Your Python may not be configured for Tk. **"$/;"	i
 Queue	rpc.py	/^import Queue$/;"	i
 Queue	run.py	/^import Queue$/;"	i
@@ -373,13 +366,16 @@ RemoveEmptySections	configHandler.py	/^    def RemoveEmptySections(self):$/;"	m	
 RemoveFile	configHandler.py	/^    def RemoveFile(self):$/;"	m	class:IdleUserConfParser
 RemoveKeyBindNames	configHandler.py	/^    def RemoveKeyBindNames(self,extnNameList):$/;"	m	class:IdleConf
 RemoveKeybindings	EditorWindow.py	/^    def RemoveKeybindings(self):$/;"	m	class:EditorWindow
+RemoveKeybindings	TraceDisplayWindow.py	/^    def RemoveKeybindings(self):$/;"	m	class:TraceDisplayWindow
 RemoveOption	configHandler.py	/^    def RemoveOption(self,section,option):$/;"	m	class:IdleUserConfParser
 ReplaceDialog	EditorWindow.py	/^import ReplaceDialog$/;"	i
 ReplaceDialog	ReplaceDialog.py	/^class ReplaceDialog(SearchDialogBase):$/;"	c
 Repr	ObjectBrowser.py	/^from repr import Repr$/;"	i
 ResetChangedItems	configDialog.py	/^    def ResetChangedItems(self):$/;"	m	class:ConfigDialog
 ResetColorizer	EditorWindow.py	/^    def ResetColorizer(self):$/;"	m	class:EditorWindow
+ResetColorizer	TraceDisplayWindow.py	/^    def ResetColorizer(self):$/;"	m	class:TraceDisplayWindow
 ResetFont	EditorWindow.py	/^    def ResetFont(self):$/;"	m	class:EditorWindow
+ResetFont	TraceDisplayWindow.py	/^    def ResetFont(self):$/;"	m	class:TraceDisplayWindow
 SEPS	AutoComplete.py	/^SEPS = os.sep$/;"	v
 SIGTERM	PyShell.py	/^    SIGTERM = 15$/;"	v
 SIGTERM	PyShell.py	/^    from signal import SIGTERM$/;"	i
@@ -435,7 +431,6 @@ ShowPythonCredits	aboutDialog.py	/^    def ShowPythonCredits(self):$/;"	m	class:
 SimpleDialog	IOBinding.py	/^from SimpleDialog import SimpleDialog$/;"	i
 SocketIO	rpc.py	/^class SocketIO(object):$/;"	c
 SocketServer	rpc.py	/^import SocketServer$/;"	i
-SplitText	PySplitShell.py	/^class SplitText(object):$/;"	c
 StackBrowser	PyShell.py	/^        from StackViewer import StackBrowser$/;"	i
 StackBrowser	StackViewer.py	/^def StackBrowser(root, flist=None, tb=None, top=None):$/;"	f
 StackTreeItem	StackViewer.py	/^class StackTreeItem(TreeItem):$/;"	c
@@ -465,7 +460,11 @@ ToolTip	ToolTip.py	/^class ToolTip(ToolTipBase):$/;"	c
 ToolTipBase	ToolTip.py	/^class ToolTipBase:$/;"	c
 Toplevel	EditorWindow.py	/^    from Tkinter import Toplevel$/;"	i
 Toplevel	StackViewer.py	/^        from Tkinter import Toplevel$/;"	i
+Toplevel	TraceDisplayWindow.py	/^    from Tkinter import Toplevel$/;"	i
+TraceDisplayWindow	FileList.py	/^import TraceDisplayWindow$/;"	i
+TraceDisplayWindow	TraceDisplayWindow.py	/^class TraceDisplayWindow(object):$/;"	c
 Tracer	Percolator.py	/^    class Tracer(Delegator):$/;"	c	function:main
+Tracer	trace.py	/^class Tracer(object):$/;"	c
 TranslateKey	keybindingDialog.py	/^    def TranslateKey(self, key, modifiers):$/;"	m	class:GetKeysDialog
 TreeItem	ClassBrowser.py	/^from TreeWidget import TreeNode, TreeItem, ScrolledCanvas$/;"	i
 TreeItem	ObjectBrowser.py	/^from TreeWidget import TreeItem, TreeNode, ScrolledCanvas$/;"	i
@@ -482,7 +481,6 @@ UndoDelegator	EditorWindow.py	/^    from UndoDelegator import UndoDelegator$/;"	
 UndoDelegator	PyShell.py	/^    UndoDelegator = ModifiedUndoDelegator$/;"	v	class:PyShell
 UndoDelegator	PyShell.py	/^from UndoDelegator import UndoDelegator$/;"	i
 UndoDelegator	UndoDelegator.py	/^class UndoDelegator(Delegator):$/;"	c
-UndoDelegator	testbed.py	/^from UndoDelegator import UndoDelegator$/;"	i
 UnicodeType	PyParse.py	/^    UnicodeType = None$/;"	v
 UnicodeType	PyParse.py	/^    UnicodeType = type(unicode(""))$/;"	v
 UpdateUserHelpChangedItems	configDialog.py	/^    def UpdateUserHelpChangedItems(self):$/;"	m	class:ConfigDialog
@@ -511,6 +509,7 @@ WINCONFIG_SEQUENCE	AutoCompleteWindow.py	/^WINCONFIG_SEQUENCE = "<Configure>"$/;
 WidgetRedirector	Percolator.py	/^from WidgetRedirector import WidgetRedirector$/;"	i
 WidgetRedirector	WidgetRedirector.py	/^class WidgetRedirector:$/;"	c
 WindowList	EditorWindow.py	/^import WindowList$/;"	i
+WindowList	TraceDisplayWindow.py	/^import WindowList$/;"	i
 WindowList	WindowList.py	/^class WindowList:$/;"	c
 WindowList	macosxSupport.py	/^    import WindowList$/;"	i
 WrappedObjectTreeItem	RemoteObjectBrowser.py	/^class WrappedObjectTreeItem:$/;"	c
@@ -530,13 +529,13 @@ __attributes	rpc.py	/^    __attributes = None$/;"	v	class:RPCProxy
 __builtin__	ColorDelegator.py	/^import __builtin__$/;"	i
 __call__	WidgetRedirector.py	/^    def __call__(self, *args):$/;"	m	class:OriginalCommand	file:
 __call__	rpc.py	/^    def __call__(self, *args, **kwargs):$/;"	m	class:MethodProxy	file:
+__call__	trace.py	/^    def __call__(self):$/;"	m	class:LinesIter	file:
 __create_handler	MultiCall.py	/^    def __create_handler(self, lists, mc_type, mc_state):$/;"	m	class:_ComplexBinder	file:
 __del__	MultiCall.py	/^        def __del__(self):$/;"	m	class:MultiCallCreator.MultiCall	file:
 __del__	MultiCall.py	/^    def __del__(self):$/;"	m	class:_ComplexBinder	file:
 __del__	MultiCall.py	/^    def __del__(self):$/;"	m	class:_SimpleBinder	file:
-__delitem__	OrderedDict.py	/^    def __delitem__(self, key):$/;"	m	class:OrderedDict	file:
-__eq__	OrderedDict.py	/^    def __eq__(self, other):$/;"	m	class:OrderedDict	file:
 __extra_help_callback	EditorWindow.py	/^    def __extra_help_callback(self, helpfile):$/;"	m	class:EditorWindow	file:
+__extra_help_callback	TraceDisplayWindow.py	/^    def __extra_help_callback(self, helpfile):$/;"	m	class:TraceDisplayWindow	file:
 __frame2fileline	Debugger.py	/^    def __frame2fileline(self, frame):$/;"	m	class:Debugger	file:
 __frame2message	Debugger.py	/^    def __frame2message(self, frame):$/;"	m	class:Idb	file:
 __getattr__	Delegator.py	/^    def __getattr__(self, name):$/;"	m	class:Delegator	file:
@@ -581,10 +580,8 @@ __init__	IdleHistory.py	/^    def __init__(self, text, output_sep = "\\n"):$/;"	
 __init__	MultiCall.py	/^        def __init__(self, *args, **kwargs):$/;"	m	class:MultiCallCreator.MultiCall
 __init__	MultiCall.py	/^    def __init__(self, type, widget, widgetinst):$/;"	m	class:_ComplexBinder
 __init__	MultiCall.py	/^    def __init__(self, type, widget, widgetinst):$/;"	m	class:_SimpleBinder
-__init__	MultiListBox.py	/^    def __init__(self, master, lists):$/;"	m	class:MultiListbox
 __init__	MultiStatusBar.py	/^    def __init__(self, master=None, **kw):$/;"	m	class:MultiStatusBar
 __init__	ObjectBrowser.py	/^    def __init__(self, labeltext, object, setfunction=None):$/;"	m	class:ObjectTreeItem
-__init__	OrderedDict.py	/^    def __init__(self, *args, **kwds):$/;"	m	class:OrderedDict
 __init__	OutputWindow.py	/^    def __init__(self, *args):$/;"	m	class:OutputWindow
 __init__	OutputWindow.py	/^    def __init__(self, flist):$/;"	m	class:OnDemandOutputWindow
 __init__	ParenMatch.py	/^    def __init__(self, editwin):$/;"	m	class:ParenMatch
@@ -598,8 +595,6 @@ __init__	PyShell.py	/^    def __init__(self, *args):$/;"	m	class:PyShellEditorWi
 __init__	PyShell.py	/^    def __init__(self, flist=None):$/;"	m	class:PyShell
 __init__	PyShell.py	/^    def __init__(self, shell, tags, encoding=None):$/;"	m	class:PseudoFile
 __init__	PyShell.py	/^    def __init__(self, tkconsole):$/;"	m	class:ModifiedInterpreter
-__init__	PySplitShell.py	/^    def __init__(self, *args):$/;"	m	class:PySplitShellEditorWindow
-__init__	PySplitShell.py	/^    def __init__(self, master=None, **text_options):$/;"	m	class:SplitText
 __init__	RemoteDebugger.py	/^    def __init__(self, conn, fid):$/;"	m	class:FrameProxy
 __init__	RemoteDebugger.py	/^    def __init__(self, conn, gui):$/;"	m	class:GUIAdapter
 __init__	RemoteDebugger.py	/^    def __init__(self, conn, gui_adap_oid):$/;"	m	class:GUIProxy
@@ -619,6 +614,7 @@ __init__	StackViewer.py	/^    def __init__(self, info, flist):$/;"	m	class:Frame
 __init__	ToolTip.py	/^    def __init__(self, button):$/;"	m	class:ToolTipBase
 __init__	ToolTip.py	/^    def __init__(self, button, items):$/;"	m	class:ListboxToolTip
 __init__	ToolTip.py	/^    def __init__(self, button, text):$/;"	m	class:ToolTip
+__init__	TraceDisplayWindow.py	/^    def __init__(self, flist=None, filename=None, key=None, root=None):$/;"	m	class:TraceDisplayWindow
 __init__	TreeWidget.py	/^    def __init__(self):$/;"	m	class:TreeItem
 __init__	TreeWidget.py	/^    def __init__(self, canvas, parent, item):$/;"	m	class:TreeNode
 __init__	TreeWidget.py	/^    def __init__(self, master, **opts):$/;"	m	class:ScrolledCanvas
@@ -640,10 +636,6 @@ __init__	configHandler.py	/^    def __init__(self, cfgFile, cfgDefaults=None):$/
 __init__	configHelpSourceEdit.py	/^    def __init__(self, parent, title, menuItem='', filePath=''):$/;"	m	class:GetHelpSourceDialog
 __init__	configSectionNameDialog.py	/^    def __init__(self,parent,title,message,usedNames):$/;"	m	class:GetCfgSectionNameDialog
 __init__	dynOptionMenuWidget.py	/^    def __init__(self, master, variable, value, *values, **kwargs):$/;"	m	class:DynOptionMenu
-__init__	example_annotated_code.py	/^    def __init__(self, raw_source):$/;"	m	class:FoldManager
-__init__	fold_lines.py	/^    def __init__(self, master, current_text, annotation_callback):$/;"	m	class:AnnotationEditor
-__init__	fold_lines.py	/^    def __init__(self, raw_source):$/;"	m	class:FoldManager
-__init__	hack.py	/^    def __init__(self):$/;"	m	class:Hack
 __init__	keybindingDialog.py	/^    def __init__(self,parent,title,action,currentKeySequences):$/;"	m	class:GetKeysDialog
 __init__	rpc.py	/^    def __init__(self, addr, handlerclass=None):$/;"	m	class:RPCServer
 __init__	rpc.py	/^    def __init__(self, address, family=socket.AF_INET, type=socket.SOCK_STREAM):$/;"	m	class:RPCClient
@@ -659,43 +651,44 @@ __init__	tabbedpages.py	/^        def __init__(self, page_set):$/;"	m	class:Tabb
 __init__	tabbedpages.py	/^    def __init__(self, page_set, select_command,$/;"	m	class:TabSet
 __init__	tabbedpages.py	/^    def __init__(self, parent, page_names=None, page_class=PageLift,$/;"	m	class:TabbedPageSet
 __init__	textView.py	/^    def __init__(self, parent, title, text):$/;"	m	class:TextViewer
-__iter__	OrderedDict.py	/^    def __iter__(self):$/;"	m	class:OrderedDict	file:
+__init__	trace.py	/^    def __init__(self, lines):$/;"	m	class:LinesIter
+__init__	trace.py	/^    def __init__(self, runme):$/;"	m	class:Tracer
+__init__	trace.py	/^    def __init__(self, tracer, frame, depth):$/;"	m	class:FrameHandler
+__init__	trace.py	/^    def __init__(self, type, log):$/;"	m	class:Logger
 __len__	UndoDelegator.py	/^    def __len__(self):$/;"	m	class:CommandSequence	file:
 __main__	AutoComplete.py	/^import __main__$/;"	i
 __main__	CallTips.py	/^import __main__$/;"	i
 __main__	RemoteDebugger.py	/^        import __main__$/;"	i
 __main__	run.py	/^import __main__$/;"	i
 __methods	rpc.py	/^    __methods = None$/;"	v	class:RPCProxy
-__ne__	OrderedDict.py	/^    def __ne__(self, other):$/;"	m	class:OrderedDict	file:
 __recent_file_callback	EditorWindow.py	/^    def __recent_file_callback(self, file_name):$/;"	m	class:EditorWindow	file:
-__reduce__	OrderedDict.py	/^    def __reduce__(self):$/;"	m	class:OrderedDict	file:
-__repr__	OrderedDict.py	/^    def __repr__(self):$/;"	m	class:OrderedDict	file:
+__recent_file_callback	TraceDisplayWindow.py	/^    def __recent_file_callback(self, file_name):$/;"	m	class:TraceDisplayWindow	file:
 __repr__	UndoDelegator.py	/^    def __repr__(self):$/;"	m	class:Command	file:
 __repr__	UndoDelegator.py	/^    def __repr__(self):$/;"	m	class:CommandSequence	file:
 __repr__	WidgetRedirector.py	/^    def __repr__(self):$/;"	m	class:OriginalCommand	file:
 __repr__	WidgetRedirector.py	/^    def __repr__(self):$/;"	m	class:WidgetRedirector	file:
 __request_interrupt	PyShell.py	/^    def __request_interrupt(self):$/;"	m	class:ModifiedInterpreter	file:
-__reversed__	OrderedDict.py	/^    def __reversed__(self):$/;"	m	class:OrderedDict	file:
-__setitem__	OrderedDict.py	/^    def __setitem__(self, key, value):$/;"	m	class:OrderedDict	file:
 _add_tab_row	tabbedpages.py	/^    def _add_tab_row(self, tab_names, expand_tabs):$/;"	m	class:TabSet
 _addcolorizer	EditorWindow.py	/^    def _addcolorizer(self):$/;"	m	class:EditorWindow
+_addcolorizer	TraceDisplayWindow.py	/^    def _addcolorizer(self):$/;"	m	class:TraceDisplayWindow
 _arrange_tabs	tabbedpages.py	/^    def _arrange_tabs(self):$/;"	m	class:TabSet
 _asktabwidth	EditorWindow.py	/^    def _asktabwidth(self):$/;"	m	class:EditorWindow
-_b2motion	MultiListBox.py	/^    def _b2motion(self, x, y):$/;"	m	class:MultiListbox
 _binary_search	AutoCompleteWindow.py	/^    def _binary_search(self, s):$/;"	m	class:AutoCompleteWindow
 _binder_classes	MultiCall.py	/^_binder_classes = (_ComplexBinder,) * 4 + (_SimpleBinder,) * (len(_types)-4)$/;"	v
 _build_char_in_string_func	EditorWindow.py	/^    def _build_char_in_string_func(self, startindex):$/;"	m	class:EditorWindow
-_button2	MultiListBox.py	/^    def _button2(self, x, y):$/;"	m	class:MultiListbox
+_build_char_in_string_func	TraceDisplayWindow.py	/^    def _build_char_in_string_func(self, startindex):$/;"	m	class:TraceDisplayWindow
 _button_re	MultiCall.py	/^_button_re = re.compile(r"^[1-5]$")$/;"	v
 _change_start	AutoCompleteWindow.py	/^    def _change_start(self, newstart):$/;"	m	class:AutoCompleteWindow
 _close	EditorWindow.py	/^    def _close(self):$/;"	m	class:EditorWindow
 _close	PyShell.py	/^    def _close(self):$/;"	m	class:PyShell
 _close	PyShell.py	/^    def _close(self):$/;"	m	class:PyShellEditorWindow
+_close	TraceDisplayWindow.py	/^    def _close(self):$/;"	m	class:TraceDisplayWindow
 _complete_string	AutoCompleteWindow.py	/^    def _complete_string(self, s):$/;"	m	class:AutoCompleteWindow
 _delayed_open_completions	AutoComplete.py	/^    def _delayed_open_completions(self, *args):$/;"	m	class:AutoComplete
 _eat_identifier	HyperParser.py	/^    def _eat_identifier(self, str, limit, pos):$/;"	m	class:HyperParser
 _file_line_helper	OutputWindow.py	/^    def _file_line_helper(self, line):$/;"	m	class:OutputWindow
 _filename_to_unicode	EditorWindow.py	/^    def _filename_to_unicode(self, filename):$/;"	m	class:EditorWindow
+_filename_to_unicode	TraceDisplayWindow.py	/^    def _filename_to_unicode(self, filename):$/;"	m	class:TraceDisplayWindow
 _find_constructor	CallTips.py	/^def _find_constructor(class_ob):$/;"	f
 _find_module	EditorWindow.py	/^def _find_module(fullname, path=None):$/;"	f
 _get_dict_proxy	RemoteDebugger.py	/^    def _get_dict_proxy(self, did):$/;"	m	class:FrameProxy
@@ -718,6 +711,7 @@ _init_masks	tabbedpages.py	/^        def _init_masks(self):$/;"	m	class:TabSet.T
 _keysym_re	MultiCall.py	/^_keysym_re = re.compile(r"^\\w+$")$/;"	v
 _make_autocomplete_window	AutoComplete.py	/^    def _make_autocomplete_window(self):$/;"	m	class:AutoComplete
 _make_blanks	EditorWindow.py	/^    def _make_blanks(self, n):$/;"	m	class:EditorWindow
+_make_blanks	TraceDisplayWindow.py	/^    def _make_blanks(self, n):$/;"	m	class:TraceDisplayWindow
 _make_tk_calltip_window	CallTips.py	/^    def _make_tk_calltip_window(self):$/;"	m	class:CallTips
 _modifier_masks	MultiCall.py	/^    _modifier_masks = (MC_CONTROL, MC_ALT, MC_SHIFT, MC_META)$/;"	v
 _modifier_masks	MultiCall.py	/^    _modifier_masks = (MC_SHIFT, MC_CONTROL, MC_OPTION, MC_COMMAND)$/;"	v
@@ -735,8 +729,7 @@ _remove_autocomplete_window	AutoComplete.py	/^    def _remove_autocomplete_windo
 _remove_calltip_window	CallTips.py	/^    def _remove_calltip_window(self, event=None):$/;"	m	class:CallTips
 _reset_tab_rows	tabbedpages.py	/^    def _reset_tab_rows(self):$/;"	m	class:TabSet
 _rmcolorizer	EditorWindow.py	/^    def _rmcolorizer(self):$/;"	m	class:EditorWindow
-_scroll	MultiListBox.py	/^    def _scroll(self, *args):$/;"	m	class:MultiListbox
-_select	MultiListBox.py	/^    def _select(self, y):$/;"	m	class:MultiListbox
+_rmcolorizer	TraceDisplayWindow.py	/^    def _rmcolorizer(self):$/;"	m	class:TraceDisplayWindow
 _select_event	tabbedpages.py	/^        def _select_event(self, *args):$/;"	m	class:TabSet.TabButton
 _selection_changed	AutoCompleteWindow.py	/^    def _selection_changed(self):$/;"	m	class:AutoCompleteWindow
 _setit	dynOptionMenuWidget.py	/^from Tkinter import _setit$/;"	i
@@ -766,9 +759,11 @@ _type_names	MultiCall.py	/^_type_names = dict([(name, number)$/;"	v
 _types	MultiCall.py	/^_types = ($/;"	v
 _whitespace_chars	HyperParser.py	/^    _whitespace_chars = " \\t\\n\\\\"$/;"	v	class:HyperParser
 aboutDialog	EditorWindow.py	/^import aboutDialog, textView, configDialog$/;"	i
+aboutDialog	TraceDisplayWindow.py	/^import aboutDialog, textView, configDialog$/;"	i
 aboutDialog	aboutDialog.py	/^        import aboutDialog$/;"	i
 aboutDialog	macosxSupport.py	/^        import aboutDialog$/;"	i
 about_dialog	EditorWindow.py	/^    def about_dialog(self, event=None):$/;"	m	class:EditorWindow
+about_dialog	TraceDisplayWindow.py	/^    def about_dialog(self, event=None):$/;"	m	class:TraceDisplayWindow
 about_dialog	macosxSupport.py	/^    def about_dialog(event=None):$/;"	f	function:overrideRootMenu
 accept	rpc.py	/^    def accept(self):$/;"	m	class:RPCClient
 activate_restore	ParenMatch.py	/^    def activate_restore(self):$/;"	m	class:ParenMatch
@@ -780,24 +775,20 @@ add_tab	tabbedpages.py	/^    def add_tab(self, tab_name):$/;"	m	class:TabSet
 add_windows_to_menu	WindowList.py	/^    def add_windows_to_menu(self,  menu):$/;"	m	class:WindowList
 add_windows_to_menu	WindowList.py	/^add_windows_to_menu = registry.add_windows_to_menu$/;"	v
 addcmd	UndoDelegator.py	/^    def addcmd(self, cmd, execute=True):$/;"	m	class:UndoDelegator
-after	PySplitShell.py	/^    def after(self, delay_ms, callback, *args):$/;"	m	class:SplitText
 after_id	ColorDelegator.py	/^    after_id = None$/;"	v	class:ColorDelegator
 allow_colorizing	ColorDelegator.py	/^    allow_colorizing = True$/;"	v	class:ColorDelegator
 alphanumeric	UndoDelegator.py	/^    alphanumeric = string.ascii_letters + string.digits + "_"$/;"	v	class:InsertCommand
-annotate	PySplitShell.py	/^    def annotate(self):$/;"	m	class:SplitText
-annotate	fold_lines.py	/^    def annotate(self):$/;"	m	class:FoldManager
-annotation_entry	PySplitShell.py	/^    def annotation_entry(self, event):$/;"	m	class:SplitText
-annotation_entry	fold_lines.py	/^    def annotation_entry(self, event):$/;"	m	class:FoldManager
-annotation_helper	fold_lines.py	/^    def annotation_helper(self, text):$/;"	m	class:FoldManager
-annotation_text	parse_source.py	/^annotation_text=Text(frame)$/;"	v
+annotations	AnnotationParser.py	/^    annotations = parse_annotations(sys.argv[1])$/;"	v
 any	ColorDelegator.py	/^def any(name, alternates):$/;"	f
 append	ScrolledList.py	/^    def append(self, item):$/;"	m	class:ScrolledList
 append	UndoDelegator.py	/^    def append(self, cmd):$/;"	m	class:CommandSequence
 apply_bindings	EditorWindow.py	/^    def apply_bindings(self, keydefs=None):$/;"	m	class:EditorWindow
+apply_bindings	TraceDisplayWindow.py	/^    def apply_bindings(self, keydefs=None):$/;"	m	class:TraceDisplayWindow
 ask_save_dialog	ScriptBinding.py	/^    def ask_save_dialog(self):$/;"	m	class:ScriptBinding
 askopenfile	IOBinding.py	/^    def askopenfile(self):$/;"	m	class:IOBinding
 asksavefile	IOBinding.py	/^    def asksavefile(self):$/;"	m	class:IOBinding
 asprog	ColorDelegator.py	/^asprog = re.compile(r".*?\\b(as)\\b")$/;"	v
+assemble_source	trace.py	/^def assemble_source(events):$/;"	f
 asynccall	rpc.py	/^    def asynccall(self, oid, methodname, args, kwargs):$/;"	m	class:SocketIO
 asyncqueue	rpc.py	/^    def asyncqueue(self, oid, methodname, args, kwargs):$/;"	m	class:SocketIO
 asyncreturn	rpc.py	/^    def asyncreturn(self, seq):$/;"	m	class:SocketIO
@@ -807,13 +798,12 @@ be	FileList.py	/^    from EditorWindow import EditorWindow  # class variable, ma
 be	PyShell.py	/^                           "Your Python may not be configured for Tk. **"$/;"	i
 begin	PyShell.py	/^    def begin(self):$/;"	m	class:PyShell
 beginexecuting	PyShell.py	/^    def beginexecuting(self):$/;"	m	class:PyShell
-bell	PySplitShell.py	/^    def bell(self):$/;"	m	class:SplitText
 bgcolor	CodeContext.py	/^    bgcolor = idleConf.GetOption("extensions", "CodeContext",$/;"	v	class:CodeContext
 bind	MultiCall.py	/^        def bind(self, sequence=None, func=None, add=None):$/;"	m	class:MultiCallCreator.MultiCall
 bind	MultiCall.py	/^    def bind(self, triplet, func):$/;"	m	class:_ComplexBinder
 bind	MultiCall.py	/^    def bind(self, triplet, func):$/;"	m	class:_SimpleBinder
-bind	PySplitShell.py	/^    def bind(self, triplet, func, string=None):$/;"	m	class:SplitText
 binding	EditorWindow.py	/^            return # <Modifier-Home>; fall back to class binding$/;"	c	function:EditorWindow.home_callback
+binding	TraceDisplayWindow.py	/^            return # <Modifier-Home>; fall back to class binding$/;"	c	function:TraceDisplayWindow.home_callback
 bindseq	MultiCall.py	/^    def bindseq(seq, n=[0]):$/;"	f	function:MultiCallCreator
 browseFile	configHelpSourceEdit.py	/^    def browseFile(self):$/;"	m	class:GetHelpSourceDialog
 btn1	textView.py	/^    btn1 = Button(root, text='view_text',$/;"	v
@@ -829,8 +819,6 @@ bw	tabbedpages.py	/^        bw = 2 # borderwidth$/;"	v	class:TabSet.TabButton
 cachereport	Delegator.py	/^    def cachereport(self):$/;"	m	class:Delegator
 call	RemoteDebugger.py	/^    def call(self, methodname, *args, **kwargs):$/;"	m	class:IdbProxy
 call_callbacks	WindowList.py	/^    def call_callbacks(self):$/;"	m	class:WindowList
-callback	testbed.py	/^def callback():$/;"	f
-callback	testbed.py	/^def callback(event):$/;"	f
 callme	ParenMatch.py	/^        def callme(callme, self=self, c=self.counter,$/;"	f	function:ParenMatch.set_timeout_none
 calltip_hide	CallTipWindow.py	/^    def calltip_hide(self, event):$/;"	m	class:container
 calltip_show	CallTipWindow.py	/^    def calltip_show(self, event):$/;"	m	class:container
@@ -849,17 +837,22 @@ checksyntax	ScriptBinding.py	/^    def checksyntax(self, filename):$/;"	m	class:
 class	FileList.py	/^    from EditorWindow import EditorWindow  # class variable, may be overridden$/;"	i
 classify	UndoDelegator.py	/^    def classify(self, c):$/;"	m	class:InsertCommand
 classifyws	EditorWindow.py	/^def classifyws(s, tabwidth):$/;"	f
+clean_file	AnnotationParser.py	/^def clean_file(filename, marker='#>'):$/;"	f
+clean_file	trace.py	/^def clean_file(filename, marker='#>'):$/;"	f
 cleanup_traceback	run.py	/^def cleanup_traceback(tb, exclude):$/;"	f
-clear	OrderedDict.py	/^    def clear(self):$/;"	m	class:OrderedDict
 clear	ScrolledList.py	/^    def clear(self):$/;"	m	class:ScrolledList
+clear	TraceDisplayWindow.py	/^    def clear(self, target):$/;"	m	class:TraceDisplayWindow
+clear_all	TraceDisplayWindow.py	/^    def clear_all(self):$/;"	m	class:TraceDisplayWindow
 clear_all_file_breaks	RemoteDebugger.py	/^    def clear_all_file_breaks(self, filename):$/;"	m	class:IdbAdapter
 clear_all_file_breaks	RemoteDebugger.py	/^    def clear_all_file_breaks(self, filename):$/;"	m	class:IdbProxy
+clear_all_highlighting	TraceDisplayWindow.py	/^    def clear_all_highlighting(self):$/;"	m	class:TraceDisplayWindow
 clear_break	RemoteDebugger.py	/^    def clear_break(self, filename, lineno):$/;"	m	class:IdbAdapter
 clear_break	RemoteDebugger.py	/^    def clear_break(self, filename, lineno):$/;"	m	class:IdbProxy
 clear_breakpoint_here	Debugger.py	/^    def clear_breakpoint_here(self, filename, lineno):$/;"	m	class:Debugger
 clear_breakpoint_here	PyShell.py	/^    def clear_breakpoint_here(self, event=None):$/;"	m	class:PyShellEditorWindow
 clear_file_breaks	Debugger.py	/^    def clear_file_breaks(self, filename):$/;"	m	class:Debugger
 clear_file_breaks	PyShell.py	/^    def clear_file_breaks(self):$/;"	m	class:PyShellEditorWindow
+clear_highlighting	TraceDisplayWindow.py	/^    def clear_highlighting(self, target):$/;"	m	class:TraceDisplayWindow
 click_event	ScrolledList.py	/^    def click_event(self, event):$/;"	m	class:ScrolledList
 close	CallTips.py	/^    def close(self):$/;"	m	class:CallTips
 close	ClassBrowser.py	/^    def close(self, event=None):$/;"	m	class:ClassBrowser
@@ -875,6 +868,7 @@ close	PyShell.py	/^    def close(self):$/;"	m	class:PyShell
 close	ReplaceDialog.py	/^    def close(self, event=None):$/;"	m	class:ReplaceDialog
 close	ScrolledList.py	/^    def close(self):$/;"	m	class:ScrolledList
 close	SearchDialogBase.py	/^    def close(self, event=None):$/;"	m	class:SearchDialogBase
+close	TraceDisplayWindow.py	/^    def close(self):$/;"	m	class:TraceDisplayWindow
 close	WidgetRedirector.py	/^    def close(self):$/;"	m	class:WidgetRedirector
 close	rpc.py	/^    def close(self):$/;"	m	class:SocketIO
 close	textView.py	/^    close = Button(root, text='Close', command=root.destroy)$/;"	v
@@ -883,7 +877,9 @@ closeItem	Bindings.py	/^    closeItem = menudefs[0][1][-2]$/;"	v
 close_all_callback	FileList.py	/^    def close_all_callback(self, event):$/;"	m	class:FileList
 close_debugger	PyShell.py	/^    def close_debugger(self):$/;"	m	class:PyShell
 close_event	EditorWindow.py	/^    def close_event(self, event):$/;"	m	class:EditorWindow
+close_event	TraceDisplayWindow.py	/^    def close_event(self, event):$/;"	m	class:TraceDisplayWindow
 close_hook	EditorWindow.py	/^    def close_hook(self):$/;"	m	class:EditorWindow
+close_hook	TraceDisplayWindow.py	/^    def close_hook(self):$/;"	m	class:TraceDisplayWindow
 close_remote_debugger	RemoteDebugger.py	/^def close_remote_debugger(rpcclt):$/;"	f
 close_subprocess_debugger	RemoteDebugger.py	/^def close_subprocess_debugger(rpcclt):$/;"	f
 close_when_done	ColorDelegator.py	/^    close_when_done = None # Window to be closed when done colorizing$/;"	v	class:ColorDelegator
@@ -901,6 +897,8 @@ colorize_syntax_error	ScriptBinding.py	/^    def colorize_syntax_error(self, msg
 colorizing	ColorDelegator.py	/^    colorizing = False$/;"	v	class:ColorDelegator
 command	EditorWindow.py	/^                    def command(text=text, eventname=eventname):$/;"	f	function:EditorWindow.fill_menus
 command	EditorWindow.py	/^            def command(text=self.text, eventname=eventname):$/;"	f	function:EditorWindow.make_rmenu
+command	TraceDisplayWindow.py	/^                    def command(text=text, eventname=eventname):$/;"	f	function:TraceDisplayWindow.fill_menus
+command	TraceDisplayWindow.py	/^            def command(text=self.text, eventname=eventname):$/;"	f	function:TraceDisplayWindow.make_rmenu
 command	macosxSupport.py	/^                        def command(text=root, eventname=eventname):$/;"	f	function:overrideRootMenu.config_dialog
 command	textView.py	/^                  command=lambda:view_file(root, 'view_file', filename))$/;"	v
 command	textView.py	/^                 command=lambda:view_text(root, 'view_text', text))$/;"	v
@@ -908,18 +906,18 @@ comment_region_event	EditorWindow.py	/^    def comment_region_event(self, event)
 complete	AutoCompleteWindow.py	/^    def complete(self):$/;"	m	class:AutoCompleteWindow
 compute_backslash_indent	PyParse.py	/^    def compute_backslash_indent(self):$/;"	m	class:Parser
 compute_bracket_indent	PyParse.py	/^    def compute_bracket_indent(self):$/;"	m	class:Parser
-config	PySplitShell.py	/^    def config(self, **options):$/;"	m	class:SplitText
 configDialog	EditorWindow.py	/^import aboutDialog, textView, configDialog$/;"	i
+configDialog	TraceDisplayWindow.py	/^import aboutDialog, textView, configDialog$/;"	i
 configDialog	macosxSupport.py	/^        import configDialog$/;"	i
 config_colors	ColorDelegator.py	/^    def config_colors(self):$/;"	m	class:ColorDelegator
 config_dialog	EditorWindow.py	/^    def config_dialog(self, event=None):$/;"	m	class:EditorWindow
+config_dialog	TraceDisplayWindow.py	/^    def config_dialog(self, event=None):$/;"	m	class:TraceDisplayWindow
 config_dialog	macosxSupport.py	/^    def config_dialog(event=None):$/;"	f	function:overrideRootMenu
 configured	PyShell.py	/^                           "Your Python may not be configured for Tk. **"$/;"	i
 cont	Debugger.py	/^    def cont(self):$/;"	m	class:Debugger
 container	CallTipWindow.py	/^class container: # Conceptually an editor_window$/;"	c
 context_depth	CodeContext.py	/^    context_depth = idleConf.GetOption("extensions", "CodeContext",$/;"	v	class:CodeContext
 copy	EditorWindow.py	/^    def copy(self,event):$/;"	m	class:EditorWindow
-copy	OrderedDict.py	/^    def copy(self):$/;"	m	class:OrderedDict
 copy	dynOptionMenuWidget.py	/^import copy$/;"	i
 copy_reg	rpc.py	/^import copy_reg$/;"	i
 count	EditorWindow.py	/^from itertools import count$/;"	i
@@ -934,10 +932,11 @@ create_other_buttons	GrepDialog.py	/^    def create_other_buttons(self):$/;"	m	c
 create_other_buttons	SearchDialogBase.py	/^    def create_other_buttons(self):$/;"	m	class:SearchDialogBase
 create_tag_default	ParenMatch.py	/^    def create_tag_default(self, indices):$/;"	m	class:ParenMatch
 create_tag_expression	ParenMatch.py	/^    def create_tag_expression(self, indices):$/;"	m	class:ParenMatch
+create_trace	EditorWindow.py	/^    def create_trace(self):$/;"	m	class:EditorWindow
 create_widgets	SearchDialog.py	/^    def create_widgets(self):$/;"	m	class:SearchDialog
 create_widgets	SearchDialogBase.py	/^    def create_widgets(self):$/;"	m	class:SearchDialogBase
 createmenubar	EditorWindow.py	/^    def createmenubar(self):$/;"	m	class:EditorWindow
-curselection	MultiListBox.py	/^    def curselection(self):$/;"	m	class:MultiListbox
+createmenubar	TraceDisplayWindow.py	/^    def createmenubar(self):$/;"	m	class:TraceDisplayWindow
 cut	EditorWindow.py	/^    def cut(self,event):$/;"	m	class:EditorWindow
 deactivate_restore	ParenMatch.py	/^    def deactivate_restore(self):$/;"	m	class:ParenMatch
 debug	rpc.py	/^    def debug(self, *args):$/;"	m	class:SocketIO
@@ -960,11 +959,9 @@ defaultfilename	IOBinding.py	/^    def defaultfilename(self, mode="open"):$/;"	m
 del_word_left	EditorWindow.py	/^    def del_word_left(self, event):$/;"	m	class:EditorWindow
 del_word_right	EditorWindow.py	/^    def del_word_right(self, event):$/;"	m	class:EditorWindow
 delete	ColorDelegator.py	/^    def delete(self, index1, index2=None):$/;"	m	class:ColorDelegator
-delete	MultiListBox.py	/^    def delete(self, first, last=None):$/;"	m	class:MultiListbox
 delete	Percolator.py	/^        def delete(self, *args):$/;"	m	class:main.Tracer
 delete	Percolator.py	/^    def delete(self, index1, index2=None):$/;"	m	class:Percolator
 delete	PyShell.py	/^    def delete(self, index1, index2=None):$/;"	m	class:ModifiedUndoDelegator
-delete	PySplitShell.py	/^    def delete(self, start, stop=None):$/;"	m	class:SplitText
 delete	UndoDelegator.py	/^    def delete(self, index1, index2=None):$/;"	m	class:UndoDelegator
 delete	WindowList.py	/^    def delete(self, window):$/;"	m	class:WindowList
 deselect	TreeWidget.py	/^    def deselect(self, event=None):$/;"	m	class:TreeNode
@@ -981,6 +978,7 @@ dispatch	ObjectBrowser.py	/^dispatch = {$/;"	v
 dispatch	WidgetRedirector.py	/^    def dispatch(self, operation, *args):$/;"	m	class:WidgetRedirector
 display_executing_dialog	PyShell.py	/^    def display_executing_dialog(self):$/;"	m	class:ModifiedInterpreter
 display_extra_help	EditorWindow.py	/^        def display_extra_help(helpfile=helpfile):$/;"	f	function:EditorWindow.__extra_help_callback
+display_extra_help	TraceDisplayWindow.py	/^        def display_extra_help(helpfile=helpfile):$/;"	f	function:TraceDisplayWindow.__extra_help_callback
 display_file_text	aboutDialog.py	/^    def display_file_text(self, title, filename, encoding=None):$/;"	m	class:AboutDialog
 display_no_subprocess_error	PyShell.py	/^    def display_no_subprocess_error(self):$/;"	m	class:ModifiedInterpreter
 display_port_binding_error	PyShell.py	/^    def display_port_binding_error(self):$/;"	m	class:ModifiedInterpreter
@@ -993,10 +991,10 @@ do_edit	IOBinding.py	/^    def do_edit(self):$/;"	m	class:EncodingMessage
 do_find	ReplaceDialog.py	/^    def do_find(self, ok=0):$/;"	m	class:ReplaceDialog
 do_ok	IOBinding.py	/^    def do_ok(self):$/;"	m	class:EncodingMessage
 do_replace	ReplaceDialog.py	/^    def do_replace(self):$/;"	m	class:ReplaceDialog
-done	fold_lines.py	/^    def done(self):$/;"	m	class:AnnotationEditor
 double_click_event	ScrolledList.py	/^    def double_click_event(self, event):$/;"	m	class:ScrolledList
 doubleclick_event	AutoCompleteWindow.py	/^    def doubleclick_event(self, event):$/;"	m	class:AutoCompleteWindow
 down_event	ScrolledList.py	/^    def down_event(self, event):$/;"	m	class:ScrolledList
+dprint	trace.py	/^def dprint(*args):$/;"	f
 draw	TreeWidget.py	/^    def draw(self, x, y):$/;"	m	class:TreeNode
 drawicon	TreeWidget.py	/^    def drawicon(self):$/;"	m	class:TreeNode
 drawtext	TreeWidget.py	/^    def drawtext(self):$/;"	m	class:TreeNode
@@ -1015,6 +1013,7 @@ encoding	IOBinding.py	/^        encoding = locale.getdefaultlocale()[1]$/;"	v
 encoding	IOBinding.py	/^        encoding = locale.nl_langinfo(locale.CODESET)$/;"	v
 encoding	IOBinding.py	/^encoding = "ascii"$/;"	v
 encoding	IOBinding.py	/^encoding = encoding.lower()$/;"	v
+encoding	TraceDisplayWindow.py	/^    from IOBinding import IOBinding, filesystemencoding, encoding$/;"	i
 endexecuting	PyShell.py	/^    def endexecuting(self):$/;"	m	class:PyShell
 endoffile	PyShell.py	/^    endoffile = False$/;"	v	class:PyShell
 enter	ToolTip.py	/^    def enter(self, event=None):$/;"	m	class:ToolTipBase
@@ -1026,10 +1025,7 @@ eol_convention	IOBinding.py	/^    eol_convention = os.linesep # Default$/;"	v	cl
 eol_re	IOBinding.py	/^    eol_re = re.compile(eol)$/;"	v	class:IOBinding
 errorbox	ScriptBinding.py	/^    def errorbox(self, title, message):$/;"	m	class:ScriptBinding
 event_add	MultiCall.py	/^        def event_add(self, virtual, *sequences):$/;"	m	class:MultiCallCreator.MultiCall
-event_add	PySplitShell.py	/^    def event_add(self, virtual, *sequences):$/;"	m	class:SplitText
 event_delete	MultiCall.py	/^        def event_delete(self, virtual, *sequences):$/;"	m	class:MultiCallCreator.MultiCall
-event_delete	PySplitShell.py	/^    def event_delete(self, virtual, *sequences):$/;"	m	class:SplitText
-event_generate	PySplitShell.py	/^    def event_generate(self, sequence, **keywords):$/;"	m	class:SplitText
 event_info	MultiCall.py	/^        def event_info(self, virtual=None):$/;"	m	class:MultiCallCreator.MultiCall
 execfile	PyShell.py	/^    def execfile(self, filename, source=None):$/;"	m	class:ModifiedInterpreter
 execsource	PyShell.py	/^    def execsource(self, source):$/;"	m	class:ModifiedInterpreter
@@ -1043,7 +1039,9 @@ expand_word_event	AutoExpand.py	/^    def expand_word_event(self, event):$/;"	m	
 expandable	TreeWidget.py	/^    expandable = None$/;"	v	class:TreeItem
 extended_linecache_checkcache	PyShell.py	/^def extended_linecache_checkcache(filename=None,$/;"	f
 extension	EditorWindow.py	/^            print "\\nFailed to import extension: ", name$/;"	i
+extract_codes	trace.py	/^def extract_codes(events):$/;"	f
 f	testcode.py	/^def f():$/;"	f
+fast	TraceDisplayWindow.py	/^    def fast(self):$/;"	m	class:TraceDisplayWindow
 fetch_completions	AutoComplete.py	/^    def fetch_completions(self, what, mode):$/;"	m	class:AutoComplete
 fetch_tip	CallTips.py	/^    def fetch_tip(self, name):$/;"	m	class:CallTips
 fgcolor	CodeContext.py	/^    fgcolor = idleConf.GetOption("extensions", "CodeContext",$/;"	v	class:CodeContext
@@ -1057,11 +1055,13 @@ filename_changed_edit	FileList.py	/^    def filename_changed_edit(self, edit):$/
 filename_changed_hook	PyShell.py	/^        def filename_changed_hook(old_hook=self.io.filename_change_hook,$/;"	f	function:PyShellEditorWindow.__init__
 filesystemencoding	EditorWindow.py	/^    from IOBinding import IOBinding, filesystemencoding, encoding$/;"	i
 filesystemencoding	IOBinding.py	/^filesystemencoding = sys.getfilesystemencoding()$/;"	v
+filesystemencoding	TraceDisplayWindow.py	/^    from IOBinding import IOBinding, filesystemencoding, encoding$/;"	i
 filetypes	IOBinding.py	/^    filetypes = [$/;"	v	class:IOBinding
 fill_menu	Debugger.py	/^    def fill_menu(self):$/;"	m	class:StackViewer
 fill_menu	ScrolledList.py	/^        def fill_menu(self): self.menu.add_command(label="pass")$/;"	m	class:test.MyScrolledList
 fill_menu	ScrolledList.py	/^    def fill_menu(self):$/;"	m	class:ScrolledList
 fill_menus	EditorWindow.py	/^    def fill_menus(self, menudefs=None, keydefs=None):$/;"	m	class:EditorWindow
+fill_menus	TraceDisplayWindow.py	/^    def fill_menus(self, menudefs=None, keydefs=None):$/;"	m	class:TraceDisplayWindow
 find	SearchDialog.py	/^def find(text):$/;"	f
 find_again	SearchDialog.py	/^    def find_again(self, text):$/;"	m	class:SearchDialog
 find_again	SearchDialog.py	/^def find_again(text):$/;"	f
@@ -1075,41 +1075,34 @@ find_selection	SearchDialog.py	/^    def find_selection(self, text):$/;"	m	class
 find_selection	SearchDialog.py	/^def find_selection(text):$/;"	f
 find_selection_event	EditorWindow.py	/^    def find_selection_event(self, event):$/;"	m	class:EditorWindow
 findfiles	GrepDialog.py	/^    def findfiles(self, dir, base, rec):$/;"	m	class:GrepDialog
-fix	hack.py	/^    def fix(self):$/;"	m	class:Hack
 fixlastline	IOBinding.py	/^    def fixlastline(self):$/;"	m	class:IOBinding
 fixwordbreaks	EditorWindow.py	/^def fixwordbreaks(root):$/;"	f
 fixwordbreaks	FileList.py	/^    from EditorWindow import fixwordbreaks$/;"	i
 fixwordbreaks	PyShell.py	/^from EditorWindow import EditorWindow, fixwordbreaks$/;"	i
-fixwordbreaks	PySplitShell.py	/^from EditorWindow import fixwordbreaks$/;"	i
+fixwordbreaks	TraceDisplayWindow.py	/^def fixwordbreaks(root):$/;"	f
 flash_paren_event	ParenMatch.py	/^    def flash_paren_event(self, event):$/;"	m	class:ParenMatch
 flip	TreeWidget.py	/^    def flip(self, event=None):$/;"	m	class:TreeNode
 flush	OutputWindow.py	/^    def flush(self):$/;"	m	class:OutputWindow
 flush	PyShell.py	/^    def flush(self):$/;"	m	class:PseudoFile
+flushLog	trace.py	/^    def flushLog(self):$/;"	m	class:Logger
 flush_stdout	run.py	/^def flush_stdout():$/;"	f
 fnmatch	GrepDialog.py	/^import fnmatch$/;"	i
-fold_annotations	fold_lines.py	/^    def fold_annotations(self):$/;"	m	class:FoldManager
-fold_line	fold_lines.py	/^    def fold_line(self, line):$/;"	m	class:FoldManager
-folder	example_annotated_code.py	/^    def folder(self):$/;"	m	class:FoldManager
-folder	fold_lines.py	/^    def folder(self):$/;"	m	class:FoldManager
 font_timer_event	CodeContext.py	/^    def font_timer_event(self):$/;"	m	class:CodeContext
+foo	trace.py	/^def foo():$/;"	f
 for	PyShell.py	/^                           "Your Python may not be configured for Tk. **"$/;"	i
 force_open_calltip_event	CallTips.py	/^    def force_open_calltip_event(self, event):$/;"	m	class:CallTips
 force_open_completions_event	AutoComplete.py	/^    def force_open_completions_event(self, event):$/;"	m	class:AutoComplete
 format_paragraph_event	FormatParagraph.py	/^    def format_paragraph_event(self, event):$/;"	m	class:FormatParagraph
-frame	parse_source.py	/^frame=Frame(root)$/;"	v
 frame_attr	RemoteDebugger.py	/^    def frame_attr(self, fid, name):$/;"	m	class:IdbAdapter
 frame_code	RemoteDebugger.py	/^    def frame_code(self, fid):$/;"	m	class:IdbAdapter
 frame_globals	RemoteDebugger.py	/^    def frame_globals(self, fid):$/;"	m	class:IdbAdapter
 frame_locals	RemoteDebugger.py	/^    def frame_locals(self, fid):$/;"	m	class:IdbAdapter
 frametable	RemoteDebugger.py	/^frametable = {}$/;"	v
-fromkeys	OrderedDict.py	/^    def fromkeys(cls, iterable, value=None):$/;"	m	class:OrderedDict
-funcID	testbed.py	/^funcID=text.bind('<<virtual>>', callback)$/;"	v
 g	testcode.py	/^def g():$/;"	f
-get	MultiListBox.py	/^    def get(self, first, last=None):$/;"	m	class:MultiListbox
-get	PySplitShell.py	/^    def get(self, start, stop=None):$/;"	m	class:SplitText
 get	ScrolledList.py	/^    def get(self, index):$/;"	m	class:ScrolledList
 get	SearchEngine.py	/^def get(root):$/;"	f
 get_accelerator	EditorWindow.py	/^def get_accelerator(keydefs, eventname):$/;"	f
+get_accelerator	TraceDisplayWindow.py	/^def get_accelerator(keydefs, eventname):$/;"	f
 get_accelerator	macosxSupport.py	/^    from EditorWindow import prepstr, get_accelerator$/;"	i
 get_arg_text	CallTips.py	/^def get_arg_text(ob):$/;"	f
 get_base_indent_string	PyParse.py	/^    def get_base_indent_string(self):$/;"	m	class:Parser
@@ -1121,10 +1114,10 @@ get_entity	CallTips.py	/^    def get_entity(self, name):$/;"	m	class:CallTips
 get_exception	StackViewer.py	/^    def get_exception(self):$/;"	m	class:StackTreeItem
 get_expression	HyperParser.py	/^    def get_expression(self):$/;"	m	class:HyperParser
 get_geometry	EditorWindow.py	/^    def get_geometry(self):$/;"	m	class:EditorWindow
+get_geometry	TraceDisplayWindow.py	/^    def get_geometry(self):$/;"	m	class:TraceDisplayWindow
 get_indent	FormatParagraph.py	/^def get_indent(line):$/;"	f
 get_last_open_bracket_pos	PyParse.py	/^    def get_last_open_bracket_pos(self):$/;"	m	class:Parser
 get_last_stmt_bracketing	PyParse.py	/^    def get_last_stmt_bracketing(self):$/;"	m	class:Parser
-get_line	PySplitShell.py	/^    def get_line(self, index):$/;"	m	class:SplitText
 get_line_col	SearchEngine.py	/^def get_line_col(index):$/;"	f
 get_line_info	CodeContext.py	/^    def get_line_info(self, linenum):$/;"	m	class:CodeContext
 get_num_lines_in_stmt	PyParse.py	/^    def get_num_lines_in_stmt(self):$/;"	m	class:Parser
@@ -1150,6 +1143,7 @@ get_the_completion_list	run.py	/^    def get_the_completion_list(self, what, mod
 get_title	WindowList.py	/^    def get_title(self):$/;"	m	class:ListedToplevel
 get_var_obj	EditorWindow.py	/^    def get_var_obj(self, name, vartype=None):$/;"	m	class:EditorWindow
 get_warning_stream	PyShell.py	/^    def get_warning_stream(self):$/;"	m	class:PyShell
+getblock	trace.py	/^def getblock(lines):$/;"	f
 getcmd	UndoDelegator.py	/^    def getcmd(self, i):$/;"	m	class:CommandSequence
 getcookedpat	SearchEngine.py	/^    def getcookedpat(self):$/;"	m	class:SearchEngine
 getdebugger	PyShell.py	/^    def getdebugger(self):$/;"	m	class:ModifiedInterpreter
@@ -1157,6 +1151,7 @@ getdelegate	Delegator.py	/^    def getdelegate(self):$/;"	m	class:Delegator
 getfilename	ScriptBinding.py	/^    def getfilename(self):$/;"	m	class:ScriptBinding
 geticonimage	TreeWidget.py	/^    def geticonimage(self, name):$/;"	m	class:TreeNode
 getlineno	EditorWindow.py	/^    def getlineno(self, mark="insert"):$/;"	m	class:EditorWindow
+getlineno	TraceDisplayWindow.py	/^    def getlineno(self, mark="insert"):$/;"	m	class:TraceDisplayWindow
 getopt	PyShell.py	/^import getopt$/;"	i
 getpat	SearchEngine.py	/^    def getpat(self):$/;"	m	class:SearchEngine
 getprevword	AutoExpand.py	/^    def getprevword(self):$/;"	m	class:AutoExpand
@@ -1164,10 +1159,12 @@ getprog	SearchEngine.py	/^    def getprog(self):$/;"	m	class:SearchEngine
 getresponse	rpc.py	/^    def getresponse(self, myseq, wait):$/;"	m	class:SocketIO
 getvar	EditorWindow.py	/^    def getvar(self, name):$/;"	m	class:EditorWindow
 getwindowlines	EditorWindow.py	/^    def getwindowlines(self):$/;"	m	class:EditorWindow
+getwindowlines	TraceDisplayWindow.py	/^    def getwindowlines(self):$/;"	m	class:TraceDisplayWindow
 getwords	AutoExpand.py	/^    def getwords(self):$/;"	m	class:AutoExpand
 gid	PyShell.py	/^    gid = 0$/;"	v	class:ModifiedInterpreter
 glob	TreeWidget.py	/^    import glob$/;"	i
 globalsviewer	Debugger.py	/^    globalsviewer = None$/;"	v	class:Debugger
+go	trace.py	/^            def go():$/;"	f	function:Tracer.__init__
 goto_file_line	OutputWindow.py	/^    def goto_file_line(self, event=None):$/;"	m	class:OutputWindow
 goto_line_event	EditorWindow.py	/^    def goto_line_event(self, event):$/;"	m	class:EditorWindow
 goto_source_line	Debugger.py	/^    def goto_source_line(self):$/;"	m	class:StackViewer
@@ -1178,7 +1175,6 @@ grep_it	GrepDialog.py	/^    def grep_it(self, prog, path):$/;"	m	class:GrepDialo
 guess_indent	EditorWindow.py	/^    def guess_indent(self):$/;"	m	class:EditorWindow
 gui_adap_oid	RemoteDebugger.py	/^gui_adap_oid = "gui_adapter"$/;"	v
 h	testcode.py	/^def h():$/;"	f
-hack	hack.py	/^    def hack(self):$/;"	m	class:Hack
 handle	rpc.py	/^    def handle(self):$/;"	m	class:RPCHandler
 handle	run.py	/^    def handle(self):$/;"	m	class:MyHandler
 handle_EOF	PyShell.py	/^    def handle_EOF(self):$/;"	m	class:MyRPCClient
@@ -1190,18 +1186,22 @@ handler	MultiCall.py	/^            def handler(event, l = self.bindedfuncs, mc_t
 handler	MultiCall.py	/^        def handler(event):$/;"	f	function:MultiCallCreator.bindseq
 handler	MultiCall.py	/^        def handler(event, lists = lists,$/;"	f	function:_ComplexBinder.__create_handler
 help_dialog	EditorWindow.py	/^    def help_dialog(self, event=None):$/;"	m	class:EditorWindow
+help_dialog	TraceDisplayWindow.py	/^    def help_dialog(self, event=None):$/;"	m	class:TraceDisplayWindow
 help_url	EditorWindow.py	/^    help_url = None$/;"	v	class:EditorWindow
+help_url	TraceDisplayWindow.py	/^    help_url = None$/;"	v	class:TraceDisplayWindow
 hideTkConsole	macosxSupport.py	/^def hideTkConsole(root):$/;"	f
 hide_event	AutoCompleteWindow.py	/^    def hide_event(self, event):$/;"	m	class:AutoCompleteWindow
 hide_event	CallTipWindow.py	/^    def hide_event(self, event):$/;"	m	class:CallTip
 hide_window	AutoCompleteWindow.py	/^    def hide_window(self):$/;"	m	class:AutoCompleteWindow
 hidetip	CallTipWindow.py	/^    def hidetip(self):$/;"	m	class:CallTip
 hidetip	ToolTip.py	/^    def hidetip(self):$/;"	m	class:ToolTipBase
+highlight_line	TraceDisplayWindow.py	/^    def highlight_line(self, target, lineno):$/;"	m	class:TraceDisplayWindow
 history_do	IdleHistory.py	/^    def history_do(self, reverse):$/;"	m	class:History
 history_next	IdleHistory.py	/^    def history_next(self, event):$/;"	m	class:History
 history_prev	IdleHistory.py	/^    def history_prev(self, event):$/;"	m	class:History
 history_store	IdleHistory.py	/^    def history_store(self, source):$/;"	m	class:History
 home_callback	EditorWindow.py	/^    def home_callback(self, event):$/;"	m	class:EditorWindow
+home_callback	TraceDisplayWindow.py	/^    def home_callback(self, event):$/;"	m	class:TraceDisplayWindow
 i	testcode.py	/^def i():$/;"	f
 icon	GrepDialog.py	/^    icon = "Grep"$/;"	v	class:GrepDialog
 icon	ReplaceDialog.py	/^    icon = "Replace"$/;"	v	class:ReplaceDialog
@@ -1219,6 +1219,7 @@ idleConf	IdleHistory.py	/^from configHandler import idleConf$/;"	i
 idleConf	ParenMatch.py	/^from configHandler import idleConf$/;"	i
 idleConf	PyShell.py	/^from configHandler import idleConf$/;"	i
 idleConf	ScriptBinding.py	/^from configHandler import idleConf$/;"	i
+idleConf	TraceDisplayWindow.py	/^from configHandler import idleConf$/;"	i
 idleConf	TreeWidget.py	/^from configHandler import idleConf$/;"	i
 idleConf	configDialog.py	/^from configHandler import idleConf$/;"	i
 idleConf	configHandler.py	/^idleConf=IdleConf()$/;"	v
@@ -1229,6 +1230,7 @@ idledir	idle.py	/^        idledir = os.path.dirname(os.path.abspath(PyShell.__fi
 idlelib	idle.py	/^    import idlelib.PyShell$/;"	i
 idlever	EditorWindow.py	/^import idlever$/;"	i
 idlever	PyShell.py	/^import idlever$/;"	i
+idlever	TraceDisplayWindow.py	/^import idlever$/;"	i
 idlever	aboutDialog.py	/^import idlever$/;"	i
 idprog	ColorDelegator.py	/^idprog = re.compile(r"\\s+(\\w+)", re.S)$/;"	v
 imp	EditorWindow.py	/^import imp$/;"	i
@@ -1236,21 +1238,21 @@ imp	PathBrowser.py	/^import imp$/;"	i
 imp	TreeWidget.py	/^import imp$/;"	i
 in_rpc_code	Debugger.py	/^    def in_rpc_code(self, frame):$/;"	m	class:Idb
 indent_region_event	EditorWindow.py	/^    def indent_region_event(self, event):$/;"	m	class:EditorWindow
-index	MultiListBox.py	/^    def index(self, index):$/;"	m	class:MultiListbox
-index	PySplitShell.py	/^    def index(self, index):$/;"	m	class:SplitText
 index2line	EditorWindow.py	/^def index2line(index):$/;"	f
 index2line	HyperParser.py	/^        def index2line(index):$/;"	f	function:HyperParser.__init__
 init	ClassBrowser.py	/^    def init(self, flist):$/;"	m	class:ClassBrowser
 inner	EditorWindow.py	/^        def inner(offset, _startindex=startindex,$/;"	f	function:EditorWindow._build_char_in_string_func
+inner	TraceDisplayWindow.py	/^        def inner(offset, _startindex=startindex,$/;"	f	function:TraceDisplayWindow._build_char_in_string_func
 insert	ColorDelegator.py	/^    def insert(self, index, chars, tags=None):$/;"	m	class:ColorDelegator
-insert	MultiListBox.py	/^    def insert(self, index, *elements):$/;"	m	class:MultiListbox
 insert	Percolator.py	/^        def insert(self, *args):$/;"	m	class:main.Tracer
 insert	Percolator.py	/^    def insert(self, index, chars, tags=None):$/;"	m	class:Percolator
 insert	PyShell.py	/^    def insert(self, index, chars, tags=None):$/;"	m	class:ModifiedUndoDelegator
-insert	PySplitShell.py	/^    def insert(self, index, text, *tags):$/;"	m	class:SplitText
+insert	TraceDisplayWindow.py	/^    def insert(self, target, text):$/;"	m	class:TraceDisplayWindow
 insert	UndoDelegator.py	/^    def insert(self, index, chars, tags=None):$/;"	m	class:UndoDelegator
 insertfilter	Percolator.py	/^    def insertfilter(self, filter):$/;"	m	class:Percolator
 insertpt	EditorWindow.py	/^                insertpt=len(line)$/;"	v	class:EditorWindow.home_callback.binding
+insertpt	TraceDisplayWindow.py	/^                insertpt=len(line)$/;"	v	class:TraceDisplayWindow.home_callback.binding
+inspect	trace.py	/^import inspect$/;"	i
 interaction	Debugger.py	/^    def interaction(self, message, frame, info=None):$/;"	m	class:Debugger
 interaction	RemoteDebugger.py	/^    def interaction(self, message, fid, modified_info):$/;"	m	class:GUIAdapter
 interaction	RemoteDebugger.py	/^    def interaction(self, message, frame, info=None):$/;"	m	class:GUIProxy
@@ -1263,6 +1265,7 @@ is_all_white	FormatParagraph.py	/^def is_all_white(line):$/;"	f
 is_block_closer	PyParse.py	/^    def is_block_closer(self):$/;"	m	class:Parser
 is_block_opener	PyParse.py	/^    def is_block_opener(self):$/;"	m	class:Parser
 is_char_in_string	EditorWindow.py	/^    def is_char_in_string(self, text_index):$/;"	m	class:EditorWindow
+is_char_in_string	TraceDisplayWindow.py	/^    def is_char_in_string(self, text_index):$/;"	m	class:TraceDisplayWindow
 is_in_code	HyperParser.py	/^    def is_in_code(self):$/;"	m	class:HyperParser
 is_in_string	HyperParser.py	/^    def is_in_string(self):$/;"	m	class:HyperParser
 isatty	PyShell.py	/^    def isatty(self):$/;"	m	class:PseudoFile
@@ -1273,27 +1276,27 @@ ispackagedir	PathBrowser.py	/^    def ispackagedir(self, file):$/;"	m	class:DirB
 ispythonsource	EditorWindow.py	/^    def ispythonsource(self, filename):$/;"	m	class:EditorWindow
 ispythonsource	OutputWindow.py	/^    def ispythonsource(self, filename):$/;"	m	class:OutputWindow
 ispythonsource	PyShell.py	/^    def ispythonsource(self, filename):$/;"	m	class:PyShell
+ispythonsource	TraceDisplayWindow.py	/^    def ispythonsource(self, filename):$/;"	m	class:TraceDisplayWindow
 isre	SearchEngine.py	/^    def isre(self):$/;"	m	class:SearchEngine
+istrace	TraceDisplayWindow.py	/^    def istrace(self, filename):$/;"	m	class:TraceDisplayWindow
 isword	SearchEngine.py	/^    def isword(self):$/;"	m	class:SearchEngine
 iswrap	SearchEngine.py	/^    def iswrap(self):$/;"	m	class:SearchEngine
-items	OrderedDict.py	/^    items = DictMixin.items$/;"	v	class:OrderedDict
-iteritems	OrderedDict.py	/^    iteritems = DictMixin.iteritems$/;"	v	class:OrderedDict
-iterkeys	OrderedDict.py	/^    iterkeys = DictMixin.iterkeys$/;"	v	class:OrderedDict
-itervalues	OrderedDict.py	/^    itervalues = DictMixin.itervalues$/;"	v	class:OrderedDict
 j	testcode.py	/^def j():$/;"	f
+json	IOBinding.py	/^import json$/;"	i
+json	TraceDisplayWindow.py	/^import json$/;"	i
+json	trace.py	/^import json$/;"	i
 k	testcode.py	/^def k():$/;"	f
 keynames	EditorWindow.py	/^keynames = {$/;"	v
+keynames	TraceDisplayWindow.py	/^keynames = {$/;"	v
 keypress_event	AutoCompleteWindow.py	/^    def keypress_event(self, event):$/;"	m	class:AutoCompleteWindow
 keyrelease_event	AutoCompleteWindow.py	/^    def keyrelease_event(self, event):$/;"	m	class:AutoCompleteWindow
 keys	ObjectBrowser.py	/^    def keys(self):$/;"	m	class:DictTreeItem
 keys	ObjectBrowser.py	/^    def keys(self):$/;"	m	class:SequenceTreeItem
-keys	OrderedDict.py	/^    def keys(self):$/;"	m	class:OrderedDict
 keys	RemoteDebugger.py	/^    def keys(self):$/;"	m	class:DictProxy
 keys	StackViewer.py	/^    def keys(self):$/;"	m	class:VariablesTreeItem
 keyword	ColorDelegator.py	/^import keyword$/;"	i
 keyword	HyperParser.py	/^import keyword$/;"	i
 kill_subprocess	PyShell.py	/^    def kill_subprocess(self):$/;"	m	class:ModifiedInterpreter
-kocus_set	PySplitShell.py	/^    def kocus_set(self):$/;"	m	class:SplitText
 l	testcode.py	/^l = lambda: test()$/;"	v
 labelPgName	tabbedpages.py	/^    labelPgName=Label(root, text='name of page to add\/remove:')$/;"	v
 lastopenbracketpos	PyParse.py	/^    lastopenbracketpos = None$/;"	v	class:Parser
@@ -1322,12 +1325,16 @@ locale	IOBinding.py	/^    import locale$/;"	i
 localsviewer	Debugger.py	/^    localsviewer = None$/;"	v	class:Debugger
 location	rpc.py	/^    location = "#C"  # Client$/;"	v	class:RPCClient
 location	rpc.py	/^    location = "#S"  # Server$/;"	v	class:RPCHandler
+log_event	trace.py	/^    def log_event(self, event, frame, arg, depth):$/;"	m	class:Tracer
+logevent	trace.py	/^def logevent(frame, event, arg):$/;"	f
 long_title	EditorWindow.py	/^    def long_title(self):$/;"	m	class:EditorWindow
+long_title	TraceDisplayWindow.py	/^    def long_title(self):$/;"	m	class:TraceDisplayWindow
 macosxSupport	Bindings.py	/^import macosxSupport$/;"	i
 macosxSupport	Debugger.py	/^import macosxSupport$/;"	i
 macosxSupport	EditorWindow.py	/^import macosxSupport$/;"	i
 macosxSupport	MultiCall.py	/^import macosxSupport$/;"	i
 macosxSupport	PyShell.py	/^import macosxSupport$/;"	i
+macosxSupport	TraceDisplayWindow.py	/^import macosxSupport$/;"	i
 macosxSupport	ZoomHeight.py	/^import macosxSupport$/;"	i
 macosxSupport	configDialog.py	/^import macosxSupport$/;"	i
 macosxSupport	configHandler.py	/^import macosxSupport$/;"	i
@@ -1343,6 +1350,7 @@ main	ToolTip.py	/^def main():$/;"	f
 main	UndoDelegator.py	/^def main():$/;"	f
 main	WidgetRedirector.py	/^def main():$/;"	f
 main	run.py	/^def main(del_exitfunc=False):$/;"	f
+main	trace.py	/^def main():$/;"	f
 mainloop	rpc.py	/^    def mainloop(self):$/;"	m	class:SocketIO
 make_button	SearchDialogBase.py	/^    def make_button(self, label, command, isdef=0):$/;"	m	class:SearchDialogBase
 make_entry	SearchDialogBase.py	/^    def make_entry(self, label, var):$/;"	m	class:SearchDialogBase
@@ -1353,9 +1361,8 @@ make_objecttreeitem	ObjectBrowser.py	/^def make_objecttreeitem(labeltext, object
 make_objecttreeitem	StackViewer.py	/^from ObjectBrowser import ObjectTreeItem, make_objecttreeitem$/;"	i
 make_pat	ColorDelegator.py	/^def make_pat():$/;"	f
 make_rmenu	EditorWindow.py	/^    def make_rmenu(self):$/;"	m	class:EditorWindow
+make_rmenu	TraceDisplayWindow.py	/^    def make_rmenu(self):$/;"	m	class:TraceDisplayWindow
 manage_socket	run.py	/^def manage_socket(address):$/;"	f
-mark_gravity	PySplitShell.py	/^    def mark_gravity(self, mark, gravity=None):$/;"	m	class:SplitText
-mark_set	PySplitShell.py	/^    def mark_set(self, mark, index):$/;"	m	class:SplitText
 marshal	rpc.py	/^import marshal$/;"	i
 max_undo	UndoDelegator.py	/^    max_undo = 1000$/;"	v	class:UndoDelegator
 may	FileList.py	/^    from EditorWindow import EditorWindow  # class variable, may be overridden$/;"	i
@@ -1366,6 +1373,7 @@ maybesave	OutputWindow.py	/^    def maybesave(self):$/;"	m	class:OutputWindow
 menu	ScrolledList.py	/^    menu = None$/;"	v	class:ScrolledList
 menu_specs	EditorWindow.py	/^    menu_specs = [$/;"	v	class:EditorWindow
 menu_specs	PyShell.py	/^    menu_specs = [$/;"	v	class:PyShell
+menu_specs	TraceDisplayWindow.py	/^    menu_specs = [$/;"	v	class:TraceDisplayWindow
 menudefs	AutoComplete.py	/^    menudefs = [$/;"	v	class:AutoComplete
 menudefs	AutoExpand.py	/^    menudefs = [$/;"	v	class:AutoExpand
 menudefs	Bindings.py	/^menudefs = [$/;"	v
@@ -1377,7 +1385,6 @@ menudefs	ScriptBinding.py	/^    menudefs = [$/;"	v	class:ScriptBinding
 menudefs	ZoomHeight.py	/^    menudefs = [$/;"	v	class:ZoomHeight
 merge	UndoDelegator.py	/^    def merge(self, cmd):$/;"	m	class:Command
 merge	UndoDelegator.py	/^    def merge(self, cmd):$/;"	m	class:InsertCommand
-mlb	MultiListBox.py	/^    mlb = MultiListbox(tk, (('Subject', 40), ('Sender', 20), ('Date', 10)))$/;"	v
 move_at_edge	EditorWindow.py	/^        def move_at_edge(event):$/;"	f	function:EditorWindow.move_at_edge_if_selection
 move_at_edge_if_selection	EditorWindow.py	/^    def move_at_edge_if_selection(self, edge_index):$/;"	m	class:EditorWindow
 my_insert	WidgetRedirector.py	/^    def my_insert(*args):$/;"	f	function:main
@@ -1386,6 +1393,7 @@ needwrapbutton	GrepDialog.py	/^    needwrapbutton = 0$/;"	v	class:GrepDialog
 needwrapbutton	SearchDialogBase.py	/^    needwrapbutton = 1$/;"	v	class:SearchDialogBase
 new	FileList.py	/^    def new(self, filename=None):$/;"	m	class:FileList
 new_callback	EditorWindow.py	/^    def new_callback(self, event):$/;"	m	class:EditorWindow
+new_callback	TraceDisplayWindow.py	/^    def new_callback(self, event):$/;"	m	class:TraceDisplayWindow
 newline_and_indent_event	EditorWindow.py	/^    def newline_and_indent_event(self, event):$/;"	m	class:EditorWindow
 newseq	rpc.py	/^    def newseq(self):$/;"	m	class:SocketIO
 next	Debugger.py	/^    def next(self):$/;"	m	class:Debugger
@@ -1397,6 +1405,7 @@ objecttable	rpc.py	/^objecttable = {}$/;"	v
 on_double	Debugger.py	/^    def on_double(self, index):$/;"	m	class:StackViewer
 on_double	ScrolledList.py	/^        def on_double(self, index): print "double", self.get(index)$/;"	m	class:test.MyScrolledList
 on_double	ScrolledList.py	/^    def on_double(self, index):$/;"	m	class:ScrolledList
+on_event	trace.py	/^    def on_event(self, frame, event, arg):$/;"	m	class:FrameHandler
 on_select	Debugger.py	/^    def on_select(self, index):$/;"	m	class:StackViewer
 on_select	ScrolledList.py	/^        def on_select(self, index): print "select", self.get(index)$/;"	m	class:test.MyScrolledList
 on_select	ScrolledList.py	/^    def on_select(self, index):$/;"	m	class:ScrolledList
@@ -1413,10 +1422,12 @@ open_debugger	PyShell.py	/^    def open_debugger(self):$/;"	m	class:PyShell
 open_module	EditorWindow.py	/^    def open_module(self, event=None):$/;"	m	class:EditorWindow
 open_path_browser	EditorWindow.py	/^    def open_path_browser(self, event=None):$/;"	m	class:EditorWindow
 open_recent_file	EditorWindow.py	/^        def open_recent_file(fn_closure=file_name):$/;"	f	function:EditorWindow.__recent_file_callback
+open_recent_file	TraceDisplayWindow.py	/^        def open_recent_file(fn_closure=file_name):$/;"	f	function:TraceDisplayWindow.__recent_file_callback
 open_remote_stack_viewer	PyShell.py	/^    def open_remote_stack_viewer(self):$/;"	m	class:ModifiedInterpreter
 open_shell	PyShell.py	/^    def open_shell(self, event=None):$/;"	m	class:PyShellFileList
 open_stack_viewer	PyShell.py	/^    def open_stack_viewer(self, event=None):$/;"	m	class:PyShell
 opendialog	IOBinding.py	/^    opendialog = None$/;"	v	class:IOBinding
+optparse	trace.py	/^import optparse$/;"	i
 os	AutoComplete.py	/^import os$/;"	i
 os	ClassBrowser.py	/^import os$/;"	i
 os	Debugger.py	/^import os$/;"	i
@@ -1429,6 +1440,7 @@ os	PyShell.py	/^import os$/;"	i
 os	PyShell.py	/^import os.path$/;"	i
 os	ScriptBinding.py	/^import os$/;"	i
 os	StackViewer.py	/^import os$/;"	i
+os	TraceDisplayWindow.py	/^import os$/;"	i
 os	TreeWidget.py	/^import os$/;"	i
 os	aboutDialog.py	/^import os$/;"	i
 os	aboutDialog.py	/^import os.path$/;"	i
@@ -1436,53 +1448,53 @@ os	configHandler.py	/^import os$/;"	i
 os	configHelpSourceEdit.py	/^import os$/;"	i
 os	idle.py	/^        import os$/;"	i
 os	rpc.py	/^import os$/;"	i
+out	trace.py	/^out=sys.stderr$/;"	v
 overridden	FileList.py	/^    from EditorWindow import EditorWindow  # class variable, may be overridden$/;"	i
 overrideRootMenu	macosxSupport.py	/^def overrideRootMenu(root, flist):$/;"	f
-pack	PySplitShell.py	/^    def pack(self, *kw_options):$/;"	m	class:SplitText
 page_down	TreeWidget.py	/^    def page_down(self, event):$/;"	m	class:ScrolledCanvas
 page_up	TreeWidget.py	/^    def page_up(self, event):$/;"	m	class:ScrolledCanvas
 paren_closed_event	ParenMatch.py	/^    def paren_closed_event(self, event):$/;"	m	class:ParenMatch
-parse_source	example_annotated_code.py	/^    def parse_source(self, raw_source):$/;"	m	class:FoldManager
-parse_source	fold_lines.py	/^    def parse_source(self):$/;"	m	class:FoldManager
-parse_source	parse_source.py	/^def parse_source(raw_source):$/;"	f
+parse_and_clean_annotations	AnnotationParser.py	/^def parse_and_clean_annotations(filename, marker='#>'):$/;"	f
+parse_annotations	AnnotationParser.py	/^def parse_annotations(filename, marker='#>'):$/;"	f
+parse_annotations	trace.py	/^def parse_annotations(filename, marker='#>'):$/;"	f
 paste	EditorWindow.py	/^    def paste(self,event):$/;"	m	class:EditorWindow
 path	PyShell.py	/^import os.path$/;"	i
 path	aboutDialog.py	/^import os.path$/;"	i
+pause	TraceDisplayWindow.py	/^    def pause(self):$/;"	m	class:TraceDisplayWindow
 pickle	rpc.py	/^import cPickle as pickle$/;"	i
 pickle_code	rpc.py	/^def pickle_code(co):$/;"	f
+play	TraceDisplayWindow.py	/^    def play(self):$/;"	m	class:TraceDisplayWindow
 poll_subprocess	PyShell.py	/^    def poll_subprocess(self):$/;"	m	class:ModifiedInterpreter
 pollmessage	rpc.py	/^    def pollmessage(self, wait):$/;"	m	class:SocketIO
 pollpacket	rpc.py	/^    def pollpacket(self, wait):$/;"	m	class:SocketIO
 pollresponse	rpc.py	/^    def pollresponse(self, myseq, wait):$/;"	m	class:SocketIO
-pop	OrderedDict.py	/^    pop = DictMixin.pop$/;"	v	class:OrderedDict
-popitem	OrderedDict.py	/^    def popitem(self, last=True):$/;"	m	class:OrderedDict
-popup	example_annotated_code.py	/^    def popup(self, event):$/;"	m	class:FoldManager
-popup	fold_lines.py	/^    def popup(self, event):$/;"	m	class:FoldManager
 popup_event	Debugger.py	/^    def popup_event(self, event):$/;"	m	class:StackViewer
 popup_event	ScrolledList.py	/^    def popup_event(self, event):$/;"	m	class:ScrolledList
 popupwait	AutoComplete.py	/^    popupwait = idleConf.GetOption("extensions", "AutoComplete",$/;"	v	class:AutoComplete
 port	PyShell.py	/^    port = 8833$/;"	v	class:ModifiedInterpreter
 position_window	CallTipWindow.py	/^    def position_window(self):$/;"	m	class:CallTip
 postwindowsmenu	EditorWindow.py	/^    def postwindowsmenu(self):$/;"	m	class:EditorWindow
+postwindowsmenu	TraceDisplayWindow.py	/^    def postwindowsmenu(self):$/;"	m	class:TraceDisplayWindow
 postwindowsmenu	macosxSupport.py	/^    def postwindowsmenu(menu=menu):$/;"	f	function:overrideRootMenu
 pprint	UndoDelegator.py	/^        from pprint import pprint$/;"	i
 prepend_syspath	PyShell.py	/^    def prepend_syspath(self, filename):$/;"	m	class:ModifiedInterpreter
 prepstr	EditorWindow.py	/^def prepstr(s):$/;"	f
+prepstr	TraceDisplayWindow.py	/^def prepstr(s):$/;"	f
 prepstr	macosxSupport.py	/^    from EditorWindow import prepstr, get_accelerator$/;"	i
+print_events	trace.py	/^def print_events(events):$/;"	f
 print_exception	run.py	/^def print_exception():$/;"	f
-print_function	fold_lines.py	/^from __future__ import print_function$/;"	i
 print_window	IOBinding.py	/^    def print_window(self, event):$/;"	m	class:IOBinding
+process_events	trace.py	/^def process_events(events):$/;"	f
 prog	ColorDelegator.py	/^prog = re.compile(make_pat(), re.S)$/;"	v
 putmessage	rpc.py	/^    def putmessage(self, message):$/;"	m	class:SocketIO
 pyclbr	ClassBrowser.py	/^import pyclbr$/;"	i
 pypath	idle.py	/^            pypath = os.environ.get('PYTHONPATH', '')$/;"	v
 pyshell	PyShell.py	/^    pyshell = None$/;"	v	class:PyShellFileList
 python_docs	EditorWindow.py	/^    def python_docs(self, event=None):$/;"	m	class:EditorWindow
+python_docs	TraceDisplayWindow.py	/^    def python_docs(self, event=None):$/;"	m	class:TraceDisplayWindow
 quit	Debugger.py	/^    def quit(self):$/;"	m	class:Debugger
 quitItem	Bindings.py	/^    quitItem = menudefs[0][1][-1]$/;"	v
 quitting	run.py	/^quitting = False$/;"	v
-ranges_1	testbed.py	/^ranges_1 = text.tag_ranges('to remove')$/;"	v
-ranges_2	testbed.py	/^ranges_2 = text.tag_ranges('to remove')$/;"	v
 ranges_to_linenumbers	PyShell.py	/^    def ranges_to_linenumbers(self, ranges):$/;"	m	class:PyShellEditorWindow
 re	AutoExpand.py	/^import re$/;"	i
 re	CallTips.py	/^import re$/;"	i
@@ -1497,8 +1509,8 @@ re	PyParse.py	/^import re$/;"	i
 re	PyShell.py	/^import re$/;"	i
 re	ScriptBinding.py	/^import re$/;"	i
 re	SearchEngine.py	/^import re$/;"	i
+re	TraceDisplayWindow.py	/^import re$/;"	i
 re	ZoomHeight.py	/^import re$/;"	i
-re	example_annotated_code.py	/^import re$/;"	i
 reading	PyShell.py	/^    reading = False$/;"	v	class:PyShell
 readline	EditorWindow.py	/^    def readline(self):$/;"	m	class:IndentSearcher
 readline	PyShell.py	/^    def readline(self):$/;"	m	class:PyShell
@@ -1537,6 +1549,7 @@ report_error	SearchEngine.py	/^    def report_error(self, pat, msg, col=-1):$/;"
 repr	Debugger.py	/^        import repr$/;"	i
 request_queue	rpc.py	/^request_queue = Queue.Queue(0)$/;"	v
 reset_help_menu_entries	EditorWindow.py	/^    def reset_help_menu_entries(self):$/;"	m	class:EditorWindow
+reset_help_menu_entries	TraceDisplayWindow.py	/^    def reset_help_menu_entries(self):$/;"	m	class:TraceDisplayWindow
 reset_undo	EditorWindow.py	/^    def reset_undo(self):$/;"	m	class:EditorWindow
 reset_undo	IOBinding.py	/^        def reset_undo(self): pass$/;"	m	class:test.MyEditWin
 reset_undo	IOBinding.py	/^    def reset_undo(self):$/;"	m	class:IOBinding
@@ -1550,19 +1563,21 @@ restart_subprocess_debugger	RemoteDebugger.py	/^def restart_subprocess_debugger(
 restore_event	ParenMatch.py	/^    def restore_event(self, event=None):$/;"	m	class:ParenMatch
 restore_file_breaks	PyShell.py	/^    def restore_file_breaks(self):$/;"	m	class:PyShellEditorWindow
 ret	Debugger.py	/^    def ret(self):$/;"	m	class:Debugger
+rewind	TraceDisplayWindow.py	/^    def rewind(self):$/;"	m	class:TraceDisplayWindow
 right_menu_event	EditorWindow.py	/^    def right_menu_event(self, event):$/;"	m	class:EditorWindow
+right_menu_event	TraceDisplayWindow.py	/^    def right_menu_event(self, event):$/;"	m	class:TraceDisplayWindow
 rmenu	EditorWindow.py	/^    rmenu = None$/;"	v	class:EditorWindow
+rmenu	TraceDisplayWindow.py	/^    rmenu = None$/;"	v	class:TraceDisplayWindow
 rmenu_specs	EditorWindow.py	/^    rmenu_specs = [$/;"	v	class:EditorWindow
 rmenu_specs	OutputWindow.py	/^    rmenu_specs = [$/;"	v	class:OutputWindow
 rmenu_specs	PyShell.py	/^    rmenu_specs = [("Set Breakpoint", "<<set-breakpoint-here>>"),$/;"	v	class:PyShellEditorWindow
+rmenu_specs	TraceDisplayWindow.py	/^    rmenu_specs = [$/;"	v	class:TraceDisplayWindow
 root	aboutDialog.py	/^    root = Tk()$/;"	v
 root	configDialog.py	/^    root=Tk()$/;"	v
 root	configHelpSourceEdit.py	/^    root = Tk()$/;"	v
 root	configSectionNameDialog.py	/^    root=Tk()$/;"	v
 root	keybindingDialog.py	/^    root=Tk()$/;"	v	class:GetKeysDialog
-root	parse_source.py	/^root=Tk()$/;"	v
 root	tabbedpages.py	/^    root=Tk()$/;"	v
-root	testbed.py	/^root=Tk()$/;"	v
 root	textView.py	/^    root=Tk()$/;"	v
 rootnode	ClassBrowser.py	/^    def rootnode(self):$/;"	m	class:ClassBrowser
 rootnode	PathBrowser.py	/^    def rootnode(self):$/;"	m	class:PathBrowser
@@ -1584,12 +1599,12 @@ run_module_event	ScriptBinding.py	/^    def run_module_event(self, event):$/;"	m
 runcode	PyShell.py	/^    def runcode(self, code):$/;"	m	class:ModifiedInterpreter
 runcode	run.py	/^    def runcode(self, code):$/;"	m	class:Executive
 runcommand	PyShell.py	/^    def runcommand(self, code):$/;"	m	class:ModifiedInterpreter
+runfile	AnnotationParser.py	/^    runfile = clean_file(sys.argv[1])$/;"	v
 runit	PyShell.py	/^    def runit(self):$/;"	m	class:PyShell
 runningAsOSXApp	macosxSupport.py	/^def runningAsOSXApp():$/;"	f
 runsource	PyShell.py	/^    def runsource(self, source):$/;"	m	class:ModifiedInterpreter
 save	IOBinding.py	/^        def save(self, event):$/;"	m	class:test.MyEditWin
 save	IOBinding.py	/^    def save(self, event):$/;"	m	class:IOBinding
-save	fold_lines.py	/^    def save(self):$/;"	m	class:FoldManager
 save_a_copy	IOBinding.py	/^        def save_a_copy(self, event):$/;"	m	class:test.MyEditWin
 save_a_copy	IOBinding.py	/^    def save_a_copy(self, event):$/;"	m	class:IOBinding
 save_as	IOBinding.py	/^        def save_as(self, event):$/;"	m	class:test.MyEditWin
@@ -1603,17 +1618,11 @@ search_backward	SearchEngine.py	/^    def search_backward(self, text, prog, line
 search_forward	SearchEngine.py	/^    def search_forward(self, text, prog, line, col, wrap, ok=0):$/;"	m	class:SearchEngine
 search_reverse	SearchEngine.py	/^def search_reverse(prog, chars, col):$/;"	f
 search_text	SearchEngine.py	/^    def search_text(self, text, prog=None, ok=0):$/;"	m	class:SearchEngine
-see	MultiListBox.py	/^    def see(self, index):$/;"	m	class:MultiListbox
-see	PySplitShell.py	/^    def see(self, index):$/;"	m	class:SplitText
 select	ScrolledList.py	/^    def select(self, index):$/;"	m	class:ScrolledList
 select	TreeWidget.py	/^    def select(self, event=None):$/;"	m	class:TreeNode
 select	rpc.py	/^import select$/;"	i
 select_all	EditorWindow.py	/^    def select_all(self, event=None):$/;"	m	class:EditorWindow
 select_or_edit	TreeWidget.py	/^    def select_or_edit(self, event=None):$/;"	m	class:TreeNode
-selection_anchor	MultiListBox.py	/^    def selection_anchor(self, index):$/;"	m	class:MultiListbox
-selection_clear	MultiListBox.py	/^    def selection_clear(self, first, last=None):$/;"	m	class:MultiListbox
-selection_includes	MultiListBox.py	/^    def selection_includes(self, index):$/;"	m	class:MultiListbox
-selection_set	MultiListBox.py	/^    def selection_set(self, first, last=None):$/;"	m	class:MultiListbox
 server_activate	rpc.py	/^    def server_activate(self):$/;"	m	class:RPCServer
 server_bind	rpc.py	/^    def server_bind(self):$/;"	m	class:RPCServer
 set_break	RemoteDebugger.py	/^    def set_break(self, filename, lineno):$/;"	m	class:IdbAdapter
@@ -1622,6 +1631,7 @@ set_breakpoint	PyShell.py	/^    def set_breakpoint(self, lineno):$/;"	m	class:Py
 set_breakpoint_here	Debugger.py	/^    def set_breakpoint_here(self, filename, lineno):$/;"	m	class:Debugger
 set_breakpoint_here	PyShell.py	/^    def set_breakpoint_here(self, event=None):$/;"	m	class:PyShellEditorWindow
 set_close_hook	EditorWindow.py	/^    def set_close_hook(self, close_hook):$/;"	m	class:EditorWindow
+set_close_hook	TraceDisplayWindow.py	/^    def set_close_hook(self, close_hook):$/;"	m	class:TraceDisplayWindow
 set_continue	RemoteDebugger.py	/^    def set_continue(self):$/;"	m	class:IdbAdapter
 set_continue	RemoteDebugger.py	/^    def set_continue(self):$/;"	m	class:IdbProxy
 set_debugger_indicator	PyShell.py	/^    def set_debugger_indicator(self):$/;"	m	class:PyShell
@@ -1645,6 +1655,7 @@ set_return	RemoteDebugger.py	/^    def set_return(self, frame):$/;"	m	class:IdbP
 set_saved	EditorWindow.py	/^    def set_saved(self, flag):$/;"	m	class:EditorWindow
 set_saved	IOBinding.py	/^        def set_saved(self, flag): pass$/;"	m	class:test.MyEditWin
 set_saved	IOBinding.py	/^    def set_saved(self, flag):$/;"	m	class:IOBinding
+set_saved	TraceDisplayWindow.py	/^    def set_saved(self, flag):$/;"	m	class:TraceDisplayWindow
 set_saved	UndoDelegator.py	/^    def set_saved(self, flag):$/;"	m	class:UndoDelegator
 set_saved_change_hook	UndoDelegator.py	/^    def set_saved_change_hook(self, hook):$/;"	m	class:UndoDelegator
 set_selected	tabbedpages.py	/^        def set_selected(self):$/;"	m	class:TabSet.TabButton
@@ -1660,7 +1671,6 @@ set_timeout_none	ParenMatch.py	/^    def set_timeout_none(self):$/;"	m	class:Par
 set_warning_stream	PyShell.py	/^    def set_warning_stream(self, stream):$/;"	m	class:PyShell
 setcookedpat	SearchEngine.py	/^    def setcookedpat(self, pat):$/;"	m	class:SearchEngine
 setdebugger	PyShell.py	/^    def setdebugger(self, debugger):$/;"	m	class:ModifiedInterpreter
-setdefault	OrderedDict.py	/^    setdefault = DictMixin.setdefault$/;"	v	class:OrderedDict
 setdelegate	ColorDelegator.py	/^    def setdelegate(self, delegate):$/;"	m	class:ColorDelegator
 setdelegate	Delegator.py	/^    def setdelegate(self, delegate):$/;"	m	class:Delegator
 setdelegate	UndoDelegator.py	/^    def setdelegate(self, delegate):$/;"	m	class:UndoDelegator
@@ -1676,6 +1686,7 @@ shell_title	PyShell.py	/^    shell_title = "Python Shell"$/;"	v	class:PyShell
 short_title	EditorWindow.py	/^    def short_title(self):$/;"	m	class:EditorWindow
 short_title	OutputWindow.py	/^    def short_title(self):$/;"	m	class:OutputWindow
 short_title	PyShell.py	/^    def short_title(self):$/;"	m	class:PyShell
+short_title	TraceDisplayWindow.py	/^    def short_title(self):$/;"	m	class:TraceDisplayWindow
 show_frame	Debugger.py	/^    def show_frame(self, (frame, lineno)):$/;"	m	class:Debugger
 show_globals	Debugger.py	/^    def show_globals(self):$/;"	m	class:Debugger
 show_hit	ReplaceDialog.py	/^    def show_hit(self, first, last):$/;"	m	class:ReplaceDialog
@@ -1695,15 +1706,11 @@ showsyntaxerror	PyShell.py	/^    def showsyntaxerror(self, filename=None):$/;"	m
 showtip	CallTipWindow.py	/^    def showtip(self, text, parenleft, parenright):$/;"	m	class:CallTip
 showtip	ToolTip.py	/^    def showtip(self):$/;"	m	class:ToolTipBase
 showtraceback	PyShell.py	/^    def showtraceback(self):$/;"	m	class:ModifiedInterpreter
-size	MultiListBox.py	/^    def size(self):$/;"	m	class:MultiListbox
 smart_backspace_event	EditorWindow.py	/^    def smart_backspace_event(self, event):$/;"	m	class:EditorWindow
 smart_indent_event	EditorWindow.py	/^    def smart_indent_event(self, event):$/;"	m	class:EditorWindow
 socket	PyShell.py	/^import socket$/;"	i
 socket	rpc.py	/^import socket$/;"	i
 socket	run.py	/^import socket$/;"	i
-source_entry	PySplitShell.py	/^    def source_entry(self, event):$/;"	m	class:SplitText
-source_entry	fold_lines.py	/^    def source_entry(self, event):$/;"	m	class:FoldManager
-source_text	parse_source.py	/^source_text=Text(frame)$/;"	v
 spawn_subprocess	PyShell.py	/^    def spawn_subprocess(self):$/;"	m	class:ModifiedInterpreter
 stackviewer	Debugger.py	/^    stackviewer = None$/;"	v	class:Debugger
 stackviewer	run.py	/^    def stackviewer(self, flist_oid=None):$/;"	m	class:Executive
@@ -1712,6 +1719,8 @@ start_remote_debugger	RemoteDebugger.py	/^def start_remote_debugger(rpcclt, pysh
 start_subprocess	PyShell.py	/^    def start_subprocess(self):$/;"	m	class:ModifiedInterpreter
 start_the_debugger	run.py	/^    def start_the_debugger(self, gui_adap_oid):$/;"	m	class:Executive
 step	Debugger.py	/^    def step(self):$/;"	m	class:Debugger
+step_back	TraceDisplayWindow.py	/^    def step_back(self):$/;"	m	class:TraceDisplayWindow
+step_forward	TraceDisplayWindow.py	/^    def step_forward(self):$/;"	m	class:TraceDisplayWindow
 stmt_bracketing	PyParse.py	/^    stmt_bracketing = None$/;"	v	class:Parser
 stop_the_debugger	run.py	/^    def stop_the_debugger(self, idb_adap_oid):$/;"	m	class:Executive
 store_file_breaks	PyShell.py	/^    def store_file_breaks(self):$/;"	m	class:PyShellEditorWindow
@@ -1729,7 +1738,9 @@ string	keybindingDialog.py	/^import string$/;"	i
 string	testcode.py	/^import string$/;"	i
 struct	rpc.py	/^import struct$/;"	i
 stuffsource	PyShell.py	/^    def stuffsource(self, source):$/;"	m	class:ModifiedInterpreter
+suppress_trace_fn	trace.py	/^    def suppress_trace_fn(self, frame, event, arg):$/;"	m	class:Tracer
 sync_source_line	Debugger.py	/^    def sync_source_line(self):$/;"	m	class:Debugger
+sys	AnnotationParser.py	/^import sys$/;"	i
 sys	AutoComplete.py	/^import sys$/;"	i
 sys	Bindings.py	/^import sys$/;"	i
 sys	CallTips.py	/^import sys$/;"	i
@@ -1744,12 +1755,14 @@ sys	PathBrowser.py	/^import sys$/;"	i
 sys	PyParse.py	/^import sys$/;"	i
 sys	PyShell.py	/^import sys$/;"	i
 sys	StackViewer.py	/^import sys$/;"	i
+sys	TraceDisplayWindow.py	/^import sys$/;"	i
 sys	ZoomHeight.py	/^import sys$/;"	i
 sys	configHandler.py	/^import sys$/;"	i
 sys	configHelpSourceEdit.py	/^import sys$/;"	i
 sys	macosxSupport.py	/^import sys$/;"	i
 sys	rpc.py	/^import sys$/;"	i
 sys	run.py	/^import sys$/;"	i
+sys	trace.py	/^import sys$/;"	i
 t1	CallTips.py	/^        def t1(self): "()"$/;"	m	class:.TC
 t1	CallTips.py	/^    def t1(): "()"$/;"	f
 t2	CallTips.py	/^        def t2(self, ai, b=None): "(ai, b=None)"$/;"	m	class:.TC
@@ -1768,31 +1781,24 @@ tabPage	tabbedpages.py	/^    tabPage=TabbedPageSet(root, page_names=['Foobar','B
 tabify_region_event	EditorWindow.py	/^    def tabify_region_event(self, event):$/;"	m	class:EditorWindow
 tabnanny	ScriptBinding.py	/^    def tabnanny(self, filename):$/;"	m	class:ScriptBinding
 tabnanny	ScriptBinding.py	/^import tabnanny$/;"	i
-tag_add	PySplitShell.py	/^    def tag_add(self, tag, start, stop=None):$/;"	m	class:SplitText
-tag_bind	PySplitShell.py	/^    def tag_bind(self, sequence, func, string=None):$/;"	m	class:SplitText
-tag_names	PySplitShell.py	/^    def tag_names(self, index=None):$/;"	m	class:SplitText
-tag_nextrange	PySplitShell.py	/^    def tag_nextrange(self, tag, start, stop=None):$/;"	m	class:SplitText
-tag_prevrange	PySplitShell.py	/^    def tag_prevrange(self, tag, start, stop=None):$/;"	m	class:SplitText
-tag_ranges	PySplitShell.py	/^    def tag_ranges(self, tag):$/;"	m	class:SplitText
-tag_remove	PySplitShell.py	/^    def tag_remove(self, tag, start, stop=None):$/;"	m	class:SplitText
 tagdefs	OutputWindow.py	/^    tagdefs = {$/;"	v	class:OnDemandOutputWindow
 tags	UndoDelegator.py	/^    tags = None$/;"	v	class:Command
-tags	testbed.py	/^tags=text.tag_names()$/;"	v
 tc	CallTips.py	/^    tc = TC()$/;"	v
 tempfile	IOBinding.py	/^import tempfile$/;"	i
+tempfile	trace.py	/^import tempfile$/;"	i
 test	CallTips.py	/^    def test(tests):$/;"	f
 test	EditorWindow.py	/^def test():$/;"	f
 test	IOBinding.py	/^def test():$/;"	f
-test	PySplitShell.py	/^def test():$/;"	f
 test	ScrolledList.py	/^def test():$/;"	f
+test	TraceDisplayWindow.py	/^def test():$/;"	f
 test	TreeWidget.py	/^def test():$/;"	f
 test	testcode.py	/^def test():$/;"	f
 test2	TreeWidget.py	/^def test2():$/;"	f
 testcode	StackViewer.py	/^        import testcode$/;"	i
 tests	CallTips.py	/^    tests = (t1, t2, t3, t4, t5, t6, t7,$/;"	v
-text	testbed.py	/^text=PySplitShell.SplitText(root)$/;"	v
 text	textView.py	/^    text = file(filename, 'r').read()$/;"	v
 textView	EditorWindow.py	/^import aboutDialog, textView, configDialog$/;"	i
+textView	TraceDisplayWindow.py	/^import aboutDialog, textView, configDialog$/;"	i
 textView	aboutDialog.py	/^import textView$/;"	i
 thread	run.py	/^import thread$/;"	i
 threading	PyShell.py	/^import threading$/;"	i
@@ -1805,7 +1811,6 @@ timer_event	CodeContext.py	/^    def timer_event(self):$/;"	m	class:CodeContext
 title	GrepDialog.py	/^    title = "Find in Files Dialog"$/;"	v	class:GrepDialog
 title	ReplaceDialog.py	/^    title = "Replace Dialog"$/;"	v	class:ReplaceDialog
 title	SearchDialogBase.py	/^    title = "Search Dialog"$/;"	v	class:SearchDialogBase
-tk	MultiListBox.py	/^    tk = Tk()$/;"	v
 tkColorChooser	configDialog.py	/^import tkMessageBox, tkColorChooser, tkFont$/;"	i
 tkFileDialog	IOBinding.py	/^import tkFileDialog$/;"	i
 tkFileDialog	configHelpSourceEdit.py	/^import tkFileDialog$/;"	i
@@ -1815,9 +1820,9 @@ tkMessageBox	FileList.py	/^import tkMessageBox$/;"	i
 tkMessageBox	IOBinding.py	/^import tkMessageBox$/;"	i
 tkMessageBox	OutputWindow.py	/^import tkMessageBox$/;"	i
 tkMessageBox	PyShell.py	/^import tkMessageBox$/;"	i
-tkMessageBox	PySplitShell.py	/^import tkMessageBox$/;"	i
 tkMessageBox	ScriptBinding.py	/^import tkMessageBox$/;"	i
 tkMessageBox	SearchEngine.py	/^import tkMessageBox$/;"	i
+tkMessageBox	TraceDisplayWindow.py	/^import tkMessageBox$/;"	i
 tkMessageBox	configDialog.py	/^import tkMessageBox, tkColorChooser, tkFont$/;"	i
 tkMessageBox	configHelpSourceEdit.py	/^import tkMessageBox$/;"	i
 tkMessageBox	configSectionNameDialog.py	/^import tkMessageBox$/;"	i
@@ -1831,9 +1836,15 @@ toggle_colorize_event	ColorDelegator.py	/^    def toggle_colorize_event(self, ev
 toggle_debugger	PyShell.py	/^    def toggle_debugger(self, event=None):$/;"	m	class:PyShell
 toggle_jit_stack_viewer	PyShell.py	/^    def toggle_jit_stack_viewer(self, event=None):$/;"	m	class:PyShell
 toggle_tabs_event	EditorWindow.py	/^    def toggle_tabs_event(self, event):$/;"	m	class:EditorWindow
+token	trace.py	/^import token$/;"	i
 tokeneater	EditorWindow.py	/^    def tokeneater(self, type, token, start, end, line,$/;"	m	class:IndentSearcher
 tokenize	EditorWindow.py	/^import tokenize$/;"	i
 tokenize	ScriptBinding.py	/^import tokenize$/;"	i
+tokenize	trace.py	/^import tokenize$/;"	i
+trace	EditorWindow.py	/^import trace$/;"	i
+trace	trace.py	/^    def trace(self, *args, **keywords):$/;"	m	class:Tracer
+trace	trace.py	/^def trace(filename, pprint=False):$/;"	f
+trace_fn	trace.py	/^    def trace_fn(self, frame, event, arg):$/;"	m	class:Tracer
 traceback	EditorWindow.py	/^                import traceback$/;"	i
 traceback	PyShell.py	/^import traceback$/;"	i
 traceback	rpc.py	/^import traceback$/;"	i
@@ -1848,19 +1859,16 @@ types	IOBinding.py	/^import types$/;"	i
 types	PyShell.py	/^import types$/;"	i
 types	RemoteDebugger.py	/^import types$/;"	i
 types	rpc.py	/^import types$/;"	i
+un	hello.py	/^def un():$/;"	f
 unbind	MultiCall.py	/^        def unbind(self, sequence, funcid=None):$/;"	m	class:MultiCallCreator.MultiCall
 unbind	MultiCall.py	/^    def unbind(self, triplet, func):$/;"	m	class:_ComplexBinder
 unbind	MultiCall.py	/^    def unbind(self, triplet, func):$/;"	m	class:_SimpleBinder
-unbind	PySplitShell.py	/^    def unbind(self, triplet, func):$/;"	m	class:SplitText
 uncomment_region_event	EditorWindow.py	/^    def uncomment_region_event(self, event):$/;"	m	class:EditorWindow
 undo	UndoDelegator.py	/^    def undo(self, text):$/;"	m	class:Command
 undo	UndoDelegator.py	/^    def undo(self, text):$/;"	m	class:CommandSequence
 undo	UndoDelegator.py	/^    def undo(self, text):$/;"	m	class:DeleteCommand
 undo	UndoDelegator.py	/^    def undo(self, text):$/;"	m	class:InsertCommand
-undo	testbed.py	/^undo=UndoDelegator()$/;"	v
-undo_block_start	PySplitShell.py	/^    def undo_block_start(self): $/;"	m	class:SplitText
 undo_block_start	UndoDelegator.py	/^    def undo_block_start(self):$/;"	m	class:UndoDelegator
-undo_block_stop	PySplitShell.py	/^    def undo_block_stop(self):$/;"	m	class:SplitText
 undo_block_stop	UndoDelegator.py	/^    def undo_block_stop(self):$/;"	m	class:UndoDelegator
 undo_event	UndoDelegator.py	/^    def undo_event(self, event):$/;"	m	class:UndoDelegator
 unit_down	TreeWidget.py	/^    def unit_down(self, event):$/;"	m	class:ScrolledCanvas
@@ -1877,22 +1885,18 @@ unregister_maybe_terminate	FileList.py	/^    def unregister_maybe_terminate(self
 unschedule	ToolTip.py	/^    def unschedule(self):$/;"	m	class:ToolTipBase
 untabify_region_event	EditorWindow.py	/^    def untabify_region_event(self, event):$/;"	m	class:EditorWindow
 up_event	ScrolledList.py	/^    def up_event(self, event):$/;"	m	class:ScrolledList
-update	OrderedDict.py	/^    update = DictMixin.update$/;"	v	class:OrderedDict
-update	PySplitShell.py	/^    def update(self):$/;"	m	class:SplitText
 update	TreeWidget.py	/^    def update(self):$/;"	m	class:TreeNode
 update_breakpoints	PyShell.py	/^    def update_breakpoints(self):$/;"	m	class:PyShellEditorWindow
 update_code_context	CodeContext.py	/^    def update_code_context(self):$/;"	m	class:CodeContext
-update_idletasks	PySplitShell.py	/^    def update_idletasks(self):$/;"	m	class:SplitText
 update_recent_files_list	EditorWindow.py	/^    def update_recent_files_list(self, new_file=None):$/;"	m	class:EditorWindow
+update_recent_files_list	TraceDisplayWindow.py	/^    def update_recent_files_list(self, new_file=None):$/;"	m	class:TraceDisplayWindow
 update_windowlist_registry	WindowList.py	/^    def update_windowlist_registry(self, window):$/;"	m	class:ListedToplevel
 updaterecentfileslist	IOBinding.py	/^    def updaterecentfileslist(self,filename):$/;"	m	class:IOBinding
-use_subprocess	PyShell.py	/^use_subprocess = False #so it runs for testing with test() in PySplitShell.py$/;"	v
 user_exception	Debugger.py	/^    def user_exception(self, frame, info):$/;"	m	class:Idb
 user_line	Debugger.py	/^    def user_line(self, frame):$/;"	m	class:Idb
 uses_grid	tabbedpages.py	/^        uses_grid = False$/;"	v	class:TabbedPageSet.Page
 uses_grid	tabbedpages.py	/^        uses_grid = True$/;"	v	class:TabbedPageSet.PageLift
 uses_grid	tabbedpages.py	/^        uses_grid = True$/;"	v	class:TabbedPageSet.PageRemove
-values	OrderedDict.py	/^    values = DictMixin.values$/;"	v	class:OrderedDict
 variable	FileList.py	/^    from EditorWindow import EditorWindow  # class variable, may be overridden$/;"	c	class:FileList
 variable	FileList.py	/^    from EditorWindow import EditorWindow  # class variable, may be overridden$/;"	i
 view	TreeWidget.py	/^    def view(self):$/;"	m	class:TreeNode
@@ -1906,6 +1910,7 @@ warnings	PyShell.py	/^    import warnings$/;"	i
 warnings	run.py	/^    import warnings$/;"	i
 was_saved	UndoDelegator.py	/^    was_saved = -1$/;"	v	class:UndoDelegator
 webbrowser	EditorWindow.py	/^import webbrowser$/;"	i
+webbrowser	TraceDisplayWindow.py	/^import webbrowser$/;"	i
 winconfig_event	AutoCompleteWindow.py	/^    def winconfig_event(self, event):$/;"	m	class:AutoCompleteWindow
 wordchars	AutoExpand.py	/^    wordchars = string.ascii_letters + string.digits + "_"$/;"	v	class:AutoExpand
 wrap_frame	RemoteDebugger.py	/^def wrap_frame(frame):$/;"	f
@@ -1915,11 +1920,11 @@ write	OutputWindow.py	/^    def write(self, s, tags=(), mark="insert"):$/;"	m	cl
 write	PyShell.py	/^    def write(self, s):$/;"	m	class:ModifiedInterpreter
 write	PyShell.py	/^    def write(self, s):$/;"	m	class:PseudoFile
 write	PyShell.py	/^    def write(self, s, tags=()):$/;"	m	class:PyShell
+write	trace.py	/^    def write(self, msg):$/;"	m	class:Logger
 writefile	IOBinding.py	/^    def writefile(self, filename):$/;"	m	class:IOBinding
 writelines	OutputWindow.py	/^    def writelines(self, l):$/;"	m	class:OutputWindow
 writelines	PyShell.py	/^    def writelines(self, l):$/;"	m	class:PseudoFile
-x	testbed.py	/^x=text.after(500, callback)$/;"	v
-y_scroll	fold_lines.py	/^    def y_scroll(self, *args):$/;"	m	class:FoldManager
+z	hello.py	/^z=[1, 2, 3, 4, 5]$/;"	v
 zoom_height	TreeWidget.py	/^    def zoom_height(self, event):$/;"	m	class:ScrolledCanvas
 zoom_height	ZoomHeight.py	/^def zoom_height(top):$/;"	f
 zoom_height_event	ZoomHeight.py	/^    def zoom_height_event(self, event):$/;"	m	class:ZoomHeight
