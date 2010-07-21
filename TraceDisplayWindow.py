@@ -110,11 +110,11 @@ class TraceDisplayWindow(object):
             # older tk versions.
             text_options['tabstyle'] = 'wordprocessor'
 
-        self.text = text = Text(text_frame, wrap=WORD)
+        self.text = text = Text(text_frame, wrap=WORD, borderwidth=3)
         self.stdout = Text(top, height=7)
-        self.annotation = Text(anno_frame, height=7, wrap=WORD)
-        self.globals = Text(anno_frame, height=7, wrap=WORD)
-        self.locals = Text(anno_frame, height=7, wrap=WORD)
+        self.annotation = Text(anno_frame, height=7, wrap=WORD, borderwidth=3)
+        self.globals = Text(anno_frame, height=7, wrap=WORD, borderwidth=3)
+        self.locals = Text(anno_frame, height=7, wrap=WORD, borderwidth=3)
         self.top.focused_widget = self.text
 
         self.createmenubar()
@@ -595,7 +595,6 @@ class TraceDisplayWindow(object):
         self.close_hook = close_hook
 
     def _addcolorizer(self):
-        print 'Trace addcolor'
         if self.color:
             return
         if self.ispythonsource(self.io.filename) or self.istrace(self.io.filename):
@@ -604,7 +603,6 @@ class TraceDisplayWindow(object):
             self.per.insertfilter(self.color)
 
     def _rmcolorizer(self):
-        print 'Trace rmcolor'
         if not self.color:
             return
         self.color.removecolors()
@@ -612,7 +610,6 @@ class TraceDisplayWindow(object):
         self.color = None
 
     def ResetColorizer(self):
-        print 'Trace Reset Colorizer'
         "Update the colour theme"
         # Called from self.filename_change_hook and from configDialog.py
         self._rmcolorizer()

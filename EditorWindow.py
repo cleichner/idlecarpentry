@@ -645,7 +645,6 @@ class EditorWindow(object):
         self.ResetColorizer()
 
     def _addcolorizer(self):
-        print 'Editor addcolor'
         if self.color:
             return
         if self.ispythonsource(self.io.filename):
@@ -657,7 +656,6 @@ class EditorWindow(object):
             self.per.insertfilter(self.undo)
 
     def _rmcolorizer(self):
-        print 'Editor rmcolor'
         if not self.color:
             return
         self.color.removecolors()
