@@ -251,8 +251,6 @@ class EditorWindow(object):
                                              menu=self.recent_files_menu)
         self.update_recent_files_list()
 
-        self.menudict['run'].add_command(label='Create Trace', command=self.create_trace)
-
         self.color = None # initialized below in self.ResetColorizer
         if filename:
             if os.path.exists(filename) and not os.path.isdir(filename):
@@ -601,6 +599,15 @@ class EditorWindow(object):
         import PathBrowser
         PathBrowser.PathBrowser(self.flist)
 
+    def istrace(self, filename):
+        if not filename or os.path.isdir(filename):
+            return True
+        base, ext = os.path.splitext(os.path.basename(filename))
+        if os.path.normcase(ext) == ".json":
+            print 'ending =', os.path.normcase(ext)
+            return True
+        return False
+
     def gotoline(self, lineno):
         if lineno is not None and lineno > 0:
             self.text.mark_set("insert", "%d.0" % lineno)
@@ -638,6 +645,7 @@ class EditorWindow(object):
         self.ResetColorizer()
 
     def _addcolorizer(self):
+        print 'Editor addcolor'
         if self.color:
             return
         if self.ispythonsource(self.io.filename):
@@ -649,6 +657,7 @@ class EditorWindow(object):
             self.per.insertfilter(self.undo)
 
     def _rmcolorizer(self):
+        print 'Editor rmcolor'
         if not self.color:
             return
         self.color.removecolors()
@@ -657,7 +666,7 @@ class EditorWindow(object):
 
     def ResetColorizer(self):
         "Update the colour theme"
-        # Called from self.filename_change_hook and from configDialog.py
+        # Called from filename_change_hook and from configDialog.py
         self._rmcolorizer()
         self._addcolorizer()
         theme = idleConf.GetOption('main','Theme','name')

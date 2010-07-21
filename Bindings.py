@@ -12,6 +12,7 @@ import sys
 from configHandler import idleConf
 import macosxSupport
 
+#this might be better as a dictionary
 menudefs = [
  # underscore prefixes character to underscore
  ('file', [
