@@ -19,7 +19,6 @@ import PyParse
 from configHandler import idleConf
 import aboutDialog, textView, configDialog
 import macosxSupport
-import trace
 
 # The default tab setting for a Text widget, in average-width characters.
 TK_TABWIDTH_DEFAULT = 8
@@ -279,17 +278,6 @@ class EditorWindow(object):
         self.askyesno = tkMessageBox.askyesno
         self.askinteger = tkSimpleDialog.askinteger
         self.showerror = tkMessageBox.showerror
-
-    def create_trace(self, event=None):
-        filename = self.io.filename
-        self.io.save(event)
-        trace_string = trace.trace(filename)
-        trace_filename = '%s.json' % filename.split('.')[0]
-        f=open(trace_filename, 'w')
-        f.write(trace_string)
-        f.close()
-        print filename
-        TraceDisplayWindow(flist=self.flist, filename=trace_filename, root=self.root)
 
     def _filename_to_unicode(self, filename):
         """convert filename to unicode in order to display it in Tk"""
@@ -602,11 +590,17 @@ class EditorWindow(object):
     def istrace(self, filename):
         if not filename or os.path.isdir(filename):
             return True
-        base, ext = os.path.splitext(os.path.basename(filename))
-        if os.path.normcase(ext) == ".json":
-            print 'ending =', os.path.normcase(ext)
-            return True
-        return False
+
+        try:
+            with open(filename) as f:
+                json.load(f)
+
+        except ValueError, IOError:
+            print False
+            return False
+
+        print True
+        return True
 
     def gotoline(self, lineno):
         if lineno is not None and lineno > 0:

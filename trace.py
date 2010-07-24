@@ -38,7 +38,7 @@ import token
 import tokenize
 import tempfile
 
-DEBUG = False
+DEBUG = True
 
 out=sys.stderr
 def dprint(*args):
@@ -414,6 +414,11 @@ def clean_file(filename, marker='#>'):
 
     return ''.join(clean)
 
+def strip_annotation(line, marker):
+    '''Removes whitespace, removes marker, removes remaining whitespace,
+    returns the annotation.''' 
+    return line.strip()[len(marker):].strip()
+
 def parse_annotations(filename, marker='#>'):
     '''This takes a file with annotations, marked at the start of the line by a
     marker, and creates dictionary mapping line numbers to annotations, as if
@@ -423,31 +428,33 @@ def parse_annotations(filename, marker='#>'):
     annotations = {} #maps line numbers to annotations
     lineno = -1 #the traces are indexed from 0, I would like this to change
 
-    #This is a DIY for loop so I can advance as I please through the input file
     try:
         while True:
             current_line=f.next()
             lineno+=1
 
             if current_line.strip().startswith(marker):
+                annotation=[strip_annotation(current_line, marker)] 
                 try:
                     next_line=f.next() 
                 except StopIteration:
-                    #Annotation is at the end of a file, 
-                    #maybe should just print a warning and ignore the line
+                    #Annotation is at the end of a file
                     raise SyntaxError, \
                           "LINE %d: Annotations must be before at least one source line." \
-                          % (len(silent_file)+len(annotations)+1) 
+                          % (lineno+len(annotations)+1) 
 
-                #comments and blank lines
+                #comments, blank lines, and further annotations
                 while next_line.strip().startswith('#') \
                       or not next_line.strip():
-                    #needs to handle multiple consecutive annotations? 
-                    #right now the last one overwrites any before it
-                    next_line=f.next()
-                    lineno+=1
 
-                annotations[lineno]=current_line.strip()[2:].strip()
+                    if next_line.strip().startswith(marker):
+                        annotation.append(strip_annotation(next_line, marker))
+                    else:    
+                        lineno+=1
+
+                    next_line=f.next()
+
+                annotations[lineno]='\n'.join(annotation)
 
     except StopIteration:
         f.close()

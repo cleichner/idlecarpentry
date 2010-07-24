@@ -1,12 +1,18 @@
+#>This triggers a really nasty bug
+#import small
+
 #>This line is the canonical first program in any language
 #I just had to do it
 print "Hello, World!"
 
-#>This is the first line of a loop
+#>This is the first line of a loop 
 for y in range(4):
     print 2*y,
 
-#> This is just a linebreak
+#> This is just a linebreak.
+#> But not just any linebreak.
+#> This is the linebreak which tests
+#> if my annoation concatenator works
 print '\n'
 
 #> Annotating a function
@@ -18,6 +24,7 @@ def un():
 #>Lists are easier than arrays
 #this is a list, I like lists
 z=[1, 2, 3, 4, 5]
+#>i holds the current member of z we are working on
 #FOR LOOP!
 for i in z:
     print i
