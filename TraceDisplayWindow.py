@@ -211,7 +211,7 @@ class TraceDisplayWindow(object):
 
         if filename:
             if os.path.exists(filename) and not os.path.isdir(filename):
-                io.loadfile(filename)
+                io.opentrace(filename)
             else:
                 io.set_filename(filename)
 

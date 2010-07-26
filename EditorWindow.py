@@ -1,7 +1,8 @@
-import sys
 import os
 import re
 import imp
+import sys
+import json
 from itertools import count
 from Tkinter import *
 import tkSimpleDialog
@@ -596,10 +597,8 @@ class EditorWindow(object):
                 json.load(f)
 
         except ValueError, IOError:
-            print False
             return False
 
-        print True
         return True
 
     def gotoline(self, lineno):

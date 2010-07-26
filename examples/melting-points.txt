@@ -1,0 +1,12 @@
+Iron: 1538
+Copper: 1084
+Silver: 961
+Gold: 1064
+Hydrogen: -259
+Nitrogen: -210
+Oxygen: -218
+Sulfer: 115
+Francium: 27
+Neptunium: 637
+Plutonium: 639
+Technetium: 2157

@@ -195,7 +195,7 @@ class IOBinding:
             self.set_saved(1)
             if self.filename_change_hook:
                 self.filename_change_hook()
-
+    
     def open(self, event=None, editFile=None):
         if self.editwin.flist:
             if not editFile:
@@ -240,6 +240,46 @@ class IOBinding:
     eol_re = re.compile(eol)
     eol_convention = os.linesep # Default
 
+    def opentrace(self, filename):
+        try:
+            # open the file in binary mode so that we can handle
+            #   end-of-line convention ourselves.
+            f = open(filename,'rb')
+            chars = f.read()
+            f.close()
+        except IOError, msg:
+            tkMessageBox.showerror("I/O Error", str(msg), master=self.text)
+            return False
+
+        chars = self.decode(chars)
+        # We now convert all end-of-lines to '\n's
+        firsteol = self.eol_re.search(chars)
+        if firsteol:
+            self.eol_convention = firsteol.group(0)
+            if isinstance(self.eol_convention, unicode):
+                # Make sure it is an ASCII string
+                self.eol_convention = self.eol_convention.encode("ascii")
+            chars = self.eol_re.sub(r"\n", chars)
+
+        try:
+            raw_trace=json.loads(chars)
+            self.editwin.trace=raw_trace['trace']
+
+            self.text.config(state=NORMAL)
+            self.text.delete("1.0", "end")
+            self.set_filename(None)
+            self.text.insert("1.0", raw_trace['source'])
+
+            self.set_filename(filename)
+            self.text.mark_set("insert", "1.0")
+            self.text.see("insert")
+            self.updaterecentfileslist(filename)
+            self.text.config(state=DISABLED)
+            return True
+        except ValueError, msg:
+            tkMessageBox.showerror("Decoding Error", str(msg), master=self.text)
+            return False
+
     def loadfile(self, filename):
         try:
             # open the file in binary mode so that we can handle
@@ -269,22 +309,6 @@ class IOBinding:
             self.text.mark_set("insert", "1.0")
             self.text.see("insert")
             self.updaterecentfileslist(filename)
-            return True
-
-        elif os.path.splitext(filename)[1] == '.json':
-            raw_trace=json.loads(chars)
-            self.editwin.trace=raw_trace['trace']
-
-            self.text.config(state=NORMAL)
-            self.text.delete("1.0", "end")
-            self.set_filename(None)
-            self.text.insert("1.0", raw_trace['source'])
-
-            self.set_filename(filename)
-            self.text.mark_set("insert", "1.0")
-            self.text.see("insert")
-            self.updaterecentfileslist(filename)
-            self.text.config(state=DISABLED)
             return True
 
     def decode(self, chars):

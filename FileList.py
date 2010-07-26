@@ -1,13 +1,13 @@
 import os
 from Tkinter import *
 import tkMessageBox
-import TraceDisplayWindow
-
 
 class FileList:
 
     from EditorWindow import EditorWindow  # class variable, may be overridden
                                            # e.g. by PyShellFileList
+
+    from TraceDisplayWindow import TraceDisplayWindow
 
     def __init__(self, root):
         self.root = root
@@ -33,6 +33,9 @@ class FileList:
         if action:
             # Don't create window, perform 'action', e.g. open in same window
             return action(filename)
+        if filename.endswith('json'):
+#silly way to do it, should use istrace
+            return self.TraceDisplayWindow(self, filename, key)
         else:
             return self.EditorWindow(self, filename, key)
 

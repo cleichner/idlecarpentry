@@ -1334,6 +1334,7 @@ def main():
     cmd = None
     script = None
     startup = False
+    trace = True
     try:
         opts, args = getopt.getopt(sys.argv[1:], "c:deihnr:st:")
     except getopt.error, msg:
