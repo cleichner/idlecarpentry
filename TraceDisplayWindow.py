@@ -99,8 +99,8 @@ class TraceDisplayWindow(object):
         #self.width = idleConf.GetOption('main','EditorWindow','width')
         text_options = {
 #                'name': 'text',
-                'padx': 5,
-                'wrap': 'none',
+        #        'padx': 5,
+        #        'wrap': 'none',
         #        'width': self.width,
         #        'height': idleConf.GetOption('main', 'EditorWindow', 'height')
         }
@@ -110,12 +110,17 @@ class TraceDisplayWindow(object):
             # older tk versions.
             text_options['tabstyle'] = 'wordprocessor'
 
-        self.text = text = Text(text_frame, wrap=WORD, borderwidth=3)
+        self.text = text = Text(text_frame, wrap=WORD)
         self.stdout = Text(top, height=7)
-        self.annotation = Text(anno_frame, height=7, wrap=WORD, borderwidth=3)
-        self.globals = Text(anno_frame, height=7, wrap=WORD, borderwidth=3)
-        self.locals = Text(anno_frame, height=7, wrap=WORD, borderwidth=3)
+        self.annotation = Text(anno_frame, height=7, wrap=WORD)
+        self.globals = Text(anno_frame, height=7, wrap=WORD)
+        self.locals = Text(anno_frame, height=7, wrap=WORD)
         self.top.focused_widget = self.text
+        
+        self.stdout.config(highlightbackground='black')
+        self.annotation.config(highlightbackground='black')
+        self.globals.config(highlightbackground='black')
+        self.locals.config(highlightbackground='black')
 
         self.createmenubar()
         self.apply_bindings()
