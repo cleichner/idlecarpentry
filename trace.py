@@ -100,6 +100,8 @@ class Tracer(object):
 
         self.avoid_codes.add(Logger.write.im_func.func_code)
 
+        self.filename = runme
+
         if isinstance(runme, str):
             # runme is a python file to execute
             def go():
@@ -147,10 +149,14 @@ class Tracer(object):
         a new frame."""
 
         if self.suppress_tracing:
-            return None
+            return
 
         if event != 'call':
             raise ValueError('Global event should only be "call" but is "' + event + '"')
+
+        #ignore imported modules
+        if frame.f_code.co_filename != self.filename:
+            return 
 
         code = frame.f_code
         if code in self.avoid_codes or (self.current_code in self.leaf_codes):
@@ -158,7 +164,7 @@ class Tracer(object):
             return self.suppress_trace_fn
 
         if code in self.silent_codes:
-            return None
+            return
 
         else:
             logevent(frame, event, arg)

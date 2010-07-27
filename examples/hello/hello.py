@@ -1,5 +1,5 @@
 #>This triggers a really nasty bug
-#import small
+import small
 
 #>This line is the canonical first program in any language
 #I just had to do it
