@@ -83,8 +83,7 @@ class TraceDisplayWindow(object):
         anno_frame = Frame(center_frame) 
         self.text_frame = text_frame = Frame(center_frame) 
 
-        play_button = Button( button_frame, text='Play', command=self.play)
-        pause_button = Button( button_frame, text='Pause', command=self.pause)
+        self.play_button = play_button = Button( button_frame, text='Play', command=self.play)
         rewind_button = Button( button_frame, text='Rewind', command=self.rewind)
         forward_button = Button( button_frame, text='Step Forward', command=self.step_forward)
         back_button = Button( button_frame, text='Step Back', command=self.step_back)
@@ -166,7 +165,7 @@ class TraceDisplayWindow(object):
         globals_label.pack(side=TOP, fill=BOTH)
         self.globals.pack(side=TOP, expand=1, fill=BOTH)
 
-        for button in (play_button, pause_button, rewind_button, forward_button, back_button):#, fast_button):
+        for button in (play_button, rewind_button, forward_button, back_button):#, fast_button):
             button.pack(side=LEFT)
 
         text.pack(side=TOP, fill=BOTH, expand=1)
@@ -179,10 +178,10 @@ class TraceDisplayWindow(object):
         self.globals.config(state=DISABLED)
         self.locals.config(state=DISABLED)
 
-        self.trace=None
-        self.current_line=0
-        self.paused=False
-        self.finished=False
+        self.trace = None
+        self.current_line = 0
+        self.paused = True
+        self.finished = False
 
         #in seconds
         self.step_rate=1.5
@@ -275,14 +274,17 @@ class TraceDisplayWindow(object):
             self.clear_highlighting(target)
 
     def play(self):
-        if not self.paused and not self.finished:
-            self.step_forward()
-            self.text.after(int(self.step_rate * 1000), self.play)
-
-    def pause(self):
         self.paused=not self.paused 
         if not self.paused:
-            self.play()
+            self.play_button.config(text='Pause')
+            self.text.after(0, self.play_action)
+        else:
+            self.play_button.config(text='Play')
+
+    def play_action(self):
+        if not self.paused and not self.finished:
+            self.step_forward()
+            self.text.after(int(self.step_rate * 1000), self.play_action)
 
     def step_forward(self):
         '''Moves to the next trace dictionary and inserts the data it contains,
@@ -387,7 +389,8 @@ class TraceDisplayWindow(object):
 
         self.current_line=0
         self.finished=False
-        self.paused=False
+        self.paused=True
+        self.play_button.config(text='Play')
         self.text.see('1.0')
 
     def _filename_to_unicode(self, filename):
