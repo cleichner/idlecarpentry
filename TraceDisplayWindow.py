@@ -78,54 +78,79 @@ class TraceDisplayWindow(object):
             self.top.instance_dict = {}
         self.recent_files_path = os.path.join(idleConf.GetUserCfgDir(),
                 'recent-files.lst')
-        button_frame = Frame(top) 
-        center_frame = Frame(top) 
-        anno_frame = Frame(center_frame) 
-        self.text_frame = text_frame = Frame(center_frame) 
 
-        self.play_button = play_button = Button( button_frame, text='Play', command=self.play)
-        rewind_button = Button( button_frame, text='Rewind', command=self.rewind)
-        forward_button = Button( button_frame, text='Step Forward', command=self.step_forward)
-        back_button = Button( button_frame, text='Step Back', command=self.step_back)
-        fast_button = Button( button_frame, text='Fast', command=self.fast)
+        self.play_button = Button(top, text = 'Play', command = self.play)
+        self.play_button.grid(row = 0, column = 0, sticky = EW)
 
-        out_label = Label(top, text='stdout:', font=('sans', 12))
-        globals_label = Label(anno_frame, text='globals:', font=('sans', 10))
-        locals_label = Label(anno_frame, text='locals:', font=('sans', 10))
-        anno_label = Label(anno_frame, text='explanation:', font=('sans', 10))
-        source_label = Label(text_frame, text='source:', font=('sans', 10))
+        rewind_button = Button(top, text = 'Rewind', command = self.rewind)
+        rewind_button.grid(row = 0, column = 1, sticky = EW)
 
-        #self.width = idleConf.GetOption('main','EditorWindow','width')
-        text_options = {
-#                'name': 'text',
-        #        'padx': 5,
-        #        'wrap': 'none',
-        #        'width': self.width,
-        #        'height': idleConf.GetOption('main', 'EditorWindow', 'height')
-        }
-        if TkVersion >= 8.5:
-            # Starting with tk 8.5 we have to set the new tabstyle option
-            # to 'wordprocessor' to achieve the same display of tabs as in
-            # older tk versions.
-            text_options['tabstyle'] = 'wordprocessor'
+        forward_button = Button(top, text = 'Step Forward', command = self.step_forward)
+        forward_button.grid(row = 0, column = 2, sticky = EW)
 
-        self.text = text = Text(text_frame, wrap=WORD)
-        self.stdout = Text(top, height=7)
-        self.annotation = Text(anno_frame, height=7, wrap=WORD)
-        self.globals = Text(anno_frame, height=7, wrap=WORD)
-        self.locals = Text(anno_frame, height=7, wrap=WORD)
+        back_button = Button(top, text = 'Step Back', command = self.step_back)
+        back_button.grid(row = 0, column = 3, columnspan = 2, sticky = EW)
+
+
+        text_label = Label(top, text = 'text:', font = ('sans', 10))
+        text_label.grid(row = 1, column = 0, columnspan = 4, sticky = NSEW)
+
+        self.text = text = Text(top, height = 21, wrap = WORD)
+        text.grid(row = 2, column = 0, rowspan = 6, columnspan = 4, sticky = NSEW)
+
+        text_scroll = Scrollbar(top, command = text.yview )
+        text_scroll.grid(row = 2, column = 4, rowspan = 5, sticky = NSEW)
+        text.config(yscrollcommand = text_scroll.set)
+
+
+        anno_label = Label(top, text = 'explanation:', font = ('sans', 10))
+        anno_label.grid(row = 1, column = 5, sticky = NSEW)
+
+        self.annotation = Text(top, height = 7, wrap = WORD)
+        self.annotation.grid(row = 2, column = 5, sticky = NSEW)
+
+        annotation_scroll = Scrollbar(top, command = self.annotation.yview )
+        annotation_scroll.grid(row = 2, column = 6, sticky = NSEW)
+        self.annotation.config(yscrollcommand = annotation_scroll.set)
+
+
+        locals_label = Label(top, text = 'locals:', font = ('sans', 10))
+        locals_label.grid(row = 3, column = 5, sticky = NSEW)
+
+        self.locals = Text(top, height = 7, wrap = WORD)
+        self.locals.grid(row = 4, column = 5, sticky = NSEW)
+
+        locals_scroll = Scrollbar(top, command = self.locals.yview )
+        locals_scroll.grid(row = 4, column = 6, sticky = NSEW)
+        self.locals.config(yscrollcommand = locals_scroll.set)
+
+
+        globals_label = Label(top, text = 'globals:', font = ('sans', 10))
+        globals_label.grid(row = 5, column = 5, sticky = NSEW)
+
+        self.globals = Text(top, height = 7, wrap = WORD)
+        self.globals.grid(row = 6, column = 5, sticky = NSEW)
+
+        globals_scroll = Scrollbar(top, command = self.globals.yview )
+        globals_scroll.grid(row = 6, column = 6,  sticky = NSEW)
+        self.globals.config(yscrollcommand = globals_scroll.set)
+
+
+        stdout_label = Label(top, text = 'stdout:', font = ('sans', 12))
+        stdout_label.grid(row = 7, column = 0, columnspan = 6, sticky = NSEW)
+
+        self.stdout = Text(top, height = 7, wrap = WORD)
+        self.stdout.grid(row = 8, column = 0, columnspan = 6, sticky = NSEW)
+
+        stdout_scroll = Scrollbar(top, command = self.stdout.yview )
+        stdout_scroll.grid(row = 8, column = 6, sticky = NSEW)
+        self.stdout.config(yscrollcommand = stdout_scroll.set)
+
         
         self.stdout.config( highlightbackground = 'grey' )
         self.annotation.config( highlightbackground = 'grey' )
         self.globals.config( highlightbackground = 'grey' )
         self.locals.config( highlightbackground = 'grey' )
-
-        text_scrollbar = Scrollbar(text_frame)
-        stdout_scrollbar = Scrollbar(top)
-        annotation_scrollbar = Scrollbar(anno_frame)
-        globals_scrollbar = Scrollbar(anno_frame)
-        locals_scrollbar = Scrollbar(anno_frame)
-
 
         self.createmenubar()
         self.apply_bindings()
@@ -154,36 +179,6 @@ class TraceDisplayWindow(object):
         text.config(font=(idleConf.GetOption('main', 'EditorWindow', 'font'),
                           idleConf.GetOption('main', 'EditorWindow', 'font-size'),
                           fontWeight))
-
-        button_frame.pack(side=TOP, fill=BOTH)
-        center_frame.pack(side=TOP, expand=1, fill=BOTH)
-        out_label.pack(side=TOP, fill=BOTH)
-        self.stdout.pack(side=TOP, expand=1, fill=BOTH)
-
-        text_frame.pack(side=LEFT, expand=1, fill=BOTH)
-        text_scrollbar.pack(side=RIGHT, fill=Y)
-
-        source_label.pack(side=TOP, fill=BOTH)
-        anno_frame.pack(side=LEFT, expand=1, fill=BOTH)
-
-        anno_label.pack(side=TOP, fill=BOTH)
-        self.annotation.pack(side=TOP, expand=1, fill=BOTH)
-        annotation_scrollbar.pack(side=RIGHT, fill=Y)
-
-        locals_label.pack(side=TOP, fill=BOTH)
-        self.locals.pack(side=TOP, expand=1, fill=BOTH)
-        locals_scrollbar.pack(side=RIGHT, fill=Y)
-
-        globals_label.pack(side=TOP, fill=BOTH)
-        self.globals.pack(side=TOP, expand=1, fill=BOTH)
-        globals_scrollbar.pack(side=RIGHT, fill=Y)
-
-        for button in (play_button, rewind_button, forward_button, back_button):#, fast_button):
-            button.pack(side=LEFT)
-
-        text.pack(side=TOP, fill=BOTH, expand=1)
-        text.focus_set()
-
 
         self.text.config(state=DISABLED)
         self.stdout.config(state=DISABLED)

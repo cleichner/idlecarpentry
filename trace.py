@@ -38,7 +38,7 @@ import token
 import tokenize
 import tempfile
 
-DEBUG = True
+DEBUG = False
 
 out=sys.stderr
 def dprint(*args):
