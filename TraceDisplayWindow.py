@@ -114,12 +114,18 @@ class TraceDisplayWindow(object):
         self.annotation = Text(anno_frame, height=7, wrap=WORD)
         self.globals = Text(anno_frame, height=7, wrap=WORD)
         self.locals = Text(anno_frame, height=7, wrap=WORD)
-        self.top.focused_widget = self.text
         
-        self.stdout.config(highlightbackground='black')
-        self.annotation.config(highlightbackground='black')
-        self.globals.config(highlightbackground='black')
-        self.locals.config(highlightbackground='black')
+        self.stdout.config( highlightbackground = 'grey' )
+        self.annotation.config( highlightbackground = 'grey' )
+        self.globals.config( highlightbackground = 'grey' )
+        self.locals.config( highlightbackground = 'grey' )
+
+        text_scrollbar = Scrollbar(text_frame)
+        stdout_scrollbar = Scrollbar(top)
+        annotation_scrollbar = Scrollbar(anno_frame)
+        globals_scrollbar = Scrollbar(anno_frame)
+        locals_scrollbar = Scrollbar(anno_frame)
+
 
         self.createmenubar()
         self.apply_bindings()
@@ -155,15 +161,22 @@ class TraceDisplayWindow(object):
         self.stdout.pack(side=TOP, expand=1, fill=BOTH)
 
         text_frame.pack(side=LEFT, expand=1, fill=BOTH)
+        text_scrollbar.pack(side=RIGHT, fill=Y)
+
         source_label.pack(side=TOP, fill=BOTH)
         anno_frame.pack(side=LEFT, expand=1, fill=BOTH)
 
         anno_label.pack(side=TOP, fill=BOTH)
         self.annotation.pack(side=TOP, expand=1, fill=BOTH)
+        annotation_scrollbar.pack(side=RIGHT, fill=Y)
+
         locals_label.pack(side=TOP, fill=BOTH)
         self.locals.pack(side=TOP, expand=1, fill=BOTH)
+        locals_scrollbar.pack(side=RIGHT, fill=Y)
+
         globals_label.pack(side=TOP, fill=BOTH)
         self.globals.pack(side=TOP, expand=1, fill=BOTH)
+        globals_scrollbar.pack(side=RIGHT, fill=Y)
 
         for button in (play_button, rewind_button, forward_button, back_button):#, fast_button):
             button.pack(side=LEFT)
