@@ -95,7 +95,7 @@ class TraceDisplayWindow(object):
         text_label = Label(top, text = 'text:', font = ('sans', 10))
         text_label.grid(row = 1, column = 0, columnspan = 4, sticky = NSEW)
 
-        self.text = text = Text(top, height = 21, wrap = WORD)
+        self.text = text = Text(top, height = 21, width = 70, wrap = WORD)
         text.grid(row = 2, column = 0, rowspan = 6, columnspan = 4, sticky = NSEW)
 
         text_scroll = Scrollbar(top, command = text.yview )
@@ -106,7 +106,7 @@ class TraceDisplayWindow(object):
         anno_label = Label(top, text = 'explanation:', font = ('sans', 10))
         anno_label.grid(row = 1, column = 5, sticky = NSEW)
 
-        self.annotation = Text(top, height = 7, wrap = WORD)
+        self.annotation = Text(top, height = 7, width = 70, wrap = WORD)
         self.annotation.grid(row = 2, column = 5, sticky = NSEW)
 
         annotation_scroll = Scrollbar(top, command = self.annotation.yview )
@@ -117,7 +117,7 @@ class TraceDisplayWindow(object):
         locals_label = Label(top, text = 'locals:', font = ('sans', 10))
         locals_label.grid(row = 3, column = 5, sticky = NSEW)
 
-        self.locals = Text(top, height = 7, wrap = WORD)
+        self.locals = Text(top, height = 7, width = 70, wrap = WORD)
         self.locals.grid(row = 4, column = 5, sticky = NSEW)
 
         locals_scroll = Scrollbar(top, command = self.locals.yview )
@@ -128,7 +128,7 @@ class TraceDisplayWindow(object):
         globals_label = Label(top, text = 'globals:', font = ('sans', 10))
         globals_label.grid(row = 5, column = 5, sticky = NSEW)
 
-        self.globals = Text(top, height = 7, wrap = WORD)
+        self.globals = Text(top, height = 7, width = 70, wrap = WORD)
         self.globals.grid(row = 6, column = 5, sticky = NSEW)
 
         globals_scroll = Scrollbar(top, command = self.globals.yview )
