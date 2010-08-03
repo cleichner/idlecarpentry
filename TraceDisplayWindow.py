@@ -147,6 +147,7 @@ class TraceDisplayWindow(object):
         self.stdout.config(yscrollcommand = stdout_scroll.set)
 
         
+        self.text.config( highlightbackground = 'grey' )
         self.stdout.config( highlightbackground = 'grey' )
         self.annotation.config( highlightbackground = 'grey' )
         self.globals.config( highlightbackground = 'grey' )
