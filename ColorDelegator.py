@@ -19,13 +19,14 @@ def make_pat():
     # self.file = file("file") :
     # 1st 'file' colorized normal, 2nd as builtin, 3rd as string
     builtin = r"([^.'\"\\#]\b|^)" + any("BUILTIN", builtinlist) + r"\b"
-    comment = any("COMMENT", [r"#[^\n]*"])
+    comment = any("COMMENT", [r"#[^>][^\n]*"])
+    annotation = any("ANNOTATION", [r"#>[^\n]*"])
     sqstring = r"(\b[rRuU])?'[^'\\\n]*(\\.[^'\\\n]*)*'?"
     dqstring = r'(\b[rRuU])?"[^"\\\n]*(\\.[^"\\\n]*)*"?'
     sq3string = r"(\b[rRuU])?'''[^'\\]*((\\.|'(?!''))[^'\\]*)*(''')?"
     dq3string = r'(\b[rRuU])?"""[^"\\]*((\\.|"(?!""))[^"\\]*)*(""")?'
     string = any("STRING", [sq3string, dq3string, sqstring, dqstring])
-    return kw + "|" + builtin + "|" + comment + "|" + string +\
+    return kw + "|" + builtin + "|" + comment + "|" + annotation + "|" + string +\
            "|" + any("SYNC", [r"\n"])
 
 prog = re.compile(make_pat(), re.S)
@@ -60,6 +61,7 @@ class ColorDelegator(Delegator):
         theme = idleConf.GetOption('main','Theme','name')
         self.tagdefs = {
             "COMMENT": idleConf.GetHighlight(theme, "comment"),
+            "ANNOTATION": {'foreground': '#039188', 'background': '#ffffff'},
             "KEYWORD": idleConf.GetHighlight(theme, "keyword"),
             "BUILTIN": idleConf.GetHighlight(theme, "builtin"),
             "STRING": idleConf.GetHighlight(theme, "string"),
@@ -196,6 +198,7 @@ class ColorDelegator(Delegator):
                 m = self.prog.search(chars)
                 while m:
                     for key, value in m.groupdict().items():
+                        if DEBUG: print key, value
                         if value:
                             a, b = m.span(key)
                             self.tag_add(key,
