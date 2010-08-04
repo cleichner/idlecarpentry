@@ -137,7 +137,7 @@ class PyShellEditorWindow(EditorWindow):
         trace_string = trace.trace(filename)
         trace_filename = '%s.json' % filename.split('.')[0]
         f=open(trace_filename, 'w')
-        f.write(trace_string)
+        f.write(trace_string+'\n')
         f.close()
         print filename
         TraceDisplayWindow(flist=self.flist, filename=trace_filename, root=self.root)

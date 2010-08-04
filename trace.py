@@ -207,7 +207,6 @@ class Tracer(object):
         if event == "exception":
             record['exception'] = {
                 "type": arg[0].__name__,
-                #"args": arg[1].args,
                 "args": arg[1],
                 }
 
@@ -230,15 +229,7 @@ class LinesIter(object):
 
 def getblock(lines):
     """Extract the block of code at the top of the given list of lines."""
-
-#    while 1:
-#        try:
-#            print lineiter().rstrip()
-#        except StopIteration:
-#            print 'final line'
-
     for toknum, tokval, start, end, line in tokenize.generate_tokens(LinesIter(lines)):
-        #print toknum, start, end #, line 
         
         if toknum == token.INDENT:
             print 'INDENT', line.rstrip()
@@ -247,29 +238,11 @@ def getblock(lines):
         else:
             pass
 
-
-#    blockfinder = BlockFinder()
-#    try:
-#        tokenize.tokenize(iter(lines).next, blockfinder.tokeneater)
-#    except (EndOfBlock, IndentationError):
-#        pass
-#    return lines[:blockfinder.last]
-
 def print_events(events):
     codes = set()
 
     for evt in events:
         code = evt['code']
-        #if code is not None and code not in codes:
-        #    codes.add(evt['code'])
-            #print 'first see', code, 'is mod', inspect.ismodule(inspect.getmodule(code)), 'is func', inspect.isfunction(code)
-
-            #lines, start = inspect.findsource(code)
-            
-            #print 'start', start, code.co_firstlineno
-
-            #getblock(lines)
-            #print inspect.getblock(lines[start:])
 
         stdout = evt.get('stdout', None)
         stderr = evt.get('stderr', None)
@@ -304,7 +277,6 @@ def extract_codes(events):
         filename = inspect.getsourcefile(code)
         lines, _ = inspect.findsource(code)
         module_source[filename] = (code, lines, {})
-        #print ''.join(lines)
 
     ext_func_source = {}
     for code in other_codes:
@@ -317,9 +289,6 @@ def extract_codes(events):
             funcs[code] = lineno
         else:
             ext_func_source[code] = inspect.getsourcelines(code)
-
-    #print 'module_source', module_source
-    #print 'ext_func_source', ext_func_source
 
     return module_source, ext_func_source
 
@@ -505,9 +474,6 @@ def foo():
     print 'splash',x
 
 def main():
-    #print 'ismod', inspect.ismodule(inspect)
-    #print inspect.getsource(inspect)
-
     parser = optparse.OptionParser()
     parser.add_option('-f', '--filename', dest='filename', metavar='FILE',
                       help = 'Python file to run',
@@ -523,8 +489,6 @@ def main():
         parser.print_help()
         sys.exit(2)
 
-#    runner = Tracer(foo)
-#can't handle callable objects right now
     print trace(options.filename, pprint=options.pprint)
 
 if __name__ == '__main__':

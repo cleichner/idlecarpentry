@@ -1,3 +1,5 @@
+import PyShell
+'''
 try:
     import idlelib.PyShell
 except ImportError:
@@ -19,3 +21,5 @@ except ImportError:
         PyShell.main()
 else:
     idlelib.PyShell.main()
+'''
+PyShell.main()

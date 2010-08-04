@@ -27,6 +27,7 @@ class TraceDisplayWindow(object):
     help_url = None
 
     def __init__(self, flist=None, filename=None, key=None, root=None):
+        #self.
         if TraceDisplayWindow.help_url is None:
             dochome =  os.path.join(sys.prefix, 'Doc', 'index.html')
             if sys.platform.count('linux'):
