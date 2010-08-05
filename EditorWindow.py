@@ -111,6 +111,7 @@ class EditorWindow(object):
             self.top.instance_dict = {}
         self.recent_files_path = os.path.join(idleConf.GetUserCfgDir(),
                 'recent-files.lst')
+        print 'recent files path', self.recent_files_path
         self.text_frame = text_frame = Frame(top)
         self.vbar = vbar = Scrollbar(text_frame, name='vbar')
         self.width = idleConf.GetOption('main','EditorWindow','width')

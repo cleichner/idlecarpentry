@@ -109,7 +109,9 @@ class PyShellEditorWindow(EditorWindow):
     def __init__(self, *args):
         self.breakpoints = []
         self.Bindings.menudefs[3][1].append(('Create Trace', '<<create-trace>>'))
+        print 'EditorWindow Constructor Start'
         EditorWindow.__init__(self, *args)
+        print 'EditorWindow Constructor End'
 
         self.top.bind("<<create-trace>>", self.create_trace)
 
