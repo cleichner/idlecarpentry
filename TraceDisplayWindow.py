@@ -27,7 +27,6 @@ class TraceDisplayWindow(object):
     help_url = None
 
     def __init__(self, flist=None, filename=None, key=None, root=None):
-        #self.
         if TraceDisplayWindow.help_url is None:
             dochome =  os.path.join(sys.prefix, 'Doc', 'index.html')
             if sys.platform.count('linux'):
@@ -245,10 +244,8 @@ class TraceDisplayWindow(object):
         self.ResetColorizer()
 
     def set_saved(self, flag):
+#THIS NEEDS TO BE FIXED
         pass
-
-    def fast(self):
-        self.step_rate=.3
 
     def insert(self, target, text):
         getattr(self, target).config(state=NORMAL)
