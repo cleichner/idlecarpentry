@@ -8,7 +8,6 @@ from Tkinter import *
 import tkSimpleDialog
 import tkMessageBox
 from MultiCall import MultiCallCreator
-from TraceDisplayWindow import TraceDisplayWindow
 
 import webbrowser
 import idlever
@@ -116,7 +115,7 @@ class EditorWindow(object):
         self.vbar = vbar = Scrollbar(text_frame, name='vbar')
         self.width = idleConf.GetOption('main','EditorWindow','width')
         text_options = {
-                'name': 'text',
+        #        'name': 'text',
                 'padx': 5,
                 'wrap': 'none',
                 'width': self.width,
