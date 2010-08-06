@@ -2,7 +2,6 @@ import sys
 import json
 from Tkinter import *
 from configHandler import idleConf
-from MultiCall import MultiCallCreator
 from EditorWindow import EditorWindow, fixwordbreaks
 
 class TraceDisplayWindow(EditorWindow):
