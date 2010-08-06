@@ -7,7 +7,17 @@ from EditorWindow import EditorWindow, fixwordbreaks
 
 class TraceDisplayWindow(EditorWindow):
 
+    menu_specs = [
+        ("file", "_File"),
+        ("run", "_Run"),
+        ("options", "_Options"),
+        ("windows", "_Windows"),
+        ("help", "_Help"),
+    ]
+
     def __init__(self, *args, **kwargs):
+        self.trace = None
+
 
         EditorWindow.__init__(self, *args, **kwargs)
 
@@ -84,7 +94,6 @@ class TraceDisplayWindow(EditorWindow):
         self.globals.config(state=DISABLED)
         self.locals.config(state=DISABLED)
 
-        self.trace = None
         self.current_line = 0
         self.paused = True
         self.finished = False

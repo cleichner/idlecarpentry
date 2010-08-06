@@ -17,17 +17,6 @@ or run trace programatically like this
    import trace
    trace = trace.trace("trace_me.py")
 
-You can also trace a particular function call instead of an entire python file
-
-   import trace
-
-   def foo()
-      pass
-
-   runner = trace.Tracer(foo)
-   result, events = runner.trace()
-   trace = trace.process_events_json(events)
-
 """
 
 import sys
@@ -436,7 +425,7 @@ def parse_annotations(filename, marker='#>'):
 
     return annotations
 
-def trace(filename, pprint=False):
+def trace(filename, pprint=True):
     '''Takes a filename and returns a complete trace, if pprint is True, the
     returned trace will be pretty printed.'''
 

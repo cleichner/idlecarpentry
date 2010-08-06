@@ -111,7 +111,6 @@ class EditorWindow(object):
             self.top.instance_dict = {}
         self.recent_files_path = os.path.join(idleConf.GetUserCfgDir(),
                 'recent-files.lst')
-        print 'recent files path', self.recent_files_path
         self.text_frame = text_frame = Frame(top)
         self.vbar = vbar = Scrollbar(text_frame, name='vbar')
         self.width = idleConf.GetOption('main','EditorWindow','width')
@@ -640,7 +639,8 @@ class EditorWindow(object):
     def _addcolorizer(self):
         if self.color:
             return
-        if self.ispythonsource(self.io.filename):
+        if self.ispythonsource(self.io.filename) \
+                 or self.istrace(self.io.filename):
             self.color = self.ColorDelegator()
         # can add more colorizers here...
         if self.color:
