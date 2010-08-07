@@ -109,14 +109,16 @@ class TraceDisplayWindow(EditorWindow):
         text box again.'''
 
         getattr(self, target).config(state=NORMAL)
+
         if color: 
             getattr(self, target).insert(END, text, 'to_color')
             getattr(self, target).tag_configure('to_color', foreground = color)
+
         else:
             getattr(self, target).insert(END, text)
 
         if target not in ('globals', 'locals'):
-            getattr(self, target).see(END)
+            getattr(self, target).see('end')
         getattr(self, target).config(state = DISABLED)
 
     def clear(self, target):
@@ -138,6 +140,7 @@ class TraceDisplayWindow(EditorWindow):
         getattr(self, target).tag_add('highlight', '%s.0' % lineno, '%s.end' % lineno)
         getattr(self, target).tag_configure('highlight', background = 'yellow')
         getattr(self, target).see('highlight.first')
+        getattr(self, target).see('highlight.first + 5l')
         getattr(self, target).config(state=DISABLED)
 
     def clear_highlighting(self, target):
@@ -202,33 +205,28 @@ class TraceDisplayWindow(EditorWindow):
         if self.current_line == len(self.trace):
             self.clear_all_highlighting()
             self.finished=True
-
+    
     def step_back(self):
         '''Goes to the previous dictionary in the trace and recreates the state
         of the tracer at that point by replaying stdout.'''
 
-        if self.current_line <= 0:
-            self.rewind()
-
-        else:
+        if self.current_line > 0:
             try:
                 step = self.trace[self.current_line]
             except IndexError:
                 step = self.trace[len(self.trace)-1]
-                
+               
             prev_step = self.trace[self.current_line-1]
 
             #remove the last thing printed to stdout
             if 'stdout' in step or 'stderr' in step:
-                self.stdout.config(state=NORMAL)
-                self.stdout.delete('1.0', 'end+1c')
+                self.clear('stdout')
                 for previous in range(self.current_line):
                     prev_step=self.trace[previous]
                     if 'stdout' in prev_step:
-                        self.stdout.insert('insert', prev_step['stdout'])
+                        self.insert('stdout', prev_step['stdout'])
                     if 'stderr' in prev_step:
                         self.insert('stdout', prev_step['stderr'], 'red')
-                self.stdout.config(state=DISABLED)
 
             self.clear('annotation')
             self.clear('globals')
@@ -237,20 +235,23 @@ class TraceDisplayWindow(EditorWindow):
             if 'annotation' in prev_step:
                 self.insert('annotation', prev_step['annotation'])
             if 'globals' in prev_step:
-                glbs=prev_step['globals'] 
+                glbs=prev_step['globals']
                 for entry in glbs:
                     self.insert('globals', "%s = %s\n" % (str(entry), str(glbs[entry])))
             if 'locals' in prev_step:
                 self.clear('locals')
-                lcls=prev_step['locals'] 
+                lcls=prev_step['locals']
                 for entry in lcls:
                     self.insert('locals', "%s = %s\n" % (str(entry), str(lcls[entry])))
             if self.finished:
                 self.finished = False
-                
+               
             self.current_line -= 1
             step = self.trace[self.current_line]
             self.highlight_line('text', step['line']+1)
+
+        else:
+            self.rewind()
 
     def rewind(self):
         '''Sets all parameters back to their original states (including
