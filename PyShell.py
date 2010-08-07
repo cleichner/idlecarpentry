@@ -105,14 +105,9 @@ linecache.checkcache = extended_linecache_checkcache
 
 class PyShellEditorWindow(EditorWindow):
     "Regular text edit window in IDLE, supports breakpoints"
-
+    
     def __init__(self, *args):
         self.breakpoints = []
-
-        #print self.Bindings.menudefs
-
-        if self.Bindings.menudefs[3][1][-1] != ('Create Trace', '<<create_trace>>'):
-            self.Bindings.menudefs[3][1].append(('Create Trace', '<<create-trace>>'))
 
         EditorWindow.__init__(self, *args)
 
