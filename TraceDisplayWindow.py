@@ -39,11 +39,11 @@ class TraceDisplayWindow(EditorWindow):
         forward_button = Button(self.text_frame, text = 'Step Forward', command = self.step_forward)
         back_button = Button(self.text_frame, text = 'Step Back', command = self.step_back)
 
-        text_label = Label(self.text_frame, text = 'text:', font = ('sans', 10))
-        anno_label = Label(self.text_frame, text = 'explanation:', font = ('sans', 10))
-        locals_label = Label(self.text_frame, text = 'locals:', font = ('sans', 10))
-        globals_label = Label(self.text_frame, text = 'globals:', font = ('sans', 10))
-        stdout_label = Label(self.text_frame, text = 'stdout:', font = ('sans', 12))
+        text_label = Label(self.text_frame, text = 'Source Code:', font = ('sans', 10))
+        anno_label = Label(self.text_frame, text = 'Explanation:', font = ('sans', 10))
+        locals_label = Label(self.text_frame, text = 'Local Variables:', font = ('sans', 10))
+        globals_label = Label(self.text_frame, text = 'Global Variables :', font = ('sans', 10))
+        stdout_label = Label(self.text_frame, text = 'Output:', font = ('sans', 12))
 
         text_scroll = Scrollbar(self.text_frame, command = self.text.yview )
         annotation_scroll = Scrollbar(self.text_frame, command = self.annotation.yview )
