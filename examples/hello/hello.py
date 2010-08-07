@@ -1,6 +1,6 @@
-
-#>This triggers a really nasty bug
+#>This used to trigger a really nasty bug
 import small
+import sys
 
 #>This line is the canonical first program in any language
 #I just had to do it
@@ -15,6 +15,9 @@ for y in range(4):
 #> This is the linebreak which tests
 #> if my annoation concatenator works
 print '\n'
+
+#> This text should be red
+print >>sys.stderr,  'Hello, stderr'
 
 #> Annotating a function
 def un():
