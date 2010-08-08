@@ -1,12 +1,10 @@
 #!/usr/bin/env python
 
-#TODO
-#fix multiple insertions in the trace
-#add annotation parsing
-
 """
-This module traces the execution of a python script or function. The
-output is meant to be played back later.
+This module traces the execution of a python script. The output is meant to be
+played back later.  Annotations can be added to the execution flow by making
+comments starting with #>. They will be stripped out and associated with the
+nearest program line after them in the trace. 
 
 To trace a python script, either run this program from the command line
 
@@ -38,7 +36,8 @@ def dprint(*args):
 def logevent(frame, event, arg):
     if DEBUG:
         lines, lineno = inspect.findsource(frame.f_code)
-        print >>sys.__stderr__, 'EVENT:', event, frame.f_lineno, lines[frame.f_lineno-1].strip()
+        print >>sys.__stderr__, 'EVENT:', event, \
+            frame.f_lineno, lines[frame.f_lineno-1].strip()
 
 class Logger(object):
     """Proxies stdout or stderr to capture the output of traced
@@ -169,28 +168,28 @@ class Tracer(object):
         sys.stderr.flushLog()
 
         frame_globals=dict(frame.f_globals)
-        frame_locals=dict(frame.f_globals)
+        frame_locals=dict(frame.f_locals)
 
         #this module likes to display the contents of '__builtins__', this fixes that
-        if '__builtins__' in frame_globals:
-            frame_globals['__builtins__'] = "<module '__builtin__' (built-in)>"
-
-        if '__builtins__' in frame_locals:
-            frame_locals['__builtins__'] = "<module '__builtin__' (built-in)>"
-
         for var in frame_globals:
-            frame_globals[var]=repr(frame_globals[var])
+            if var != '__builtins__':
+                frame_globals[var]=repr(frame_globals[var])
+            else:
+                frame_globals[var] = "<module '__builtin__' (built-in)>"
 
         for var in frame_locals:
-            frame_locals[var]=repr(frame_locals[var])
+            if var != '__builtins__':
+                frame_locals[var]=repr(frame_locals[var])
+            else:
+                frame_locals[var] = "<module '__builtin__' (built-in)>"
 
         record = dict(
             event = event,
             code = frame.f_code,
             line = frame.f_lineno,
             depth = depth,
-            locals = frame_globals,
-            globals = frame_locals
+            globals = frame_globals,
+            locals = frame_locals
             )
 
         if event == "exception":
@@ -201,52 +200,6 @@ class Tracer(object):
 
         self.log.append(record)
         return record
-
-class LinesIter(object):
-    def __init__(self, lines):
-        self.i = 0
-        self.lines = lines
-        self.len = len(lines)
-
-    def __call__(self):
-        i = self.i
-        self.i += 1
-        if i < self.len:
-            return self.lines[i]
-        else:
-            return ''
-
-def getblock(lines):
-    """Extract the block of code at the top of the given list of lines."""
-    for toknum, tokval, start, end, line in tokenize.generate_tokens(LinesIter(lines)):
-        
-        if toknum == token.INDENT:
-            print 'INDENT', line.rstrip()
-        elif toknum == token.DEDENT:
-            print 'DEDENT', line.rstrip()
-        else:
-            pass
-
-def print_events(events):
-    codes = set()
-
-    for evt in events:
-        code = evt['code']
-
-        stdout = evt.get('stdout', None)
-        stderr = evt.get('stderr', None)
-        print evt['depth'], code.co_filename,code.co_name, str(evt['line']) + ':', evt['event'], \
-            #evt.get('d').keys(), evt.get('g').keys(),
-
-        if evt['event'] == 'exception':
-            print evt['exception'],
-        if stdout:
-            print 'stdout:', stdout,
-        if stderr:
-            print 'stderr:', stderr,
-
-            
-        print ''
 
 def extract_codes(events):
     # collect all code objects
@@ -455,12 +408,6 @@ def trace(filename, pprint=True):
         return json.dumps(trace, indent=2)
     else:
         return json.dumps(trace, separators=(',',':'))
-
-def foo():
-    x = 3
-    x += 2
-    roo()
-    print 'splash',x
 
 def main():
     parser = optparse.OptionParser()

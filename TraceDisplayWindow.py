@@ -8,7 +8,6 @@ class TraceDisplayWindow(EditorWindow):
 
     menu_specs = [
         ("file", "_File"),
-        ("run", "_Run"),
         ("options", "_Options"),
         ("windows", "_Windows"),
         ("help", "_Help"),
@@ -173,6 +172,10 @@ class TraceDisplayWindow(EditorWindow):
             self.text.after(int(self.step_rate * 1000), self.play_action)
 
     def highlight_changes(self, current_step, previous_step):
+        '''Inserts the globals and locals into their respective Text boxes,
+        highlighting any differences between the previous contents and the
+        current one.'''
+        
         for target in ('globals', 'locals'):
             if target in current_step:
                 self.clear(target)
