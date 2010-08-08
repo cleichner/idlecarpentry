@@ -94,9 +94,6 @@ class TraceDisplayWindow(EditorWindow):
         self.globals.config(state=DISABLED)
         self.locals.config(state=DISABLED)
 
-        self.previous_globals = None
-        self.previous_locals = None
-
         self.current_line = 0
         self.finished = False
         self.paused = True
@@ -111,8 +108,8 @@ class TraceDisplayWindow(EditorWindow):
         getattr(self, target).config(state=NORMAL)
 
         if color: 
-            getattr(self, target).insert(END, text, 'to_color')
-            getattr(self, target).tag_configure('to_color', foreground = color)
+            getattr(self, target).insert(END, text, 'color_%s' % color)
+            getattr(self, target).tag_configure('color_%s' % color, foreground = color)
 
         else:
             getattr(self, target).insert(END, text)
@@ -136,11 +133,16 @@ class TraceDisplayWindow(EditorWindow):
         '''Highlights the line linenno in the target Text widget.'''
 
         getattr(self, target).config(state=NORMAL)
+
         self.clear_highlighting(target)
+
         getattr(self, target).tag_add('highlight', '%s.0' % lineno, '%s.end' % lineno)
         getattr(self, target).tag_configure('highlight', background = 'yellow')
+
+        #This makes sure the highlighted region is visible and has some context
         getattr(self, target).see('highlight.first')
         getattr(self, target).see('highlight.first + 5l')
+        
         getattr(self, target).config(state=DISABLED)
 
     def clear_highlighting(self, target):
@@ -170,12 +172,36 @@ class TraceDisplayWindow(EditorWindow):
             self.step_forward()
             self.text.after(int(self.step_rate * 1000), self.play_action)
 
+    def highlight_changes(self, current_step, previous_step):
+        for target in ('globals', 'locals'):
+            if target in current_step:
+                self.clear(target)
+                globals=current_step[target] 
+                old_globals = globals
+
+                if target in previous_step:
+                    old_globals = previous_step[target]
+
+                lineno = 0
+                for entry in globals:
+                    lineno += 1
+                    self.insert(target, "%s = %s\n" % (str(entry), str(globals[entry])))
+
+                    if entry not in old_globals or globals[entry] != old_globals[entry]:
+                        self.highlight_line(target, lineno)
+                        self.globals.see('%d.0' % lineno)
+
     def step_forward(self):
         '''Moves to the next dictionary in the trace and inserts the data it contains,
         advancing the highlighting as appropriate.'''
 
         if not self.finished:
             step = self.trace[self.current_line]
+            prev_step = step
+
+            if self.current_line > 0:
+                prev_step = self.trace[self.current_line - 1] 
+
             self.highlight_line('text', step['line']+1)
 
             if 'stdout' in step:
@@ -188,18 +214,7 @@ class TraceDisplayWindow(EditorWindow):
             if 'annotation' in step:
                 self.insert('annotation', step['annotation'])
 
-            if 'globals' in step:
-                self.clear('globals')
-                glbs=step['globals'] 
-                for entry in glbs:
-                    self.insert('globals', "%s = %s\n" % (str(entry), str(glbs[entry])))
-
-            if 'locals' in step:
-                self.clear('locals')
-                lcls=step['locals'] 
-                for entry in lcls:
-                    self.insert('locals', "%s = %s\n" % (str(entry), str(lcls[entry])))
-
+            self.highlight_changes(step, prev_step)
             self.current_line+=1
 
         if self.current_line == len(self.trace):
@@ -234,15 +249,9 @@ class TraceDisplayWindow(EditorWindow):
 
             if 'annotation' in prev_step:
                 self.insert('annotation', prev_step['annotation'])
-            if 'globals' in prev_step:
-                glbs=prev_step['globals']
-                for entry in glbs:
-                    self.insert('globals', "%s = %s\n" % (str(entry), str(glbs[entry])))
-            if 'locals' in prev_step:
-                self.clear('locals')
-                lcls=prev_step['locals']
-                for entry in lcls:
-                    self.insert('locals', "%s = %s\n" % (str(entry), str(lcls[entry])))
+                
+            self.highlight_changes(prev_step, self.trace[self.current_line-2])
+
             if self.finished:
                 self.finished = False
                
