@@ -293,26 +293,31 @@ def process_events(events):
 
     result_events = []
 
-    for evt in events:
-        if evt['event'] not in ('line','return', 'call', 'globals', 'locals'):
+    for event in events:
+        if event['event'] not in ('line','return', 'call', 'globals', 'locals'):
             continue
         
-        code = evt['code']
-        r = dict(line=line_offsets[code] + evt['line'])
+        code = event['code']
+        trace_line = dict(line=line_offsets[code] + event['line'])
 
-        if evt['event'] == 'exception':
-            r['exception'] =  evt['exception']['type']
+        if event['event'] == 'exception':
+            trace_line['exception'] =  event['exception']['type']
             
         for entry in ('stdout', 'stderr'):
-            if entry in evt:
-                r[entry] = ''.join(evt[entry])
+            if entry in event:
+                trace_line[entry] = ''.join(event[entry])
 
         for entry in ('globals', 'locals'):
-            if entry in evt:
-                r[entry] = evt[entry]
+            if entry in event:
+                trace_line[entry] = event[entry]
             
-        #TODO take care of the call/return multiple trace entry problem here
-        result_events.append(r)
+        if result_events and result_events[-1]['line'] == trace_line['line']:
+            for item in trace_line:
+                if item not in result_events[-1]:
+                    result_events[-1][item] = trace_line[item]
+
+        else:
+            result_events.append(trace_line)
 
     return dict(source=''.join(all_lines), trace=result_events)
     
