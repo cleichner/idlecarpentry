@@ -114,12 +114,14 @@ class EditorWindow(object):
         self.text_frame = text_frame = Frame(top)
         self.vbar = vbar = Scrollbar(text_frame, name='vbar')
         self.width = idleConf.GetOption('main','EditorWindow','width')
+        self.height = idleConf.GetOption('main', 'EditorWindow', 'height')
         text_options = {
-        #        'name': 'text',
+                'name': 'text',
                 'padx': 5,
                 'wrap': 'none',
                 'width': self.width,
-                'height': idleConf.GetOption('main', 'EditorWindow', 'height')}
+                'height': self.height }
+
         if TkVersion >= 8.5:
             # Starting with tk 8.5 we have to set the new tabstyle option
             # to 'wordprocessor' to achieve the same display of tabs as in
@@ -186,6 +188,7 @@ class EditorWindow(object):
         vbar.pack(side=RIGHT, fill=Y)
         text['yscrollcommand'] = vbar.set
         fontWeight = 'normal'
+
         if idleConf.GetOption('main', 'EditorWindow', 'font-bold', type='bool'):
             fontWeight='bold'
         text.config(font=(idleConf.GetOption('main', 'EditorWindow', 'font'),

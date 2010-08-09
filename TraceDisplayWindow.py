@@ -26,23 +26,32 @@ class TraceDisplayWindow(EditorWindow):
         self.vbar.pack_forget()
         self.text_frame.pack_forget()
 
-        self.text.configure(height = 21, width = 70, wrap = WORD)
+        small_height = int(self.height) / 6
+        small_width = int(self.width) * 5 / 6
+        self.text.configure(height = small_height * 3, width = small_width, wrap = WORD)
 
-        self.annotation = Text(self.text_frame, height = 7, width = 70, wrap = WORD)
-        self.locals = Text(self.text_frame, height = 7, width = 70, wrap = WORD)
-        self.globals = Text(self.text_frame, height = 7, width = 70, wrap = WORD)
-        self.stdout = Text(self.text_frame, height = 7, wrap = WORD)
+        self.annotation = Text(self.text_frame, height = small_height, width =
+                small_width, wrap = WORD)
+
+        self.locals = Text(self.text_frame, height = small_height, width =
+                small_width, wrap = WORD)
+
+        self.globals = Text(self.text_frame, height = small_height, width =
+                small_width, wrap = WORD)
+
+        self.stdout = Text(self.text_frame, height = small_height, wrap = WORD)
 
         self.play_button = Button(self.text_frame, text = 'Play', command = self.play)
         rewind_button = Button(self.text_frame, text = 'Rewind', command = self.rewind)
         forward_button = Button(self.text_frame, text = 'Step Forward', command = self.step_forward)
+
         back_button = Button(self.text_frame, text = 'Step Back', command = self.step_back)
 
-        text_label = Label(self.text_frame, text = 'Source Code:', font = ('sans', 10))
-        anno_label = Label(self.text_frame, text = 'Explanation:', font = ('sans', 10))
-        locals_label = Label(self.text_frame, text = 'Local Variables:', font = ('sans', 10))
-        globals_label = Label(self.text_frame, text = 'Global Variables :', font = ('sans', 10))
-        stdout_label = Label(self.text_frame, text = 'Output:', font = ('sans', 12))
+        text_label = Label(self.text_frame, text = 'Source Code:', font = ('sans', 10)) 
+        anno_label = Label(self.text_frame, text = 'Explanation:', font = ('sans', 10)) 
+        locals_label = Label(self.text_frame, text = 'Local Variables:', font = ('sans', 10)) 
+        globals_label = Label(self.text_frame, text = 'Global Variables :', font = ('sans', 10)) 
+        stdout_label = Label(self.text_frame, text = 'Output:', font = ('sans', 12)) 
 
         text_scroll = Scrollbar(self.text_frame, command = self.text.yview )
         annotation_scroll = Scrollbar(self.text_frame, command = self.annotation.yview )
@@ -55,6 +64,16 @@ class TraceDisplayWindow(EditorWindow):
         self.locals.config(yscrollcommand = locals_scroll.set)
         self.globals.config(yscrollcommand = globals_scroll.set)
         self.stdout.config(yscrollcommand = stdout_scroll.set)
+
+        fontWeight = 'normal'
+
+        if idleConf.GetOption('main','EditorWindow','font-bold',type='bool'):
+            fontWeight = 'bold'
+
+        for text_box in ('stdout', 'annotation', 'globals', 'locals'):
+            getattr(self, text_box).config(
+                    font = (idleConf.GetOption('main','EditorWindow','font'), 
+                        idleConf.GetOption('main','EditorWindow','font-size'), fontWeight))
 
         self.text_frame.grid(row = 0, column = 0, rowspan = 9, columnspan = 9, sticky = NSEW)
 
@@ -279,6 +298,16 @@ class TraceDisplayWindow(EditorWindow):
         self.paused=True
         self.play_button.config(text='Play')
         self.text.see('1.0')
+
+    def ResetFont(self):
+        EditorWindow.ResetFont(self)
+        fontWeight = 'normal'
+
+        if idleConf.GetOption('main','EditorWindow','font-bold',type='bool'):
+            fontWeight = 'bold'
+
+        for text_box in ('stdout', 'annotation', 'globals', 'locals'):
+            getattr(self, text_box).config(font=(idleConf.GetOption('main','EditorWindow','font'), idleConf.GetOption('main','EditorWindow','font-size'), fontWeight))
 
 def test():
     root = Tk()
