@@ -311,9 +311,17 @@ def process_events(events):
             if entry in event:
                 trace_line[entry] = event[entry]
             
-        #prevents duplicate call and return traces 
-        #but breaks the internals of list comprehensions
-        if result_events and result_events[-1]['line'] == trace_line['line']:
+        #prevents duplicate call and return trace lines 
+        #but doens't break the internals of list comprehensions
+        duplicate_line = False
+
+        if result_events:
+            last_event = result_events[-1] 
+            duplicate_line = last_event['line'] == trace_line['line'] \
+                             and last_event['globals'] == trace_line['globals'] \
+                             and last_event['locals'] == trace_line['locals']
+
+        if duplicate_line:           
             for item in trace_line:
                 if item not in result_events[-1]:
                     result_events[-1][item] = trace_line[item]
