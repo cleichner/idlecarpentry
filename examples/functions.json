@@ -34,7 +34,7 @@
       "globals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "sys": "<module 'sys' (built-in)>", 
         "__package__": "None"
       }, 
@@ -42,7 +42,7 @@
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "sys": "<module 'sys' (built-in)>", 
         "__package__": "None"
       }
@@ -50,7 +50,7 @@
     {
       "line": 8, 
       "globals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "sys": "<module 'sys' (built-in)>", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
@@ -58,7 +58,7 @@
         "__package__": "None"
       }, 
       "locals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "sys": "<module 'sys' (built-in)>", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
@@ -69,7 +69,7 @@
     {
       "line": 9, 
       "globals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "b": "4", 
         "sys": "<module 'sys' (built-in)>", 
@@ -78,7 +78,7 @@
         "__package__": "None"
       }, 
       "locals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "b": "4", 
         "sys": "<module 'sys' (built-in)>", 
@@ -90,7 +90,7 @@
     {
       "line": 10, 
       "globals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "c": "2", 
         "b": "4", 
@@ -100,7 +100,7 @@
         "__name__": "'__main__'"
       }, 
       "locals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "c": "2", 
         "b": "4", 
@@ -113,7 +113,7 @@
     {
       "line": 11, 
       "globals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "c": "2", 
         "b": "4", 
@@ -125,7 +125,7 @@
       }, 
       "annotation": "This uses the function we defined earlier", 
       "locals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "c": "2", 
         "b": "4", 
@@ -139,7 +139,7 @@
     {
       "line": 2, 
       "globals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "c": "2", 
         "b": "4", 
@@ -158,7 +158,7 @@
     {
       "line": 3, 
       "globals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "c": "2", 
         "b": "4", 
@@ -176,7 +176,7 @@
     {
       "line": 4, 
       "globals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "c": "2", 
         "b": "4", 
@@ -196,7 +196,7 @@
     {
       "line": 5, 
       "globals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "c": "2", 
         "b": "4", 
@@ -215,7 +215,7 @@
     {
       "line": 12, 
       "globals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "c": "2", 
         "b": "4", 
@@ -227,7 +227,7 @@
         "__name__": "'__main__'"
       }, 
       "locals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "c": "2", 
         "b": "4", 
@@ -242,7 +242,7 @@
     {
       "line": 2, 
       "globals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "c": "2", 
         "b": "4", 
@@ -262,7 +262,7 @@
     {
       "line": 3, 
       "globals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "c": "2", 
         "b": "4", 
@@ -281,7 +281,7 @@
     {
       "line": 4, 
       "globals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "c": "2", 
         "b": "4", 
@@ -302,7 +302,7 @@
     {
       "line": 5, 
       "globals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "c": "2", 
         "b": "4", 
@@ -322,7 +322,7 @@
     {
       "line": 13, 
       "globals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "c": "2", 
         "b": "4", 
@@ -335,7 +335,7 @@
         "__name__": "'__main__'"
       }, 
       "locals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "c": "2", 
         "b": "4", 
@@ -351,7 +351,7 @@
     {
       "line": 2, 
       "globals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "c": "2", 
         "b": "4", 
@@ -372,7 +372,7 @@
     {
       "line": 3, 
       "globals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "c": "2", 
         "b": "4", 
@@ -392,7 +392,7 @@
     {
       "line": 4, 
       "globals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "c": "2", 
         "b": "4", 
@@ -414,7 +414,7 @@
     {
       "line": 5, 
       "globals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "c": "2", 
         "b": "4", 
@@ -436,7 +436,7 @@
     {
       "line": 13, 
       "globals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "c": "2", 
         "b": "4", 
@@ -449,7 +449,7 @@
         "__name__": "'__main__'"
       }, 
       "locals": {
-        "function": "<function function at 0x266b8c0>", 
+        "function": "<function function at 0x1e89d70>", 
         "a": "3", 
         "c": "2", 
         "b": "4", 

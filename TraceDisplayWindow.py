@@ -147,12 +147,13 @@ class TraceDisplayWindow(EditorWindow):
         for target in ('text', 'stdout', 'annotation', 'globals', 'locals'):
             self.clear(target)
 
-    def highlight_line(self, target, lineno):
+    def highlight_line(self, target, lineno, clear_highlighting = True):
         '''Highlights the line linenno in the target Text widget.'''
 
         getattr(self, target).config(state=NORMAL)
 
-        self.clear_highlighting(target)
+        if clear_highlighting:
+            self.clear_highlighting(target)
 
         getattr(self, target).tag_add('highlight', '%s.0' % lineno, '%s.end' % lineno)
         getattr(self, target).tag_configure('highlight', background = 'yellow')
@@ -210,7 +211,7 @@ class TraceDisplayWindow(EditorWindow):
                     self.insert(target, "%s = %s\n" % (str(entry), str(globals[entry])))
 
                     if entry not in old_globals or globals[entry] != old_globals[entry]:
-                        self.highlight_line(target, lineno)
+                        self.highlight_line(target, lineno, clear_highlighting = False)
                         self.globals.see('%d.0' % lineno)
 
     def step_forward(self):
