@@ -112,7 +112,7 @@ class TraceDisplayWindow(EditorWindow):
         self.globals.config(state=DISABLED)
         self.locals.config(state=DISABLED)
 
-        self.current_line = 0
+        self.current_step = 0
         self.finished = False
         self.paused = True
 
@@ -219,11 +219,11 @@ class TraceDisplayWindow(EditorWindow):
         advancing the highlighting as appropriate.'''
 
         if not self.finished:
-            step = self.trace[self.current_line]
+            step = self.trace[self.current_step]
             prev_step = step
 
-            if self.current_line > 0:
-                prev_step = self.trace[self.current_line - 1] 
+            if self.current_step > 0:
+                prev_step = self.trace[self.current_step - 1] 
 
             self.highlight_line('text', step['line']+1)
 
@@ -238,28 +238,30 @@ class TraceDisplayWindow(EditorWindow):
                 self.insert('annotation', step['annotation'])
 
             self.highlight_changes(step, prev_step)
-            self.current_line+=1
+            self.current_step+=1
 
-        if self.current_line == len(self.trace):
+        else:
             self.clear_all_highlighting()
+
+        if self.current_step == len(self.trace):
             self.finished=True
     
     def step_back(self):
         '''Goes to the previous dictionary in the trace and recreates the state
         of the tracer at that point by replaying stdout.'''
 
-        if self.current_line > 0:
+        if self.current_step > 0:
             try:
-                step = self.trace[self.current_line]
+                step = self.trace[self.current_step]
             except IndexError:
                 step = self.trace[len(self.trace)-1]
                
-            prev_step = self.trace[self.current_line-1]
+            prev_step = self.trace[self.current_step-1]
 
             #remove the last thing printed to stdout
-            if 'stdout' in step or 'stderr' in step:
+            if 'stdout' in prev_step or 'stderr' in prev_step:
                 self.clear('stdout')
-                for previous in range(self.current_line):
+                for previous in range(self.current_step-1):
                     prev_step=self.trace[previous]
                     if 'stdout' in prev_step:
                         self.insert('stdout', prev_step['stdout'])
@@ -267,19 +269,20 @@ class TraceDisplayWindow(EditorWindow):
                         self.insert('stdout', prev_step['stderr'], 'red')
 
             self.clear('annotation')
-            self.clear('globals')
-            self.clear('locals')
 
             if 'annotation' in prev_step:
                 self.insert('annotation', prev_step['annotation'])
-                
-            self.highlight_changes(prev_step, self.trace[self.current_line-2])
+
+            self.clear('globals')
+            self.clear('locals')
+
+            self.highlight_changes(prev_step, self.trace[self.current_step-2])
 
             if self.finished:
                 self.finished = False
                
-            self.current_line -= 1
-            step = self.trace[self.current_line]
+            self.current_step -= 1
+            step = self.trace[self.current_step]
             self.highlight_line('text', step['line']+1)
 
         else:
@@ -294,7 +297,7 @@ class TraceDisplayWindow(EditorWindow):
         for output in ('stdout', 'annotation', 'globals', 'locals'):
             self.clear(output)
 
-        self.current_line=0
+        self.current_step=0
         self.finished=False
         self.paused=True
         self.play_button.config(text='Play')
