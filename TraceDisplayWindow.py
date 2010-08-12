@@ -311,7 +311,10 @@ class TraceDisplayWindow(EditorWindow):
             fontWeight = 'bold'
 
         for text_box in ('stdout', 'annotation', 'globals', 'locals'):
-            getattr(self, text_box).config(font=(idleConf.GetOption('main','EditorWindow','font'), idleConf.GetOption('main','EditorWindow','font-size'), fontWeight))
+            getattr(self, text_box).config(
+                          font=(idleConf.GetOption('main','EditorWindow','font'), 
+                          idleConf.GetOption('main','EditorWindow','font-size'), 
+                          fontWeight))
 
 def test():
     root = Tk()
