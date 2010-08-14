@@ -49,6 +49,7 @@ enable=1
 [ScriptBinding_cfgBindings]
 run-module=<Key-F5>
 check-module=<Alt-Key-x>
+create-trace=<Control-Key-T>
 
 [CallTips]
 enable=1
