@@ -22,9 +22,11 @@ import re
 import string
 import tabnanny
 import tokenize
+import trace
 import tkMessageBox
 import PyShell
 
+from TraceDisplayWindow import TraceDisplayWindow
 from configHandler import idleConf
 
 IDENTCHARS = string.ascii_letters + string.digits + "_"
@@ -42,7 +44,8 @@ by Format->Untabify Region and specify the number of columns used by each tab.
 class ScriptBinding:
 
     menudefs = [
-        ('run', [None,
+        ('run', [('Create Trace', '<<create-trace>>'),
+                 None,
                  ('Check Module', '<<check-module>>'),
                  ('Run Module', '<<run-module>>'), ]), ]
 
@@ -52,6 +55,7 @@ class ScriptBinding:
         # XXX This should be done differently
         self.flist = self.editwin.flist
         self.root = self.editwin.root
+        self.editwin.text.bind('<<create-trace>>', self.create_trace_event)
 
     def check_module_event(self, event):
         filename = self.getfilename()
@@ -165,6 +169,25 @@ class ScriptBinding:
         #         Need to change streams in PyShell.ModifiedInterpreter.
         interp.runcode(code)
         return 'break'
+
+    def create_trace_event(self, event=None):
+
+        filename = self.getfilename()
+        if not filename:
+            return 'break'
+        code = self.checksyntax(filename)
+        if not code:
+            return 'break'
+        if not self.tabnanny(filename):
+            return 'break'
+
+        trace_string = trace.trace(filename)
+        trace_filename = '%s.json' % filename.split('.')[0]
+        f=open(trace_filename, 'w')
+        f.write(trace_string+'\n')
+        f.close()
+
+        return TraceDisplayWindow(flist=self.flist, filename=trace_filename, root=self.root)
 
     def getfilename(self):
         """Get source filename.  If not saved, offer to save (or create) file

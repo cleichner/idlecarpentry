@@ -1,0 +1,914 @@
+{
+  "source": "# How make your program loop (so you can be lazy)\nexample_list = [3, 5, 'hello', 3.0]\n\nfor element in example_list:\n    print element\n\nfor letter in \"word\":\n    print letter,\n\nprint '\\n',\n\nfor salad in ('hello', 54, ('secondary', 'tuple')):\n    print salad\n\nfor i in range(3):\n    print i,\n\nprint '\\n',\n  \nx = 0\nwhile x < 3:\n    print x,\n    x += 1\n", 
+  "trace": [
+    {
+      "line": 1, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }
+    }, 
+    {
+      "line": 3, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]"
+      }, 
+      "annotation": "This is the primary looping construct for finite loops in Python.", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]"
+      }
+    }, 
+    {
+      "line": 4, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "element": "3"
+      }, 
+      "annotation": "The variable named element here can be called anything which makes sense to you. It is the current member of the thing you are looping over.", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "element": "3"
+      }, 
+      "stdout": "3\n"
+    }, 
+    {
+      "line": 3, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "element": "3"
+      }, 
+      "annotation": "This is the primary looping construct for finite loops in Python.", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "element": "3"
+      }
+    }, 
+    {
+      "line": 4, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "element": "5"
+      }, 
+      "annotation": "The variable named element here can be called anything which makes sense to you. It is the current member of the thing you are looping over.", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "element": "5"
+      }, 
+      "stdout": "5\n"
+    }, 
+    {
+      "line": 3, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "element": "5"
+      }, 
+      "annotation": "This is the primary looping construct for finite loops in Python.", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "element": "5"
+      }
+    }, 
+    {
+      "line": 4, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "element": "'hello'"
+      }, 
+      "annotation": "The variable named element here can be called anything which makes sense to you. It is the current member of the thing you are looping over.", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "element": "'hello'"
+      }, 
+      "stdout": "hello\n"
+    }, 
+    {
+      "line": 3, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "element": "'hello'"
+      }, 
+      "annotation": "This is the primary looping construct for finite loops in Python.", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "element": "'hello'"
+      }
+    }, 
+    {
+      "line": 4, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "element": "3.0"
+      }, 
+      "annotation": "The variable named element here can be called anything which makes sense to you. It is the current member of the thing you are looping over.", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "element": "3.0"
+      }, 
+      "stdout": "3.0\n"
+    }, 
+    {
+      "line": 3, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "element": "3.0"
+      }, 
+      "annotation": "This is the primary looping construct for finite loops in Python.", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "element": "3.0"
+      }
+    }, 
+    {
+      "line": 6, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "element": "3.0"
+      }, 
+      "annotation": "For loops work on anything iterable", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "element": "3.0"
+      }
+    }, 
+    {
+      "line": 7, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'w'", 
+        "element": "3.0"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'w'", 
+        "element": "3.0"
+      }, 
+      "stdout": "w"
+    }, 
+    {
+      "line": 6, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'w'", 
+        "element": "3.0"
+      }, 
+      "annotation": "For loops work on anything iterable", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'w'", 
+        "element": "3.0"
+      }
+    }, 
+    {
+      "line": 7, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'o'", 
+        "element": "3.0"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'o'", 
+        "element": "3.0"
+      }, 
+      "stdout": " o"
+    }, 
+    {
+      "line": 6, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'o'", 
+        "element": "3.0"
+      }, 
+      "annotation": "For loops work on anything iterable", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'o'", 
+        "element": "3.0"
+      }
+    }, 
+    {
+      "line": 7, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'r'", 
+        "element": "3.0"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'r'", 
+        "element": "3.0"
+      }, 
+      "stdout": " r"
+    }, 
+    {
+      "line": 6, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'r'", 
+        "element": "3.0"
+      }, 
+      "annotation": "For loops work on anything iterable", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'r'", 
+        "element": "3.0"
+      }
+    }, 
+    {
+      "line": 7, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "stdout": " d"
+    }, 
+    {
+      "line": 6, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "annotation": "For loops work on anything iterable", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }
+    }, 
+    {
+      "line": 9, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "annotation": "That comma at the end of the last print statement suppressed the newline. This prints one explicitly.", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "stdout": " \n"
+    }, 
+    {
+      "line": 11, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "annotation": "The variable is completely arbitrary, trust me.", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }
+    }, 
+    {
+      "line": 12, 
+      "globals": {
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "'hello'", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "locals": {
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "'hello'", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "stdout": "hello\n"
+    }, 
+    {
+      "line": 11, 
+      "globals": {
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "'hello'", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "annotation": "The variable is completely arbitrary, trust me.", 
+      "locals": {
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "'hello'", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }
+    }, 
+    {
+      "line": 12, 
+      "globals": {
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "54", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "locals": {
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "54", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "stdout": "54\n"
+    }, 
+    {
+      "line": 11, 
+      "globals": {
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "54", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "annotation": "The variable is completely arbitrary, trust me.", 
+      "locals": {
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "54", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }
+    }, 
+    {
+      "line": 12, 
+      "globals": {
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "('secondary', 'tuple')", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "locals": {
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "('secondary', 'tuple')", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "stdout": "('secondary', 'tuple')\n"
+    }, 
+    {
+      "line": 11, 
+      "globals": {
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "('secondary', 'tuple')", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "annotation": "The variable is completely arbitrary, trust me.", 
+      "locals": {
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "('secondary', 'tuple')", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }
+    }, 
+    {
+      "line": 14, 
+      "globals": {
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "('secondary', 'tuple')", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "annotation": "The range function produces values from 0, stopping before the specified value.", 
+      "locals": {
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "('secondary', 'tuple')", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }
+    }, 
+    {
+      "line": 15, 
+      "globals": {
+        "i": "0", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "('secondary', 'tuple')", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "locals": {
+        "i": "0", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "('secondary', 'tuple')", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "stdout": "0"
+    }, 
+    {
+      "line": 14, 
+      "globals": {
+        "i": "0", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "('secondary', 'tuple')", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "annotation": "The range function produces values from 0, stopping before the specified value.", 
+      "locals": {
+        "i": "0", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "('secondary', 'tuple')", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }
+    }, 
+    {
+      "line": 15, 
+      "globals": {
+        "i": "1", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "('secondary', 'tuple')", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "locals": {
+        "i": "1", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "('secondary', 'tuple')", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "stdout": " 1"
+    }, 
+    {
+      "line": 14, 
+      "globals": {
+        "i": "1", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "('secondary', 'tuple')", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "annotation": "The range function produces values from 0, stopping before the specified value.", 
+      "locals": {
+        "i": "1", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "('secondary', 'tuple')", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }
+    }, 
+    {
+      "line": 15, 
+      "globals": {
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "('secondary', 'tuple')", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "locals": {
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "('secondary', 'tuple')", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "stdout": " 2"
+    }, 
+    {
+      "line": 14, 
+      "globals": {
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "('secondary', 'tuple')", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "annotation": "The range function produces values from 0, stopping before the specified value.", 
+      "locals": {
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "('secondary', 'tuple')", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }
+    }, 
+    {
+      "line": 17, 
+      "globals": {
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "('secondary', 'tuple')", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "locals": {
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "('secondary', 'tuple')", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "stdout": " \n"
+    }, 
+    {
+      "line": 19, 
+      "globals": {
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "('secondary', 'tuple')", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }, 
+      "locals": {
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "salad": "('secondary', 'tuple')", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "letter": "'d'", 
+        "element": "3.0"
+      }
+    }, 
+    {
+      "line": 20, 
+      "globals": {
+        "salad": "('secondary', 'tuple')", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "element": "3.0", 
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "__name__": "'__main__'", 
+        "x": "0"
+      }, 
+      "annotation": "Indefinite loops are possible too. They use the 'while' keyword and take a boolean value, just like the if statement.", 
+      "locals": {
+        "salad": "('secondary', 'tuple')", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "element": "3.0", 
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "__name__": "'__main__'", 
+        "x": "0"
+      }
+    }, 
+    {
+      "line": 21, 
+      "globals": {
+        "salad": "('secondary', 'tuple')", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "element": "3.0", 
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "__name__": "'__main__'", 
+        "x": "0"
+      }, 
+      "locals": {
+        "salad": "('secondary', 'tuple')", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "element": "3.0", 
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "__name__": "'__main__'", 
+        "x": "0"
+      }, 
+      "stdout": "0"
+    }, 
+    {
+      "line": 22, 
+      "globals": {
+        "salad": "('secondary', 'tuple')", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "element": "3.0", 
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "__name__": "'__main__'", 
+        "x": "0"
+      }, 
+      "annotation": "This is a shortcut which means add one to the value of x.", 
+      "locals": {
+        "salad": "('secondary', 'tuple')", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "element": "3.0", 
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "__name__": "'__main__'", 
+        "x": "0"
+      }
+    }, 
+    {
+      "line": 20, 
+      "globals": {
+        "salad": "('secondary', 'tuple')", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "element": "3.0", 
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "__name__": "'__main__'", 
+        "x": "1"
+      }, 
+      "annotation": "Indefinite loops are possible too. They use the 'while' keyword and take a boolean value, just like the if statement.", 
+      "locals": {
+        "salad": "('secondary', 'tuple')", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "element": "3.0", 
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "__name__": "'__main__'", 
+        "x": "1"
+      }
+    }, 
+    {
+      "line": 21, 
+      "globals": {
+        "salad": "('secondary', 'tuple')", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "element": "3.0", 
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "__name__": "'__main__'", 
+        "x": "1"
+      }, 
+      "locals": {
+        "salad": "('secondary', 'tuple')", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "element": "3.0", 
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "__name__": "'__main__'", 
+        "x": "1"
+      }, 
+      "stdout": " 1"
+    }, 
+    {
+      "line": 22, 
+      "globals": {
+        "salad": "('secondary', 'tuple')", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "element": "3.0", 
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "__name__": "'__main__'", 
+        "x": "1"
+      }, 
+      "annotation": "This is a shortcut which means add one to the value of x.", 
+      "locals": {
+        "salad": "('secondary', 'tuple')", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "element": "3.0", 
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "__name__": "'__main__'", 
+        "x": "1"
+      }
+    }, 
+    {
+      "line": 20, 
+      "globals": {
+        "salad": "('secondary', 'tuple')", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "element": "3.0", 
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "__name__": "'__main__'", 
+        "x": "2"
+      }, 
+      "annotation": "Indefinite loops are possible too. They use the 'while' keyword and take a boolean value, just like the if statement.", 
+      "locals": {
+        "salad": "('secondary', 'tuple')", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "element": "3.0", 
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "__name__": "'__main__'", 
+        "x": "2"
+      }
+    }, 
+    {
+      "line": 21, 
+      "globals": {
+        "salad": "('secondary', 'tuple')", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "element": "3.0", 
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "__name__": "'__main__'", 
+        "x": "2"
+      }, 
+      "locals": {
+        "salad": "('secondary', 'tuple')", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "element": "3.0", 
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "__name__": "'__main__'", 
+        "x": "2"
+      }, 
+      "stdout": " 2"
+    }, 
+    {
+      "line": 22, 
+      "globals": {
+        "salad": "('secondary', 'tuple')", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "element": "3.0", 
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "__name__": "'__main__'", 
+        "x": "2"
+      }, 
+      "annotation": "This is a shortcut which means add one to the value of x.", 
+      "locals": {
+        "salad": "('secondary', 'tuple')", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "element": "3.0", 
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "__name__": "'__main__'", 
+        "x": "2"
+      }
+    }, 
+    {
+      "line": 20, 
+      "globals": {
+        "salad": "('secondary', 'tuple')", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "element": "3.0", 
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "__name__": "'__main__'", 
+        "x": "3"
+      }, 
+      "annotation": "Indefinite loops are possible too. They use the 'while' keyword and take a boolean value, just like the if statement.", 
+      "locals": {
+        "salad": "('secondary', 'tuple')", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "element": "3.0", 
+        "i": "2", 
+        "example_list": "[3, 5, 'hello', 3.0]", 
+        "letter": "'d'", 
+        "__name__": "'__main__'", 
+        "x": "3"
+      }
+    }
+  ]
+}

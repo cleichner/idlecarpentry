@@ -79,8 +79,8 @@ class TraceDisplayWindow(EditorWindow):
 
         self.play_button.grid(row = 1, column = 1, sticky = EW)
         rewind_button.grid(row = 1, column = 2, sticky = EW)
-        forward_button.grid(row = 1, column = 3, sticky = EW)
-        back_button.grid(row = 1, column = 4, columnspan = 2, sticky = EW)
+        forward_button.grid(row = 1, column = 4, columnspan = 2, sticky = EW)
+        back_button.grid(row = 1, column = 3, sticky = EW)
 
         text_label.grid(row = 2, column = 1, columnspan = 4, sticky = NSEW)
         globals_label.grid(row = 6, column = 6, sticky = NSEW)

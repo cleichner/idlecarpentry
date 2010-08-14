@@ -1,0 +1,329 @@
+{
+  "source": "# a brief introduction to the native datatypes of Python\n\nempty_list = []\ninitialized_list = [1, 4.0, 'strings are fine', ['so are', 'lists']]\n\nempty_list.extend(initialized_list)\n\ninitialized_list.append('new value')\nprint initialized_list.pop()\n\nprint initialized_list[0]\nprint initialized_list[3][0]\nprint initialized_list[-1]\n\n#tuples\nexample_tuple = (2, 4, \"can't touch this\")\nprint example_tuple[2]\n\n#dictionaries\nexample_dict = {'one':1, 'two':2, 'three':3}\nprint example_dict['one']\nexample_dict[4] = 'four'\nprint example_dict\n\n#strings\nexample_string = 'this is an example string'\nprint example_string.split()\nprint example_string.startswith('this')\nprint example_string.upper()\n", 
+  "trace": [
+    {
+      "line": 2, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "annotation": "Lists are the most common aggregate datatype in Python, an empty one is symbolized by empty brackets.", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }
+    }, 
+    {
+      "line": 3, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "empty_list": "[]"
+      }, 
+      "annotation": "A list can be created with contents in it, they do not need to be the same type.", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "empty_list": "[]"
+      }
+    }, 
+    {
+      "line": 5, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "empty_list": "[]", 
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]"
+      }, 
+      "annotation": "A list can be added to another list using the extend method", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "empty_list": "[]", 
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]"
+      }
+    }, 
+    {
+      "line": 7, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]"
+      }, 
+      "annotation": "Lists can be used as stacks by using append() and pop()", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]"
+      }
+    }, 
+    {
+      "line": 8, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists'], 'new value']"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists'], 'new value']"
+      }, 
+      "stdout": "new value\n"
+    }, 
+    {
+      "line": 10, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]"
+      }, 
+      "annotation": "They can also be subscripted", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]"
+      }, 
+      "stdout": "1\n"
+    }, 
+    {
+      "line": 11, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]"
+      }, 
+      "stdout": "so are\n"
+    }, 
+    {
+      "line": 12, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]"
+      }, 
+      "annotation": "Python allows negative indexes", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]"
+      }, 
+      "stdout": "['so are', 'lists']\n"
+    }, 
+    {
+      "line": 15, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]"
+      }, 
+      "annotation": "Tuples are like lists but they are immutable", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]"
+      }
+    }, 
+    {
+      "line": 16, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "example_tuple": "(2, 4, \"can't touch this\")", 
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "example_tuple": "(2, 4, \"can't touch this\")", 
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]"
+      }, 
+      "stdout": "can't touch this\n"
+    }, 
+    {
+      "line": 19, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "example_tuple": "(2, 4, \"can't touch this\")", 
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]"
+      }, 
+      "annotation": "Dictionaries allow associations between immutable keys and values", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "example_tuple": "(2, 4, \"can't touch this\")", 
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]"
+      }
+    }, 
+    {
+      "line": 20, 
+      "globals": {
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_tuple": "(2, 4, \"can't touch this\")", 
+        "example_dict": "{'three': 3, 'two': 2, 'one': 1}"
+      }, 
+      "locals": {
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_tuple": "(2, 4, \"can't touch this\")", 
+        "example_dict": "{'three': 3, 'two': 2, 'one': 1}"
+      }, 
+      "stdout": "1\n"
+    }, 
+    {
+      "line": 21, 
+      "globals": {
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_tuple": "(2, 4, \"can't touch this\")", 
+        "example_dict": "{'three': 3, 'two': 2, 'one': 1}"
+      }, 
+      "annotation": "This is how new values are added and old ones are modified in a dictionary", 
+      "locals": {
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_tuple": "(2, 4, \"can't touch this\")", 
+        "example_dict": "{'three': 3, 'two': 2, 'one': 1}"
+      }
+    }, 
+    {
+      "line": 22, 
+      "globals": {
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_tuple": "(2, 4, \"can't touch this\")", 
+        "example_dict": "{'three': 3, 4: 'four', 'two': 2, 'one': 1}"
+      }, 
+      "locals": {
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_tuple": "(2, 4, \"can't touch this\")", 
+        "example_dict": "{'three': 3, 4: 'four', 'two': 2, 'one': 1}"
+      }, 
+      "stdout": "{'three': 3, 4: 'four', 'two': 2, 'one': 1}\n"
+    }, 
+    {
+      "line": 25, 
+      "globals": {
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_tuple": "(2, 4, \"can't touch this\")", 
+        "example_dict": "{'three': 3, 4: 'four', 'two': 2, 'one': 1}"
+      }, 
+      "annotation": "Strings are also immutable", 
+      "locals": {
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_tuple": "(2, 4, \"can't touch this\")", 
+        "example_dict": "{'three': 3, 4: 'four', 'two': 2, 'one': 1}"
+      }
+    }, 
+    {
+      "line": 26, 
+      "globals": {
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_string": "'this is an example string'", 
+        "example_dict": "{'three': 3, 4: 'four', 'two': 2, 'one': 1}", 
+        "example_tuple": "(2, 4, \"can't touch this\")"
+      }, 
+      "annotation": "Strings have some great methods in Python", 
+      "locals": {
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_string": "'this is an example string'", 
+        "example_dict": "{'three': 3, 4: 'four', 'two': 2, 'one': 1}", 
+        "example_tuple": "(2, 4, \"can't touch this\")"
+      }, 
+      "stdout": "['this', 'is', 'an', 'example', 'string']\n"
+    }, 
+    {
+      "line": 27, 
+      "globals": {
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_string": "'this is an example string'", 
+        "example_dict": "{'three': 3, 4: 'four', 'two': 2, 'one': 1}", 
+        "example_tuple": "(2, 4, \"can't touch this\")"
+      }, 
+      "annotation": "These are just the start", 
+      "locals": {
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_string": "'this is an example string'", 
+        "example_dict": "{'three': 3, 4: 'four', 'two': 2, 'one': 1}", 
+        "example_tuple": "(2, 4, \"can't touch this\")"
+      }, 
+      "stdout": "True\n"
+    }, 
+    {
+      "line": 28, 
+      "globals": {
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_string": "'this is an example string'", 
+        "example_dict": "{'three': 3, 4: 'four', 'two': 2, 'one': 1}", 
+        "example_tuple": "(2, 4, \"can't touch this\")"
+      }, 
+      "locals": {
+        "initialized_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "empty_list": "[1, 4.0, 'strings are fine', ['so are', 'lists']]", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "example_string": "'this is an example string'", 
+        "example_dict": "{'three': 3, 4: 'four', 'two': 2, 'one': 1}", 
+        "example_tuple": "(2, 4, \"can't touch this\")"
+      }, 
+      "stdout": "THIS IS AN EXAMPLE STRING\n"
+    }
+  ]
+}

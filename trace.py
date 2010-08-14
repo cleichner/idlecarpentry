@@ -246,6 +246,17 @@ def assemble_source(events):
     # source
     line_offsets = {}
 
+    
+    # start with external functions at the top, sorted by file and line number
+    for code in sorted(ext_func_source.keys(), key=lambda c: (c.co_filename, c.co_firstlineno)):
+        print 'ext_func'
+        lines, lineno = ext_func_source[code]
+        # -1 because trace line numbers start at 1
+        line_offsets[code] = len(all_lines) - 1
+        all_lines.extend(lines)
+        # add new line between functions
+        all_lines.append('\n')
+        
     # go through module code objects. There should only be one, I
     # think. Try to handle multiple, although it might not make sense.
     for filename, val in module_source.iteritems():
@@ -377,7 +388,7 @@ def parse_annotations(filename, marker='#>'):
 
                     next_line=f.next()
 
-                annotations[lineno]='\n'.join(annotation)
+                annotations[lineno]=' '.join(annotation)
 
     except StopIteration:
         f.close()

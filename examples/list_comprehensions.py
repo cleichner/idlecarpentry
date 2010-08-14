@@ -13,12 +13,12 @@ for element in list:
 
 print long_words
 #> This is the functional approach, which is more like set-builder notation in math.
-#> This generates a new list, the syntax mimics the list declaration.
+#> This generates a new list; the syntax mimics the list declaration.
 #> It has a output function, a working variable, a source, and a conditional statement.
 #> In this case, the output function is element, the working variable is element, the source is list and the conditional is len(element) > 1.
 print [element for element in list if len(element) > 1]
 
-#> This remove long_words from the global variable dictionary.
+#> This removes long_words from the global variable dictionary.
 del long_words
 
 #> This is the same thing as before, but slightly more complicated.

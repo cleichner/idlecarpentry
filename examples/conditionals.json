@@ -1,0 +1,213 @@
+{
+  "source": "# How to make your program make choices\nif True:\n    print \"This 'if' statement executed.\"\n    \nif False:\n    print \"This one didn't.\"\n\nprint 4 > 5 \nprint 4 < 5\nprint 3 == 3\nprint 3 != 5 \n\nif 4 < 5:\n    print 'math still works'\n\nif 'Python' == 'Python':\n    print 'hooray!'\n\nif 'Python' == 'The C Programming Language':\n    print 'something very scary happened'\nelse:\n    print 'all is right with the world'\n\nx = 5\nif x > 5:\n    print 'x is bigger than five'\nelif x == 5:\n    print 'x is five'\nelse:\n    print 'x is less than five'\n", 
+  "trace": [
+    {
+      "line": 1, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }
+    }, 
+    {
+      "line": 2, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "annotation": "Python has three ways to make something conditionally execute. The first is the 'if' statement.", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "stdout": "This 'if' statement executed.\n"
+    }, 
+    {
+      "line": 4, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }
+    }, 
+    {
+      "line": 7, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "stdout": "False\n"
+    }, 
+    {
+      "line": 8, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "annotation": "Any boolean expression can be used in an 'if' statement. Here are some examples of boolean expressions.", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "stdout": "True\n"
+    }, 
+    {
+      "line": 9, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "stdout": "True\n"
+    }, 
+    {
+      "line": 10, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "annotation": "This means is equal to, a single equals sign was already taken by the assignment operator", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "stdout": "True\n"
+    }, 
+    {
+      "line": 12, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }
+    }, 
+    {
+      "line": 13, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "annotation": "This is how they can be used", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "stdout": "math still works\n"
+    }, 
+    {
+      "line": 15, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }
+    }, 
+    {
+      "line": 16, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "annotation": "Equality checks can work for strings too!", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "stdout": "hooray!\n"
+    }, 
+    {
+      "line": 18, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }
+    }, 
+    {
+      "line": 21, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "stdout": "all is right with the world\n"
+    }, 
+    {
+      "line": 23, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }
+    }, 
+    {
+      "line": 24, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "x": "5"
+      }, 
+      "annotation": "The elif statement lets you pick from several sections of code", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "x": "5"
+      }
+    }, 
+    {
+      "line": 26, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "x": "5"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "x": "5"
+      }
+    }, 
+    {
+      "line": 27, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "x": "5"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "x": "5"
+      }, 
+      "stdout": "x is five\n"
+    }
+  ]
+}

@@ -111,8 +111,6 @@ class PyShellEditorWindow(EditorWindow):
 
         EditorWindow.__init__(self, *args)
 
-        self.top.bind("<<create-trace>>", self.create_trace)
-
         self.text.bind("<<set-breakpoint-here>>", self.set_breakpoint_here)
         self.text.bind("<<clear-breakpoint-here>>", self.clear_breakpoint_here)
         self.text.bind("<<open-python-shell>>", self.flist.open_shell)
@@ -131,15 +129,6 @@ class PyShellEditorWindow(EditorWindow):
     rmenu_specs = [("Set Breakpoint", "<<set-breakpoint-here>>"),
                    ("Clear Breakpoint", "<<clear-breakpoint-here>>")]
 
-    def create_trace(self, event=None):
-        filename = self.io.filename
-        self.io.save(event)
-        trace_string = trace.trace(filename)
-        trace_filename = '%s.json' % filename.split('.')[0]
-        f=open(trace_filename, 'w')
-        f.write(trace_string+'\n')
-        f.close()
-        TraceDisplayWindow(flist=self.flist, filename=trace_filename, root=self.root)
 
     def set_breakpoint(self, lineno):
         text = self.text

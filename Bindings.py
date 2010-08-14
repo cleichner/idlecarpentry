@@ -59,7 +59,6 @@ menudefs = [
    ]),
  ('run', [
    ('Python Shell', '<<open-python-shell>>'),
-   ('Create Trace', '<<create-trace>>')
    ]),
  ('shell', [
    ('_View Last Restart', '<<view-restart>>'),

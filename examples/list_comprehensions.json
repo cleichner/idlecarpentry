@@ -20,7 +20,7 @@
         "__name__": "'__main__'", 
         "list": "['a', 'mpilgrim', 'foo', 'b', 'b', 'd']"
       }, 
-      "annotation": "This is a typical example of imperative list processing.\nFirst, a new empty list is declared.", 
+      "annotation": "This is a typical example of imperative list processing. First, a new empty list is declared.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -320,7 +320,7 @@
         "long_words": "['mpilgrim', 'foo']", 
         "element": "'d'"
       }, 
-      "annotation": "This is the functional approach, which is more like set-builder notation in math.\nThis generates a new list, the syntax mimics the list declaration.\nIt has a output function, a working variable, a source, and a conditional statement.\nIn this case, the output function is element, the working variable is element, the source is list and the conditional is len(element) > 1.", 
+      "annotation": "This is the functional approach, which is more like set-builder notation in math. This generates a new list, the syntax mimics the list declaration. It has a output function, a working variable, a source, and a conditional statement. In this case, the output function is element, the working variable is element, the source is list and the conditional is len(element) > 1.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -339,7 +339,7 @@
         "list": "['a', 'mpilgrim', 'foo', 'b', 'b', 'd']", 
         "element": "'a'"
       }, 
-      "annotation": "This is the functional approach, which is more like set-builder notation in math.\nThis generates a new list, the syntax mimics the list declaration.\nIt has a output function, a working variable, a source, and a conditional statement.\nIn this case, the output function is element, the working variable is element, the source is list and the conditional is len(element) > 1.", 
+      "annotation": "This is the functional approach, which is more like set-builder notation in math. This generates a new list, the syntax mimics the list declaration. It has a output function, a working variable, a source, and a conditional statement. In this case, the output function is element, the working variable is element, the source is list and the conditional is len(element) > 1.", 
       "locals": {
         "_[1]": "[]", 
         "long_words": "['mpilgrim', 'foo']", 
@@ -359,7 +359,7 @@
         "list": "['a', 'mpilgrim', 'foo', 'b', 'b', 'd']", 
         "element": "'mpilgrim'"
       }, 
-      "annotation": "This is the functional approach, which is more like set-builder notation in math.\nThis generates a new list, the syntax mimics the list declaration.\nIt has a output function, a working variable, a source, and a conditional statement.\nIn this case, the output function is element, the working variable is element, the source is list and the conditional is len(element) > 1.", 
+      "annotation": "This is the functional approach, which is more like set-builder notation in math. This generates a new list, the syntax mimics the list declaration. It has a output function, a working variable, a source, and a conditional statement. In this case, the output function is element, the working variable is element, the source is list and the conditional is len(element) > 1.", 
       "locals": {
         "_[1]": "['mpilgrim']", 
         "long_words": "['mpilgrim', 'foo']", 
@@ -379,7 +379,7 @@
         "list": "['a', 'mpilgrim', 'foo', 'b', 'b', 'd']", 
         "element": "'foo'"
       }, 
-      "annotation": "This is the functional approach, which is more like set-builder notation in math.\nThis generates a new list, the syntax mimics the list declaration.\nIt has a output function, a working variable, a source, and a conditional statement.\nIn this case, the output function is element, the working variable is element, the source is list and the conditional is len(element) > 1.", 
+      "annotation": "This is the functional approach, which is more like set-builder notation in math. This generates a new list, the syntax mimics the list declaration. It has a output function, a working variable, a source, and a conditional statement. In this case, the output function is element, the working variable is element, the source is list and the conditional is len(element) > 1.", 
       "locals": {
         "_[1]": "['mpilgrim', 'foo']", 
         "long_words": "['mpilgrim', 'foo']", 
@@ -399,7 +399,7 @@
         "list": "['a', 'mpilgrim', 'foo', 'b', 'b', 'd']", 
         "element": "'b'"
       }, 
-      "annotation": "This is the functional approach, which is more like set-builder notation in math.\nThis generates a new list, the syntax mimics the list declaration.\nIt has a output function, a working variable, a source, and a conditional statement.\nIn this case, the output function is element, the working variable is element, the source is list and the conditional is len(element) > 1.", 
+      "annotation": "This is the functional approach, which is more like set-builder notation in math. This generates a new list, the syntax mimics the list declaration. It has a output function, a working variable, a source, and a conditional statement. In this case, the output function is element, the working variable is element, the source is list and the conditional is len(element) > 1.", 
       "locals": {
         "_[1]": "['mpilgrim', 'foo']", 
         "long_words": "['mpilgrim', 'foo']", 
@@ -419,7 +419,7 @@
         "list": "['a', 'mpilgrim', 'foo', 'b', 'b', 'd']", 
         "element": "'d'"
       }, 
-      "annotation": "This is the functional approach, which is more like set-builder notation in math.\nThis generates a new list, the syntax mimics the list declaration.\nIt has a output function, a working variable, a source, and a conditional statement.\nIn this case, the output function is element, the working variable is element, the source is list and the conditional is len(element) > 1.", 
+      "annotation": "This is the functional approach, which is more like set-builder notation in math. This generates a new list, the syntax mimics the list declaration. It has a output function, a working variable, a source, and a conditional statement. In this case, the output function is element, the working variable is element, the source is list and the conditional is len(element) > 1.", 
       "locals": {
         "_[1]": "['mpilgrim', 'foo']", 
         "long_words": "['mpilgrim', 'foo']", 
@@ -456,7 +456,7 @@
         "list": "['a', 'mpilgrim', 'foo', 'b', 'b', 'd']", 
         "element": "'d'"
       }, 
-      "annotation": "This is the same thing as before, but slightly more complicated.\nIt generates a list of the upper case version of all the members of list which aren't b.", 
+      "annotation": "This is the same thing as before, but slightly more complicated. It generates a list of the upper case version of all the members of list which aren't b.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -780,7 +780,7 @@
         "upper_list": "['A', 'MPILGRIM', 'FOO', 'D']", 
         "element": "'d'"
       }, 
-      "annotation": "This demonstrates the ability to use an arbitrary value as the return function.\nIn this case it is element.upper()", 
+      "annotation": "This demonstrates the ability to use an arbitrary value as the return function. In this case it is element.upper()", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -799,7 +799,7 @@
         "upper_list": "['A', 'MPILGRIM', 'FOO', 'D']", 
         "element": "'a'"
       }, 
-      "annotation": "This demonstrates the ability to use an arbitrary value as the return function.\nIn this case it is element.upper()", 
+      "annotation": "This demonstrates the ability to use an arbitrary value as the return function. In this case it is element.upper()", 
       "locals": {
         "__name__": "'__main__'", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
@@ -819,7 +819,7 @@
         "upper_list": "['A', 'MPILGRIM', 'FOO', 'D']", 
         "element": "'mpilgrim'"
       }, 
-      "annotation": "This demonstrates the ability to use an arbitrary value as the return function.\nIn this case it is element.upper()", 
+      "annotation": "This demonstrates the ability to use an arbitrary value as the return function. In this case it is element.upper()", 
       "locals": {
         "__name__": "'__main__'", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
@@ -839,7 +839,7 @@
         "upper_list": "['A', 'MPILGRIM', 'FOO', 'D']", 
         "element": "'foo'"
       }, 
-      "annotation": "This demonstrates the ability to use an arbitrary value as the return function.\nIn this case it is element.upper()", 
+      "annotation": "This demonstrates the ability to use an arbitrary value as the return function. In this case it is element.upper()", 
       "locals": {
         "__name__": "'__main__'", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
@@ -859,7 +859,7 @@
         "upper_list": "['A', 'MPILGRIM', 'FOO', 'D']", 
         "element": "'b'"
       }, 
-      "annotation": "This demonstrates the ability to use an arbitrary value as the return function.\nIn this case it is element.upper()", 
+      "annotation": "This demonstrates the ability to use an arbitrary value as the return function. In this case it is element.upper()", 
       "locals": {
         "__name__": "'__main__'", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
@@ -879,7 +879,7 @@
         "upper_list": "['A', 'MPILGRIM', 'FOO', 'D']", 
         "element": "'d'"
       }, 
-      "annotation": "This demonstrates the ability to use an arbitrary value as the return function.\nIn this case it is element.upper()", 
+      "annotation": "This demonstrates the ability to use an arbitrary value as the return function. In this case it is element.upper()", 
       "locals": {
         "__name__": "'__main__'", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
@@ -899,7 +899,7 @@
         "upper_list": "['A', 'MPILGRIM', 'FOO', 'D']", 
         "element": "'d'"
       }, 
-      "annotation": "This demonstrates the ability to use an arbitrary value as the return function.\nIn this case it is element.upper()", 
+      "annotation": "This demonstrates the ability to use an arbitrary value as the return function. In this case it is element.upper()", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
