@@ -1,0 +1,1003 @@
+{
+  "source": "## Quicksort\nlist = [1,-34534,3,32,100]\n\ndef quicksort(array):\n    less = []\n    greater = []\n    if len(array) <= 1:\n        return array\n    pivot = array[0]\n\n    for x in array[1:]:\n        if x <= pivot:\n            less.append(x)\n        else:\n            greater.append(x)\n\n    return quicksort(less) + [pivot] + quicksort(greater)\n\nsorted_list = quicksort(list)\n\nprint sorted_list\n", 
+  "trace": [
+    {
+      "line": 1, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "annotation": "This is the list of values we're going to sort with QS", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }
+    }, 
+    {
+      "line": 3, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]"
+      }
+    }, 
+    {
+      "line": 18, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "Let's run our quicksort on the list that we created", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }
+    }, 
+    {
+      "line": 3, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "array": "[1, -34534, 3, 32, 100]"
+      }
+    }, 
+    {
+      "line": 4, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "We need to keep track of values that are greater than\nand less than our pivot point", 
+      "locals": {
+        "array": "[1, -34534, 3, 32, 100]"
+      }
+    }, 
+    {
+      "line": 5, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "array": "[1, -34534, 3, 32, 100]", 
+        "less": "[]"
+      }
+    }, 
+    {
+      "line": 6, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "If our array only has one element, then we're already\nsorted, so let's bail out.", 
+      "locals": {
+        "array": "[1, -34534, 3, 32, 100]", 
+        "greater": "[]", 
+        "less": "[]"
+      }
+    }, 
+    {
+      "line": 8, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "Let's choose the first element of the array as our first\npivot point.", 
+      "locals": {
+        "array": "[1, -34534, 3, 32, 100]", 
+        "greater": "[]", 
+        "less": "[]"
+      }
+    }, 
+    {
+      "line": 10, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "We go through the rest of the list...", 
+      "locals": {
+        "pivot": "1", 
+        "array": "[1, -34534, 3, 32, 100]", 
+        "greater": "[]", 
+        "less": "[]"
+      }
+    }, 
+    {
+      "line": 11, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "...and if the value that we find in the list is LESS than\nour pivot, we append it to our less collection...", 
+      "locals": {
+        "pivot": "1", 
+        "array": "[1, -34534, 3, 32, 100]", 
+        "less": "[]", 
+        "greater": "[]", 
+        "x": "-34534"
+      }
+    }, 
+    {
+      "line": 12, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "pivot": "1", 
+        "array": "[1, -34534, 3, 32, 100]", 
+        "less": "[]", 
+        "greater": "[]", 
+        "x": "-34534"
+      }
+    }, 
+    {
+      "line": 10, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "We go through the rest of the list...", 
+      "locals": {
+        "pivot": "1", 
+        "array": "[1, -34534, 3, 32, 100]", 
+        "less": "[-34534]", 
+        "greater": "[]", 
+        "x": "-34534"
+      }
+    }, 
+    {
+      "line": 11, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "...and if the value that we find in the list is LESS than\nour pivot, we append it to our less collection...", 
+      "locals": {
+        "pivot": "1", 
+        "array": "[1, -34534, 3, 32, 100]", 
+        "less": "[-34534]", 
+        "greater": "[]", 
+        "x": "3"
+      }
+    }, 
+    {
+      "line": 14, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "pivot": "1", 
+        "array": "[1, -34534, 3, 32, 100]", 
+        "less": "[-34534]", 
+        "greater": "[]", 
+        "x": "3"
+      }
+    }, 
+    {
+      "line": 10, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "We go through the rest of the list...", 
+      "locals": {
+        "pivot": "1", 
+        "array": "[1, -34534, 3, 32, 100]", 
+        "less": "[-34534]", 
+        "greater": "[3]", 
+        "x": "3"
+      }
+    }, 
+    {
+      "line": 11, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "...and if the value that we find in the list is LESS than\nour pivot, we append it to our less collection...", 
+      "locals": {
+        "pivot": "1", 
+        "array": "[1, -34534, 3, 32, 100]", 
+        "less": "[-34534]", 
+        "greater": "[3]", 
+        "x": "32"
+      }
+    }, 
+    {
+      "line": 14, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "pivot": "1", 
+        "array": "[1, -34534, 3, 32, 100]", 
+        "less": "[-34534]", 
+        "greater": "[3]", 
+        "x": "32"
+      }
+    }, 
+    {
+      "line": 10, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "We go through the rest of the list...", 
+      "locals": {
+        "pivot": "1", 
+        "array": "[1, -34534, 3, 32, 100]", 
+        "less": "[-34534]", 
+        "greater": "[3, 32]", 
+        "x": "32"
+      }
+    }, 
+    {
+      "line": 11, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "...and if the value that we find in the list is LESS than\nour pivot, we append it to our less collection...", 
+      "locals": {
+        "pivot": "1", 
+        "array": "[1, -34534, 3, 32, 100]", 
+        "less": "[-34534]", 
+        "greater": "[3, 32]", 
+        "x": "100"
+      }
+    }, 
+    {
+      "line": 14, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "pivot": "1", 
+        "array": "[1, -34534, 3, 32, 100]", 
+        "less": "[-34534]", 
+        "greater": "[3, 32]", 
+        "x": "100"
+      }
+    }, 
+    {
+      "line": 10, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "We go through the rest of the list...", 
+      "locals": {
+        "pivot": "1", 
+        "array": "[1, -34534, 3, 32, 100]", 
+        "less": "[-34534]", 
+        "greater": "[3, 32, 100]", 
+        "x": "100"
+      }
+    }, 
+    {
+      "line": 16, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "Then we just call quicksort again on the greater and\nlesser value collections.  That's recursion, baby!\n(oh, and make sure to wrap it around the pivot point)", 
+      "locals": {
+        "pivot": "1", 
+        "array": "[1, -34534, 3, 32, 100]", 
+        "less": "[-34534]", 
+        "greater": "[3, 32, 100]", 
+        "x": "100"
+      }
+    }, 
+    {
+      "line": 3, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "array": "[-34534]"
+      }
+    }, 
+    {
+      "line": 4, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "We need to keep track of values that are greater than\nand less than our pivot point", 
+      "locals": {
+        "array": "[-34534]"
+      }
+    }, 
+    {
+      "line": 5, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "array": "[-34534]", 
+        "less": "[]"
+      }
+    }, 
+    {
+      "line": 6, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "If our array only has one element, then we're already\nsorted, so let's bail out.", 
+      "locals": {
+        "array": "[-34534]", 
+        "greater": "[]", 
+        "less": "[]"
+      }
+    }, 
+    {
+      "line": 7, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "array": "[-34534]", 
+        "greater": "[]", 
+        "less": "[]"
+      }
+    }, 
+    {
+      "line": 3, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "array": "[3, 32, 100]"
+      }
+    }, 
+    {
+      "line": 4, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "We need to keep track of values that are greater than\nand less than our pivot point", 
+      "locals": {
+        "array": "[3, 32, 100]"
+      }
+    }, 
+    {
+      "line": 5, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "array": "[3, 32, 100]", 
+        "less": "[]"
+      }
+    }, 
+    {
+      "line": 6, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "If our array only has one element, then we're already\nsorted, so let's bail out.", 
+      "locals": {
+        "array": "[3, 32, 100]", 
+        "greater": "[]", 
+        "less": "[]"
+      }
+    }, 
+    {
+      "line": 8, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "Let's choose the first element of the array as our first\npivot point.", 
+      "locals": {
+        "array": "[3, 32, 100]", 
+        "greater": "[]", 
+        "less": "[]"
+      }
+    }, 
+    {
+      "line": 10, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "We go through the rest of the list...", 
+      "locals": {
+        "pivot": "3", 
+        "array": "[3, 32, 100]", 
+        "greater": "[]", 
+        "less": "[]"
+      }
+    }, 
+    {
+      "line": 11, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "...and if the value that we find in the list is LESS than\nour pivot, we append it to our less collection...", 
+      "locals": {
+        "pivot": "3", 
+        "array": "[3, 32, 100]", 
+        "less": "[]", 
+        "greater": "[]", 
+        "x": "32"
+      }
+    }, 
+    {
+      "line": 14, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "pivot": "3", 
+        "array": "[3, 32, 100]", 
+        "less": "[]", 
+        "greater": "[]", 
+        "x": "32"
+      }
+    }, 
+    {
+      "line": 10, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "We go through the rest of the list...", 
+      "locals": {
+        "pivot": "3", 
+        "array": "[3, 32, 100]", 
+        "less": "[]", 
+        "greater": "[32]", 
+        "x": "32"
+      }
+    }, 
+    {
+      "line": 11, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "...and if the value that we find in the list is LESS than\nour pivot, we append it to our less collection...", 
+      "locals": {
+        "pivot": "3", 
+        "array": "[3, 32, 100]", 
+        "less": "[]", 
+        "greater": "[32]", 
+        "x": "100"
+      }
+    }, 
+    {
+      "line": 14, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "pivot": "3", 
+        "array": "[3, 32, 100]", 
+        "less": "[]", 
+        "greater": "[32]", 
+        "x": "100"
+      }
+    }, 
+    {
+      "line": 10, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "We go through the rest of the list...", 
+      "locals": {
+        "pivot": "3", 
+        "array": "[3, 32, 100]", 
+        "less": "[]", 
+        "greater": "[32, 100]", 
+        "x": "100"
+      }
+    }, 
+    {
+      "line": 16, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "Then we just call quicksort again on the greater and\nlesser value collections.  That's recursion, baby!\n(oh, and make sure to wrap it around the pivot point)", 
+      "locals": {
+        "pivot": "3", 
+        "array": "[3, 32, 100]", 
+        "less": "[]", 
+        "greater": "[32, 100]", 
+        "x": "100"
+      }
+    }, 
+    {
+      "line": 3, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "array": "[]"
+      }
+    }, 
+    {
+      "line": 4, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "We need to keep track of values that are greater than\nand less than our pivot point", 
+      "locals": {
+        "array": "[]"
+      }
+    }, 
+    {
+      "line": 5, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "array": "[]", 
+        "less": "[]"
+      }
+    }, 
+    {
+      "line": 6, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "If our array only has one element, then we're already\nsorted, so let's bail out.", 
+      "locals": {
+        "array": "[]", 
+        "greater": "[]", 
+        "less": "[]"
+      }
+    }, 
+    {
+      "line": 7, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "array": "[]", 
+        "greater": "[]", 
+        "less": "[]"
+      }
+    }, 
+    {
+      "line": 3, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "array": "[32, 100]"
+      }
+    }, 
+    {
+      "line": 4, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "We need to keep track of values that are greater than\nand less than our pivot point", 
+      "locals": {
+        "array": "[32, 100]"
+      }
+    }, 
+    {
+      "line": 5, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "array": "[32, 100]", 
+        "less": "[]"
+      }
+    }, 
+    {
+      "line": 6, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "If our array only has one element, then we're already\nsorted, so let's bail out.", 
+      "locals": {
+        "array": "[32, 100]", 
+        "greater": "[]", 
+        "less": "[]"
+      }
+    }, 
+    {
+      "line": 8, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "Let's choose the first element of the array as our first\npivot point.", 
+      "locals": {
+        "array": "[32, 100]", 
+        "greater": "[]", 
+        "less": "[]"
+      }
+    }, 
+    {
+      "line": 10, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "We go through the rest of the list...", 
+      "locals": {
+        "pivot": "32", 
+        "array": "[32, 100]", 
+        "greater": "[]", 
+        "less": "[]"
+      }
+    }, 
+    {
+      "line": 11, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "...and if the value that we find in the list is LESS than\nour pivot, we append it to our less collection...", 
+      "locals": {
+        "pivot": "32", 
+        "array": "[32, 100]", 
+        "less": "[]", 
+        "greater": "[]", 
+        "x": "100"
+      }
+    }, 
+    {
+      "line": 14, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "pivot": "32", 
+        "array": "[32, 100]", 
+        "less": "[]", 
+        "greater": "[]", 
+        "x": "100"
+      }
+    }, 
+    {
+      "line": 10, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "We go through the rest of the list...", 
+      "locals": {
+        "pivot": "32", 
+        "array": "[32, 100]", 
+        "less": "[]", 
+        "greater": "[100]", 
+        "x": "100"
+      }
+    }, 
+    {
+      "line": 16, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "Then we just call quicksort again on the greater and\nlesser value collections.  That's recursion, baby!\n(oh, and make sure to wrap it around the pivot point)", 
+      "locals": {
+        "pivot": "32", 
+        "array": "[32, 100]", 
+        "less": "[]", 
+        "greater": "[100]", 
+        "x": "100"
+      }
+    }, 
+    {
+      "line": 3, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "array": "[]"
+      }
+    }, 
+    {
+      "line": 4, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "We need to keep track of values that are greater than\nand less than our pivot point", 
+      "locals": {
+        "array": "[]"
+      }
+    }, 
+    {
+      "line": 5, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "array": "[]", 
+        "less": "[]"
+      }
+    }, 
+    {
+      "line": 6, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "If our array only has one element, then we're already\nsorted, so let's bail out.", 
+      "locals": {
+        "array": "[]", 
+        "greater": "[]", 
+        "less": "[]"
+      }
+    }, 
+    {
+      "line": 7, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "array": "[]", 
+        "greater": "[]", 
+        "less": "[]"
+      }
+    }, 
+    {
+      "line": 3, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "array": "[100]"
+      }
+    }, 
+    {
+      "line": 4, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "We need to keep track of values that are greater than\nand less than our pivot point", 
+      "locals": {
+        "array": "[100]"
+      }
+    }, 
+    {
+      "line": 5, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "array": "[100]", 
+        "less": "[]"
+      }
+    }, 
+    {
+      "line": 6, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "If our array only has one element, then we're already\nsorted, so let's bail out.", 
+      "locals": {
+        "array": "[100]", 
+        "greater": "[]", 
+        "less": "[]"
+      }
+    }, 
+    {
+      "line": 7, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "locals": {
+        "array": "[100]", 
+        "greater": "[]", 
+        "less": "[]"
+      }
+    }, 
+    {
+      "line": 16, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>"
+      }, 
+      "annotation": "Then we just call quicksort again on the greater and\nlesser value collections.  That's recursion, baby!\n(oh, and make sure to wrap it around the pivot point)", 
+      "locals": {
+        "pivot": "32", 
+        "array": "[32, 100]", 
+        "less": "[]", 
+        "greater": "[100]", 
+        "x": "100"
+      }
+    }, 
+    {
+      "line": 20, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>", 
+        "sorted_list": "[-34534, 1, 3, 32, 100]"
+      }, 
+      "annotation": "And print out our final result", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "[1, -34534, 3, 32, 100]", 
+        "quicksort": "<function quicksort at 0x20bccf8>", 
+        "sorted_list": "[-34534, 1, 3, 32, 100]"
+      }, 
+      "stdout": "[-34534, 1, 3, 32, 100]\n"
+    }
+  ]
+}

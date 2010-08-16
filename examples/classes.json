@@ -1,0 +1,585 @@
+{
+  "source": "# A brief demonstration of classes\nclass RoundThing(object):\n    def __init__(self, size):\n        self.is_round = True\n        self.size = size\n\n    def roll(self):\n        print 'this is a %s ball rolling...' % self.size\n\nclass Ball(RoundThing):\n    def __init__(self, material, *args):\n        self.material = material\n        super(Ball, self).__init__(*args)\n\n    def roll(self):\n        print 'rolling like a ball made of %s' % self.material\n        super(Ball, self).roll()\n\n    def bounce(self):\n        print 'boing...'\n\ncircle = RoundThing('big')\nracket_ball = Ball('rubber', 'small')\n\ncircle.roll()\n\nracket_ball.roll()\nracket_ball.bounce()\n\ndir(circle)\n\nprint isinstance(racket_ball, RoundThing)\n\nprint isinstance(circle, Ball)\n", 
+  "trace": [
+    {
+      "line": 1, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }
+    }, 
+    {
+      "line": 1, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "locals": {}
+    }, 
+    {
+      "line": 2, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "annotation": "This initializes the object when it is created.", 
+      "locals": {
+        "__module__": "'__main__'"
+      }
+    }, 
+    {
+      "line": 6, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "annotation": "The parameter self must be explicitly specified when defining a method.", 
+      "locals": {
+        "__module__": "'__main__'", 
+        "__init__": "<function __init__ at 0x19b6b90>"
+      }
+    }, 
+    {
+      "line": 6, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "annotation": "The parameter self must be explicitly specified when defining a method.", 
+      "locals": {
+        "__module__": "'__main__'", 
+        "roll": "<function roll at 0x19b6c08>", 
+        "__init__": "<function __init__ at 0x19b6b90>"
+      }
+    }, 
+    {
+      "line": 9, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "RoundThing": "<class '__main__.RoundThing'>"
+      }, 
+      "annotation": "This is a subclass of RoundThing.", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "RoundThing": "<class '__main__.RoundThing'>"
+      }
+    }, 
+    {
+      "line": 9, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "RoundThing": "<class '__main__.RoundThing'>"
+      }, 
+      "annotation": "This is a subclass of RoundThing.", 
+      "locals": {}
+    }, 
+    {
+      "line": 10, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "RoundThing": "<class '__main__.RoundThing'>"
+      }, 
+      "locals": {
+        "__module__": "'__main__'"
+      }
+    }, 
+    {
+      "line": 14, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "RoundThing": "<class '__main__.RoundThing'>"
+      }, 
+      "annotation": "Subclasses can add functionality to methods of their base classes.", 
+      "locals": {
+        "__module__": "'__main__'", 
+        "__init__": "<function __init__ at 0x19b6c80>"
+      }
+    }, 
+    {
+      "line": 18, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "RoundThing": "<class '__main__.RoundThing'>"
+      }, 
+      "annotation": "Subclasses can also define new methods.", 
+      "locals": {
+        "__module__": "'__main__'", 
+        "roll": "<function roll at 0x19b6cf8>", 
+        "__init__": "<function __init__ at 0x19b6c80>"
+      }
+    }, 
+    {
+      "line": 18, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "RoundThing": "<class '__main__.RoundThing'>"
+      }, 
+      "annotation": "Subclasses can also define new methods.", 
+      "locals": {
+        "__init__": "<function __init__ at 0x19b6c80>", 
+        "__module__": "'__main__'", 
+        "roll": "<function roll at 0x19b6cf8>", 
+        "bounce": "<function bounce at 0x19b6d70>"
+      }
+    }, 
+    {
+      "line": 21, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>"
+      }, 
+      "annotation": "This says that the variable circle is an object of class RoundThing.", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>"
+      }
+    }, 
+    {
+      "line": 2, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>"
+      }, 
+      "annotation": "This initializes the object when it is created.", 
+      "locals": {
+        "self": "<__main__.RoundThing object at 0x19af9d0>", 
+        "size": "'big'"
+      }
+    }, 
+    {
+      "line": 3, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>"
+      }, 
+      "locals": {
+        "self": "<__main__.RoundThing object at 0x19af9d0>", 
+        "size": "'big'"
+      }
+    }, 
+    {
+      "line": 4, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>"
+      }, 
+      "locals": {
+        "self": "<__main__.RoundThing object at 0x19af9d0>", 
+        "size": "'big'"
+      }
+    }, 
+    {
+      "line": 22, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>"
+      }
+    }, 
+    {
+      "line": 10, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>"
+      }, 
+      "locals": {
+        "self": "<__main__.Ball object at 0x19afb90>", 
+        "material": "'rubber'", 
+        "args": "('small',)"
+      }
+    }, 
+    {
+      "line": 11, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>"
+      }, 
+      "locals": {
+        "self": "<__main__.Ball object at 0x19afb90>", 
+        "material": "'rubber'", 
+        "args": "('small',)"
+      }
+    }, 
+    {
+      "line": 12, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>"
+      }, 
+      "annotation": "This calls the superclass's __init__ method, this must be done explicitly in Python.", 
+      "locals": {
+        "self": "<__main__.Ball object at 0x19afb90>", 
+        "material": "'rubber'", 
+        "args": "('small',)"
+      }
+    }, 
+    {
+      "line": 2, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>"
+      }, 
+      "annotation": "This initializes the object when it is created.", 
+      "locals": {
+        "self": "<__main__.Ball object at 0x19afb90>", 
+        "size": "'small'"
+      }
+    }, 
+    {
+      "line": 3, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>"
+      }, 
+      "locals": {
+        "self": "<__main__.Ball object at 0x19afb90>", 
+        "size": "'small'"
+      }
+    }, 
+    {
+      "line": 4, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>"
+      }, 
+      "locals": {
+        "self": "<__main__.Ball object at 0x19afb90>", 
+        "size": "'small'"
+      }
+    }, 
+    {
+      "line": 12, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>"
+      }, 
+      "annotation": "This calls the superclass's __init__ method, this must be done explicitly in Python.", 
+      "locals": {
+        "self": "<__main__.Ball object at 0x19afb90>", 
+        "material": "'rubber'", 
+        "args": "('small',)"
+      }
+    }, 
+    {
+      "line": 24, 
+      "globals": {
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "racket_ball": "<__main__.Ball object at 0x19afb90>"
+      }, 
+      "annotation": "The interpreter takes care of passing the self parameter to an object's methods.", 
+      "locals": {
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "racket_ball": "<__main__.Ball object at 0x19afb90>"
+      }
+    }, 
+    {
+      "line": 6, 
+      "globals": {
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "racket_ball": "<__main__.Ball object at 0x19afb90>"
+      }, 
+      "annotation": "The parameter self must be explicitly specified when defining a method.", 
+      "locals": {
+        "self": "<__main__.RoundThing object at 0x19af9d0>"
+      }
+    }, 
+    {
+      "line": 7, 
+      "globals": {
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "racket_ball": "<__main__.Ball object at 0x19afb90>"
+      }, 
+      "annotation": "Methods have access to the instance variables of their class without needing the parameters explicitly passed.", 
+      "locals": {
+        "self": "<__main__.RoundThing object at 0x19af9d0>"
+      }, 
+      "stdout": "this is a big ball rolling...\n"
+    }, 
+    {
+      "line": 26, 
+      "globals": {
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "racket_ball": "<__main__.Ball object at 0x19afb90>"
+      }, 
+      "locals": {
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "racket_ball": "<__main__.Ball object at 0x19afb90>"
+      }
+    }, 
+    {
+      "line": 14, 
+      "globals": {
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "racket_ball": "<__main__.Ball object at 0x19afb90>"
+      }, 
+      "annotation": "Subclasses can add functionality to methods of their base classes.", 
+      "locals": {
+        "self": "<__main__.Ball object at 0x19afb90>"
+      }
+    }, 
+    {
+      "line": 15, 
+      "globals": {
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "racket_ball": "<__main__.Ball object at 0x19afb90>"
+      }, 
+      "locals": {
+        "self": "<__main__.Ball object at 0x19afb90>"
+      }, 
+      "stdout": "rolling like a ball made of rubber\n"
+    }, 
+    {
+      "line": 16, 
+      "globals": {
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "racket_ball": "<__main__.Ball object at 0x19afb90>"
+      }, 
+      "locals": {
+        "self": "<__main__.Ball object at 0x19afb90>"
+      }
+    }, 
+    {
+      "line": 6, 
+      "globals": {
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "racket_ball": "<__main__.Ball object at 0x19afb90>"
+      }, 
+      "annotation": "The parameter self must be explicitly specified when defining a method.", 
+      "locals": {
+        "self": "<__main__.Ball object at 0x19afb90>"
+      }
+    }, 
+    {
+      "line": 7, 
+      "globals": {
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "racket_ball": "<__main__.Ball object at 0x19afb90>"
+      }, 
+      "annotation": "Methods have access to the instance variables of their class without needing the parameters explicitly passed.", 
+      "locals": {
+        "self": "<__main__.Ball object at 0x19afb90>"
+      }, 
+      "stdout": "this is a small ball rolling...\n"
+    }, 
+    {
+      "line": 16, 
+      "globals": {
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "racket_ball": "<__main__.Ball object at 0x19afb90>"
+      }, 
+      "locals": {
+        "self": "<__main__.Ball object at 0x19afb90>"
+      }
+    }, 
+    {
+      "line": 27, 
+      "globals": {
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "racket_ball": "<__main__.Ball object at 0x19afb90>"
+      }, 
+      "locals": {
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "racket_ball": "<__main__.Ball object at 0x19afb90>"
+      }
+    }, 
+    {
+      "line": 18, 
+      "globals": {
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "racket_ball": "<__main__.Ball object at 0x19afb90>"
+      }, 
+      "annotation": "Subclasses can also define new methods.", 
+      "locals": {
+        "self": "<__main__.Ball object at 0x19afb90>"
+      }
+    }, 
+    {
+      "line": 19, 
+      "globals": {
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "racket_ball": "<__main__.Ball object at 0x19afb90>"
+      }, 
+      "locals": {
+        "self": "<__main__.Ball object at 0x19afb90>"
+      }, 
+      "stdout": "boing...\n"
+    }, 
+    {
+      "line": 29, 
+      "globals": {
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "racket_ball": "<__main__.Ball object at 0x19afb90>"
+      }, 
+      "annotation": "It is possible to view the internals of a class with this function.", 
+      "locals": {
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "racket_ball": "<__main__.Ball object at 0x19afb90>"
+      }
+    }, 
+    {
+      "line": 31, 
+      "globals": {
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "racket_ball": "<__main__.Ball object at 0x19afb90>"
+      }, 
+      "annotation": "Subclasses are still considered to be instances of their superclass.", 
+      "locals": {
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "racket_ball": "<__main__.Ball object at 0x19afb90>"
+      }, 
+      "stdout": "True\n"
+    }, 
+    {
+      "line": 33, 
+      "globals": {
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "racket_ball": "<__main__.Ball object at 0x19afb90>"
+      }, 
+      "annotation": "The converse is not true.", 
+      "locals": {
+        "Ball": "<class '__main__.Ball'>", 
+        "RoundThing": "<class '__main__.RoundThing'>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "circle": "<__main__.RoundThing object at 0x19af9d0>", 
+        "racket_ball": "<__main__.Ball object at 0x19afb90>"
+      }, 
+      "stdout": "False\n"
+    }
+  ]
+}

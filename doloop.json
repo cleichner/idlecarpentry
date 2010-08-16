@@ -1,0 +1,567 @@
+{
+  "source": "def function(x = 'hello'):\n    print str(x)+' world'\n\nfor i in range(4):\n    function(i)\n\nx = 5\ny= 6\nz = 8\nr = 6\na = 3\nb = 8\nc = 9\nd = 3\nq = 7\nq = x *y\nprint x *y\nprint q\n", 
+  "trace": [
+    {
+      "line": 0, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "annotation": "This is a basic function", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }
+    }, 
+    {
+      "line": 3, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>"
+      }, 
+      "annotation": "This is a do loop, kinda", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>"
+      }
+    }, 
+    {
+      "line": 4, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "0"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "0"
+      }
+    }, 
+    {
+      "line": 0, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "0"
+      }, 
+      "annotation": "This is a basic function", 
+      "locals": {
+        "x": "0"
+      }
+    }, 
+    {
+      "line": 1, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "0"
+      }, 
+      "locals": {
+        "x": "0"
+      }, 
+      "stdout": "0 world\n"
+    }, 
+    {
+      "line": 3, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "0"
+      }, 
+      "annotation": "This is a do loop, kinda", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "0"
+      }
+    }, 
+    {
+      "line": 4, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "1"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "1"
+      }
+    }, 
+    {
+      "line": 0, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "1"
+      }, 
+      "annotation": "This is a basic function", 
+      "locals": {
+        "x": "1"
+      }
+    }, 
+    {
+      "line": 1, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "1"
+      }, 
+      "locals": {
+        "x": "1"
+      }, 
+      "stdout": "1 world\n"
+    }, 
+    {
+      "line": 3, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "1"
+      }, 
+      "annotation": "This is a do loop, kinda", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "1"
+      }
+    }, 
+    {
+      "line": 4, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "2"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "2"
+      }
+    }, 
+    {
+      "line": 0, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "2"
+      }, 
+      "annotation": "This is a basic function", 
+      "locals": {
+        "x": "2"
+      }
+    }, 
+    {
+      "line": 1, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "2"
+      }, 
+      "locals": {
+        "x": "2"
+      }, 
+      "stdout": "2 world\n"
+    }, 
+    {
+      "line": 3, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "2"
+      }, 
+      "annotation": "This is a do loop, kinda", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "2"
+      }
+    }, 
+    {
+      "line": 4, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "3"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "3"
+      }
+    }, 
+    {
+      "line": 0, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "3"
+      }, 
+      "annotation": "This is a basic function", 
+      "locals": {
+        "x": "3"
+      }
+    }, 
+    {
+      "line": 1, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "3"
+      }, 
+      "locals": {
+        "x": "3"
+      }, 
+      "stdout": "3 world\n"
+    }, 
+    {
+      "line": 3, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "3"
+      }, 
+      "annotation": "This is a do loop, kinda", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "3"
+      }
+    }, 
+    {
+      "line": 6, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "3"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "3"
+      }
+    }, 
+    {
+      "line": 7, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "3", 
+        "x": "5"
+      }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "function": "<function function at 0x37d1668>", 
+        "i": "3", 
+        "x": "5"
+      }
+    }, 
+    {
+      "line": 8, 
+      "globals": {
+        "function": "<function function at 0x37d1668>", 
+        "i": "3", 
+        "y": "6", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "x": "5"
+      }, 
+      "locals": {
+        "function": "<function function at 0x37d1668>", 
+        "i": "3", 
+        "y": "6", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "x": "5"
+      }
+    }, 
+    {
+      "line": 9, 
+      "globals": {
+        "function": "<function function at 0x37d1668>", 
+        "i": "3", 
+        "y": "6", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "x": "5", 
+        "z": "8"
+      }, 
+      "locals": {
+        "function": "<function function at 0x37d1668>", 
+        "i": "3", 
+        "y": "6", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "x": "5", 
+        "z": "8"
+      }
+    }, 
+    {
+      "line": 10, 
+      "globals": {
+        "function": "<function function at 0x37d1668>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "i": "3", 
+        "r": "6", 
+        "__name__": "'__main__'", 
+        "y": "6", 
+        "x": "5", 
+        "z": "8"
+      }, 
+      "locals": {
+        "function": "<function function at 0x37d1668>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "i": "3", 
+        "r": "6", 
+        "__name__": "'__main__'", 
+        "y": "6", 
+        "x": "5", 
+        "z": "8"
+      }
+    }, 
+    {
+      "line": 11, 
+      "globals": {
+        "function": "<function function at 0x37d1668>", 
+        "a": "3", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "i": "3", 
+        "r": "6", 
+        "__name__": "'__main__'", 
+        "y": "6", 
+        "x": "5", 
+        "z": "8"
+      }, 
+      "locals": {
+        "function": "<function function at 0x37d1668>", 
+        "a": "3", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "i": "3", 
+        "r": "6", 
+        "__name__": "'__main__'", 
+        "y": "6", 
+        "x": "5", 
+        "z": "8"
+      }
+    }, 
+    {
+      "line": 12, 
+      "globals": {
+        "function": "<function function at 0x37d1668>", 
+        "a": "3", 
+        "b": "8", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "i": "3", 
+        "r": "6", 
+        "__name__": "'__main__'", 
+        "y": "6", 
+        "x": "5", 
+        "z": "8"
+      }, 
+      "locals": {
+        "function": "<function function at 0x37d1668>", 
+        "a": "3", 
+        "b": "8", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "i": "3", 
+        "r": "6", 
+        "__name__": "'__main__'", 
+        "y": "6", 
+        "x": "5", 
+        "z": "8"
+      }
+    }, 
+    {
+      "line": 13, 
+      "globals": {
+        "function": "<function function at 0x37d1668>", 
+        "a": "3", 
+        "c": "9", 
+        "b": "8", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "i": "3", 
+        "r": "6", 
+        "__name__": "'__main__'", 
+        "y": "6", 
+        "x": "5", 
+        "z": "8"
+      }, 
+      "locals": {
+        "function": "<function function at 0x37d1668>", 
+        "a": "3", 
+        "c": "9", 
+        "b": "8", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "i": "3", 
+        "r": "6", 
+        "__name__": "'__main__'", 
+        "y": "6", 
+        "x": "5", 
+        "z": "8"
+      }
+    }, 
+    {
+      "line": 14, 
+      "globals": {
+        "function": "<function function at 0x37d1668>", 
+        "a": "3", 
+        "c": "9", 
+        "b": "8", 
+        "d": "3", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "i": "3", 
+        "r": "6", 
+        "__name__": "'__main__'", 
+        "y": "6", 
+        "x": "5", 
+        "z": "8"
+      }, 
+      "locals": {
+        "function": "<function function at 0x37d1668>", 
+        "a": "3", 
+        "c": "9", 
+        "b": "8", 
+        "d": "3", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "i": "3", 
+        "r": "6", 
+        "__name__": "'__main__'", 
+        "y": "6", 
+        "x": "5", 
+        "z": "8"
+      }
+    }, 
+    {
+      "line": 15, 
+      "globals": {
+        "function": "<function function at 0x37d1668>", 
+        "a": "3", 
+        "c": "9", 
+        "b": "8", 
+        "d": "3", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "q": "7", 
+        "i": "3", 
+        "r": "6", 
+        "__name__": "'__main__'", 
+        "y": "6", 
+        "x": "5", 
+        "z": "8"
+      }, 
+      "locals": {
+        "function": "<function function at 0x37d1668>", 
+        "a": "3", 
+        "c": "9", 
+        "b": "8", 
+        "d": "3", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "q": "7", 
+        "i": "3", 
+        "r": "6", 
+        "__name__": "'__main__'", 
+        "y": "6", 
+        "x": "5", 
+        "z": "8"
+      }
+    }, 
+    {
+      "line": 16, 
+      "globals": {
+        "function": "<function function at 0x37d1668>", 
+        "a": "3", 
+        "c": "9", 
+        "b": "8", 
+        "d": "3", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "q": "30", 
+        "i": "3", 
+        "r": "6", 
+        "__name__": "'__main__'", 
+        "y": "6", 
+        "x": "5", 
+        "z": "8"
+      }, 
+      "locals": {
+        "function": "<function function at 0x37d1668>", 
+        "a": "3", 
+        "c": "9", 
+        "b": "8", 
+        "d": "3", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "q": "30", 
+        "i": "3", 
+        "r": "6", 
+        "__name__": "'__main__'", 
+        "y": "6", 
+        "x": "5", 
+        "z": "8"
+      }, 
+      "stdout": "30\n"
+    }, 
+    {
+      "line": 17, 
+      "globals": {
+        "function": "<function function at 0x37d1668>", 
+        "a": "3", 
+        "c": "9", 
+        "b": "8", 
+        "d": "3", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "q": "30", 
+        "i": "3", 
+        "r": "6", 
+        "__name__": "'__main__'", 
+        "y": "6", 
+        "x": "5", 
+        "z": "8"
+      }, 
+      "locals": {
+        "function": "<function function at 0x37d1668>", 
+        "a": "3", 
+        "c": "9", 
+        "b": "8", 
+        "d": "3", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "q": "30", 
+        "i": "3", 
+        "r": "6", 
+        "__name__": "'__main__'", 
+        "y": "6", 
+        "x": "5", 
+        "z": "8"
+      }, 
+      "stdout": "30\n"
+    }
+  ]
+}

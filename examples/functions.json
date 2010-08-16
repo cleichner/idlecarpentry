@@ -1,0 +1,421 @@
+{
+  "source": "# Another trick for lazy programming (which will make your code better)'\nfrom math import pi\ndef circle_area(radius):\n    return pi * (radius**2)\n\nprint circle_area(5)\nprint circle_area(6)\n\n# In Python everything is an object, so some very sophisticated techniques are possible.\ndef named_area(name, radius):\n    def area():\n        return name + str(pi*radius**2)\n    return area\n\nfive_area = named_area('five ', 5)\nsix_area = named_area('six ', 6)\n\nprint five_area()\nprint six_area()\n", 
+  "trace": [
+    {
+      "line": 1, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }, 
+      "annotation": "This gives access to constants defined outside of the current file.", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'"
+      }
+    }, 
+    {
+      "line": 2, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "pi": "3.1415926535897931", 
+        "__package__": "None"
+      }, 
+      "annotation": "When you want to do something serveral times in your code ( or just simplify a particular bit of logic) you can define a function to do so. Here is an example which finds (and returns) the area of a circle.", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "pi": "3.1415926535897931", 
+        "__package__": "None"
+      }
+    }, 
+    {
+      "line": 5, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "pi": "3.1415926535897931", 
+        "__package__": "None", 
+        "circle_area": "<function circle_area at 0x198ea28>"
+      }, 
+      "annotation": "Once defined for a general case, the chunk of code can be referenced by supplying a parameter.", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "pi": "3.1415926535897931", 
+        "__package__": "None", 
+        "circle_area": "<function circle_area at 0x198ea28>"
+      }
+    }, 
+    {
+      "line": 2, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "pi": "3.1415926535897931", 
+        "__package__": "None", 
+        "circle_area": "<function circle_area at 0x198ea28>"
+      }, 
+      "annotation": "When you want to do something serveral times in your code ( or just simplify a particular bit of logic) you can define a function to do so. Here is an example which finds (and returns) the area of a circle.", 
+      "locals": {
+        "radius": "5"
+      }
+    }, 
+    {
+      "line": 3, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "pi": "3.1415926535897931", 
+        "__package__": "None", 
+        "circle_area": "<function circle_area at 0x198ea28>"
+      }, 
+      "locals": {
+        "radius": "5"
+      }, 
+      "stdout": "78.5398163397\n"
+    }, 
+    {
+      "line": 6, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "pi": "3.1415926535897931", 
+        "__package__": "None", 
+        "circle_area": "<function circle_area at 0x198ea28>"
+      }, 
+      "annotation": "This is a very useful technique", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "pi": "3.1415926535897931", 
+        "__package__": "None", 
+        "circle_area": "<function circle_area at 0x198ea28>"
+      }
+    }, 
+    {
+      "line": 2, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "pi": "3.1415926535897931", 
+        "__package__": "None", 
+        "circle_area": "<function circle_area at 0x198ea28>"
+      }, 
+      "annotation": "When you want to do something serveral times in your code ( or just simplify a particular bit of logic) you can define a function to do so. Here is an example which finds (and returns) the area of a circle.", 
+      "locals": {
+        "radius": "6"
+      }
+    }, 
+    {
+      "line": 3, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "pi": "3.1415926535897931", 
+        "__package__": "None", 
+        "circle_area": "<function circle_area at 0x198ea28>"
+      }, 
+      "locals": {
+        "radius": "6"
+      }, 
+      "stdout": "113.097335529\n"
+    }, 
+    {
+      "line": 9, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "pi": "3.1415926535897931", 
+        "__package__": "None", 
+        "circle_area": "<function circle_area at 0x198ea28>"
+      }, 
+      "annotation": "This is called a closure", 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "pi": "3.1415926535897931", 
+        "__package__": "None", 
+        "circle_area": "<function circle_area at 0x198ea28>"
+      }
+    }, 
+    {
+      "line": 14, 
+      "globals": {
+        "circle_area": "<function circle_area at 0x198ea28>", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "named_area": "<function named_area at 0x198eaa0>", 
+        "pi": "3.1415926535897931", 
+        "__package__": "None"
+      }, 
+      "annotation": "These generate function objects which can then be called", 
+      "locals": {
+        "circle_area": "<function circle_area at 0x198ea28>", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "named_area": "<function named_area at 0x198eaa0>", 
+        "pi": "3.1415926535897931", 
+        "__package__": "None"
+      }
+    }, 
+    {
+      "line": 9, 
+      "globals": {
+        "circle_area": "<function circle_area at 0x198ea28>", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "named_area": "<function named_area at 0x198eaa0>", 
+        "pi": "3.1415926535897931", 
+        "__package__": "None"
+      }, 
+      "annotation": "This is called a closure", 
+      "locals": {
+        "radius": "5", 
+        "name": "'five '"
+      }
+    }, 
+    {
+      "line": 10, 
+      "globals": {
+        "circle_area": "<function circle_area at 0x198ea28>", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "named_area": "<function named_area at 0x198eaa0>", 
+        "pi": "3.1415926535897931", 
+        "__package__": "None"
+      }, 
+      "locals": {
+        "radius": "5", 
+        "name": "'five '"
+      }
+    }, 
+    {
+      "line": 12, 
+      "globals": {
+        "circle_area": "<function circle_area at 0x198ea28>", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "named_area": "<function named_area at 0x198eaa0>", 
+        "pi": "3.1415926535897931", 
+        "__package__": "None"
+      }, 
+      "locals": {
+        "radius": "5", 
+        "name": "'five '", 
+        "area": "<function area at 0x198eb18>"
+      }
+    }, 
+    {
+      "line": 15, 
+      "globals": {
+        "circle_area": "<function circle_area at 0x198ea28>", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "named_area": "<function named_area at 0x198eaa0>", 
+        "pi": "3.1415926535897931", 
+        "five_area": "<function area at 0x198eb18>", 
+        "__package__": "None"
+      }, 
+      "locals": {
+        "circle_area": "<function circle_area at 0x198ea28>", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "named_area": "<function named_area at 0x198eaa0>", 
+        "pi": "3.1415926535897931", 
+        "five_area": "<function area at 0x198eb18>", 
+        "__package__": "None"
+      }
+    }, 
+    {
+      "line": 9, 
+      "globals": {
+        "circle_area": "<function circle_area at 0x198ea28>", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "named_area": "<function named_area at 0x198eaa0>", 
+        "pi": "3.1415926535897931", 
+        "five_area": "<function area at 0x198eb18>", 
+        "__package__": "None"
+      }, 
+      "annotation": "This is called a closure", 
+      "locals": {
+        "radius": "6", 
+        "name": "'six '"
+      }
+    }, 
+    {
+      "line": 10, 
+      "globals": {
+        "circle_area": "<function circle_area at 0x198ea28>", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "named_area": "<function named_area at 0x198eaa0>", 
+        "pi": "3.1415926535897931", 
+        "five_area": "<function area at 0x198eb18>", 
+        "__package__": "None"
+      }, 
+      "locals": {
+        "radius": "6", 
+        "name": "'six '"
+      }
+    }, 
+    {
+      "line": 12, 
+      "globals": {
+        "circle_area": "<function circle_area at 0x198ea28>", 
+        "__name__": "'__main__'", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "named_area": "<function named_area at 0x198eaa0>", 
+        "pi": "3.1415926535897931", 
+        "five_area": "<function area at 0x198eb18>", 
+        "__package__": "None"
+      }, 
+      "locals": {
+        "radius": "6", 
+        "name": "'six '", 
+        "area": "<function area at 0x198eb90>"
+      }
+    }, 
+    {
+      "line": 17, 
+      "globals": {
+        "six_area": "<function area at 0x198eb90>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__package__": "None", 
+        "circle_area": "<function circle_area at 0x198ea28>", 
+        "__name__": "'__main__'", 
+        "named_area": "<function named_area at 0x198eaa0>", 
+        "pi": "3.1415926535897931", 
+        "five_area": "<function area at 0x198eb18>"
+      }, 
+      "annotation": "The functions retain the arguments they were created with", 
+      "locals": {
+        "six_area": "<function area at 0x198eb90>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__package__": "None", 
+        "circle_area": "<function circle_area at 0x198ea28>", 
+        "__name__": "'__main__'", 
+        "named_area": "<function named_area at 0x198eaa0>", 
+        "pi": "3.1415926535897931", 
+        "five_area": "<function area at 0x198eb18>"
+      }
+    }, 
+    {
+      "line": 10, 
+      "globals": {
+        "six_area": "<function area at 0x198eb90>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__package__": "None", 
+        "circle_area": "<function circle_area at 0x198ea28>", 
+        "__name__": "'__main__'", 
+        "named_area": "<function named_area at 0x198eaa0>", 
+        "pi": "3.1415926535897931", 
+        "five_area": "<function area at 0x198eb18>"
+      }, 
+      "locals": {
+        "radius": "5", 
+        "name": "'five '"
+      }
+    }, 
+    {
+      "line": 11, 
+      "globals": {
+        "six_area": "<function area at 0x198eb90>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__package__": "None", 
+        "circle_area": "<function circle_area at 0x198ea28>", 
+        "__name__": "'__main__'", 
+        "named_area": "<function named_area at 0x198eaa0>", 
+        "pi": "3.1415926535897931", 
+        "five_area": "<function area at 0x198eb18>"
+      }, 
+      "locals": {
+        "radius": "5", 
+        "name": "'five '"
+      }, 
+      "stdout": "five 78.5398163397\n"
+    }, 
+    {
+      "line": 18, 
+      "globals": {
+        "six_area": "<function area at 0x198eb90>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__package__": "None", 
+        "circle_area": "<function circle_area at 0x198ea28>", 
+        "__name__": "'__main__'", 
+        "named_area": "<function named_area at 0x198eaa0>", 
+        "pi": "3.1415926535897931", 
+        "five_area": "<function area at 0x198eb18>"
+      }, 
+      "locals": {
+        "six_area": "<function area at 0x198eb90>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__package__": "None", 
+        "circle_area": "<function circle_area at 0x198ea28>", 
+        "__name__": "'__main__'", 
+        "named_area": "<function named_area at 0x198eaa0>", 
+        "pi": "3.1415926535897931", 
+        "five_area": "<function area at 0x198eb18>"
+      }
+    }, 
+    {
+      "line": 10, 
+      "globals": {
+        "six_area": "<function area at 0x198eb90>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__package__": "None", 
+        "circle_area": "<function circle_area at 0x198ea28>", 
+        "__name__": "'__main__'", 
+        "named_area": "<function named_area at 0x198eaa0>", 
+        "pi": "3.1415926535897931", 
+        "five_area": "<function area at 0x198eb18>"
+      }, 
+      "locals": {
+        "radius": "6", 
+        "name": "'six '"
+      }
+    }, 
+    {
+      "line": 11, 
+      "globals": {
+        "six_area": "<function area at 0x198eb90>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__package__": "None", 
+        "circle_area": "<function circle_area at 0x198ea28>", 
+        "__name__": "'__main__'", 
+        "named_area": "<function named_area at 0x198eaa0>", 
+        "pi": "3.1415926535897931", 
+        "five_area": "<function area at 0x198eb18>"
+      }, 
+      "locals": {
+        "radius": "6", 
+        "name": "'six '"
+      }, 
+      "stdout": "six 113.097335529\n"
+    }, 
+    {
+      "line": 18, 
+      "globals": {
+        "six_area": "<function area at 0x198eb90>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__package__": "None", 
+        "circle_area": "<function circle_area at 0x198ea28>", 
+        "__name__": "'__main__'", 
+        "named_area": "<function named_area at 0x198eaa0>", 
+        "pi": "3.1415926535897931", 
+        "five_area": "<function area at 0x198eb18>"
+      }, 
+      "locals": {
+        "six_area": "<function area at 0x198eb90>", 
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__package__": "None", 
+        "circle_area": "<function circle_area at 0x198ea28>", 
+        "__name__": "'__main__'", 
+        "named_area": "<function named_area at 0x198eaa0>", 
+        "pi": "3.1415926535897931", 
+        "five_area": "<function area at 0x198eb18>"
+      }
+    }
+  ]
+}
