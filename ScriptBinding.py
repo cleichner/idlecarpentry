@@ -19,6 +19,8 @@ XXX GvR Redesign this interface (yet again) as follows:
 
 import os
 import re
+import sys
+import traceback
 import string
 import tabnanny
 import tokenize
@@ -170,8 +172,13 @@ class ScriptBinding:
         interp.runcode(code)
         return 'break'
 
-    def create_trace_event(self, event=None):
+    def exception_dialog(self, exception):
+        msg = traceback.format_exc()
+        tkMessageBox.showerror(title = "Exception Occurred During Execution",
+                                  message = msg,
+                                  master = self.editwin.text)
 
+    def create_trace_event(self, event=None):
         filename = self.getfilename()
         if not filename:
             return 'break'
@@ -181,13 +188,19 @@ class ScriptBinding:
         if not self.tabnanny(filename):
             return 'break'
 
-        trace_string = trace.trace(filename)
-        trace_filename = '%s.json' % filename.split('.')[0]
-        f=open(trace_filename, 'w')
-        f.write(trace_string+'\n')
-        f.close()
+        try:
+            trace_string = trace.trace(filename)
 
-        return TraceDisplayWindow(flist=self.flist, filename=trace_filename, root=self.root)
+        except Exception as error:
+            self.exception_dialog(error)
+
+        else:
+            trace_filename = '%s.json' % filename.split('.')[0]
+            f=open(trace_filename, 'w')
+            f.write(trace_string+'\n')
+            f.close()
+            return TraceDisplayWindow(flist=self.flist, filename=trace_filename, root=self.root)
+
 
     def getfilename(self):
         """Get source filename.  If not saved, offer to save (or create) file
@@ -215,6 +228,7 @@ class ScriptBinding:
                 else:
                     filename = None
         return filename
+
 
     def ask_save_dialog(self):
         msg = "Source Must Be Saved\n" + 5*' ' + "OK to Save?"

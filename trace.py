@@ -412,7 +412,7 @@ def trace(filename, pprint=True):
     runner = Tracer(runme_clean.name)
     result, events = runner.trace()
     trace = process_events(events)
-    
+
     #attaches annotations to the trace
     annotations = parse_annotations(filename)
 
