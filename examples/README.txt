@@ -22,15 +22,15 @@ black).
 
 If you would like to generate a trace file of your own, you can open an
 existing file in IDLE or create one from scratch. To create a trace, select
-from the 'Run' menu 'Create Trace'. This will generate a trace of the execution
-of your current code with any lines preceded with '#>' stripped out by the
-tracer and used to create the explanations/annotations seen in the right upper
-box when the trace is played back. Multiple consecutive annotations will be
-concatenated. Only code which is defined in the source file will be traced into
-(though any code which is imported can be executed).  Currently reading from
-stdin isn't supported, but reading from files works fine.  The trace will be
-saved in the same directory as the source file, with the same name and a
-'.json' extension.
+from the 'Run' menu 'Create Trace' or press ctrl-shift-t. This will generate a
+trace of the execution of your current code with any lines preceded with '#>'
+stripped out by the tracer and used to create the explanations/annotations seen
+in the right upper box when the trace is played back. Multiple consecutive
+annotations will be concatenated. Only code which is defined in the source file
+will be traced into (though any code which is imported can be executed).
+Currently reading from stdin isn't supported, but reading from files works
+fine.  The trace will be saved in the same directory as the source file, with
+the same name and a '.json' extension.
 
 chaoslichen@gmail.com
 
