@@ -1,0 +1,1692 @@
+<_ast.Module object at 0x7ffe920a36d0>
+field = 'body' : value = [<_ast.Import object at 0x7ffe920a37d0>, <_ast.ImportFrom object at 0x7ffe920a39d0>, <_ast.If object at 0x7ffe920a3a50>, <_ast.Assign object at 0x7ffe920a3dd0>, <_ast.Assign object at 0x7ffe920a3f90>, <_ast.Assign object at 0x7ffe920ab190>, <_ast.With object at 0x7ffe920ab350>, <_ast.With object at 0x7ffe920ab610>]
+
+<_ast.Import object at 0x7ffe920a37d0>
+field = 'names' : value = [<_ast.alias object at 0x7ffe920a3990>]
+
+<_ast.alias object at 0x7ffe920a3990>
+field = 'name' : value = 'sys'
+field = 'asname' : value = None
+
+<_ast.ImportFrom object at 0x7ffe920a39d0>
+field = 'module' : value = 'string'
+field = 'names' : value = [<_ast.alias object at 0x7ffe920a3a10>]
+field = 'level' : value = 0
+
+<_ast.alias object at 0x7ffe920a3a10>
+field = 'name' : value = 'lowercase'
+field = 'asname' : value = None
+
+<_ast.If object at 0x7ffe920a3a50>
+field = 'test' : value = <_ast.Compare object at 0x7ffe920a3a90>
+field = 'body' : value = [<_ast.Print object at 0x7ffe920a3c10>, <_ast.Expr object at 0x7ffe920a3c90>]
+field = 'orelse' : value = []
+
+<_ast.Compare object at 0x7ffe920a3a90>
+field = 'left' : value = <_ast.Call object at 0x7ffe920a3ad0>
+field = 'ops' : value = [<_ast.Lt object at 0x7ffe938b6050>]
+field = 'comparators' : value = [<_ast.Num object at 0x7ffe920a3bd0>]
+
+<_ast.Call object at 0x7ffe920a3ad0>
+field = 'func' : value = <_ast.Name object at 0x7ffe920a3b10>
+field = 'args' : value = [<_ast.Attribute object at 0x7ffe920a3b50>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Name object at 0x7ffe920a3b10>
+field = 'id' : value = 'len'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920a3b50>
+field = 'value' : value = <_ast.Name object at 0x7ffe920a3b90>
+field = 'attr' : value = 'argv'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920a3b90>
+field = 'id' : value = 'sys'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Lt object at 0x7ffe938b6050>
+
+<_ast.Num object at 0x7ffe920a3bd0>
+field = 'n' : value = 4
+
+<_ast.Print object at 0x7ffe920a3c10>
+field = 'dest' : value = None
+field = 'values' : value = [<_ast.Str object at 0x7ffe920a3c50>]
+field = 'nl' : value = True
+
+<_ast.Str object at 0x7ffe920a3c50>
+field = 's' : value = 'Usage: python recolumn.py number_of_lines input_filename output_filename'
+
+<_ast.Expr object at 0x7ffe920a3c90>
+field = 'value' : value = <_ast.Call object at 0x7ffe920a3cd0>
+
+<_ast.Call object at 0x7ffe920a3cd0>
+field = 'func' : value = <_ast.Attribute object at 0x7ffe920a3d10>
+field = 'args' : value = [<_ast.Num object at 0x7ffe920a3d90>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Attribute object at 0x7ffe920a3d10>
+field = 'value' : value = <_ast.Name object at 0x7ffe920a3d50>
+field = 'attr' : value = 'exit'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920a3d50>
+field = 'id' : value = 'sys'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Num object at 0x7ffe920a3d90>
+field = 'n' : value = 1
+
+<_ast.Assign object at 0x7ffe920a3dd0>
+field = 'targets' : value = [<_ast.Name object at 0x7ffe920a3e10>]
+field = 'value' : value = <_ast.Subscript object at 0x7ffe920a3e50>
+
+<_ast.Name object at 0x7ffe920a3e10>
+field = 'id' : value = 'line'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Subscript object at 0x7ffe920a3e50>
+field = 'value' : value = <_ast.Attribute object at 0x7ffe920a3e90>
+field = 'slice' : value = <_ast.Index object at 0x7ffe920a3f10>
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920a3e90>
+field = 'value' : value = <_ast.Name object at 0x7ffe920a3ed0>
+field = 'attr' : value = 'argv'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920a3ed0>
+field = 'id' : value = 'sys'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Index object at 0x7ffe920a3f10>
+field = 'value' : value = <_ast.Num object at 0x7ffe920a3f50>
+
+<_ast.Num object at 0x7ffe920a3f50>
+field = 'n' : value = 1
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Assign object at 0x7ffe920a3f90>
+field = 'targets' : value = [<_ast.Name object at 0x7ffe920a3fd0>]
+field = 'value' : value = <_ast.Subscript object at 0x7ffe920ab050>
+
+<_ast.Name object at 0x7ffe920a3fd0>
+field = 'id' : value = 'input_filename'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Subscript object at 0x7ffe920ab050>
+field = 'value' : value = <_ast.Attribute object at 0x7ffe920ab090>
+field = 'slice' : value = <_ast.Index object at 0x7ffe920ab110>
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920ab090>
+field = 'value' : value = <_ast.Name object at 0x7ffe920ab0d0>
+field = 'attr' : value = 'argv'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920ab0d0>
+field = 'id' : value = 'sys'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Index object at 0x7ffe920ab110>
+field = 'value' : value = <_ast.Num object at 0x7ffe920ab150>
+
+<_ast.Num object at 0x7ffe920ab150>
+field = 'n' : value = 2
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Assign object at 0x7ffe920ab190>
+field = 'targets' : value = [<_ast.Name object at 0x7ffe920ab1d0>]
+field = 'value' : value = <_ast.Subscript object at 0x7ffe920ab210>
+
+<_ast.Name object at 0x7ffe920ab1d0>
+field = 'id' : value = 'output_filename'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Subscript object at 0x7ffe920ab210>
+field = 'value' : value = <_ast.Attribute object at 0x7ffe920ab250>
+field = 'slice' : value = <_ast.Index object at 0x7ffe920ab2d0>
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920ab250>
+field = 'value' : value = <_ast.Name object at 0x7ffe920ab290>
+field = 'attr' : value = 'argv'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920ab290>
+field = 'id' : value = 'sys'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Index object at 0x7ffe920ab2d0>
+field = 'value' : value = <_ast.Num object at 0x7ffe920ab310>
+
+<_ast.Num object at 0x7ffe920ab310>
+field = 'n' : value = 3
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.With object at 0x7ffe920ab350>
+field = 'context_expr' : value = <_ast.Call object at 0x7ffe920ab390>
+field = 'optional_vars' : value = <_ast.Name object at 0x7ffe920ab490>
+field = 'body' : value = [<_ast.Assign object at 0x7ffe920ab4d0>]
+
+<_ast.Call object at 0x7ffe920ab390>
+field = 'func' : value = <_ast.Name object at 0x7ffe920ab3d0>
+field = 'args' : value = [<_ast.Name object at 0x7ffe920ab410>, <_ast.Str object at 0x7ffe920ab450>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Name object at 0x7ffe920ab3d0>
+field = 'id' : value = 'open'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920ab410>
+field = 'id' : value = 'input_filename'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Str object at 0x7ffe920ab450>
+field = 's' : value = 'r'
+
+<_ast.Name object at 0x7ffe920ab490>
+field = 'id' : value = 'source'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Assign object at 0x7ffe920ab4d0>
+field = 'targets' : value = [<_ast.Name object at 0x7ffe920ab510>]
+field = 'value' : value = <_ast.Call object at 0x7ffe920ab550>
+
+<_ast.Name object at 0x7ffe920ab510>
+field = 'id' : value = 'input'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Call object at 0x7ffe920ab550>
+field = 'func' : value = <_ast.Attribute object at 0x7ffe920ab590>
+field = 'args' : value = []
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Attribute object at 0x7ffe920ab590>
+field = 'value' : value = <_ast.Name object at 0x7ffe920ab5d0>
+field = 'attr' : value = 'read'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920ab5d0>
+field = 'id' : value = 'source'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.With object at 0x7ffe920ab610>
+field = 'context_expr' : value = <_ast.Call object at 0x7ffe920ab650>
+field = 'optional_vars' : value = <_ast.Name object at 0x7ffe920ab750>
+field = 'body' : value = [<_ast.Assign object at 0x7ffe920ab790>, <_ast.For object at 0x7ffe920ab850>, <_ast.Expr object at 0x7ffe920abfd0>]
+
+<_ast.Call object at 0x7ffe920ab650>
+field = 'func' : value = <_ast.Name object at 0x7ffe920ab690>
+field = 'args' : value = [<_ast.Name object at 0x7ffe920ab6d0>, <_ast.Str object at 0x7ffe920ab710>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Name object at 0x7ffe920ab690>
+field = 'id' : value = 'open'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920ab6d0>
+field = 'id' : value = 'output_filename'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Str object at 0x7ffe920ab710>
+field = 's' : value = 'w'
+
+<_ast.Name object at 0x7ffe920ab750>
+field = 'id' : value = 'output'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Assign object at 0x7ffe920ab790>
+field = 'targets' : value = [<_ast.Name object at 0x7ffe920ab7d0>]
+field = 'value' : value = <_ast.Num object at 0x7ffe920ab810>
+
+<_ast.Name object at 0x7ffe920ab7d0>
+field = 'id' : value = 'i'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Num object at 0x7ffe920ab810>
+field = 'n' : value = 1
+
+<_ast.For object at 0x7ffe920ab850>
+field = 'target' : value = <_ast.Name object at 0x7ffe920ab890>
+field = 'iter' : value = <_ast.Name object at 0x7ffe920ab8d0>
+field = 'body' : value = [<_ast.If object at 0x7ffe920ab910>, <_ast.If object at 0x7ffe920abbd0>, <_ast.AugAssign object at 0x7ffe920abf10>]
+field = 'orelse' : value = []
+
+<_ast.Name object at 0x7ffe920ab890>
+field = 'id' : value = 'char'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Name object at 0x7ffe920ab8d0>
+field = 'id' : value = 'input'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.If object at 0x7ffe920ab910>
+field = 'test' : value = <_ast.Compare object at 0x7ffe920ab950>
+field = 'body' : value = [<_ast.Expr object at 0x7ffe920aba10>]
+field = 'orelse' : value = []
+
+<_ast.Compare object at 0x7ffe920ab950>
+field = 'left' : value = <_ast.Name object at 0x7ffe920ab990>
+field = 'ops' : value = [<_ast.In object at 0x7ffe938b6350>]
+field = 'comparators' : value = [<_ast.Name object at 0x7ffe920ab9d0>]
+
+<_ast.Name object at 0x7ffe920ab990>
+field = 'id' : value = 'char'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.In object at 0x7ffe938b6350>
+
+<_ast.Name object at 0x7ffe920ab9d0>
+field = 'id' : value = 'ascii_lowercase'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Expr object at 0x7ffe920aba10>
+field = 'value' : value = <_ast.Call object at 0x7ffe920aba50>
+
+<_ast.Call object at 0x7ffe920aba50>
+field = 'func' : value = <_ast.Attribute object at 0x7ffe920aba90>
+field = 'args' : value = [<_ast.BinOp object at 0x7ffe920abb10>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Attribute object at 0x7ffe920aba90>
+field = 'value' : value = <_ast.Name object at 0x7ffe920abad0>
+field = 'attr' : value = 'write'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920abad0>
+field = 'id' : value = 'output'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.BinOp object at 0x7ffe920abb10>
+field = 'left' : value = <_ast.Name object at 0x7ffe920abb50>
+field = 'op' : value = <_ast.Add object at 0x7ffe938b2690>
+field = 'right' : value = <_ast.Str object at 0x7ffe920abb90>
+
+<_ast.Name object at 0x7ffe920abb50>
+field = 'id' : value = 'char'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Add object at 0x7ffe938b2690>
+
+<_ast.Str object at 0x7ffe920abb90>
+field = 's' : value = ', '
+
+<_ast.If object at 0x7ffe920abbd0>
+field = 'test' : value = <_ast.Compare object at 0x7ffe920abc10>
+field = 'body' : value = [<_ast.Expr object at 0x7ffe920abdd0>]
+field = 'orelse' : value = []
+
+<_ast.Compare object at 0x7ffe920abc10>
+field = 'left' : value = <_ast.BinOp object at 0x7ffe920abc50>
+field = 'ops' : value = [<_ast.Eq object at 0x7ffe938b2f10>]
+field = 'comparators' : value = [<_ast.Num object at 0x7ffe920abd90>]
+
+<_ast.BinOp object at 0x7ffe920abc50>
+field = 'left' : value = <_ast.Name object at 0x7ffe920abc90>
+field = 'op' : value = <_ast.Mod object at 0x7ffe938b2890>
+field = 'right' : value = <_ast.Call object at 0x7ffe920abcd0>
+
+<_ast.Name object at 0x7ffe920abc90>
+field = 'id' : value = 'i'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Mod object at 0x7ffe938b2890>
+
+<_ast.Call object at 0x7ffe920abcd0>
+field = 'func' : value = <_ast.Name object at 0x7ffe920abd10>
+field = 'args' : value = [<_ast.Name object at 0x7ffe920abd50>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Name object at 0x7ffe920abd10>
+field = 'id' : value = 'int'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920abd50>
+field = 'id' : value = 'line'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Eq object at 0x7ffe938b2f10>
+
+<_ast.Num object at 0x7ffe920abd90>
+field = 'n' : value = 0
+
+<_ast.Expr object at 0x7ffe920abdd0>
+field = 'value' : value = <_ast.Call object at 0x7ffe920abe10>
+
+<_ast.Call object at 0x7ffe920abe10>
+field = 'func' : value = <_ast.Attribute object at 0x7ffe920abe50>
+field = 'args' : value = [<_ast.Str object at 0x7ffe920abed0>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Attribute object at 0x7ffe920abe50>
+field = 'value' : value = <_ast.Name object at 0x7ffe920abe90>
+field = 'attr' : value = 'write'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920abe90>
+field = 'id' : value = 'output'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Str object at 0x7ffe920abed0>
+field = 's' : value = '\n'
+
+<_ast.AugAssign object at 0x7ffe920abf10>
+field = 'target' : value = <_ast.Name object at 0x7ffe920abf50>
+field = 'op' : value = <_ast.Add object at 0x7ffe938b2690>
+field = 'value' : value = <_ast.Num object at 0x7ffe920abf90>
+
+<_ast.Name object at 0x7ffe920abf50>
+field = 'id' : value = 'i'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Add object at 0x7ffe938b2690>
+
+<_ast.Num object at 0x7ffe920abf90>
+field = 'n' : value = 1
+
+<_ast.Expr object at 0x7ffe920abfd0>
+field = 'value' : value = <_ast.Call object at 0x7ffe920ac050>
+
+<_ast.Call object at 0x7ffe920ac050>
+field = 'func' : value = <_ast.Attribute object at 0x7ffe920ac090>
+field = 'args' : value = [<_ast.Str object at 0x7ffe920ac110>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Attribute object at 0x7ffe920ac090>
+field = 'value' : value = <_ast.Name object at 0x7ffe920ac0d0>
+field = 'attr' : value = 'write'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920ac0d0>
+field = 'id' : value = 'output'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Str object at 0x7ffe920ac110>
+field = 's' : value = '\n'
+
+<_ast.Module object at 0x7ffe920a36d0>
+field = 'body' : value = [<_ast.Import object at 0x7ffe920a37d0>, <_ast.ImportFrom object at 0x7ffe920a39d0>, <_ast.If object at 0x7ffe920a3a50>, <_ast.Assign object at 0x7ffe920a3dd0>, <_ast.Assign object at 0x7ffe920a3f90>, <_ast.Assign object at 0x7ffe920ab190>, <_ast.With object at 0x7ffe920ab350>, <_ast.With object at 0x7ffe920ab610>]
+
+<_ast.Import object at 0x7ffe920a37d0>
+field = 'names' : value = [<_ast.alias object at 0x7ffe920a3990>]
+
+<_ast.Import object at 0x7ffe920a37d0>
+field = 'names' : value = [<_ast.alias object at 0x7ffe920a3990>]
+
+<_ast.alias object at 0x7ffe920a3990>
+field = 'name' : value = 'sys'
+field = 'asname' : value = None
+
+<_ast.Module object at 0x7ffe920a36d0>
+field = 'body' : value = [<_ast.Import object at 0x7ffe920a37d0>, <_ast.ImportFrom object at 0x7ffe920a39d0>, <_ast.If object at 0x7ffe920a3a50>, <_ast.Assign object at 0x7ffe920a3dd0>, <_ast.Assign object at 0x7ffe920a3f90>, <_ast.Assign object at 0x7ffe920ab190>, <_ast.With object at 0x7ffe920ab350>, <_ast.With object at 0x7ffe920ab610>]
+
+<_ast.ImportFrom object at 0x7ffe920a39d0>
+field = 'module' : value = 'string'
+field = 'names' : value = [<_ast.alias object at 0x7ffe920a3a10>]
+field = 'level' : value = 0
+
+<_ast.ImportFrom object at 0x7ffe920a39d0>
+field = 'module' : value = 'string'
+field = 'names' : value = [<_ast.alias object at 0x7ffe920a3a10>]
+field = 'level' : value = 0
+
+<_ast.alias object at 0x7ffe920a3a10>
+field = 'name' : value = 'lowercase'
+field = 'asname' : value = None
+
+<_ast.Module object at 0x7ffe920a36d0>
+field = 'body' : value = [<_ast.Import object at 0x7ffe920a37d0>, <_ast.ImportFrom object at 0x7ffe920a39d0>, <_ast.If object at 0x7ffe920a3a50>, <_ast.Assign object at 0x7ffe920a3dd0>, <_ast.Assign object at 0x7ffe920a3f90>, <_ast.Assign object at 0x7ffe920ab190>, <_ast.With object at 0x7ffe920ab350>, <_ast.With object at 0x7ffe920ab610>]
+
+<_ast.If object at 0x7ffe920a3a50>
+field = 'test' : value = <_ast.Compare object at 0x7ffe920a3a90>
+field = 'body' : value = [<_ast.Print object at 0x7ffe920a3c10>, <_ast.Expr object at 0x7ffe920a3c90>]
+field = 'orelse' : value = []
+
+<_ast.If object at 0x7ffe920a3a50>
+field = 'test' : value = <_ast.Compare object at 0x7ffe920a3a90>
+field = 'body' : value = [<_ast.Print object at 0x7ffe920a3c10>, <_ast.Expr object at 0x7ffe920a3c90>]
+field = 'orelse' : value = []
+
+<_ast.Compare object at 0x7ffe920a3a90>
+field = 'left' : value = <_ast.Call object at 0x7ffe920a3ad0>
+field = 'ops' : value = [<_ast.Lt object at 0x7ffe938b6050>]
+field = 'comparators' : value = [<_ast.Num object at 0x7ffe920a3bd0>]
+
+<_ast.Compare object at 0x7ffe920a3a90>
+field = 'left' : value = <_ast.Call object at 0x7ffe920a3ad0>
+field = 'ops' : value = [<_ast.Lt object at 0x7ffe938b6050>]
+field = 'comparators' : value = [<_ast.Num object at 0x7ffe920a3bd0>]
+
+<_ast.Call object at 0x7ffe920a3ad0>
+field = 'func' : value = <_ast.Name object at 0x7ffe920a3b10>
+field = 'args' : value = [<_ast.Attribute object at 0x7ffe920a3b50>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Call object at 0x7ffe920a3ad0>
+field = 'func' : value = <_ast.Name object at 0x7ffe920a3b10>
+field = 'args' : value = [<_ast.Attribute object at 0x7ffe920a3b50>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Name object at 0x7ffe920a3b10>
+field = 'id' : value = 'len'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920a3b10>
+field = 'id' : value = 'len'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Call object at 0x7ffe920a3ad0>
+field = 'func' : value = <_ast.Name object at 0x7ffe920a3b10>
+field = 'args' : value = [<_ast.Attribute object at 0x7ffe920a3b50>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Attribute object at 0x7ffe920a3b50>
+field = 'value' : value = <_ast.Name object at 0x7ffe920a3b90>
+field = 'attr' : value = 'argv'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920a3b50>
+field = 'value' : value = <_ast.Name object at 0x7ffe920a3b90>
+field = 'attr' : value = 'argv'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920a3b90>
+field = 'id' : value = 'sys'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920a3b90>
+field = 'id' : value = 'sys'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920a3b50>
+field = 'value' : value = <_ast.Name object at 0x7ffe920a3b90>
+field = 'attr' : value = 'argv'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Compare object at 0x7ffe920a3a90>
+field = 'left' : value = <_ast.Call object at 0x7ffe920a3ad0>
+field = 'ops' : value = [<_ast.Lt object at 0x7ffe938b6050>]
+field = 'comparators' : value = [<_ast.Num object at 0x7ffe920a3bd0>]
+
+<_ast.Lt object at 0x7ffe938b6050>
+
+<_ast.Compare object at 0x7ffe920a3a90>
+field = 'left' : value = <_ast.Call object at 0x7ffe920a3ad0>
+field = 'ops' : value = [<_ast.Lt object at 0x7ffe938b6050>]
+field = 'comparators' : value = [<_ast.Num object at 0x7ffe920a3bd0>]
+
+<_ast.Num object at 0x7ffe920a3bd0>
+field = 'n' : value = 4
+
+<_ast.If object at 0x7ffe920a3a50>
+field = 'test' : value = <_ast.Compare object at 0x7ffe920a3a90>
+field = 'body' : value = [<_ast.Print object at 0x7ffe920a3c10>, <_ast.Expr object at 0x7ffe920a3c90>]
+field = 'orelse' : value = []
+
+<_ast.Print object at 0x7ffe920a3c10>
+field = 'dest' : value = None
+field = 'values' : value = [<_ast.Str object at 0x7ffe920a3c50>]
+field = 'nl' : value = True
+
+<_ast.Print object at 0x7ffe920a3c10>
+field = 'dest' : value = None
+field = 'values' : value = [<_ast.Str object at 0x7ffe920a3c50>]
+field = 'nl' : value = True
+
+<_ast.Str object at 0x7ffe920a3c50>
+field = 's' : value = 'Usage: python recolumn.py number_of_lines input_filename output_filename'
+
+<_ast.If object at 0x7ffe920a3a50>
+field = 'test' : value = <_ast.Compare object at 0x7ffe920a3a90>
+field = 'body' : value = [<_ast.Print object at 0x7ffe920a3c10>, <_ast.Expr object at 0x7ffe920a3c90>]
+field = 'orelse' : value = []
+
+<_ast.Expr object at 0x7ffe920a3c90>
+field = 'value' : value = <_ast.Call object at 0x7ffe920a3cd0>
+
+<_ast.Expr object at 0x7ffe920a3c90>
+field = 'value' : value = <_ast.Call object at 0x7ffe920a3cd0>
+
+<_ast.Call object at 0x7ffe920a3cd0>
+field = 'func' : value = <_ast.Attribute object at 0x7ffe920a3d10>
+field = 'args' : value = [<_ast.Num object at 0x7ffe920a3d90>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Call object at 0x7ffe920a3cd0>
+field = 'func' : value = <_ast.Attribute object at 0x7ffe920a3d10>
+field = 'args' : value = [<_ast.Num object at 0x7ffe920a3d90>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Attribute object at 0x7ffe920a3d10>
+field = 'value' : value = <_ast.Name object at 0x7ffe920a3d50>
+field = 'attr' : value = 'exit'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920a3d10>
+field = 'value' : value = <_ast.Name object at 0x7ffe920a3d50>
+field = 'attr' : value = 'exit'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920a3d50>
+field = 'id' : value = 'sys'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920a3d50>
+field = 'id' : value = 'sys'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920a3d10>
+field = 'value' : value = <_ast.Name object at 0x7ffe920a3d50>
+field = 'attr' : value = 'exit'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Call object at 0x7ffe920a3cd0>
+field = 'func' : value = <_ast.Attribute object at 0x7ffe920a3d10>
+field = 'args' : value = [<_ast.Num object at 0x7ffe920a3d90>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Num object at 0x7ffe920a3d90>
+field = 'n' : value = 1
+
+<_ast.Module object at 0x7ffe920a36d0>
+field = 'body' : value = [<_ast.Import object at 0x7ffe920a37d0>, <_ast.ImportFrom object at 0x7ffe920a39d0>, <_ast.If object at 0x7ffe920a3a50>, <_ast.Assign object at 0x7ffe920a3dd0>, <_ast.Assign object at 0x7ffe920a3f90>, <_ast.Assign object at 0x7ffe920ab190>, <_ast.With object at 0x7ffe920ab350>, <_ast.With object at 0x7ffe920ab610>]
+
+<_ast.Assign object at 0x7ffe920a3dd0>
+field = 'targets' : value = [<_ast.Name object at 0x7ffe920a3e10>]
+field = 'value' : value = <_ast.Subscript object at 0x7ffe920a3e50>
+
+<_ast.Assign object at 0x7ffe920a3dd0>
+field = 'targets' : value = [<_ast.Name object at 0x7ffe920a3e10>]
+field = 'value' : value = <_ast.Subscript object at 0x7ffe920a3e50>
+
+<_ast.Name object at 0x7ffe920a3e10>
+field = 'id' : value = 'line'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Name object at 0x7ffe920a3e10>
+field = 'id' : value = 'line'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Assign object at 0x7ffe920a3dd0>
+field = 'targets' : value = [<_ast.Name object at 0x7ffe920a3e10>]
+field = 'value' : value = <_ast.Subscript object at 0x7ffe920a3e50>
+
+<_ast.Subscript object at 0x7ffe920a3e50>
+field = 'value' : value = <_ast.Attribute object at 0x7ffe920a3e90>
+field = 'slice' : value = <_ast.Index object at 0x7ffe920a3f10>
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Subscript object at 0x7ffe920a3e50>
+field = 'value' : value = <_ast.Attribute object at 0x7ffe920a3e90>
+field = 'slice' : value = <_ast.Index object at 0x7ffe920a3f10>
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920a3e90>
+field = 'value' : value = <_ast.Name object at 0x7ffe920a3ed0>
+field = 'attr' : value = 'argv'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920a3e90>
+field = 'value' : value = <_ast.Name object at 0x7ffe920a3ed0>
+field = 'attr' : value = 'argv'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920a3ed0>
+field = 'id' : value = 'sys'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920a3ed0>
+field = 'id' : value = 'sys'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920a3e90>
+field = 'value' : value = <_ast.Name object at 0x7ffe920a3ed0>
+field = 'attr' : value = 'argv'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Subscript object at 0x7ffe920a3e50>
+field = 'value' : value = <_ast.Attribute object at 0x7ffe920a3e90>
+field = 'slice' : value = <_ast.Index object at 0x7ffe920a3f10>
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Index object at 0x7ffe920a3f10>
+field = 'value' : value = <_ast.Num object at 0x7ffe920a3f50>
+
+<_ast.Index object at 0x7ffe920a3f10>
+field = 'value' : value = <_ast.Num object at 0x7ffe920a3f50>
+
+<_ast.Num object at 0x7ffe920a3f50>
+field = 'n' : value = 1
+
+<_ast.Subscript object at 0x7ffe920a3e50>
+field = 'value' : value = <_ast.Attribute object at 0x7ffe920a3e90>
+field = 'slice' : value = <_ast.Index object at 0x7ffe920a3f10>
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Module object at 0x7ffe920a36d0>
+field = 'body' : value = [<_ast.Import object at 0x7ffe920a37d0>, <_ast.ImportFrom object at 0x7ffe920a39d0>, <_ast.If object at 0x7ffe920a3a50>, <_ast.Assign object at 0x7ffe920a3dd0>, <_ast.Assign object at 0x7ffe920a3f90>, <_ast.Assign object at 0x7ffe920ab190>, <_ast.With object at 0x7ffe920ab350>, <_ast.With object at 0x7ffe920ab610>]
+
+<_ast.Assign object at 0x7ffe920a3f90>
+field = 'targets' : value = [<_ast.Name object at 0x7ffe920a3fd0>]
+field = 'value' : value = <_ast.Subscript object at 0x7ffe920ab050>
+
+<_ast.Assign object at 0x7ffe920a3f90>
+field = 'targets' : value = [<_ast.Name object at 0x7ffe920a3fd0>]
+field = 'value' : value = <_ast.Subscript object at 0x7ffe920ab050>
+
+<_ast.Name object at 0x7ffe920a3fd0>
+field = 'id' : value = 'input_filename'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Name object at 0x7ffe920a3fd0>
+field = 'id' : value = 'input_filename'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Assign object at 0x7ffe920a3f90>
+field = 'targets' : value = [<_ast.Name object at 0x7ffe920a3fd0>]
+field = 'value' : value = <_ast.Subscript object at 0x7ffe920ab050>
+
+<_ast.Subscript object at 0x7ffe920ab050>
+field = 'value' : value = <_ast.Attribute object at 0x7ffe920ab090>
+field = 'slice' : value = <_ast.Index object at 0x7ffe920ab110>
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Subscript object at 0x7ffe920ab050>
+field = 'value' : value = <_ast.Attribute object at 0x7ffe920ab090>
+field = 'slice' : value = <_ast.Index object at 0x7ffe920ab110>
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920ab090>
+field = 'value' : value = <_ast.Name object at 0x7ffe920ab0d0>
+field = 'attr' : value = 'argv'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920ab090>
+field = 'value' : value = <_ast.Name object at 0x7ffe920ab0d0>
+field = 'attr' : value = 'argv'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920ab0d0>
+field = 'id' : value = 'sys'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920ab0d0>
+field = 'id' : value = 'sys'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920ab090>
+field = 'value' : value = <_ast.Name object at 0x7ffe920ab0d0>
+field = 'attr' : value = 'argv'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Subscript object at 0x7ffe920ab050>
+field = 'value' : value = <_ast.Attribute object at 0x7ffe920ab090>
+field = 'slice' : value = <_ast.Index object at 0x7ffe920ab110>
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Index object at 0x7ffe920ab110>
+field = 'value' : value = <_ast.Num object at 0x7ffe920ab150>
+
+<_ast.Index object at 0x7ffe920ab110>
+field = 'value' : value = <_ast.Num object at 0x7ffe920ab150>
+
+<_ast.Num object at 0x7ffe920ab150>
+field = 'n' : value = 2
+
+<_ast.Subscript object at 0x7ffe920ab050>
+field = 'value' : value = <_ast.Attribute object at 0x7ffe920ab090>
+field = 'slice' : value = <_ast.Index object at 0x7ffe920ab110>
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Module object at 0x7ffe920a36d0>
+field = 'body' : value = [<_ast.Import object at 0x7ffe920a37d0>, <_ast.ImportFrom object at 0x7ffe920a39d0>, <_ast.If object at 0x7ffe920a3a50>, <_ast.Assign object at 0x7ffe920a3dd0>, <_ast.Assign object at 0x7ffe920a3f90>, <_ast.Assign object at 0x7ffe920ab190>, <_ast.With object at 0x7ffe920ab350>, <_ast.With object at 0x7ffe920ab610>]
+
+<_ast.Assign object at 0x7ffe920ab190>
+field = 'targets' : value = [<_ast.Name object at 0x7ffe920ab1d0>]
+field = 'value' : value = <_ast.Subscript object at 0x7ffe920ab210>
+
+<_ast.Assign object at 0x7ffe920ab190>
+field = 'targets' : value = [<_ast.Name object at 0x7ffe920ab1d0>]
+field = 'value' : value = <_ast.Subscript object at 0x7ffe920ab210>
+
+<_ast.Name object at 0x7ffe920ab1d0>
+field = 'id' : value = 'output_filename'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Name object at 0x7ffe920ab1d0>
+field = 'id' : value = 'output_filename'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Assign object at 0x7ffe920ab190>
+field = 'targets' : value = [<_ast.Name object at 0x7ffe920ab1d0>]
+field = 'value' : value = <_ast.Subscript object at 0x7ffe920ab210>
+
+<_ast.Subscript object at 0x7ffe920ab210>
+field = 'value' : value = <_ast.Attribute object at 0x7ffe920ab250>
+field = 'slice' : value = <_ast.Index object at 0x7ffe920ab2d0>
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Subscript object at 0x7ffe920ab210>
+field = 'value' : value = <_ast.Attribute object at 0x7ffe920ab250>
+field = 'slice' : value = <_ast.Index object at 0x7ffe920ab2d0>
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920ab250>
+field = 'value' : value = <_ast.Name object at 0x7ffe920ab290>
+field = 'attr' : value = 'argv'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920ab250>
+field = 'value' : value = <_ast.Name object at 0x7ffe920ab290>
+field = 'attr' : value = 'argv'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920ab290>
+field = 'id' : value = 'sys'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920ab290>
+field = 'id' : value = 'sys'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920ab250>
+field = 'value' : value = <_ast.Name object at 0x7ffe920ab290>
+field = 'attr' : value = 'argv'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Subscript object at 0x7ffe920ab210>
+field = 'value' : value = <_ast.Attribute object at 0x7ffe920ab250>
+field = 'slice' : value = <_ast.Index object at 0x7ffe920ab2d0>
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Index object at 0x7ffe920ab2d0>
+field = 'value' : value = <_ast.Num object at 0x7ffe920ab310>
+
+<_ast.Index object at 0x7ffe920ab2d0>
+field = 'value' : value = <_ast.Num object at 0x7ffe920ab310>
+
+<_ast.Num object at 0x7ffe920ab310>
+field = 'n' : value = 3
+
+<_ast.Subscript object at 0x7ffe920ab210>
+field = 'value' : value = <_ast.Attribute object at 0x7ffe920ab250>
+field = 'slice' : value = <_ast.Index object at 0x7ffe920ab2d0>
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Module object at 0x7ffe920a36d0>
+field = 'body' : value = [<_ast.Import object at 0x7ffe920a37d0>, <_ast.ImportFrom object at 0x7ffe920a39d0>, <_ast.If object at 0x7ffe920a3a50>, <_ast.Assign object at 0x7ffe920a3dd0>, <_ast.Assign object at 0x7ffe920a3f90>, <_ast.Assign object at 0x7ffe920ab190>, <_ast.With object at 0x7ffe920ab350>, <_ast.With object at 0x7ffe920ab610>]
+
+<_ast.With object at 0x7ffe920ab350>
+field = 'context_expr' : value = <_ast.Call object at 0x7ffe920ab390>
+field = 'optional_vars' : value = <_ast.Name object at 0x7ffe920ab490>
+field = 'body' : value = [<_ast.Assign object at 0x7ffe920ab4d0>]
+
+<_ast.With object at 0x7ffe920ab350>
+field = 'context_expr' : value = <_ast.Call object at 0x7ffe920ab390>
+field = 'optional_vars' : value = <_ast.Name object at 0x7ffe920ab490>
+field = 'body' : value = [<_ast.Assign object at 0x7ffe920ab4d0>]
+
+<_ast.Call object at 0x7ffe920ab390>
+field = 'func' : value = <_ast.Name object at 0x7ffe920ab3d0>
+field = 'args' : value = [<_ast.Name object at 0x7ffe920ab410>, <_ast.Str object at 0x7ffe920ab450>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Call object at 0x7ffe920ab390>
+field = 'func' : value = <_ast.Name object at 0x7ffe920ab3d0>
+field = 'args' : value = [<_ast.Name object at 0x7ffe920ab410>, <_ast.Str object at 0x7ffe920ab450>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Name object at 0x7ffe920ab3d0>
+field = 'id' : value = 'open'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920ab3d0>
+field = 'id' : value = 'open'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Call object at 0x7ffe920ab390>
+field = 'func' : value = <_ast.Name object at 0x7ffe920ab3d0>
+field = 'args' : value = [<_ast.Name object at 0x7ffe920ab410>, <_ast.Str object at 0x7ffe920ab450>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Name object at 0x7ffe920ab410>
+field = 'id' : value = 'input_filename'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920ab410>
+field = 'id' : value = 'input_filename'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Call object at 0x7ffe920ab390>
+field = 'func' : value = <_ast.Name object at 0x7ffe920ab3d0>
+field = 'args' : value = [<_ast.Name object at 0x7ffe920ab410>, <_ast.Str object at 0x7ffe920ab450>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Str object at 0x7ffe920ab450>
+field = 's' : value = 'r'
+
+<_ast.With object at 0x7ffe920ab350>
+field = 'context_expr' : value = <_ast.Call object at 0x7ffe920ab390>
+field = 'optional_vars' : value = <_ast.Name object at 0x7ffe920ab490>
+field = 'body' : value = [<_ast.Assign object at 0x7ffe920ab4d0>]
+
+<_ast.Name object at 0x7ffe920ab490>
+field = 'id' : value = 'source'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Name object at 0x7ffe920ab490>
+field = 'id' : value = 'source'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.With object at 0x7ffe920ab350>
+field = 'context_expr' : value = <_ast.Call object at 0x7ffe920ab390>
+field = 'optional_vars' : value = <_ast.Name object at 0x7ffe920ab490>
+field = 'body' : value = [<_ast.Assign object at 0x7ffe920ab4d0>]
+
+<_ast.Assign object at 0x7ffe920ab4d0>
+field = 'targets' : value = [<_ast.Name object at 0x7ffe920ab510>]
+field = 'value' : value = <_ast.Call object at 0x7ffe920ab550>
+
+<_ast.Assign object at 0x7ffe920ab4d0>
+field = 'targets' : value = [<_ast.Name object at 0x7ffe920ab510>]
+field = 'value' : value = <_ast.Call object at 0x7ffe920ab550>
+
+<_ast.Name object at 0x7ffe920ab510>
+field = 'id' : value = 'input'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Name object at 0x7ffe920ab510>
+field = 'id' : value = 'input'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Assign object at 0x7ffe920ab4d0>
+field = 'targets' : value = [<_ast.Name object at 0x7ffe920ab510>]
+field = 'value' : value = <_ast.Call object at 0x7ffe920ab550>
+
+<_ast.Call object at 0x7ffe920ab550>
+field = 'func' : value = <_ast.Attribute object at 0x7ffe920ab590>
+field = 'args' : value = []
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Call object at 0x7ffe920ab550>
+field = 'func' : value = <_ast.Attribute object at 0x7ffe920ab590>
+field = 'args' : value = []
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Attribute object at 0x7ffe920ab590>
+field = 'value' : value = <_ast.Name object at 0x7ffe920ab5d0>
+field = 'attr' : value = 'read'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920ab590>
+field = 'value' : value = <_ast.Name object at 0x7ffe920ab5d0>
+field = 'attr' : value = 'read'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920ab5d0>
+field = 'id' : value = 'source'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920ab5d0>
+field = 'id' : value = 'source'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920ab590>
+field = 'value' : value = <_ast.Name object at 0x7ffe920ab5d0>
+field = 'attr' : value = 'read'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Module object at 0x7ffe920a36d0>
+field = 'body' : value = [<_ast.Import object at 0x7ffe920a37d0>, <_ast.ImportFrom object at 0x7ffe920a39d0>, <_ast.If object at 0x7ffe920a3a50>, <_ast.Assign object at 0x7ffe920a3dd0>, <_ast.Assign object at 0x7ffe920a3f90>, <_ast.Assign object at 0x7ffe920ab190>, <_ast.With object at 0x7ffe920ab350>, <_ast.With object at 0x7ffe920ab610>]
+
+<_ast.With object at 0x7ffe920ab610>
+field = 'context_expr' : value = <_ast.Call object at 0x7ffe920ab650>
+field = 'optional_vars' : value = <_ast.Name object at 0x7ffe920ab750>
+field = 'body' : value = [<_ast.Assign object at 0x7ffe920ab790>, <_ast.For object at 0x7ffe920ab850>, <_ast.Expr object at 0x7ffe920abfd0>]
+
+<_ast.With object at 0x7ffe920ab610>
+field = 'context_expr' : value = <_ast.Call object at 0x7ffe920ab650>
+field = 'optional_vars' : value = <_ast.Name object at 0x7ffe920ab750>
+field = 'body' : value = [<_ast.Assign object at 0x7ffe920ab790>, <_ast.For object at 0x7ffe920ab850>, <_ast.Expr object at 0x7ffe920abfd0>]
+
+<_ast.Call object at 0x7ffe920ab650>
+field = 'func' : value = <_ast.Name object at 0x7ffe920ab690>
+field = 'args' : value = [<_ast.Name object at 0x7ffe920ab6d0>, <_ast.Str object at 0x7ffe920ab710>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Call object at 0x7ffe920ab650>
+field = 'func' : value = <_ast.Name object at 0x7ffe920ab690>
+field = 'args' : value = [<_ast.Name object at 0x7ffe920ab6d0>, <_ast.Str object at 0x7ffe920ab710>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Name object at 0x7ffe920ab690>
+field = 'id' : value = 'open'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920ab690>
+field = 'id' : value = 'open'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Call object at 0x7ffe920ab650>
+field = 'func' : value = <_ast.Name object at 0x7ffe920ab690>
+field = 'args' : value = [<_ast.Name object at 0x7ffe920ab6d0>, <_ast.Str object at 0x7ffe920ab710>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Name object at 0x7ffe920ab6d0>
+field = 'id' : value = 'output_filename'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920ab6d0>
+field = 'id' : value = 'output_filename'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Call object at 0x7ffe920ab650>
+field = 'func' : value = <_ast.Name object at 0x7ffe920ab690>
+field = 'args' : value = [<_ast.Name object at 0x7ffe920ab6d0>, <_ast.Str object at 0x7ffe920ab710>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Str object at 0x7ffe920ab710>
+field = 's' : value = 'w'
+
+<_ast.With object at 0x7ffe920ab610>
+field = 'context_expr' : value = <_ast.Call object at 0x7ffe920ab650>
+field = 'optional_vars' : value = <_ast.Name object at 0x7ffe920ab750>
+field = 'body' : value = [<_ast.Assign object at 0x7ffe920ab790>, <_ast.For object at 0x7ffe920ab850>, <_ast.Expr object at 0x7ffe920abfd0>]
+
+<_ast.Name object at 0x7ffe920ab750>
+field = 'id' : value = 'output'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Name object at 0x7ffe920ab750>
+field = 'id' : value = 'output'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.With object at 0x7ffe920ab610>
+field = 'context_expr' : value = <_ast.Call object at 0x7ffe920ab650>
+field = 'optional_vars' : value = <_ast.Name object at 0x7ffe920ab750>
+field = 'body' : value = [<_ast.Assign object at 0x7ffe920ab790>, <_ast.For object at 0x7ffe920ab850>, <_ast.Expr object at 0x7ffe920abfd0>]
+
+<_ast.Assign object at 0x7ffe920ab790>
+field = 'targets' : value = [<_ast.Name object at 0x7ffe920ab7d0>]
+field = 'value' : value = <_ast.Num object at 0x7ffe920ab810>
+
+<_ast.Assign object at 0x7ffe920ab790>
+field = 'targets' : value = [<_ast.Name object at 0x7ffe920ab7d0>]
+field = 'value' : value = <_ast.Num object at 0x7ffe920ab810>
+
+<_ast.Name object at 0x7ffe920ab7d0>
+field = 'id' : value = 'i'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Name object at 0x7ffe920ab7d0>
+field = 'id' : value = 'i'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Assign object at 0x7ffe920ab790>
+field = 'targets' : value = [<_ast.Name object at 0x7ffe920ab7d0>]
+field = 'value' : value = <_ast.Num object at 0x7ffe920ab810>
+
+<_ast.Num object at 0x7ffe920ab810>
+field = 'n' : value = 1
+
+<_ast.With object at 0x7ffe920ab610>
+field = 'context_expr' : value = <_ast.Call object at 0x7ffe920ab650>
+field = 'optional_vars' : value = <_ast.Name object at 0x7ffe920ab750>
+field = 'body' : value = [<_ast.Assign object at 0x7ffe920ab790>, <_ast.For object at 0x7ffe920ab850>, <_ast.Expr object at 0x7ffe920abfd0>]
+
+<_ast.For object at 0x7ffe920ab850>
+field = 'target' : value = <_ast.Name object at 0x7ffe920ab890>
+field = 'iter' : value = <_ast.Name object at 0x7ffe920ab8d0>
+field = 'body' : value = [<_ast.If object at 0x7ffe920ab910>, <_ast.If object at 0x7ffe920abbd0>, <_ast.AugAssign object at 0x7ffe920abf10>]
+field = 'orelse' : value = []
+
+<_ast.For object at 0x7ffe920ab850>
+field = 'target' : value = <_ast.Name object at 0x7ffe920ab890>
+field = 'iter' : value = <_ast.Name object at 0x7ffe920ab8d0>
+field = 'body' : value = [<_ast.If object at 0x7ffe920ab910>, <_ast.If object at 0x7ffe920abbd0>, <_ast.AugAssign object at 0x7ffe920abf10>]
+field = 'orelse' : value = []
+
+<_ast.Name object at 0x7ffe920ab890>
+field = 'id' : value = 'char'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Name object at 0x7ffe920ab890>
+field = 'id' : value = 'char'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.For object at 0x7ffe920ab850>
+field = 'target' : value = <_ast.Name object at 0x7ffe920ab890>
+field = 'iter' : value = <_ast.Name object at 0x7ffe920ab8d0>
+field = 'body' : value = [<_ast.If object at 0x7ffe920ab910>, <_ast.If object at 0x7ffe920abbd0>, <_ast.AugAssign object at 0x7ffe920abf10>]
+field = 'orelse' : value = []
+
+<_ast.Name object at 0x7ffe920ab8d0>
+field = 'id' : value = 'input'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920ab8d0>
+field = 'id' : value = 'input'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.For object at 0x7ffe920ab850>
+field = 'target' : value = <_ast.Name object at 0x7ffe920ab890>
+field = 'iter' : value = <_ast.Name object at 0x7ffe920ab8d0>
+field = 'body' : value = [<_ast.If object at 0x7ffe920ab910>, <_ast.If object at 0x7ffe920abbd0>, <_ast.AugAssign object at 0x7ffe920abf10>]
+field = 'orelse' : value = []
+
+<_ast.If object at 0x7ffe920ab910>
+field = 'test' : value = <_ast.Compare object at 0x7ffe920ab950>
+field = 'body' : value = [<_ast.Expr object at 0x7ffe920aba10>]
+field = 'orelse' : value = []
+
+<_ast.If object at 0x7ffe920ab910>
+field = 'test' : value = <_ast.Compare object at 0x7ffe920ab950>
+field = 'body' : value = [<_ast.Expr object at 0x7ffe920aba10>]
+field = 'orelse' : value = []
+
+<_ast.Compare object at 0x7ffe920ab950>
+field = 'left' : value = <_ast.Name object at 0x7ffe920ab990>
+field = 'ops' : value = [<_ast.In object at 0x7ffe938b6350>]
+field = 'comparators' : value = [<_ast.Name object at 0x7ffe920ab9d0>]
+
+<_ast.Compare object at 0x7ffe920ab950>
+field = 'left' : value = <_ast.Name object at 0x7ffe920ab990>
+field = 'ops' : value = [<_ast.In object at 0x7ffe938b6350>]
+field = 'comparators' : value = [<_ast.Name object at 0x7ffe920ab9d0>]
+
+<_ast.Name object at 0x7ffe920ab990>
+field = 'id' : value = 'char'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920ab990>
+field = 'id' : value = 'char'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Compare object at 0x7ffe920ab950>
+field = 'left' : value = <_ast.Name object at 0x7ffe920ab990>
+field = 'ops' : value = [<_ast.In object at 0x7ffe938b6350>]
+field = 'comparators' : value = [<_ast.Name object at 0x7ffe920ab9d0>]
+
+<_ast.In object at 0x7ffe938b6350>
+
+<_ast.Compare object at 0x7ffe920ab950>
+field = 'left' : value = <_ast.Name object at 0x7ffe920ab990>
+field = 'ops' : value = [<_ast.In object at 0x7ffe938b6350>]
+field = 'comparators' : value = [<_ast.Name object at 0x7ffe920ab9d0>]
+
+<_ast.Name object at 0x7ffe920ab9d0>
+field = 'id' : value = 'ascii_lowercase'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920ab9d0>
+field = 'id' : value = 'ascii_lowercase'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.If object at 0x7ffe920ab910>
+field = 'test' : value = <_ast.Compare object at 0x7ffe920ab950>
+field = 'body' : value = [<_ast.Expr object at 0x7ffe920aba10>]
+field = 'orelse' : value = []
+
+<_ast.Expr object at 0x7ffe920aba10>
+field = 'value' : value = <_ast.Call object at 0x7ffe920aba50>
+
+<_ast.Expr object at 0x7ffe920aba10>
+field = 'value' : value = <_ast.Call object at 0x7ffe920aba50>
+
+<_ast.Call object at 0x7ffe920aba50>
+field = 'func' : value = <_ast.Attribute object at 0x7ffe920aba90>
+field = 'args' : value = [<_ast.BinOp object at 0x7ffe920abb10>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Call object at 0x7ffe920aba50>
+field = 'func' : value = <_ast.Attribute object at 0x7ffe920aba90>
+field = 'args' : value = [<_ast.BinOp object at 0x7ffe920abb10>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Attribute object at 0x7ffe920aba90>
+field = 'value' : value = <_ast.Name object at 0x7ffe920abad0>
+field = 'attr' : value = 'write'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920aba90>
+field = 'value' : value = <_ast.Name object at 0x7ffe920abad0>
+field = 'attr' : value = 'write'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920abad0>
+field = 'id' : value = 'output'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920abad0>
+field = 'id' : value = 'output'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920aba90>
+field = 'value' : value = <_ast.Name object at 0x7ffe920abad0>
+field = 'attr' : value = 'write'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Call object at 0x7ffe920aba50>
+field = 'func' : value = <_ast.Attribute object at 0x7ffe920aba90>
+field = 'args' : value = [<_ast.BinOp object at 0x7ffe920abb10>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.BinOp object at 0x7ffe920abb10>
+field = 'left' : value = <_ast.Name object at 0x7ffe920abb50>
+field = 'op' : value = <_ast.Add object at 0x7ffe938b2690>
+field = 'right' : value = <_ast.Str object at 0x7ffe920abb90>
+
+<_ast.BinOp object at 0x7ffe920abb10>
+field = 'left' : value = <_ast.Name object at 0x7ffe920abb50>
+field = 'op' : value = <_ast.Add object at 0x7ffe938b2690>
+field = 'right' : value = <_ast.Str object at 0x7ffe920abb90>
+
+<_ast.Name object at 0x7ffe920abb50>
+field = 'id' : value = 'char'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920abb50>
+field = 'id' : value = 'char'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.BinOp object at 0x7ffe920abb10>
+field = 'left' : value = <_ast.Name object at 0x7ffe920abb50>
+field = 'op' : value = <_ast.Add object at 0x7ffe938b2690>
+field = 'right' : value = <_ast.Str object at 0x7ffe920abb90>
+
+<_ast.Add object at 0x7ffe938b2690>
+
+<_ast.BinOp object at 0x7ffe920abb10>
+field = 'left' : value = <_ast.Name object at 0x7ffe920abb50>
+field = 'op' : value = <_ast.Add object at 0x7ffe938b2690>
+field = 'right' : value = <_ast.Str object at 0x7ffe920abb90>
+
+<_ast.Str object at 0x7ffe920abb90>
+field = 's' : value = ', '
+
+<_ast.For object at 0x7ffe920ab850>
+field = 'target' : value = <_ast.Name object at 0x7ffe920ab890>
+field = 'iter' : value = <_ast.Name object at 0x7ffe920ab8d0>
+field = 'body' : value = [<_ast.If object at 0x7ffe920ab910>, <_ast.If object at 0x7ffe920abbd0>, <_ast.AugAssign object at 0x7ffe920abf10>]
+field = 'orelse' : value = []
+
+<_ast.If object at 0x7ffe920abbd0>
+field = 'test' : value = <_ast.Compare object at 0x7ffe920abc10>
+field = 'body' : value = [<_ast.Expr object at 0x7ffe920abdd0>]
+field = 'orelse' : value = []
+
+<_ast.If object at 0x7ffe920abbd0>
+field = 'test' : value = <_ast.Compare object at 0x7ffe920abc10>
+field = 'body' : value = [<_ast.Expr object at 0x7ffe920abdd0>]
+field = 'orelse' : value = []
+
+<_ast.Compare object at 0x7ffe920abc10>
+field = 'left' : value = <_ast.BinOp object at 0x7ffe920abc50>
+field = 'ops' : value = [<_ast.Eq object at 0x7ffe938b2f10>]
+field = 'comparators' : value = [<_ast.Num object at 0x7ffe920abd90>]
+
+<_ast.Compare object at 0x7ffe920abc10>
+field = 'left' : value = <_ast.BinOp object at 0x7ffe920abc50>
+field = 'ops' : value = [<_ast.Eq object at 0x7ffe938b2f10>]
+field = 'comparators' : value = [<_ast.Num object at 0x7ffe920abd90>]
+
+<_ast.BinOp object at 0x7ffe920abc50>
+field = 'left' : value = <_ast.Name object at 0x7ffe920abc90>
+field = 'op' : value = <_ast.Mod object at 0x7ffe938b2890>
+field = 'right' : value = <_ast.Call object at 0x7ffe920abcd0>
+
+<_ast.BinOp object at 0x7ffe920abc50>
+field = 'left' : value = <_ast.Name object at 0x7ffe920abc90>
+field = 'op' : value = <_ast.Mod object at 0x7ffe938b2890>
+field = 'right' : value = <_ast.Call object at 0x7ffe920abcd0>
+
+<_ast.Name object at 0x7ffe920abc90>
+field = 'id' : value = 'i'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920abc90>
+field = 'id' : value = 'i'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.BinOp object at 0x7ffe920abc50>
+field = 'left' : value = <_ast.Name object at 0x7ffe920abc90>
+field = 'op' : value = <_ast.Mod object at 0x7ffe938b2890>
+field = 'right' : value = <_ast.Call object at 0x7ffe920abcd0>
+
+<_ast.Mod object at 0x7ffe938b2890>
+
+<_ast.BinOp object at 0x7ffe920abc50>
+field = 'left' : value = <_ast.Name object at 0x7ffe920abc90>
+field = 'op' : value = <_ast.Mod object at 0x7ffe938b2890>
+field = 'right' : value = <_ast.Call object at 0x7ffe920abcd0>
+
+<_ast.Call object at 0x7ffe920abcd0>
+field = 'func' : value = <_ast.Name object at 0x7ffe920abd10>
+field = 'args' : value = [<_ast.Name object at 0x7ffe920abd50>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Call object at 0x7ffe920abcd0>
+field = 'func' : value = <_ast.Name object at 0x7ffe920abd10>
+field = 'args' : value = [<_ast.Name object at 0x7ffe920abd50>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Name object at 0x7ffe920abd10>
+field = 'id' : value = 'int'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920abd10>
+field = 'id' : value = 'int'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Call object at 0x7ffe920abcd0>
+field = 'func' : value = <_ast.Name object at 0x7ffe920abd10>
+field = 'args' : value = [<_ast.Name object at 0x7ffe920abd50>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Name object at 0x7ffe920abd50>
+field = 'id' : value = 'line'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920abd50>
+field = 'id' : value = 'line'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Compare object at 0x7ffe920abc10>
+field = 'left' : value = <_ast.BinOp object at 0x7ffe920abc50>
+field = 'ops' : value = [<_ast.Eq object at 0x7ffe938b2f10>]
+field = 'comparators' : value = [<_ast.Num object at 0x7ffe920abd90>]
+
+<_ast.Eq object at 0x7ffe938b2f10>
+
+<_ast.Compare object at 0x7ffe920abc10>
+field = 'left' : value = <_ast.BinOp object at 0x7ffe920abc50>
+field = 'ops' : value = [<_ast.Eq object at 0x7ffe938b2f10>]
+field = 'comparators' : value = [<_ast.Num object at 0x7ffe920abd90>]
+
+<_ast.Num object at 0x7ffe920abd90>
+field = 'n' : value = 0
+
+<_ast.If object at 0x7ffe920abbd0>
+field = 'test' : value = <_ast.Compare object at 0x7ffe920abc10>
+field = 'body' : value = [<_ast.Expr object at 0x7ffe920abdd0>]
+field = 'orelse' : value = []
+
+<_ast.Expr object at 0x7ffe920abdd0>
+field = 'value' : value = <_ast.Call object at 0x7ffe920abe10>
+
+<_ast.Expr object at 0x7ffe920abdd0>
+field = 'value' : value = <_ast.Call object at 0x7ffe920abe10>
+
+<_ast.Call object at 0x7ffe920abe10>
+field = 'func' : value = <_ast.Attribute object at 0x7ffe920abe50>
+field = 'args' : value = [<_ast.Str object at 0x7ffe920abed0>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Call object at 0x7ffe920abe10>
+field = 'func' : value = <_ast.Attribute object at 0x7ffe920abe50>
+field = 'args' : value = [<_ast.Str object at 0x7ffe920abed0>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Attribute object at 0x7ffe920abe50>
+field = 'value' : value = <_ast.Name object at 0x7ffe920abe90>
+field = 'attr' : value = 'write'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920abe50>
+field = 'value' : value = <_ast.Name object at 0x7ffe920abe90>
+field = 'attr' : value = 'write'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920abe90>
+field = 'id' : value = 'output'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920abe90>
+field = 'id' : value = 'output'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920abe50>
+field = 'value' : value = <_ast.Name object at 0x7ffe920abe90>
+field = 'attr' : value = 'write'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Call object at 0x7ffe920abe10>
+field = 'func' : value = <_ast.Attribute object at 0x7ffe920abe50>
+field = 'args' : value = [<_ast.Str object at 0x7ffe920abed0>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Str object at 0x7ffe920abed0>
+field = 's' : value = '\n'
+
+<_ast.For object at 0x7ffe920ab850>
+field = 'target' : value = <_ast.Name object at 0x7ffe920ab890>
+field = 'iter' : value = <_ast.Name object at 0x7ffe920ab8d0>
+field = 'body' : value = [<_ast.If object at 0x7ffe920ab910>, <_ast.If object at 0x7ffe920abbd0>, <_ast.AugAssign object at 0x7ffe920abf10>]
+field = 'orelse' : value = []
+
+<_ast.AugAssign object at 0x7ffe920abf10>
+field = 'target' : value = <_ast.Name object at 0x7ffe920abf50>
+field = 'op' : value = <_ast.Add object at 0x7ffe938b2690>
+field = 'value' : value = <_ast.Num object at 0x7ffe920abf90>
+
+<_ast.AugAssign object at 0x7ffe920abf10>
+field = 'target' : value = <_ast.Name object at 0x7ffe920abf50>
+field = 'op' : value = <_ast.Add object at 0x7ffe938b2690>
+field = 'value' : value = <_ast.Num object at 0x7ffe920abf90>
+
+<_ast.Name object at 0x7ffe920abf50>
+field = 'id' : value = 'i'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Name object at 0x7ffe920abf50>
+field = 'id' : value = 'i'
+field = 'ctx' : value = <_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.Store object at 0x7ffe938b20d0>
+
+<_ast.AugAssign object at 0x7ffe920abf10>
+field = 'target' : value = <_ast.Name object at 0x7ffe920abf50>
+field = 'op' : value = <_ast.Add object at 0x7ffe938b2690>
+field = 'value' : value = <_ast.Num object at 0x7ffe920abf90>
+
+<_ast.Add object at 0x7ffe938b2690>
+
+<_ast.AugAssign object at 0x7ffe920abf10>
+field = 'target' : value = <_ast.Name object at 0x7ffe920abf50>
+field = 'op' : value = <_ast.Add object at 0x7ffe938b2690>
+field = 'value' : value = <_ast.Num object at 0x7ffe920abf90>
+
+<_ast.Num object at 0x7ffe920abf90>
+field = 'n' : value = 1
+
+<_ast.With object at 0x7ffe920ab610>
+field = 'context_expr' : value = <_ast.Call object at 0x7ffe920ab650>
+field = 'optional_vars' : value = <_ast.Name object at 0x7ffe920ab750>
+field = 'body' : value = [<_ast.Assign object at 0x7ffe920ab790>, <_ast.For object at 0x7ffe920ab850>, <_ast.Expr object at 0x7ffe920abfd0>]
+
+<_ast.Expr object at 0x7ffe920abfd0>
+field = 'value' : value = <_ast.Call object at 0x7ffe920ac050>
+
+<_ast.Expr object at 0x7ffe920abfd0>
+field = 'value' : value = <_ast.Call object at 0x7ffe920ac050>
+
+<_ast.Call object at 0x7ffe920ac050>
+field = 'func' : value = <_ast.Attribute object at 0x7ffe920ac090>
+field = 'args' : value = [<_ast.Str object at 0x7ffe920ac110>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Call object at 0x7ffe920ac050>
+field = 'func' : value = <_ast.Attribute object at 0x7ffe920ac090>
+field = 'args' : value = [<_ast.Str object at 0x7ffe920ac110>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Attribute object at 0x7ffe920ac090>
+field = 'value' : value = <_ast.Name object at 0x7ffe920ac0d0>
+field = 'attr' : value = 'write'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920ac090>
+field = 'value' : value = <_ast.Name object at 0x7ffe920ac0d0>
+field = 'attr' : value = 'write'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920ac0d0>
+field = 'id' : value = 'output'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Name object at 0x7ffe920ac0d0>
+field = 'id' : value = 'output'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Attribute object at 0x7ffe920ac090>
+field = 'value' : value = <_ast.Name object at 0x7ffe920ac0d0>
+field = 'attr' : value = 'write'
+field = 'ctx' : value = <_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Load object at 0x7ffe938b2050>
+
+<_ast.Call object at 0x7ffe920ac050>
+field = 'func' : value = <_ast.Attribute object at 0x7ffe920ac090>
+field = 'args' : value = [<_ast.Str object at 0x7ffe920ac110>]
+field = 'keywords' : value = []
+field = 'starargs' : value = None
+field = 'kwargs' : value = None
+
+<_ast.Str object at 0x7ffe920ac110>
+field = 's' : value = '\n'
+

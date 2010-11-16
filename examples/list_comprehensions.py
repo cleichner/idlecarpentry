@@ -1,3 +1,4 @@
+
 #> This is the basic list which will be used for processing in this example.
 # A brief demonstration of list comprehensions:
 list = ['a', 'mpilgrim', 'foo', 'b', 'b', 'd']

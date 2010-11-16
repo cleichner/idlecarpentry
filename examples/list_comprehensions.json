@@ -7,7 +7,6 @@
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'"
       }, 
-      "annotation": "This is the basic list which will be used for processing in this example.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'"
@@ -20,7 +19,6 @@
         "__name__": "'__main__'", 
         "list": "['a', 'mpilgrim', 'foo', 'b', 'b', 'd']"
       }, 
-      "annotation": "This is a typical example of imperative list processing. First, a new empty list is declared.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -35,7 +33,7 @@
         "list": "['a', 'mpilgrim', 'foo', 'b', 'b', 'd']", 
         "long_words": "[]"
       }, 
-      "annotation": "Then, we iterate over the list.", 
+      "annotation": "This is a typical example of imperative list processing. First, a new empty list is declared.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -52,7 +50,7 @@
         "long_words": "[]", 
         "element": "'a'"
       }, 
-      "annotation": "If the element satisfies the condition, add it to the new list", 
+      "annotation": "Then, we iterate over the list.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -70,7 +68,7 @@
         "long_words": "[]", 
         "element": "'a'"
       }, 
-      "annotation": "Then, we iterate over the list.", 
+      "annotation": "This is a typical example of imperative list processing. First, a new empty list is declared.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -88,7 +86,7 @@
         "long_words": "[]", 
         "element": "'mpilgrim'"
       }, 
-      "annotation": "If the element satisfies the condition, add it to the new list", 
+      "annotation": "Then, we iterate over the list.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -106,6 +104,7 @@
         "long_words": "[]", 
         "element": "'mpilgrim'"
       }, 
+      "annotation": "If the element satisfies the condition, add it to the new list", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -123,7 +122,7 @@
         "long_words": "['mpilgrim']", 
         "element": "'mpilgrim'"
       }, 
-      "annotation": "Then, we iterate over the list.", 
+      "annotation": "This is a typical example of imperative list processing. First, a new empty list is declared.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -141,7 +140,7 @@
         "long_words": "['mpilgrim']", 
         "element": "'foo'"
       }, 
-      "annotation": "If the element satisfies the condition, add it to the new list", 
+      "annotation": "Then, we iterate over the list.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -159,6 +158,7 @@
         "long_words": "['mpilgrim']", 
         "element": "'foo'"
       }, 
+      "annotation": "If the element satisfies the condition, add it to the new list", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -176,7 +176,7 @@
         "long_words": "['mpilgrim', 'foo']", 
         "element": "'foo'"
       }, 
-      "annotation": "Then, we iterate over the list.", 
+      "annotation": "This is a typical example of imperative list processing. First, a new empty list is declared.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -194,7 +194,7 @@
         "long_words": "['mpilgrim', 'foo']", 
         "element": "'b'"
       }, 
-      "annotation": "If the element satisfies the condition, add it to the new list", 
+      "annotation": "Then, we iterate over the list.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -212,7 +212,7 @@
         "long_words": "['mpilgrim', 'foo']", 
         "element": "'b'"
       }, 
-      "annotation": "Then, we iterate over the list.", 
+      "annotation": "This is a typical example of imperative list processing. First, a new empty list is declared.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -230,7 +230,7 @@
         "long_words": "['mpilgrim', 'foo']", 
         "element": "'b'"
       }, 
-      "annotation": "If the element satisfies the condition, add it to the new list", 
+      "annotation": "Then, we iterate over the list.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -248,7 +248,7 @@
         "long_words": "['mpilgrim', 'foo']", 
         "element": "'b'"
       }, 
-      "annotation": "Then, we iterate over the list.", 
+      "annotation": "This is a typical example of imperative list processing. First, a new empty list is declared.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -266,7 +266,7 @@
         "long_words": "['mpilgrim', 'foo']", 
         "element": "'d'"
       }, 
-      "annotation": "If the element satisfies the condition, add it to the new list", 
+      "annotation": "Then, we iterate over the list.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -284,7 +284,7 @@
         "long_words": "['mpilgrim', 'foo']", 
         "element": "'d'"
       }, 
-      "annotation": "Then, we iterate over the list.", 
+      "annotation": "This is a typical example of imperative list processing. First, a new empty list is declared.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -320,7 +320,6 @@
         "long_words": "['mpilgrim', 'foo']", 
         "element": "'d'"
       }, 
-      "annotation": "This is the functional approach, which is more like set-builder notation in math. This generates a new list, the syntax mimics the list declaration. It has a output function, a working variable, a source, and a conditional statement. In this case, the output function is element, the working variable is element, the source is list and the conditional is len(element) > 1.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -339,7 +338,6 @@
         "list": "['a', 'mpilgrim', 'foo', 'b', 'b', 'd']", 
         "element": "'a'"
       }, 
-      "annotation": "This is the functional approach, which is more like set-builder notation in math. This generates a new list, the syntax mimics the list declaration. It has a output function, a working variable, a source, and a conditional statement. In this case, the output function is element, the working variable is element, the source is list and the conditional is len(element) > 1.", 
       "locals": {
         "_[1]": "[]", 
         "long_words": "['mpilgrim', 'foo']", 
@@ -359,7 +357,6 @@
         "list": "['a', 'mpilgrim', 'foo', 'b', 'b', 'd']", 
         "element": "'mpilgrim'"
       }, 
-      "annotation": "This is the functional approach, which is more like set-builder notation in math. This generates a new list, the syntax mimics the list declaration. It has a output function, a working variable, a source, and a conditional statement. In this case, the output function is element, the working variable is element, the source is list and the conditional is len(element) > 1.", 
       "locals": {
         "_[1]": "['mpilgrim']", 
         "long_words": "['mpilgrim', 'foo']", 
@@ -379,7 +376,6 @@
         "list": "['a', 'mpilgrim', 'foo', 'b', 'b', 'd']", 
         "element": "'foo'"
       }, 
-      "annotation": "This is the functional approach, which is more like set-builder notation in math. This generates a new list, the syntax mimics the list declaration. It has a output function, a working variable, a source, and a conditional statement. In this case, the output function is element, the working variable is element, the source is list and the conditional is len(element) > 1.", 
       "locals": {
         "_[1]": "['mpilgrim', 'foo']", 
         "long_words": "['mpilgrim', 'foo']", 
@@ -399,7 +395,6 @@
         "list": "['a', 'mpilgrim', 'foo', 'b', 'b', 'd']", 
         "element": "'b'"
       }, 
-      "annotation": "This is the functional approach, which is more like set-builder notation in math. This generates a new list, the syntax mimics the list declaration. It has a output function, a working variable, a source, and a conditional statement. In this case, the output function is element, the working variable is element, the source is list and the conditional is len(element) > 1.", 
       "locals": {
         "_[1]": "['mpilgrim', 'foo']", 
         "long_words": "['mpilgrim', 'foo']", 
@@ -419,7 +414,6 @@
         "list": "['a', 'mpilgrim', 'foo', 'b', 'b', 'd']", 
         "element": "'d'"
       }, 
-      "annotation": "This is the functional approach, which is more like set-builder notation in math. This generates a new list, the syntax mimics the list declaration. It has a output function, a working variable, a source, and a conditional statement. In this case, the output function is element, the working variable is element, the source is list and the conditional is len(element) > 1.", 
       "locals": {
         "_[1]": "['mpilgrim', 'foo']", 
         "long_words": "['mpilgrim', 'foo']", 
@@ -439,7 +433,6 @@
         "long_words": "['mpilgrim', 'foo']", 
         "element": "'d'"
       }, 
-      "annotation": "This remove long_words from the global variable dictionary.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -456,27 +449,27 @@
         "list": "['a', 'mpilgrim', 'foo', 'b', 'b', 'd']", 
         "element": "'d'"
       }, 
+      "locals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "['a', 'mpilgrim', 'foo', 'b', 'b', 'd']", 
+        "element": "'d'"
+      }
+    }, 
+    {
+      "line": 14, 
+      "globals": {
+        "__builtins__": "<module '__builtin__' (built-in)>", 
+        "__name__": "'__main__'", 
+        "list": "['a', 'mpilgrim', 'foo', 'b', 'b', 'd']", 
+        "upper_list": "[]", 
+        "element": "'d'"
+      }, 
       "annotation": "This is the same thing as before, but slightly more complicated. It generates a list of the upper case version of all the members of list which aren't b.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
         "list": "['a', 'mpilgrim', 'foo', 'b', 'b', 'd']", 
-        "element": "'d'"
-      }
-    }, 
-    {
-      "line": 14, 
-      "globals": {
-        "__builtins__": "<module '__builtin__' (built-in)>", 
-        "__name__": "'__main__'", 
-        "list": "['a', 'mpilgrim', 'foo', 'b', 'b', 'd']", 
-        "upper_list": "[]", 
-        "element": "'d'"
-      }, 
-      "locals": {
-        "__builtins__": "<module '__builtin__' (built-in)>", 
-        "__name__": "'__main__'", 
-        "list": "['a', 'mpilgrim', 'foo', 'b', 'b', 'd']", 
         "upper_list": "[]", 
         "element": "'d'"
       }
@@ -524,6 +517,7 @@
         "upper_list": "['A']", 
         "element": "'a'"
       }, 
+      "annotation": "This is the same thing as before, but slightly more complicated. It generates a list of the upper case version of all the members of list which aren't b.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -575,6 +569,7 @@
         "upper_list": "['A', 'MPILGRIM']", 
         "element": "'mpilgrim'"
       }, 
+      "annotation": "This is the same thing as before, but slightly more complicated. It generates a list of the upper case version of all the members of list which aren't b.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -626,6 +621,7 @@
         "upper_list": "['A', 'MPILGRIM', 'FOO']", 
         "element": "'foo'"
       }, 
+      "annotation": "This is the same thing as before, but slightly more complicated. It generates a list of the upper case version of all the members of list which aren't b.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -660,6 +656,7 @@
         "upper_list": "['A', 'MPILGRIM', 'FOO']", 
         "element": "'b'"
       }, 
+      "annotation": "This is the same thing as before, but slightly more complicated. It generates a list of the upper case version of all the members of list which aren't b.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -694,6 +691,7 @@
         "upper_list": "['A', 'MPILGRIM', 'FOO']", 
         "element": "'b'"
       }, 
+      "annotation": "This is the same thing as before, but slightly more complicated. It generates a list of the upper case version of all the members of list which aren't b.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -745,6 +743,7 @@
         "upper_list": "['A', 'MPILGRIM', 'FOO', 'D']", 
         "element": "'d'"
       }, 
+      "annotation": "This is the same thing as before, but slightly more complicated. It generates a list of the upper case version of all the members of list which aren't b.", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -780,7 +779,6 @@
         "upper_list": "['A', 'MPILGRIM', 'FOO', 'D']", 
         "element": "'d'"
       }, 
-      "annotation": "This demonstrates the ability to use an arbitrary value as the return function. In this case it is element.upper()", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 
@@ -799,7 +797,6 @@
         "upper_list": "['A', 'MPILGRIM', 'FOO', 'D']", 
         "element": "'a'"
       }, 
-      "annotation": "This demonstrates the ability to use an arbitrary value as the return function. In this case it is element.upper()", 
       "locals": {
         "__name__": "'__main__'", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
@@ -819,7 +816,6 @@
         "upper_list": "['A', 'MPILGRIM', 'FOO', 'D']", 
         "element": "'mpilgrim'"
       }, 
-      "annotation": "This demonstrates the ability to use an arbitrary value as the return function. In this case it is element.upper()", 
       "locals": {
         "__name__": "'__main__'", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
@@ -839,7 +835,6 @@
         "upper_list": "['A', 'MPILGRIM', 'FOO', 'D']", 
         "element": "'foo'"
       }, 
-      "annotation": "This demonstrates the ability to use an arbitrary value as the return function. In this case it is element.upper()", 
       "locals": {
         "__name__": "'__main__'", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
@@ -859,7 +854,6 @@
         "upper_list": "['A', 'MPILGRIM', 'FOO', 'D']", 
         "element": "'b'"
       }, 
-      "annotation": "This demonstrates the ability to use an arbitrary value as the return function. In this case it is element.upper()", 
       "locals": {
         "__name__": "'__main__'", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
@@ -879,7 +873,6 @@
         "upper_list": "['A', 'MPILGRIM', 'FOO', 'D']", 
         "element": "'d'"
       }, 
-      "annotation": "This demonstrates the ability to use an arbitrary value as the return function. In this case it is element.upper()", 
       "locals": {
         "__name__": "'__main__'", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
@@ -899,7 +892,6 @@
         "upper_list": "['A', 'MPILGRIM', 'FOO', 'D']", 
         "element": "'d'"
       }, 
-      "annotation": "This demonstrates the ability to use an arbitrary value as the return function. In this case it is element.upper()", 
       "locals": {
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__name__": "'__main__'", 

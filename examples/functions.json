@@ -36,7 +36,7 @@
         "__name__": "'__main__'", 
         "pi": "3.1415926535897931", 
         "__package__": "None", 
-        "circle_area": "<function circle_area at 0x198ea28>"
+        "circle_area": "<function circle_area at 0x302ba28>"
       }, 
       "annotation": "Once defined for a general case, the chunk of code can be referenced by supplying a parameter.", 
       "locals": {
@@ -44,7 +44,7 @@
         "__name__": "'__main__'", 
         "pi": "3.1415926535897931", 
         "__package__": "None", 
-        "circle_area": "<function circle_area at 0x198ea28>"
+        "circle_area": "<function circle_area at 0x302ba28>"
       }
     }, 
     {
@@ -54,7 +54,7 @@
         "__name__": "'__main__'", 
         "pi": "3.1415926535897931", 
         "__package__": "None", 
-        "circle_area": "<function circle_area at 0x198ea28>"
+        "circle_area": "<function circle_area at 0x302ba28>"
       }, 
       "annotation": "When you want to do something serveral times in your code ( or just simplify a particular bit of logic) you can define a function to do so. Here is an example which finds (and returns) the area of a circle.", 
       "locals": {
@@ -68,7 +68,7 @@
         "__name__": "'__main__'", 
         "pi": "3.1415926535897931", 
         "__package__": "None", 
-        "circle_area": "<function circle_area at 0x198ea28>"
+        "circle_area": "<function circle_area at 0x302ba28>"
       }, 
       "locals": {
         "radius": "5"
@@ -82,7 +82,7 @@
         "__name__": "'__main__'", 
         "pi": "3.1415926535897931", 
         "__package__": "None", 
-        "circle_area": "<function circle_area at 0x198ea28>"
+        "circle_area": "<function circle_area at 0x302ba28>"
       }, 
       "annotation": "This is a very useful technique", 
       "locals": {
@@ -90,7 +90,7 @@
         "__name__": "'__main__'", 
         "pi": "3.1415926535897931", 
         "__package__": "None", 
-        "circle_area": "<function circle_area at 0x198ea28>"
+        "circle_area": "<function circle_area at 0x302ba28>"
       }
     }, 
     {
@@ -100,7 +100,7 @@
         "__name__": "'__main__'", 
         "pi": "3.1415926535897931", 
         "__package__": "None", 
-        "circle_area": "<function circle_area at 0x198ea28>"
+        "circle_area": "<function circle_area at 0x302ba28>"
       }, 
       "annotation": "When you want to do something serveral times in your code ( or just simplify a particular bit of logic) you can define a function to do so. Here is an example which finds (and returns) the area of a circle.", 
       "locals": {
@@ -114,7 +114,7 @@
         "__name__": "'__main__'", 
         "pi": "3.1415926535897931", 
         "__package__": "None", 
-        "circle_area": "<function circle_area at 0x198ea28>"
+        "circle_area": "<function circle_area at 0x302ba28>"
       }, 
       "locals": {
         "radius": "6"
@@ -128,7 +128,7 @@
         "__name__": "'__main__'", 
         "pi": "3.1415926535897931", 
         "__package__": "None", 
-        "circle_area": "<function circle_area at 0x198ea28>"
+        "circle_area": "<function circle_area at 0x302ba28>"
       }, 
       "annotation": "This is called a closure", 
       "locals": {
@@ -136,25 +136,25 @@
         "__name__": "'__main__'", 
         "pi": "3.1415926535897931", 
         "__package__": "None", 
-        "circle_area": "<function circle_area at 0x198ea28>"
+        "circle_area": "<function circle_area at 0x302ba28>"
       }
     }, 
     {
       "line": 14, 
       "globals": {
-        "circle_area": "<function circle_area at 0x198ea28>", 
+        "circle_area": "<function circle_area at 0x302ba28>", 
         "__name__": "'__main__'", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
-        "named_area": "<function named_area at 0x198eaa0>", 
+        "named_area": "<function named_area at 0x302baa0>", 
         "pi": "3.1415926535897931", 
         "__package__": "None"
       }, 
       "annotation": "These generate function objects which can then be called", 
       "locals": {
-        "circle_area": "<function circle_area at 0x198ea28>", 
+        "circle_area": "<function circle_area at 0x302ba28>", 
         "__name__": "'__main__'", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
-        "named_area": "<function named_area at 0x198eaa0>", 
+        "named_area": "<function named_area at 0x302baa0>", 
         "pi": "3.1415926535897931", 
         "__package__": "None"
       }
@@ -162,10 +162,10 @@
     {
       "line": 9, 
       "globals": {
-        "circle_area": "<function circle_area at 0x198ea28>", 
+        "circle_area": "<function circle_area at 0x302ba28>", 
         "__name__": "'__main__'", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
-        "named_area": "<function named_area at 0x198eaa0>", 
+        "named_area": "<function named_area at 0x302baa0>", 
         "pi": "3.1415926535897931", 
         "__package__": "None"
       }, 
@@ -178,10 +178,10 @@
     {
       "line": 10, 
       "globals": {
-        "circle_area": "<function circle_area at 0x198ea28>", 
+        "circle_area": "<function circle_area at 0x302ba28>", 
         "__name__": "'__main__'", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
-        "named_area": "<function named_area at 0x198eaa0>", 
+        "named_area": "<function named_area at 0x302baa0>", 
         "pi": "3.1415926535897931", 
         "__package__": "None"
       }, 
@@ -193,49 +193,49 @@
     {
       "line": 12, 
       "globals": {
-        "circle_area": "<function circle_area at 0x198ea28>", 
+        "circle_area": "<function circle_area at 0x302ba28>", 
         "__name__": "'__main__'", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
-        "named_area": "<function named_area at 0x198eaa0>", 
+        "named_area": "<function named_area at 0x302baa0>", 
         "pi": "3.1415926535897931", 
         "__package__": "None"
       }, 
       "locals": {
         "radius": "5", 
         "name": "'five '", 
-        "area": "<function area at 0x198eb18>"
+        "area": "<function area at 0x302bb18>"
       }
     }, 
     {
       "line": 15, 
       "globals": {
-        "circle_area": "<function circle_area at 0x198ea28>", 
+        "circle_area": "<function circle_area at 0x302ba28>", 
         "__name__": "'__main__'", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
-        "named_area": "<function named_area at 0x198eaa0>", 
+        "named_area": "<function named_area at 0x302baa0>", 
         "pi": "3.1415926535897931", 
-        "five_area": "<function area at 0x198eb18>", 
+        "five_area": "<function area at 0x302bb18>", 
         "__package__": "None"
       }, 
       "locals": {
-        "circle_area": "<function circle_area at 0x198ea28>", 
+        "circle_area": "<function circle_area at 0x302ba28>", 
         "__name__": "'__main__'", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
-        "named_area": "<function named_area at 0x198eaa0>", 
+        "named_area": "<function named_area at 0x302baa0>", 
         "pi": "3.1415926535897931", 
-        "five_area": "<function area at 0x198eb18>", 
+        "five_area": "<function area at 0x302bb18>", 
         "__package__": "None"
       }
     }, 
     {
       "line": 9, 
       "globals": {
-        "circle_area": "<function circle_area at 0x198ea28>", 
+        "circle_area": "<function circle_area at 0x302ba28>", 
         "__name__": "'__main__'", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
-        "named_area": "<function named_area at 0x198eaa0>", 
+        "named_area": "<function named_area at 0x302baa0>", 
         "pi": "3.1415926535897931", 
-        "five_area": "<function area at 0x198eb18>", 
+        "five_area": "<function area at 0x302bb18>", 
         "__package__": "None"
       }, 
       "annotation": "This is called a closure", 
@@ -247,12 +247,12 @@
     {
       "line": 10, 
       "globals": {
-        "circle_area": "<function circle_area at 0x198ea28>", 
+        "circle_area": "<function circle_area at 0x302ba28>", 
         "__name__": "'__main__'", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
-        "named_area": "<function named_area at 0x198eaa0>", 
+        "named_area": "<function named_area at 0x302baa0>", 
         "pi": "3.1415926535897931", 
-        "five_area": "<function area at 0x198eb18>", 
+        "five_area": "<function area at 0x302bb18>", 
         "__package__": "None"
       }, 
       "locals": {
@@ -263,55 +263,55 @@
     {
       "line": 12, 
       "globals": {
-        "circle_area": "<function circle_area at 0x198ea28>", 
+        "circle_area": "<function circle_area at 0x302ba28>", 
         "__name__": "'__main__'", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
-        "named_area": "<function named_area at 0x198eaa0>", 
+        "named_area": "<function named_area at 0x302baa0>", 
         "pi": "3.1415926535897931", 
-        "five_area": "<function area at 0x198eb18>", 
+        "five_area": "<function area at 0x302bb18>", 
         "__package__": "None"
       }, 
       "locals": {
         "radius": "6", 
         "name": "'six '", 
-        "area": "<function area at 0x198eb90>"
+        "area": "<function area at 0x302bb90>"
       }
     }, 
     {
       "line": 17, 
       "globals": {
-        "six_area": "<function area at 0x198eb90>", 
+        "six_area": "<function area at 0x302bb90>", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__package__": "None", 
-        "circle_area": "<function circle_area at 0x198ea28>", 
+        "circle_area": "<function circle_area at 0x302ba28>", 
         "__name__": "'__main__'", 
-        "named_area": "<function named_area at 0x198eaa0>", 
+        "named_area": "<function named_area at 0x302baa0>", 
         "pi": "3.1415926535897931", 
-        "five_area": "<function area at 0x198eb18>"
+        "five_area": "<function area at 0x302bb18>"
       }, 
       "annotation": "The functions retain the arguments they were created with", 
       "locals": {
-        "six_area": "<function area at 0x198eb90>", 
+        "six_area": "<function area at 0x302bb90>", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__package__": "None", 
-        "circle_area": "<function circle_area at 0x198ea28>", 
+        "circle_area": "<function circle_area at 0x302ba28>", 
         "__name__": "'__main__'", 
-        "named_area": "<function named_area at 0x198eaa0>", 
+        "named_area": "<function named_area at 0x302baa0>", 
         "pi": "3.1415926535897931", 
-        "five_area": "<function area at 0x198eb18>"
+        "five_area": "<function area at 0x302bb18>"
       }
     }, 
     {
       "line": 10, 
       "globals": {
-        "six_area": "<function area at 0x198eb90>", 
+        "six_area": "<function area at 0x302bb90>", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__package__": "None", 
-        "circle_area": "<function circle_area at 0x198ea28>", 
+        "circle_area": "<function circle_area at 0x302ba28>", 
         "__name__": "'__main__'", 
-        "named_area": "<function named_area at 0x198eaa0>", 
+        "named_area": "<function named_area at 0x302baa0>", 
         "pi": "3.1415926535897931", 
-        "five_area": "<function area at 0x198eb18>"
+        "five_area": "<function area at 0x302bb18>"
       }, 
       "locals": {
         "radius": "5", 
@@ -321,14 +321,14 @@
     {
       "line": 11, 
       "globals": {
-        "six_area": "<function area at 0x198eb90>", 
+        "six_area": "<function area at 0x302bb90>", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__package__": "None", 
-        "circle_area": "<function circle_area at 0x198ea28>", 
+        "circle_area": "<function circle_area at 0x302ba28>", 
         "__name__": "'__main__'", 
-        "named_area": "<function named_area at 0x198eaa0>", 
+        "named_area": "<function named_area at 0x302baa0>", 
         "pi": "3.1415926535897931", 
-        "five_area": "<function area at 0x198eb18>"
+        "five_area": "<function area at 0x302bb18>"
       }, 
       "locals": {
         "radius": "5", 
@@ -339,37 +339,37 @@
     {
       "line": 18, 
       "globals": {
-        "six_area": "<function area at 0x198eb90>", 
+        "six_area": "<function area at 0x302bb90>", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__package__": "None", 
-        "circle_area": "<function circle_area at 0x198ea28>", 
+        "circle_area": "<function circle_area at 0x302ba28>", 
         "__name__": "'__main__'", 
-        "named_area": "<function named_area at 0x198eaa0>", 
+        "named_area": "<function named_area at 0x302baa0>", 
         "pi": "3.1415926535897931", 
-        "five_area": "<function area at 0x198eb18>"
+        "five_area": "<function area at 0x302bb18>"
       }, 
       "locals": {
-        "six_area": "<function area at 0x198eb90>", 
+        "six_area": "<function area at 0x302bb90>", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__package__": "None", 
-        "circle_area": "<function circle_area at 0x198ea28>", 
+        "circle_area": "<function circle_area at 0x302ba28>", 
         "__name__": "'__main__'", 
-        "named_area": "<function named_area at 0x198eaa0>", 
+        "named_area": "<function named_area at 0x302baa0>", 
         "pi": "3.1415926535897931", 
-        "five_area": "<function area at 0x198eb18>"
+        "five_area": "<function area at 0x302bb18>"
       }
     }, 
     {
       "line": 10, 
       "globals": {
-        "six_area": "<function area at 0x198eb90>", 
+        "six_area": "<function area at 0x302bb90>", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__package__": "None", 
-        "circle_area": "<function circle_area at 0x198ea28>", 
+        "circle_area": "<function circle_area at 0x302ba28>", 
         "__name__": "'__main__'", 
-        "named_area": "<function named_area at 0x198eaa0>", 
+        "named_area": "<function named_area at 0x302baa0>", 
         "pi": "3.1415926535897931", 
-        "five_area": "<function area at 0x198eb18>"
+        "five_area": "<function area at 0x302bb18>"
       }, 
       "locals": {
         "radius": "6", 
@@ -379,14 +379,14 @@
     {
       "line": 11, 
       "globals": {
-        "six_area": "<function area at 0x198eb90>", 
+        "six_area": "<function area at 0x302bb90>", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__package__": "None", 
-        "circle_area": "<function circle_area at 0x198ea28>", 
+        "circle_area": "<function circle_area at 0x302ba28>", 
         "__name__": "'__main__'", 
-        "named_area": "<function named_area at 0x198eaa0>", 
+        "named_area": "<function named_area at 0x302baa0>", 
         "pi": "3.1415926535897931", 
-        "five_area": "<function area at 0x198eb18>"
+        "five_area": "<function area at 0x302bb18>"
       }, 
       "locals": {
         "radius": "6", 
@@ -397,24 +397,24 @@
     {
       "line": 18, 
       "globals": {
-        "six_area": "<function area at 0x198eb90>", 
+        "six_area": "<function area at 0x302bb90>", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__package__": "None", 
-        "circle_area": "<function circle_area at 0x198ea28>", 
+        "circle_area": "<function circle_area at 0x302ba28>", 
         "__name__": "'__main__'", 
-        "named_area": "<function named_area at 0x198eaa0>", 
+        "named_area": "<function named_area at 0x302baa0>", 
         "pi": "3.1415926535897931", 
-        "five_area": "<function area at 0x198eb18>"
+        "five_area": "<function area at 0x302bb18>"
       }, 
       "locals": {
-        "six_area": "<function area at 0x198eb90>", 
+        "six_area": "<function area at 0x302bb90>", 
         "__builtins__": "<module '__builtin__' (built-in)>", 
         "__package__": "None", 
-        "circle_area": "<function circle_area at 0x198ea28>", 
+        "circle_area": "<function circle_area at 0x302ba28>", 
         "__name__": "'__main__'", 
-        "named_area": "<function named_area at 0x198eaa0>", 
+        "named_area": "<function named_area at 0x302baa0>", 
         "pi": "3.1415926535897931", 
-        "five_area": "<function area at 0x198eb18>"
+        "five_area": "<function area at 0x302bb18>"
       }
     }
   ]
